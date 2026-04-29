@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mphasis AI & Applied Tech Lab — Signal V3 Editorial</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+/* ========================================
+   RESET & BASE
+   ======================================== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0B1E33;
+  --bg-deep: #061628;
+  --bg-dark: #04101F;
+  --cream: #FBF3DF;
+  --dim: rgba(251,243,223,0.7);
+  --dimmer: rgba(251,243,223,0.45);
+  --line: rgba(251,243,223,0.15);
+  --accent: #E8586F;
+  --crimson: #C4122F;
+  --amber: #E4A03B;
+  --green: #4ADE80;
+  --blue: #60A5FA;
+  --pillar-ai: #2563EB;
+  --pillar-bharatsim: #059669;
+  --pillar-chart: #D97706;
+  --pillar-cyber: #7C3AED;
+  --pillar-maker: #DC2626;
+  --sidebar-w: 220px;
+}
+
+html { scroll-behavior: auto; }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: var(--bg);
+  color: var(--cream);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   GRID OVERLAY
+   ======================================== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image:
+    linear-gradient(to right, rgba(251,243,223,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(251,243,223,0.06) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+@keyframes pulse { 0%,100% { opacity:1 } 50% { opacity:.3 } }
+@keyframes marq { from { transform:translateX(0) } to { transform:translateX(-50%) } }
+@keyframes scrollCue { 0%,100% { opacity:0.3; transform:scaleX(1) } 50% { opacity:1; transform:scaleX(1.5) } }
+@keyframes fillBar { from { width: 0 } to { width: 100% } }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================
+   LEFT INDEX SIDEBAR
+   ======================================== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--bg-deep);
+  border-right: 1px solid var(--line);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 0;
+  user-select: none;
+}
+
+.sidebar-header {
+  padding: 0 24px 28px;
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.sidebar-items {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.sidebar-item .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.sidebar-item .label {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.sidebar-item .num {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--dimmer);
+  transition: color 0.3s ease;
+}
+
+.sidebar-item .name {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 13px;
+  color: var(--dimmer);
+  letter-spacing: 0.03em;
+  transition: color 0.3s ease;
+}
+
+.sidebar-item.active .dot {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+.sidebar-item.active .num { color: var(--dim); }
+.sidebar-item.active .name { color: var(--cream); }
+
+.sidebar-item:hover:not(.active) .name { color: var(--dim); }
+
+.sidebar-footer {
+  padding: 24px 24px 0;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-footer span {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--dimmer);
+}
+
+/* ========================================
+   TOP HUD BAR
+   ======================================== */
+.hud {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-w);
+  right: 0;
+  height: 44px;
+  background: rgba(11,30,51,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--dimmer);
+}
+
+.hud-chapter { transition: opacity 0.3s ease; }
+
+.hud-right {
+  margin-left: auto;
+  display: flex;
+  gap: 24px;
+}
+
+/* ========================================
+   PROGRESS BAR
+   ======================================== */
+.progress-bar {
+  position: fixed;
+  top: 44px;
+  left: var(--sidebar-w);
+  right: 0;
+  height: 3px;
+  background: rgba(251,243,223,0.06);
+  z-index: 999;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent), 0 0 16px rgba(232,88,111,0.3);
+  transition: width 0.1s linear;
+}
+
+/* ========================================
+   MAIN CONTENT
+   ======================================== */
+.main {
+  padding-left: var(--sidebar-w);
+}
+
+section {
+  position: relative;
+}
+
+.section-eyebrow {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: 48px;
+}
+
+/* ========================================
+   CH.00 — PROLOGUE / HERO
+   ======================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 160px 56px 80px;
+  position: relative;
+}
+
+.hero-meta {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--dimmer);
+  margin-bottom: 48px;
+}
+
+.hero-title {
+  font-family: Georgia, serif;
+  font-size: 184px;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  color: var(--cream);
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+
+.hero-title .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-title .word.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-subtitle {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24px;
+  line-height: 1.5;
+  color: var(--dim);
+  max-width: 860px;
+  margin-bottom: 64px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
+}
+
+.hero-subtitle.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-telemetry {
+  display: flex;
+  gap: 64px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.9s;
+}
+
+.hero-telemetry.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-telemetry .stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-telemetry .stat-value {
+  font-family: Georgia, serif;
+  font-size: 44px;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+}
+
+.hero-telemetry .stat-label {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--dimmer);
+  text-transform: uppercase;
+}
+
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 48px;
+  left: 56px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--dimmer);
+}
+
+.hero-scroll-cue .bar {
+  width: 32px;
+  height: 2px;
+  background: var(--accent);
+  animation: scrollCue 2s ease-in-out infinite;
+  transform-origin: left;
+}
+
+/* ========================================
+   TICKER
+   ======================================== */
+.ticker {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 18px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-track {
+  display: inline-flex;
+  animation: marq 40s linear infinite;
+}
+
+.ticker-item {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--dimmer);
+  padding: 0 32px;
+  flex-shrink: 0;
+}
+
+.ticker-item .sep {
+  color: var(--accent);
+  margin-right: 32px;
+}
+
+/* ========================================
+   CH.02 — MANIFESTO
+   ======================================== */
+.manifesto {
+  padding: 160px 56px;
+}
+
+.manifesto-text {
+  font-family: Georgia, serif;
+  font-size: 64px;
+  line-height: 1.15;
+  font-style: italic;
+  color: var(--cream);
+  max-width: 1100px;
+  letter-spacing: -0.02em;
+}
+
+.manifesto-text em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* ========================================
+   CH.03 — PILLARS
+   ======================================== */
+.pillars {
+  padding: 160px 56px;
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 64px;
+}
+
+.pillar-card {
+  background: rgba(251,243,223,0.03);
+  border: 1px solid var(--line);
+  padding: 40px 32px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  opacity: 0;
+  transform: translateY(80px);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pillar-card.visible {
+  opacity: 1;
+  transform: translateY(var(--offset, 0px));
+}
+
+.pillar-card:hover {
+  background: rgba(251,243,223,0.06);
+  border-color: var(--dimmer);
+}
+
+.pillar-card .pillar-marker {
+  width: 28px;
+  height: 3px;
+  margin-bottom: 24px;
+}
+
+.pillar-card .pillar-name {
+  font-family: Georgia, serif;
+  font-size: 26px;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+
+.pillar-card .pillar-desc {
+  font-size: 14px;
+  color: var(--dim);
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: 24px;
+}
+
+.pillar-card .pillar-count {
+  font-family: Georgia, serif;
+  font-size: 40px;
+  margin-bottom: 4px;
+}
+
+.pillar-card .pillar-count-label {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--dimmer);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.pillar-card .pillar-enter {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--dimmer);
+  text-decoration: none;
+  transition: color 0.3s;
+  margin-top: auto;
+}
+
+.pillar-card:hover .pillar-enter { color: var(--cream); }
+
+/* ========================================
+   CH.04 — FEATURED EDITORIAL BANDS
+   ======================================== */
+.featured-band {
+  padding: 160px 56px;
+  position: relative;
+  border-top: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.featured-ghost {
+  position: absolute;
+  top: 40px;
+  right: 56px;
+  font-family: Georgia, serif;
+  font-size: 320px;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.featured-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.featured-left {
+  position: sticky;
+  top: 180px;
+  align-self: start;
+  height: fit-content;
+}
+
+.featured-left .fl-chapter {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--dimmer);
+  margin-bottom: 8px;
+}
+
+.featured-left .fl-pillar {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.featured-left .fl-title {
+  font-family: Georgia, serif;
+  font-size: 72px;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+
+.featured-left .fl-venue {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 13px;
+  color: var(--dimmer);
+  letter-spacing: 0.06em;
+  margin-bottom: 40px;
+}
+
+.featured-left .fl-progress-wrap {
+  width: 180px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.featured-left .fl-progress-bar {
+  flex: 1;
+  height: 2px;
+  background: var(--line);
+  position: relative;
+}
+
+.featured-left .fl-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+.featured-left .fl-progress-pct {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--dimmer);
+  min-width: 32px;
+}
+
+.featured-right {
+  padding-top: 20px;
+}
+
+.featured-right .fr-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  margin-bottom: 32px;
+  background: var(--bg-dark);
+}
+
+.featured-right .fr-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.1s linear;
+}
+
+.featured-right .fr-image-wrap .crosshair {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.featured-right .fr-image-wrap .crosshair::before,
+.featured-right .fr-image-wrap .crosshair::after {
+  content: '';
+  position: absolute;
+  background: rgba(251,243,223,0.25);
+}
+
+.featured-right .fr-image-wrap .crosshair::before {
+  width: 1px;
+  height: 100%;
+  left: 50%;
+}
+
+.featured-right .fr-image-wrap .crosshair::after {
+  height: 1px;
+  width: 100%;
+  top: 50%;
+}
+
+.featured-right .fr-frame-counter {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--dimmer);
+  background: rgba(4,16,31,0.7);
+  padding: 4px 8px;
+}
+
+.featured-right .fr-desc {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--dim);
+  margin-bottom: 24px;
+  max-width: 600px;
+}
+
+.featured-right .fr-status {
+  display: flex;
+  gap: 24px;
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--dimmer);
+}
+
+.featured-right .fr-status .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Placeholder image */
+.fr-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  color: var(--dimmer);
+  border: 1px solid var(--line);
+}
+
+/* ========================================
+   CH.05 — NUMBERS
+   ======================================== */
+.numbers {
+  padding: 160px 56px;
+  background: var(--bg-dark);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 64px 48px;
+  margin-top: 64px;
+}
+
+.number-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.number-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.number-value {
+  font-family: Georgia, serif;
+  font-size: 140px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+
+.number-label {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--dimmer);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.number-bar {
+  width: 100%;
+  height: 2px;
+  background: var(--line);
+  position: relative;
+  overflow: hidden;
+}
+
+.number-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ========================================
+   CH.06 — DISPATCHES / NEWS
+   ======================================== */
+.dispatches {
+  padding: 160px 56px;
+}
+
+.dispatches-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 64px;
+}
+
+.dispatch-card {
+  background: rgba(251,243,223,0.03);
+  border: 1px solid var(--line);
+  padding: 36px 28px;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dispatch-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dispatch-card:hover {
+  background: rgba(251,243,223,0.06);
+  border-color: var(--dimmer);
+}
+
+.dispatch-date {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--dimmer);
+  margin-bottom: 16px;
+}
+
+.dispatch-title {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+
+.dispatch-desc {
+  font-size: 14px;
+  color: var(--dim);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.dispatch-tag {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-top: 20px;
+}
+
+/* ========================================
+   CH.07 — CONTRIBUTORS / FACULTY
+   ======================================== */
+.contributors {
+  padding: 160px 56px;
+  border-top: 1px solid var(--line);
+}
+
+.contributors-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-top: 64px;
+}
+
+.contributor-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contributor-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contributor-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid var(--amber);
+  overflow: hidden;
+  margin-bottom: 16px;
+  background: var(--bg-dark);
+}
+
+.contributor-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contributor-name {
+  font-family: Georgia, serif;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.contributor-role {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--dimmer);
+}
+
+/* ========================================
+   CH.08 — JOIN
+   ======================================== */
+.join {
+  padding: 160px 56px;
+  border-top: 1px solid var(--line);
+}
+
+.join-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 64px;
+}
+
+.join-card {
+  border: 1px solid var(--line);
+  padding: 40px 28px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.join-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.join-card:hover {
+  border-color: var(--accent);
+  background: rgba(232,88,111,0.05);
+}
+
+.join-count {
+  font-family: Georgia, serif;
+  font-size: 48px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.join-role {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.join-label {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--dimmer);
+}
+
+/* ========================================
+   PARTNERS
+   ======================================== */
+.partners {
+  padding: 80px 56px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+.partners-label {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--dimmer);
+  margin-bottom: 32px;
+}
+
+.partners-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 56px;
+  opacity: 0.5;
+}
+
+.partners-logos img {
+  height: 44px;
+  filter: brightness(0) invert(0.9);
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+  padding: 48px 56px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-left {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 12px;
+  color: var(--dimmer);
+  letter-spacing: 0.06em;
+}
+
+.footer-right {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 11px;
+  color: var(--dimmer);
+  letter-spacing: 0.08em;
+}
+
+/* ========================================
+   REVEAL UTILITY
+   ======================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 1200px) {
+  .hero-title { font-size: 120px; }
+  .featured-left .fl-title { font-size: 48px; }
+  .featured-ghost { font-size: 200px; }
+  .number-value { font-size: 100px; }
+}
+
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  :root { --sidebar-w: 0px; }
+  .hero-title { font-size: 80px; }
+  .hero-telemetry { gap: 32px; flex-wrap: wrap; }
+  .hero-telemetry .stat-value { font-size: 32px; }
+  .featured-layout { grid-template-columns: 1fr; gap: 40px; }
+  .featured-left { position: relative; top: auto; }
+  .featured-left .fl-title { font-size: 40px; }
+  .featured-ghost { font-size: 120px; }
+  .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+  .number-value { font-size: 80px; }
+  .dispatches-grid { grid-template-columns: 1fr; }
+  .contributors-grid { grid-template-columns: repeat(2, 1fr); }
+  .join-grid { grid-template-columns: repeat(2, 1fr); }
+  .manifesto-text { font-size: 40px; }
+}
+
+@media (max-width: 600px) {
+  .hero { padding: 120px 24px 80px; }
+  .hero-title { font-size: 56px; }
+  .manifesto { padding: 80px 24px; }
+  .manifesto-text { font-size: 28px; }
+  .pillars { padding: 80px 24px; }
+  .featured-band { padding: 80px 24px; }
+  .numbers { padding: 80px 24px; }
+  .dispatches { padding: 80px 24px; }
+  .contributors { padding: 80px 24px; }
+  .join { padding: 80px 24px; }
+  .partners { padding: 40px 24px; }
+  .footer { padding: 32px 24px; flex-direction: column; gap: 16px; }
+  .numbers-grid { grid-template-columns: 1fr; }
+  .number-value { font-size: 64px; }
+  .contributors-grid { grid-template-columns: 1fr; }
+  .join-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     LEFT SIDEBAR INDEX
+     ============================================ -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">&#9670; INDEX</div>
+  <div class="sidebar-items" id="sidebarItems">
+    <!-- JS-generated -->
+  </div>
+  <div class="sidebar-footer">
+    <span id="sidebarPos">POS 00000</span>
+    <span id="sidebarCounter">T+0000</span>
+  </div>
+</nav>
+
+<!-- ============================================
+     TOP HUD
+     ============================================ -->
+<header class="hud" id="hud">
+  <span class="hud-chapter" id="hudChapter">CH. 00 &middot; PROLOGUE</span>
+  <div class="hud-right">
+    <span id="hudTime">00:00:00</span>
+  </div>
+</header>
+
+<!-- ============================================
+     PROGRESS BAR
+     ============================================ -->
+<div class="progress-bar">
+  <div class="progress-bar-fill" id="progressFill"></div>
+</div>
+
+<!-- ============================================
+     MAIN CONTENT
+     ============================================ -->
+<main class="main">
+
+  <!-- CH.00 — PROLOGUE / HERO -->
+  <section class="hero" id="sec-prologue" data-chapter="00" data-name="PROLOGUE">
+    <div class="hero-meta">PROLOGUE &middot; FILE 0010.2026 &middot; VOL X</div>
+    <h1 class="hero-title" id="heroTitle"></h1>
+    <p class="hero-subtitle" id="heroSubtitle">Advancing the frontier of artificial intelligence, computational science, and digital fabrication at Ashoka University.</p>
+    <div class="hero-telemetry" id="heroTelemetry">
+      <div class="stat">
+        <span class="stat-value">25+</span>
+        <span class="stat-label">ACTIVE PROJECTS</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">5</span>
+        <span class="stat-label">RESEARCH PILLARS</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">27+</span>
+        <span class="stat-label">FACULTY</span>
+      </div>
+    </div>
+    <div class="hero-scroll-cue">
+      <div class="bar"></div>
+      SCROLL TO ENGAGE
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" id="sec-ticker">
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+
+  <!-- CH.02 — MANIFESTO -->
+  <section class="manifesto" id="sec-manifesto" data-chapter="02" data-name="MANIFESTO">
+    <div class="section-eyebrow">&#9670; CH. 02 &middot; MANIFESTO</div>
+    <p class="manifesto-text reveal">We build <em>instruments of inquiry</em> &mdash; computational tools that extend the reach of research, amplify the scale of discovery, and make technology a medium for impact.</p>
+  </section>
+
+  <!-- CH.03 — PILLARS -->
+  <section class="pillars" id="sec-pillars" data-chapter="03" data-name="RESEARCH VECTORS">
+    <div class="section-eyebrow">&#9670; CH. 03 &middot; RESEARCH VECTORS</div>
+    <h2 class="reveal" style="font-family:Georgia,serif;font-size:48px;letter-spacing:-0.02em;margin-bottom:8px;">Five Pillars</h2>
+    <p class="reveal" style="font-size:16px;color:var(--dim);max-width:600px;">Interconnected research programmes spanning artificial intelligence, simulation, cultural computing, security, and fabrication.</p>
+    <div class="pillars-grid" id="pillarsGrid"></div>
+  </section>
+
+  <!-- CH.04 — FEATURED -->
+  <div id="sec-featured" data-chapter="04" data-name="FEATURED">
+    <div style="padding:160px 56px 0;">
+      <div class="section-eyebrow">&#9670; CH. 04 &middot; FEATURED WORK</div>
+    </div>
+    <!-- Bands injected by JS -->
+    <div id="featuredBands"></div>
+  </div>
+
+  <!-- CH.05 — NUMBERS -->
+  <section class="numbers" id="sec-numbers" data-chapter="05" data-name="NUMBERS">
+    <div class="section-eyebrow">&#9670; CH. 05 &middot; NUMBERS</div>
+    <h2 class="reveal" style="font-family:Georgia,serif;font-size:48px;letter-spacing:-0.02em;">By the Numbers</h2>
+    <div class="numbers-grid" id="numbersGrid"></div>
+  </section>
+
+  <!-- CH.06 — DISPATCHES -->
+  <section class="dispatches" id="sec-dispatches" data-chapter="06" data-name="DISPATCHES">
+    <div class="section-eyebrow">&#9670; CH. 06 &middot; DISPATCHES</div>
+    <h2 class="reveal" style="font-family:Georgia,serif;font-size:48px;letter-spacing:-0.02em;">Latest Dispatches</h2>
+    <div class="dispatches-grid" id="dispatchesGrid"></div>
+  </section>
+
+  <!-- CH.07 — CONTRIBUTORS -->
+  <section class="contributors" id="sec-contributors" data-chapter="07" data-name="CONTRIBUTORS">
+    <div class="section-eyebrow">&#9670; CH. 07 &middot; CONTRIBUTORS</div>
+    <h2 class="reveal" style="font-family:Georgia,serif;font-size:48px;letter-spacing:-0.02em;">Research Leads</h2>
+    <div class="contributors-grid" id="contributorsGrid"></div>
+  </section>
+
+  <!-- CH.08 — JOIN -->
+  <section class="join" id="sec-join" data-chapter="08" data-name="JOIN">
+    <div class="section-eyebrow">&#9670; CH. 08 &middot; JOIN</div>
+    <h2 class="reveal" style="font-family:Georgia,serif;font-size:48px;letter-spacing:-0.02em;margin-bottom:8px;">Open Positions</h2>
+    <p class="reveal" style="font-size:16px;color:var(--dim);max-width:600px;">Join the research frontier. We are actively recruiting across all levels.</p>
+    <div class="join-grid" id="joinGrid"></div>
+  </section>
+
+  <!-- PARTNERS -->
+  <div class="partners">
+    <div class="partners-label">IN PARTNERSHIP WITH</div>
+    <div class="partners-logos">
+      <img src="assets/mphasis-foundation.png" alt="Mphasis Foundation">
+      <img src="assets/lab-logo.png" alt="Mphasis AI Lab">
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-left">Mphasis AI &amp; Applied Tech Lab &middot; Ashoka University &middot; Sonipat, Haryana</div>
+    <div class="footer-right">&copy; 2026 &middot; SIGNAL V3 EDITORIAL</div>
+  </footer>
+
+</main>
+
+<script>
+/* ============================================
+   DATA
+   ============================================ */
+const SECTIONS = [
+  { id: 'sec-prologue',     num: '00', name: 'Prologue' },
+  { id: 'sec-manifesto',    num: '02', name: 'Manifesto' },
+  { id: 'sec-pillars',      num: '03', name: 'Pillars' },
+  { id: 'sec-featured',     num: '04', name: 'Featured' },
+  { id: 'sec-numbers',      num: '05', name: 'Numbers' },
+  { id: 'sec-dispatches',   num: '06', name: 'Dispatches' },
+  { id: 'sec-contributors', num: '07', name: 'Contributors' },
+  { id: 'sec-join',         num: '08', name: 'Join' },
+];
+
+const PILLARS = [
+  { name: 'AI@Ashoka',     color: '#2563EB', count: 9, desc: 'Fourteen research projects spanning pedagogy, health, environment, and digital humanities powered by artificial intelligence.' },
+  { name: 'BharatSim',     color: '#059669', count: 4, desc: 'India-scale agent-based simulation platform for epidemic modelling and public health policy.' },
+  { name: 'CHART',         color: '#D97706', count: 5, desc: 'Centre for computational humanities, cultural analytics, and food computing research.' },
+  { name: 'Cybersecurity', color: '#7C3AED', count: 3, desc: 'Post-quantum cryptography research securing systems against next-generation threats.' },
+  { name: 'Makerspace',    color: '#DC2626', count: 4, desc: 'Digital fabrication lab fostering hands-on innovation, prototyping, and maker culture.' },
+];
+
+const FEATURED = [
+  {
+    pillar: 'BharatSim', pillarColor: '#059669', chNum: '01',
+    title: 'India-Scale Epidemic Simulation',
+    venue: 'BMC PUBLIC HEALTH \u00b7 2025',
+    img: 'assets/bharatsim-network.png',
+    desc: 'Agent-based modelling of a nation. Our H5N1 avian flu study was covered by BBC, NDTV, Nature India, and 20+ international outlets \u2014 demonstrating computational epidemiology at population scale.',
+    status: 'PUBLISHED', statusColor: '#4ADE80',
+  },
+  {
+    pillar: 'AI@Ashoka', pillarColor: '#2563EB', chNum: '02',
+    title: 'OncoMark \u2014 Cancer at Single-Cell Resolution.',
+    venue: 'COMMUNICATIONS BIOLOGY \u00b7 2025',
+    img: 'assets/earth-dark.jpg',
+    imgOverlay: 'radial-gradient(circle at 40% 50%, rgba(37,99,235,0.4), transparent 70%)',
+    desc: 'An AI framework quantifying cancer hallmarks across millions of single cells \u2014 enabling precision oncology at unprecedented resolution.',
+    status: 'PUBLISHED', statusColor: '#4ADE80',
+  },
+  {
+    pillar: 'CHART', pillarColor: '#D97706', chNum: '03',
+    title: 'World Food Atlas',
+    venue: 'ONGOING \u00b7 CHART',
+    img: null,
+    desc: 'Multimodal food computing platform mapping global cuisines through ingredient networks, recipe embeddings, and cultural food fingerprints.',
+    status: 'IN PROGRESS', statusColor: '#E4A03B',
+  },
+];
+
+const STATS = [
+  { value: 25, suffix: '+', label: 'Research Projects' },
+  { value: 30, suffix: '+', label: 'Publications' },
+  { value: 27, suffix: '+', label: 'Faculty \u00b7 7 Departments' },
+  { value: 6,  suffix: '',  label: 'Deployed Systems' },
+  { value: 40, suffix: '+', label: 'Partnerships' },
+  { value: 15, suffix: '+', label: 'Countries' },
+];
+
+const NEWS = [
+  { date: 'MARCH 21\u201322, 2026', title: 'WiCSCon 3.0', desc: 'Third edition of Women in Computer Science Conference hosted at Ashoka University.', tag: 'EVENT' },
+  { date: 'MARCH 21, 2026', title: 'ACM COMPUTE 2026', desc: 'Lab researchers present at ACM India\u2019s flagship computing conference.', tag: 'CONFERENCE' },
+  { date: 'MARCH 2026', title: 'ITiCSE Papers Accepted', desc: 'Multiple papers accepted at ACM ITiCSE \u2014 advancing computer science education research.', tag: 'PUBLICATION' },
+];
+
+const FACULTY = [
+  { name: 'Debayan Gupta',       role: 'Computer Science', img: 'assets/people/debayan-gupta.png' },
+  { name: 'Gautam Menon',        role: 'Physics & Biology', img: 'assets/people/gautam-menon.png' },
+  { name: 'Rintu Kutum',         role: 'Computer Science', img: 'assets/people/rintu-kutum.png' },
+  { name: 'Meghna Agarwala',     role: 'Environmental Studies', img: 'assets/people/meghna-agarwala.png' },
+  { name: 'Aalok Thakkar',       role: 'Computer Science', img: 'assets/people/aalok-thakkar.png' },
+  { name: 'Bittu K. Rajaraman',  role: 'Biology', img: 'assets/people/bittu.png' },
+  { name: 'L.S. Shashidhara',    role: 'Biology', img: 'assets/people/ls-shashidhara.png' },
+  { name: 'Kasturi Mitra',       role: 'Biology', img: 'assets/people/kasturi-mitra.png' },
+];
+
+const JOIN_DATA = [
+  { count: '12', role: 'PhD Researchers', label: 'POSITIONS' },
+  { count: '4',  role: 'Postdoctoral Fellows', label: 'POSITIONS' },
+  { count: '\u221e', role: 'Research Staff', label: 'ROLLING' },
+  { count: '\u2234', role: 'Undergraduates', label: 'OPEN' },
+];
+
+const THEMES = [
+  'AI Pedagogy', 'Epidemiological Modeling', 'Computational Health',
+  'Climate Science', 'Digital Humanities', 'Materials Science',
+  'Biodiversity', 'Digital Fabrication', 'Post-Quantum Cryptography'
+];
+
+/* ============================================
+   BUILD: SIDEBAR
+   ============================================ */
+const sidebarItems = document.getElementById('sidebarItems');
+SECTIONS.forEach((sec, i) => {
+  const item = document.createElement('div');
+  item.className = 'sidebar-item' + (i === 0 ? ' active' : '');
+  item.dataset.index = i;
+  item.innerHTML = `
+    <div class="dot"></div>
+    <div class="label">
+      <span class="num">${sec.num}</span>
+      <span class="name">${sec.name}</span>
+    </div>`;
+  item.addEventListener('click', () => {
+    const el = document.getElementById(sec.id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  });
+  sidebarItems.appendChild(item);
+});
+
+/* ============================================
+   BUILD: HERO TITLE (WORD SPLIT)
+   ============================================ */
+const heroTitle = document.getElementById('heroTitle');
+const titleWords = 'Mphasis AI & Applied Tech Lab'.split(' ');
+titleWords.forEach((word, i) => {
+  const span = document.createElement('span');
+  span.className = 'word';
+  span.textContent = word;
+  span.style.transitionDelay = (i * 0.1) + 's';
+  heroTitle.appendChild(span);
+  if (i < titleWords.length - 1) heroTitle.appendChild(document.createTextNode(' '));
+});
+
+/* ============================================
+   BUILD: TICKER
+   ============================================ */
+const tickerTrack = document.getElementById('tickerTrack');
+const tickerContent = THEMES.map(t => `<span class="sep">&#9670;</span>${t}`).join('');
+// Duplicate for seamless loop
+tickerTrack.innerHTML = THEMES.concat(THEMES).map(t =>
+  `<span class="ticker-item"><span class="sep">&#9670;</span>${t}</span>`
+).join('');
+
+/* ============================================
+   BUILD: PILLARS
+   ============================================ */
+const pillarsGrid = document.getElementById('pillarsGrid');
+PILLARS.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = 'pillar-card';
+  card.style.setProperty('--offset', `${i * 12}px`);
+  card.style.transitionDelay = `${i * 0.16}s`;
+  card.innerHTML = `
+    <div class="pillar-marker" style="background:${p.color}"></div>
+    <div class="pillar-name">${p.name}</div>
+    <div class="pillar-desc">${p.desc}</div>
+    <div class="pillar-count" style="color:${p.color}">${p.count}</div>
+    <div class="pillar-count-label">PROJECTS</div>
+    <a href="#" class="pillar-enter">ENTER &rarr;</a>`;
+  pillarsGrid.appendChild(card);
+});
+
+/* ============================================
+   BUILD: FEATURED BANDS
+   ============================================ */
+const featuredBands = document.getElementById('featuredBands');
+FEATURED.forEach((f, i) => {
+  const band = document.createElement('div');
+  band.className = 'featured-band';
+  band.dataset.bandIndex = i;
+
+  let imgHtml;
+  if (f.img) {
+    const overlayStyle = f.imgOverlay ? `background:${f.imgOverlay};position:absolute;inset:0;z-index:1;pointer-events:none;` : '';
+    imgHtml = `
+      <div class="fr-image-wrap">
+        ${f.imgOverlay ? `<div style="${overlayStyle}"></div>` : ''}
+        <img src="${f.img}" alt="${f.title}" loading="lazy">
+        <div class="crosshair"></div>
+        <div class="fr-frame-counter">FRAME &middot; 00/60</div>
+      </div>`;
+  } else {
+    imgHtml = `
+      <div class="fr-image-wrap">
+        <div class="fr-placeholder">[VISUAL PENDING]</div>
+        <div class="crosshair"></div>
+        <div class="fr-frame-counter">FRAME &middot; 00/60</div>
+      </div>`;
+  }
+
+  band.innerHTML = `
+    <div class="featured-ghost">${f.chNum}</div>
+    <div class="featured-layout">
+      <div class="featured-left">
+        <div class="fl-chapter">CH. ${f.chNum}</div>
+        <div class="fl-pillar" style="color:${f.pillarColor}">${f.pillar}</div>
+        <div class="fl-title">${f.title}</div>
+        <div class="fl-venue">${f.venue}</div>
+        <div class="fl-progress-wrap">
+          <div class="fl-progress-bar">
+            <div class="fl-progress-fill" style="background:${f.pillarColor}"></div>
+          </div>
+          <span class="fl-progress-pct">0%</span>
+        </div>
+      </div>
+      <div class="featured-right">
+        ${imgHtml}
+        <div class="fr-desc">${f.desc}</div>
+        <div class="fr-status">
+          <span><span class="dot" style="background:${f.statusColor}"></span>${f.status}</span>
+          <span>${f.venue}</span>
+        </div>
+      </div>
+    </div>`;
+  featuredBands.appendChild(band);
+});
+
+/* ============================================
+   BUILD: NUMBERS
+   ============================================ */
+const numbersGrid = document.getElementById('numbersGrid');
+STATS.forEach((s, i) => {
+  const item = document.createElement('div');
+  item.className = 'number-item';
+  item.style.transitionDelay = `${i * 0.1}s`;
+  item.dataset.target = s.value;
+  item.dataset.suffix = s.suffix;
+  item.innerHTML = `
+    <div class="number-value" data-countup>0${s.suffix}</div>
+    <div class="number-label">${s.label}</div>
+    <div class="number-bar">
+      <div class="number-bar-fill" style="transition-delay:${i * 100}ms"></div>
+    </div>`;
+  numbersGrid.appendChild(item);
+});
+
+/* ============================================
+   BUILD: DISPATCHES
+   ============================================ */
+const dispatchesGrid = document.getElementById('dispatchesGrid');
+NEWS.forEach((n, i) => {
+  const card = document.createElement('div');
+  card.className = 'dispatch-card';
+  card.style.transitionDelay = `${i * 0.16}s`;
+  card.innerHTML = `
+    <div class="dispatch-date">${n.date}</div>
+    <div class="dispatch-title">${n.title}</div>
+    <div class="dispatch-desc">${n.desc}</div>
+    <div class="dispatch-tag">${n.tag}</div>`;
+  dispatchesGrid.appendChild(card);
+});
+
+/* ============================================
+   BUILD: CONTRIBUTORS
+   ============================================ */
+const contributorsGrid = document.getElementById('contributorsGrid');
+FACULTY.forEach((f, i) => {
+  const card = document.createElement('div');
+  card.className = 'contributor-card';
+  card.style.transitionDelay = `${i * 0.08}s`;
+  card.innerHTML = `
+    <div class="contributor-photo"><img src="${f.img}" alt="${f.name}" loading="lazy"></div>
+    <div class="contributor-name">${f.name}</div>
+    <div class="contributor-role">${f.role}</div>`;
+  contributorsGrid.appendChild(card);
+});
+
+/* ============================================
+   BUILD: JOIN
+   ============================================ */
+const joinGrid = document.getElementById('joinGrid');
+JOIN_DATA.forEach((j, i) => {
+  const card = document.createElement('div');
+  card.className = 'join-card';
+  card.style.transitionDelay = `${i * 0.1}s`;
+  card.innerHTML = `
+    <div class="join-count">${j.count}</div>
+    <div class="join-role">${j.role}</div>
+    <div class="join-label">${j.label}</div>`;
+  joinGrid.appendChild(card);
+});
+
+/* ============================================
+   SCROLL ENGINE
+   ============================================ */
+const sidebarItemEls = document.querySelectorAll('.sidebar-item');
+const hudChapter = document.getElementById('hudChapter');
+const progressFill = document.getElementById('progressFill');
+const sidebarPos = document.getElementById('sidebarPos');
+const sidebarCounterEl = document.getElementById('sidebarCounter');
+const heroSubtitle = document.getElementById('heroSubtitle');
+const heroTelemetry = document.getElementById('heroTelemetry');
+let activeSection = 0;
+let tCounter = 0;
+
+// Counter interval
+setInterval(() => {
+  tCounter++;
+  sidebarCounterEl.textContent = 'T+' + String(tCounter).padStart(4, '0');
+}, 1500);
+
+// HUD time
+function updateHudTime() {
+  const now = new Date();
+  const hh = String(now.getHours()).padStart(2, '0');
+  const mm = String(now.getMinutes()).padStart(2, '0');
+  const ss = String(now.getSeconds()).padStart(2, '0');
+  document.getElementById('hudTime').textContent = `${hh}:${mm}:${ss}`;
+}
+setInterval(updateHudTime, 1000);
+updateHudTime();
+
+function onScroll() {
+  const scrollY = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPct = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+
+  // Progress bar
+  progressFill.style.width = scrollPct + '%';
+
+  // Sidebar POS
+  sidebarPos.textContent = 'POS ' + String(Math.floor(scrollY)).padStart(5, '0');
+
+  // Active section detection (30% viewport trigger)
+  const trigger = scrollY + window.innerHeight * 0.3;
+  let newActive = 0;
+  SECTIONS.forEach((sec, i) => {
+    const el = document.getElementById(sec.id);
+    if (el && el.offsetTop <= trigger) newActive = i;
+  });
+
+  if (newActive !== activeSection) {
+    activeSection = newActive;
+    sidebarItemEls.forEach((el, i) => {
+      el.classList.toggle('active', i === activeSection);
+    });
+    const sec = SECTIONS[activeSection];
+    hudChapter.textContent = `CH. ${sec.num} \u00b7 ${sec.name.toUpperCase()}`;
+  }
+
+  // Featured band parallax
+  document.querySelectorAll('.featured-band').forEach(band => {
+    const rect = band.getBoundingClientRect();
+    const bandH = band.offsetHeight;
+    const viewH = window.innerHeight;
+    const prog = Math.max(0, Math.min(1, (viewH - rect.top) / (viewH + bandH)));
+
+    // Progress fill
+    const fillEl = band.querySelector('.fl-progress-fill');
+    const pctEl = band.querySelector('.fl-progress-pct');
+    if (fillEl) fillEl.style.width = (prog * 100) + '%';
+    if (pctEl) pctEl.textContent = Math.round(prog * 100) + '%';
+
+    // Image parallax
+    const img = band.querySelector('.fr-image-wrap img');
+    if (img) {
+      const scale = 1 + (prog - 0.5) * 0.15;
+      const ty = (prog - 0.5) * 80;
+      img.style.transform = `scale(${scale}) translateY(${ty}px)`;
+    }
+
+    // Frame counter
+    const frameEl = band.querySelector('.fr-frame-counter');
+    if (frameEl) {
+      const frame = Math.round(prog * 60);
+      frameEl.textContent = `FRAME \u00b7 ${String(frame).padStart(2, '0')}/60`;
+    }
+
+    // Text opacity
+    const desc = band.querySelector('.fr-desc');
+    if (desc) {
+      desc.style.opacity = Math.min(1, Math.max(0, (prog - 0.2) * 2.5));
+    }
+  });
+}
+
+window.addEventListener('scroll', onScroll, { passive: true });
+
+/* ============================================
+   INTERSECTION OBSERVER — REVEALS
+   ============================================ */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+// General reveals
+document.querySelectorAll('.reveal, .pillar-card, .dispatch-card, .contributor-card, .join-card, .number-item').forEach(el => {
+  revealObserver.observe(el);
+});
+
+/* ============================================
+   HERO WORD REVEAL ON LOAD
+   ============================================ */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.hero-title .word').forEach(w => w.classList.add('visible'));
+  }, 200);
+  setTimeout(() => heroSubtitle.classList.add('visible'), 400);
+  setTimeout(() => heroTelemetry.classList.add('visible'), 600);
+});
+
+/* ============================================
+   COUNTUP — STATS
+   ============================================ */
+let statsAnimated = false;
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !statsAnimated) {
+      statsAnimated = true;
+      animateStats();
+      // Trigger fill bars
+      document.querySelectorAll('.number-bar-fill').forEach(bar => {
+        bar.style.width = '100%';
+      });
+      statsObserver.disconnect();
+    }
+  });
+}, { threshold: 0.2 });
+
+statsObserver.observe(document.getElementById('numbersGrid'));
+
+function animateStats() {
+  document.querySelectorAll('.number-item').forEach(item => {
+    const target = parseInt(item.dataset.target);
+    const suffix = item.dataset.suffix;
+    const valueEl = item.querySelector('.number-value');
+    const duration = 2000;
+    const start = performance.now();
+
+    function step(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(eased * target);
+      valueEl.textContent = current + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+}
+
+/* ============================================
+   INITIAL SCROLL CALL
+   ============================================ */
+onScroll();
+</script>
+</body>
+</html>

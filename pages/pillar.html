@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Research pillar at the Mphasis AI & Applied Tech Lab, Ashoka University.">
+  <meta name="theme-color" content="#1B2A4A">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Research Pillar | Mphasis AI & Applied Tech Lab">
+  <meta property="og:description" content="Research pillar at the Mphasis AI & Applied Tech Lab.">
+  <meta property="og:type" content="website">
+
+  <title>Research Pillar | Mphasis AI & Applied Tech Lab</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../src/assets/images/logos/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../src/assets/images/logos/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../src/assets/images/logos/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../src/css/variables.css">
+  <link rel="stylesheet" href="../src/css/reset.css">
+  <link rel="stylesheet" href="../src/css/base.css">
+  <link rel="stylesheet" href="../src/css/layout.css">
+  <link rel="stylesheet" href="../src/css/header.css">
+  <link rel="stylesheet" href="../src/css/footer.css">
+  <link rel="stylesheet" href="../src/css/components.css">
+  <link rel="stylesheet" href="../src/css/animations.css">
+  <link rel="stylesheet" href="../src/css/pages.css">
+  <link rel="stylesheet" href="../src/css/detail-pages.css">
+  <link rel="stylesheet" href="../src/css/utilities.css">
+  <link rel="stylesheet" href="../src/css/search.css">
+  <link rel="stylesheet" href="../src/css/floating-nav.css">
+</head>
+<body data-page="pillar">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="progress-bar" id="progress-bar" aria-hidden="true"></div>  <!-- Floating Buttons -->
+  <button class="float-menu-btn" id="floatMenuBtn" aria-label="Open navigation">
+    <div class="float-menu-btn__icon"><span></span><span></span><span></span></div>
+    <span class="float-menu-btn__label">Menu</span>
+  </button>
+  <button class="float-search-btn" id="floatSearchBtn" aria-label="Search">
+    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+    <span class="float-search-btn__label">Search</span>
+  </button>
+
+  <!-- Side Navigation -->
+  <nav class="side-nav" id="side-nav" aria-label="Side navigation">
+    <div class="side-nav__backdrop" id="side-nav-backdrop"></div>
+    <div class="side-nav__panel">
+      <div class="side-nav__header">
+        <a href="../index.html" style="display:inline-block; margin-left:-70px;">
+          <img src="../src/assets/images/logos/lab-logo.png" alt="Mphasis AI & Applied Tech Lab" style="height:100px; width:auto;">
+        </a>
+        <button class="side-nav__close" id="side-nav-close" aria-label="Close menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>Close</span>
+        </button>
+      </div>
+      <div class="side-nav__body">
+        <div class="side-nav__col-pages">
+          <span class="side-nav__subtitle">Navigate</span>
+          <ul class="side-nav__list">
+            <li class="side-nav__item"><a href="../index.html" class="side-nav__link">Home</a></li>
+            <li class="side-nav__item"><a href="about.html" class="side-nav__link">About</a></li>
+            <li class="side-nav__item"><a href="research.html" class="side-nav__link">Research</a></li>
+            <li class="side-nav__item"><a href="people.html" class="side-nav__link">People</a></li>
+            <li class="side-nav__item"><a href="publications.html" class="side-nav__link">Publications</a></li>
+            <li class="side-nav__item"><a href="makerspace.html" class="side-nav__link">Makerspace</a></li>
+            <li class="side-nav__item"><a href="news.html" class="side-nav__link">News &amp; Events</a></li>
+            <li class="side-nav__item"><a href="impact.html" class="side-nav__link">Impact</a></li>
+            <li class="side-nav__item"><a href="contact.html" class="side-nav__link">Contact</a></li>
+          </ul>
+        </div>
+        <div class="side-nav__col-pillars">
+          <span class="side-nav__subtitle">Research Pillars</span>
+          <ul class="side-nav__pill-list">
+            <li class="side-nav__item"><a href="pillar.html?pillar=ai" class="side-nav__pill-card" style="--pill-color:#2563EB;"><span class="side-nav__pill-icon" style="background:#DBEAFE;color:#2563EB;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span><span class="side-nav__pill-name">AI</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=bharatsim" class="side-nav__pill-card" style="--pill-color:#059669;"><span class="side-nav__pill-icon" style="background:#D1FAE5;color:#059669;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/><path d="M2 7c2-3 4-3 6 0s4 3 6 0 4-3 6 0" opacity="0.4"/></svg></span><span class="side-nav__pill-name">BharatSim</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=chart" class="side-nav__pill-card" style="--pill-color:#D97706;"><span class="side-nav__pill-icon" style="background:#FEF3C7;color:#D97706;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h4l3-6 4 12 3-6h4"/></svg></span><span class="side-nav__pill-name">CHART</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=cyber" class="side-nav__pill-card" style="--pill-color:#7C3AED;"><span class="side-nav__pill-icon" style="background:#EDE9FE;color:#7C3AED;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 4v5c0 5.5-3.8 10.2-8 12-4.2-1.8-8-6.5-8-12V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="side-nav__pill-name">Cybersecurity</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=makerspace" class="side-nav__pill-card" style="--pill-color:#009BDE;"><span class="side-nav__pill-icon" style="background:#E0F2FE;color:#009BDE;"><img src="../src/assets/images/logos/makerspace-logo.png" alt="Makerspace"></span><span class="side-nav__pill-name">Makerspace</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="side-nav__footer">
+        <div class="side-nav__contact">
+          <a href="mailto:mphasis.lab.edu.in">mphasis.lab.edu.in</a> &nbsp;&middot;&nbsp; Ashoka University, Sonipat, India
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div class="page">
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search" hidden>
+      <div class="search-overlay__backdrop"></div>
+      <div class="search-overlay__panel">
+        <div class="search-overlay__header">
+          <div class="search-overlay__input-wrapper">
+            <svg class="search-overlay__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+            <input type="search" class="search-overlay__input" id="search-input" placeholder="Search projects, people, publications..." autocomplete="off">
+            <kbd class="search-overlay__kbd">ESC</kbd>
+          </div>
+        </div>
+        <div class="search-overlay__results" id="search-results" aria-live="polite">
+          <div class="search-overlay__empty">
+            <p class="search-overlay__empty-text">Type to search across projects, people, and publications</p>
+          </div>
+        </div>
+        <div class="search-overlay__footer">
+          <span><kbd>&#8984;</kbd><kbd>K</kbd> to toggle</span>
+          <span><kbd>&#8593;</kbd><kbd>&#8595;</kbd> to navigate</span>
+          <span><kbd>Enter</kbd> to select</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header" role="banner">
+      <div class="header__inner">
+        <a href="../index.html" class="header__logo" aria-label="Mphasis AI & Applied Tech Lab — Home">
+          <img src="../src/assets/images/logos/lab-logo.png" alt="Mphasis AI & Applied Tech Lab Logo">
+        </a>
+        <nav class="nav" role="navigation" aria-label="Primary navigation">
+          <a href="../index.html" class="nav__link">Home</a>
+          <a href="about.html" class="nav__link">About</a>
+          <a href="research.html" class="nav__link nav__link--active">Research</a>
+          <a href="people.html" class="nav__link">People</a>
+          <a href="publications.html" class="nav__link">Publications</a>
+          <a href="makerspace.html" class="nav__link">Makerspace</a>
+          <a href="news.html" class="nav__link">News & Events</a>
+          <a href="impact.html" class="nav__link">Impact</a>
+          <a href="contact.html" class="nav__link">Contact</a>
+        </nav>
+        <div class="header__actions">
+          <button class="header__search-trigger" aria-label="Search" aria-expanded="false" aria-controls="search-overlay">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+          </button>
+          <button class="header__menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="nav-mobile" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+      <a href="../index.html" class="nav-mobile__link">Home</a>
+      <a href="about.html" class="nav-mobile__link">About</a>
+      <a href="research.html" class="nav-mobile__link nav-mobile__link--active">Research</a>
+      <a href="people.html" class="nav-mobile__link">People</a>
+      <a href="publications.html" class="nav-mobile__link">Publications</a>
+      <a href="makerspace.html" class="nav-mobile__link">Makerspace</a>
+      <a href="news.html" class="nav-mobile__link">News & Events</a>
+      <a href="impact.html" class="nav-mobile__link">Impact</a>
+      <a href="contact.html" class="nav-mobile__link">Contact</a>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="page__content" id="main-content" role="main">
+
+      <!-- Breadcrumb -->
+      <div class="container">
+        <nav id="breadcrumb" class="breadcrumb" aria-label="Breadcrumb"></nav>
+      </div>
+
+      <!-- Dynamic Content (populated by detail-page.js) -->
+      <div id="page-content">
+        <div class="detail-loading">Loading pillar...</div>
+      </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <img src="../src/assets/images/logos/lab-logo.png" alt="Lab Logo" class="footer__brand-logo">
+            <p class="footer__brand-text">
+              Advancing interdisciplinary research in AI, health, fabrication, and beyond at Ashoka University.
+            </p>
+            <div class="footer__brand-partner">
+              <span>Supported by</span>
+              <img src="../src/assets/images/logos/mphasis-foundation.png" alt="Mphasis F1 Foundation">
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Navigate</h4>
+            <div class="footer__links">
+              <a href="../index.html" class="footer__link">Home</a>
+              <a href="about.html" class="footer__link">About</a>
+              <a href="research.html" class="footer__link">Research</a>
+              <a href="people.html" class="footer__link">People</a>
+              <a href="publications.html" class="footer__link">Publications</a>
+              <a href="makerspace.html" class="footer__link">Makerspace</a>
+              <a href="news.html" class="footer__link">News & Events</a>
+              <a href="impact.html" class="footer__link">Impact</a>
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Research</h4>
+            <div class="footer__links">
+              <a href="pillar.html?pillar=ai" class="footer__pillar-link">
+                <span class="footer__pillar-dot" style="background-color: var(--pillar-ai);"></span>
+                AI@Ashoka
+              </a>
+              <a href="pillar.html?pillar=bharatsim" class="footer__pillar-link">
+                <span class="footer__pillar-dot" style="background-color: var(--pillar-bharatsim);"></span>
+                BharatSim
+              </a>
+              <a href="pillar.html?pillar=chart" class="footer__pillar-link">
+                <span class="footer__pillar-dot" style="background-color: var(--pillar-chart);"></span>
+                CHART
+              </a>
+              <a href="pillar.html?pillar=cyber" class="footer__pillar-link">
+                <span class="footer__pillar-dot" style="background-color: var(--pillar-cyber);"></span>
+                Cybersecurity
+              </a>
+              <a href="pillar.html?pillar=makerspace" class="footer__pillar-link">
+                <span class="footer__pillar-dot" style="background-color: var(--pillar-makerspace);"></span>
+                Makerspace
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Contact</h4>
+            <div>
+              <div class="footer__contact-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M2 3l6 5 6-5"/></svg>
+                <a href="mailto:mphasis.lab@ashoka.edu.in" style="color: rgba(255,255,255,0.8);">mphasis.lab@ashoka.edu.in</a>
+              </div>
+              <div class="footer__contact-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6.7C14 11.3 8 15.3 8 15.3S2 11.3 2 6.7a6 6 0 1 1 12 0z"/><circle cx="8" cy="6.7" r="2"/></svg>
+                <span>Ashoka University<br>Sonipat, Haryana, India</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__copyright">&copy; 2026 Mphasis AI & Applied Tech Lab, Ashoka University. All rights reserved.</p>
+          <div class="footer__bottom-links">
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Data -->
+  <script src="../src/data/pillars.js"></script>
+  <script src="../src/data/projects.js"></script>
+  <script src="../src/data/people.js"></script>
+  <script src="../src/data/publications.js"></script>
+
+  <!-- Scripts -->
+  <script src="../src/vendor/gsap.min.js"></script>
+  <script src="../src/vendor/ScrollTrigger.min.js"></script>
+  <script src="../src/js/gsap-animations.js"></script>
+  <script src="../src/js/main.js"></script>
+  <script src="../src/js/detail-page.js"></script>
+  <script src="../src/js/search.js"></script>
+  <script src="../src/js/floating-nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+/* ============================================
+   DESIGN TOKENS — Version 2: "Foundation Edge"
+   Concept: Mphasis F1 Foundation as primary identity.
+   Technology-forward, confident, bold. Dark-first.
+   The gradient arrow from the F1 logo as design motif.
+   ============================================ */
+
+:root {
+  /* ── Brand Colors ── */
+  --color-primary:       #009BDE;
+  --color-primary-dark:  #006FA8;
+  --color-primary-light: #B3E0F5;
+
+  /* F1 logo gradient — the design motif */
+  --gradient-f1-start: #D94F8A;
+  --gradient-f1-mid:   #2DB5A3;
+  --gradient-f1-end:   #5AC16B;
+  --gradient-f1: linear-gradient(90deg, #D94F8A, #2DB5A3, #5AC16B);
+
+  /* Legacy aliases for structural CSS compatibility */
+  --color-navy:        #060D17;
+  --color-navy-light:  #0D1B2E;
+  --color-navy-dark:   #020811;
+  --color-red:         #D94F8A;
+  --color-red-light:   #F0A8C8;
+  --color-red-dark:    #A83068;
+  --color-blue:        #009BDE;
+  --color-blue-light:  #33B0E6;
+  --color-blue-dark:   #006FA8;
+
+  /* ── Pillar Colors ── */
+  --pillar-ai:              #2563EB;
+  --pillar-ai-light:        #DBEAFE;
+  --pillar-ai-bg:           #EFF6FF;
+  --pillar-bharatsim:       #059669;
+  --pillar-bharatsim-light: #D1FAE5;
+  --pillar-bharatsim-bg:    #ECFDF5;
+  --pillar-chart:           #D97706;
+  --pillar-chart-light:     #FEF3C7;
+  --pillar-chart-bg:        #FFFBEB;
+  --pillar-cyber:           #7C3AED;
+  --pillar-cyber-light:     #EDE9FE;
+  --pillar-cyber-bg:        #F5F3FF;
+  --pillar-makerspace:      #009BDE;
+  --pillar-makerspace-light:#B3E0F5;
+  --pillar-makerspace-bg:   #E3F2FB;
+
+  /* ── Neutral Palette (cool-tinted) ── */
+  --gray-50:   #F0F7FC;
+  --gray-100:  #E3F2FB;
+  --gray-200:  #C2DCF0;
+  --gray-300:  #9BBDD8;
+  --gray-400:  #6B99B8;
+  --gray-500:  #4A7A9B;
+  --gray-600:  #3D5A73;
+  --gray-700:  #1F3448;
+  --gray-800:  #0F1F30;
+  --gray-900:  #0A1929;
+
+  /* ── Semantic Colors ── */
+  --color-text:           #0A1929;
+  --color-text-secondary: #3D5A73;
+  --color-text-muted:     #6B99B8;
+  --color-text-inverse:   #F0F7FC;
+  --color-link:           #009BDE;
+  --color-link-hover:     #006FA8;
+  --color-bg:             #F0F7FC;
+  --color-bg-alt:         #E3F2FB;
+  --color-bg-dark:        #060D17;
+  --color-border:         #C2DCF0;
+  --color-border-light:   #E3F2FB;
+
+  /* ── Typography ── */
+  --font-display: 'Barlow', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans:    'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+  --text-6xl:  4.5rem;
+
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --weight-extrabold: 800;
+
+  --leading-tight:   1.25;
+  --leading-snug:    1.375;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose:   2;
+
+  --tracking-tight:   -0.025em;
+  --tracking-normal:   0;
+  --tracking-wide:     0.025em;
+  --tracking-wider:    0.05em;
+  --tracking-widest:   0.1em;
+
+  /* ── Spacing Scale ── */
+  --space-1:   0.25rem;
+  --space-2:   0.5rem;
+  --space-3:   0.75rem;
+  --space-4:   1rem;
+  --space-5:   1.25rem;
+  --space-6:   1.5rem;
+  --space-8:   2rem;
+  --space-10:  2.5rem;
+  --space-12:  3rem;
+  --space-16:  4rem;
+  --space-20:  5rem;
+  --space-24:  6rem;
+  --space-32:  8rem;
+
+  /* ── Layout — wider, bolder ── */
+  --container-sm:  640px;
+  --container-md:  768px;
+  --container-lg:  1024px;
+  --container-xl:  1280px;
+  --container-2xl: 1480px;
+  --header-height: 72px;
+
+  /* ── Borders — sharp, confident ── */
+  --radius-sm:   0px;
+  --radius-md:   2px;
+  --radius-lg:   4px;
+  --radius-xl:   6px;
+  --radius-full: 9999px;
+
+  /* ── Shadows (cool-tinted) ── */
+  --shadow-sm:   0 1px 2px rgba(0, 26, 51, 0.07);
+  --shadow-md:   0 4px 6px -1px rgba(0, 26, 51, 0.10), 0 2px 4px -2px rgba(0, 26, 51, 0.06);
+  --shadow-lg:   0 10px 15px -3px rgba(0, 26, 51, 0.12), 0 4px 6px -4px rgba(0, 26, 51, 0.06);
+  --shadow-xl:   0 20px 25px -5px rgba(0, 26, 51, 0.12), 0 8px 10px -6px rgba(0, 26, 51, 0.06);
+
+  /* ── Transitions ── */
+  --transition-fast:   150ms ease;
+  --transition-base:   250ms ease;
+  --transition-slow:   350ms ease;
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── Pillar Custom Properties via Data Attributes ── */
+[data-pillar="ai"]         { --pillar-color: var(--pillar-ai);         --pillar-bg: var(--pillar-ai-bg);         --pillar-light: var(--pillar-ai-light); }
+[data-pillar="bharatsim"]  { --pillar-color: var(--pillar-bharatsim);  --pillar-bg: var(--pillar-bharatsim-bg);  --pillar-light: var(--pillar-bharatsim-light); }
+[data-pillar="chart"]      { --pillar-color: var(--pillar-chart);      --pillar-bg: var(--pillar-chart-bg);      --pillar-light: var(--pillar-chart-light); }
+[data-pillar="cyber"]      { --pillar-color: var(--pillar-cyber);      --pillar-bg: var(--pillar-cyber-bg);      --pillar-light: var(--pillar-cyber-light); }
+[data-pillar="makerspace"] { --pillar-color: var(--pillar-makerspace); --pillar-bg: var(--pillar-makerspace-bg); --pillar-light: var(--pillar-makerspace-light); }

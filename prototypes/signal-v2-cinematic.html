@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal V2 Cinematic — Mphasis AI & Applied Tech Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Zilla+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: auto; }
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: #0B1E33;
+  color: #FBF3DF;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ═══════════════════════════════════════════
+   CSS CUSTOM PROPERTIES
+   ═══════════════════════════════════════════ */
+:root {
+  --bg: #0B1E33;
+  --bg-deep: #061628;
+  --bg-dark: #04101F;
+  --cream: #FBF3DF;
+  --dim: rgba(251,243,223,0.7);
+  --dimmer: rgba(251,243,223,0.45);
+  --line: rgba(251,243,223,0.15);
+  --accent: #E8586F;
+  --crimson: #C4122F;
+  --amber: #E4A03B;
+  --green: #4ADE80;
+  --blue: #60A5FA;
+  --font-heading: Georgia, serif;
+  --font-meta: 'Zilla Slab', Georgia, serif;
+  --font-body: 'Open Sans', sans-serif;
+}
+
+/* ═══════════════════════════════════════════
+   GRID OVERLAY
+   ═══════════════════════════════════════════ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image:
+    linear-gradient(to right, rgba(251,243,223,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(251,243,223,0.06) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════ */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+@keyframes marq {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes scrollCue {
+  0%, 100% { opacity: 0.3; transform: scaleX(1); }
+  50% { opacity: 1; transform: scaleX(1.5); }
+}
+
+/* ═══════════════════════════════════════════
+   TOP BAR
+   ═══════════════════════════════════════════ */
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(11,30,51,0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-meta);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--dimmer);
+}
+.top-bar .status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s ease-in-out infinite;
+}
+.top-bar .status-label { color: var(--green); }
+.top-bar .hud-sep { color: var(--line); }
+
+/* ═══════════════════════════════════════════
+   SCROLL PROGRESS BAR
+   ═══════════════════════════════════════════ */
+.scroll-progress {
+  position: sticky;
+  top: 66px;
+  z-index: 999;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: none;
+}
+
+/* ═══════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 160px 56px 120px;
+  text-align: center;
+  transform-origin: center top;
+  will-change: transform, opacity;
+  overflow: hidden;
+}
+.hero-eyebrow {
+  font-family: var(--font-meta);
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+  margin-bottom: 40px;
+}
+.hero-eyebrow .dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 168px;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--cream);
+  margin-bottom: 48px;
+  max-width: 1200px;
+}
+.hero-title .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.hero-title .word.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero-sub {
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.7;
+  color: var(--dim);
+  max-width: 620px;
+  margin-bottom: 64px;
+}
+.hero-telemetry {
+  display: flex;
+  gap: 56px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.hero-stat {
+  text-align: center;
+}
+.hero-stat-num {
+  font-family: var(--font-meta);
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: -0.02em;
+}
+.hero-stat-label {
+  font-family: var(--font-meta);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+  margin-top: 6px;
+}
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.hero-scroll-cue span {
+  font-family: var(--font-meta);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+}
+.hero-scroll-cue .cue-line {
+  width: 40px;
+  height: 1px;
+  background: var(--accent);
+  animation: scrollCue 2s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════
+   TICKER
+   ═══════════════════════════════════════════ */
+.ticker {
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 20px 0;
+  background: var(--bg-deep);
+}
+.ticker-track {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: marq 40s linear infinite;
+}
+.ticker-item {
+  font-family: var(--font-meta);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+  white-space: nowrap;
+  padding: 0 32px;
+}
+.ticker-item .sep {
+  color: var(--accent);
+  margin-right: 0;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION COMMON
+   ═══════════════════════════════════════════ */
+.section {
+  padding: 140px 56px;
+  position: relative;
+}
+.section-eyebrow {
+  font-family: var(--font-meta);
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+  margin-bottom: 24px;
+}
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 80px;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--cream);
+  margin-bottom: 64px;
+}
+.section-line {
+  width: 48px;
+  height: 1px;
+  background: var(--accent);
+  margin-bottom: 24px;
+}
+
+/* ═══════════════════════════════════════════
+   REVEAL ANIMATIONS
+   ═══════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════
+   MANIFESTO
+   ═══════════════════════════════════════════ */
+.manifesto {
+  padding: 140px 200px;
+  background: var(--bg-deep);
+}
+.manifesto-text {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+  max-width: 900px;
+}
+.manifesto-text em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════
+   PILLARS
+   ═══════════════════════════════════════════ */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+.pillar-card {
+  background: rgba(251,243,223,0.03);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 40px 28px;
+  transition: border-color 0.3s, background 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.pillar-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--pillar-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.pillar-card:hover::before { transform: scaleX(1); }
+.pillar-card:hover {
+  border-color: var(--pillar-color);
+  background: rgba(251,243,223,0.05);
+}
+.pillar-name {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+.pillar-count {
+  font-family: var(--font-meta);
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  /* color set inline via pillar color */
+}
+.pillar-count-label {
+  font-family: var(--font-meta);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+  margin-bottom: 20px;
+}
+.pillar-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--dim);
+}
+
+/* ═══════════════════════════════════════════
+   FEATURED BANDS
+   ═══════════════════════════════════════════ */
+.featured-band {
+  padding: 140px 56px;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+}
+.featured-band-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.featured-band:nth-child(even) .featured-band-inner {
+  direction: rtl;
+}
+.featured-band:nth-child(even) .featured-band-inner > * {
+  direction: ltr;
+}
+.ghost-number {
+  position: absolute;
+  top: -40px;
+  right: -20px;
+  font-family: var(--font-heading);
+  font-size: 220px;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(251,243,223,0.12);
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+}
+.featured-text {
+  position: relative;
+  z-index: 1;
+  will-change: transform;
+}
+.featured-pillar-label {
+  font-family: var(--font-meta);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.featured-title {
+  font-family: var(--font-heading);
+  font-size: 64px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--cream);
+  margin-bottom: 28px;
+}
+.featured-desc {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--dim);
+  margin-bottom: 32px;
+  max-width: 520px;
+}
+.featured-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.featured-pub {
+  font-family: var(--font-meta);
+  font-size: 13px;
+  color: var(--dimmer);
+  letter-spacing: 0.05em;
+}
+.featured-link {
+  font-family: var(--font-meta);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: opacity 0.3s;
+}
+.featured-link:hover { opacity: 0.7; }
+.featured-image {
+  position: relative;
+  z-index: 1;
+  border-radius: 4px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--bg-dark);
+  will-change: transform;
+}
+.featured-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.2) contrast(1.1);
+}
+.featured-image .placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-meta);
+  font-size: 18px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+}
+.scan-line {
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  pointer-events: none;
+  z-index: 2;
+  top: 0;
+  transition: top 0.1s linear;
+}
+.progress-readout {
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  font-family: var(--font-meta);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--dimmer);
+  z-index: 3;
+}
+
+/* ═══════════════════════════════════════════
+   IMPACT / STATS
+   ═══════════════════════════════════════════ */
+.impact {
+  background: var(--bg-dark);
+  text-align: center;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 56px 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.stat-item {
+  text-align: center;
+}
+.stat-number {
+  font-family: var(--font-meta);
+  font-size: 120px;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.stat-label {
+  font-family: var(--font-meta);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+  margin-top: 12px;
+}
+
+/* ═══════════════════════════════════════════
+   NEWS
+   ═══════════════════════════════════════════ */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.news-card {
+  background: rgba(251,243,223,0.03);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 36px 32px;
+  transition: border-color 0.3s;
+}
+.news-card:hover {
+  border-color: var(--accent);
+}
+.news-date {
+  font-family: var(--font-meta);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+  margin-bottom: 16px;
+}
+.news-title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 1.3;
+  color: var(--cream);
+  margin-bottom: 14px;
+}
+.news-excerpt {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--dim);
+}
+
+/* ═══════════════════════════════════════════
+   FACULTY
+   ═══════════════════════════════════════════ */
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.faculty-card {
+  text-align: center;
+}
+.faculty-avatar {
+  width: 88px; height: 88px;
+  border-radius: 50%;
+  background: rgba(251,243,223,0.08);
+  margin: 0 auto 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.faculty-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.4);
+}
+.faculty-name {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  color: var(--cream);
+  margin-bottom: 6px;
+}
+.faculty-role {
+  font-family: var(--font-meta);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--dimmer);
+}
+
+/* ═══════════════════════════════════════════
+   JOIN
+   ═══════════════════════════════════════════ */
+.join {
+  background: var(--bg-deep);
+}
+.join-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.join-card {
+  background: rgba(251,243,223,0.03);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 40px 28px;
+  transition: border-color 0.3s, background 0.3s;
+}
+.join-card:hover {
+  border-color: var(--accent);
+  background: rgba(232,88,111,0.08);
+}
+.join-role {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+.join-count {
+  font-family: var(--font-meta);
+  font-size: 14px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  margin-bottom: 18px;
+}
+.join-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--dim);
+}
+
+/* ═══════════════════════════════════════════
+   PARTNERS
+   ═══════════════════════════════════════════ */
+.partners {
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.partners-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 48px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.partner-name {
+  font-family: var(--font-meta);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: var(--dimmer);
+  transition: color 0.3s;
+}
+.partner-name:hover { color: var(--cream); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════ */
+.footer {
+  border-top: 1px solid var(--line);
+  padding: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-dark);
+}
+.footer-left {
+  font-family: var(--font-meta);
+  font-size: 13px;
+  color: var(--dimmer);
+  letter-spacing: 0.05em;
+}
+.footer-right {
+  display: flex;
+  gap: 32px;
+}
+.footer-link {
+  font-family: var(--font-meta);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+  transition: color 0.3s;
+}
+.footer-link:hover { color: var(--cream); }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 1200px) {
+  .hero-title { font-size: 110px; }
+  .section-title { font-size: 60px; }
+  .featured-title { font-size: 48px; }
+  .ghost-number { font-size: 160px; }
+  .stat-number { font-size: 80px; }
+  .manifesto { padding: 100px 80px; }
+  .manifesto-text { font-size: 38px; }
+}
+@media (max-width: 900px) {
+  .hero-title { font-size: 72px; }
+  .section { padding: 100px 32px; }
+  .featured-band { padding: 100px 32px; }
+  .featured-band-inner { grid-template-columns: 1fr; gap: 48px; }
+  .featured-band:nth-child(even) .featured-band-inner { direction: ltr; }
+  .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .news-grid { grid-template-columns: 1fr; }
+  .faculty-grid { grid-template-columns: repeat(2, 1fr); }
+  .join-grid { grid-template-columns: repeat(2, 1fr); }
+  .manifesto { padding: 80px 32px; }
+  .manifesto-text { font-size: 30px; }
+  .ghost-number { font-size: 120px; }
+  .stat-number { font-size: 64px; }
+  .section-title { font-size: 48px; }
+  .featured-title { font-size: 38px; }
+}
+@media (max-width: 600px) {
+  .hero-title { font-size: 48px; }
+  .hero { padding: 120px 24px 100px; }
+  .hero-telemetry { gap: 32px; }
+  .hero-stat-num { font-size: 28px; }
+  .section { padding: 80px 20px; }
+  .featured-band { padding: 80px 20px; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr; gap: 40px; }
+  .join-grid { grid-template-columns: 1fr; }
+  .faculty-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer { flex-direction: column; gap: 24px; text-align: center; }
+  .ghost-number { font-size: 80px; }
+  .stat-number { font-size: 52px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     TOP BAR
+     ═══════════════════════════════════════════ -->
+<header class="top-bar">
+  <span class="status-dot"></span>
+  <span class="status-label">NOMINAL</span>
+  <span class="hud-sep">|</span>
+  <span class="hud-pos">POS 00000</span>
+  <span class="hud-sep">|</span>
+  <span class="hud-time">T+0000</span>
+</header>
+
+<!-- ═══════════════════════════════════════════
+     SCROLL PROGRESS
+     ═══════════════════════════════════════════ -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-eyebrow">
+    <span class="dot"></span> Mphasis AI &amp; Applied Tech Lab
+  </div>
+  <h1 class="hero-title" id="heroTitle">Research at the Frontier</h1>
+  <p class="hero-sub">A multidisciplinary research lab at Ashoka University — advancing AI, simulation, health analytics, cybersecurity, and digital fabrication.</p>
+  <div class="hero-telemetry">
+    <div class="hero-stat">
+      <div class="hero-stat-num">25+</div>
+      <div class="hero-stat-label">Projects</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">27+</div>
+      <div class="hero-stat-label">Faculty</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">5</div>
+      <div class="hero-stat-label">Pillars</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">30+</div>
+      <div class="hero-stat-label">Publications</div>
+    </div>
+  </div>
+  <div class="hero-scroll-cue">
+    <span>Scroll to Engage</span>
+    <div class="cue-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TICKER
+     ═══════════════════════════════════════════ -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     MANIFESTO
+     ═══════════════════════════════════════════ -->
+<section class="manifesto section">
+  <div class="section-eyebrow reveal">&#9670; TRANSMISSION OPEN</div>
+  <div class="section-line reveal"></div>
+  <p class="manifesto-text reveal">We believe the most important problems require <em>convergent thinking</em> — where artificial intelligence meets epidemiology, where digital fabrication meets pedagogy, where cybersecurity meets the quantum horizon.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PILLARS
+     ═══════════════════════════════════════════ -->
+<section class="section" id="pillars">
+  <div class="section-eyebrow reveal">&#9670; Research Pillars</div>
+  <div class="section-line reveal"></div>
+  <h2 class="section-title reveal">Five Pillars of Inquiry</h2>
+  <div class="pillars-grid" id="pillarsGrid"></div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FEATURED BANDS
+     ═══════════════════════════════════════════ -->
+<div id="featuredBands"></div>
+
+<!-- ═══════════════════════════════════════════
+     IMPACT
+     ═══════════════════════════════════════════ -->
+<section class="section impact" id="impact">
+  <div class="section-eyebrow reveal">&#9670; Impact</div>
+  <div class="section-line reveal"></div>
+  <h2 class="section-title reveal" style="text-align:center;">By the Numbers</h2>
+  <div class="stats-grid" id="statsGrid"></div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     NEWS
+     ═══════════════════════════════════════════ -->
+<section class="section" id="news">
+  <div class="section-eyebrow reveal">&#9670; Latest</div>
+  <div class="section-line reveal"></div>
+  <h2 class="section-title reveal">News &amp; Events</h2>
+  <div class="news-grid" id="newsGrid"></div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FACULTY
+     ═══════════════════════════════════════════ -->
+<section class="section" id="faculty" style="background:var(--bg-deep);">
+  <div class="section-eyebrow reveal">&#9670; People</div>
+  <div class="section-line reveal"></div>
+  <h2 class="section-title reveal">Faculty &amp; Leads</h2>
+  <div class="faculty-grid" id="facultyGrid"></div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     JOIN
+     ═══════════════════════════════════════════ -->
+<section class="section join" id="join">
+  <div class="section-eyebrow reveal">&#9670; Opportunities</div>
+  <div class="section-line reveal"></div>
+  <h2 class="section-title reveal">Join the Lab</h2>
+  <div class="join-grid" id="joinGrid"></div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PARTNERS
+     ═══════════════════════════════════════════ -->
+<section class="section partners">
+  <div class="section-eyebrow reveal">&#9670; Partners</div>
+  <div class="section-line reveal"></div>
+  <h2 class="section-title reveal" style="font-size:48px;">Collaborating Institutions</h2>
+  <div class="partners-list reveal">
+    <span class="partner-name">Mphasis</span>
+    <span class="partner-name">Ashoka University</span>
+    <span class="partner-name">NACO</span>
+    <span class="partner-name">WHO</span>
+    <span class="partner-name">IIT Delhi</span>
+    <span class="partner-name">IISER Pune</span>
+    <span class="partner-name">MeitY</span>
+    <span class="partner-name">NCERT</span>
+    <span class="partner-name">BBC</span>
+    <span class="partner-name">Nature India</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-left">&copy; 2026 Mphasis AI &amp; Applied Tech Lab, Ashoka University</div>
+  <div class="footer-right">
+    <a href="#" class="footer-link">About</a>
+    <a href="#" class="footer-link">Research</a>
+    <a href="#" class="footer-link">People</a>
+    <a href="#" class="footer-link">Contact</a>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════
+   DATA
+   ═══════════════════════════════════════════ */
+const PILLARS = [
+  { name:'AI@Ashoka', color:'#2563EB', count:9, desc:'Education, health, environment, humanities, fundamental sciences.' },
+  { name:'BharatSim', color:'#059669', count:4, desc:'India-scale agent-based simulation for epidemiology & public health.' },
+  { name:'CHART', color:'#D97706', count:5, desc:'Health analytics, food computing, cancer diagnostics.' },
+  { name:'Cybersecurity', color:'#7C3AED', count:3, desc:'Post-quantum cryptography against quantum-era threats.' },
+  { name:'Makerspace', color:'#DC2626', count:4, desc:'Digital fabrication, maker education, physical prototyping.' }
+];
+
+const FEATURED = [
+  {
+    pillar:'BharatSim', pillarColor:'#059669',
+    title:'India-Scale Epidemic Simulation',
+    desc:'Agent-based modelling of a nation. Our H5N1 avian flu study was covered by BBC, NDTV, Nature India, and 20+ international outlets. The platform is now deployed to the National AIDS Control Organization for HIV predictive modelling.',
+    pub:'BMC Public Health \u00b7 2025',
+    img:'assets/bharatsim-network.png', placeholder:null
+  },
+  {
+    pillar:'AI@Ashoka', pillarColor:'#2563EB',
+    title:'OncoMark \u2014 Cancer at Single-Cell Resolution',
+    desc:'An AI framework quantifying cancer hallmarks across millions of single cells. Published in Communications Biology (Nature portfolio). Government recognition followed: SocraticAI featured in MeitY\u2019s India-AI Impact Summit Compendium.',
+    pub:'Communications Biology \u00b7 2025',
+    img:'assets/earth-dark.jpg', placeholder:null,
+    overlay:'radial-gradient(circle at 40% 40%, rgba(37,99,235,0.4), transparent 70%)'
+  },
+  {
+    pillar:'CHART', pillarColor:'#D97706',
+    title:'World Food Atlas',
+    desc:'Multimodal food computing platform mapping global cuisines \u2014 ingredients, recipes, nutrition at scale.',
+    pub:'Ongoing \u00b7 CHART',
+    img:null, placeholder:'PLATE \u00b7 003'
+  }
+];
+
+const STATS = [
+  { num:25, suffix:'+', label:'Research Projects' },
+  { num:30, suffix:'+', label:'Publications' },
+  { num:27, suffix:'+', label:'Faculty\n7 Departments' },
+  { num:6, suffix:'', label:'Deployed Systems' },
+  { num:40, suffix:'+', label:'Partnerships' },
+  { num:15, suffix:'+', label:'Countries' }
+];
+
+const NEWS = [
+  { date:'March 21\u201322, 2026', title:'WiCSCon 3.0', excerpt:'India\u2019s first student-led conference on inclusivity and diversity in CS, bringing together researchers and advocates.' },
+  { date:'March 21, 2026', title:'ACM COMPUTE 2026', excerpt:'Hosted at Ashoka \u2014 forum on CS education themes with national and international participation.' },
+  { date:'March 2026', title:'Two Papers at ITiCSE', excerpt:'AI Pedagogy / BOOP project. Students will present in Spain at the premier CS education conference.' }
+];
+
+const FACULTY = [
+  { name:'Debayan Gupta', role:'Director, AI@Ashoka', img:'assets/people/debayan-gupta.jpg' },
+  { name:'Gautam Menon', role:'Lead, BharatSim', img:'assets/people/gautam-menon.jpg' },
+  { name:'Rintu Kutum', role:'Lead, CHART', img:'assets/people/rintu-kutum.jpg' },
+  { name:'Meghna Agarwala', role:'Lead, Biodiversity', img:'assets/people/meghna-agarwala.jpg' },
+  { name:'Aalok Thakkar', role:'Cybersecurity', img:'assets/people/aalok-thakkar.jpg' },
+  { name:'Bittu K. Rajaraman', role:'Neuroscience & AI', img:'assets/people/bittu-rajaraman.jpg' },
+  { name:'L.S. Shashidhara', role:'Dean, Research', img:'assets/people/ls-shashidhara.jpg' },
+  { name:'Kasturi Mitra', role:'Cell Biology', img:'assets/people/kasturi-mitra.jpg' }
+];
+
+const JOIN = [
+  { role:'PhD Students', count:'12 positions', desc:'Fully funded positions across all five research pillars.' },
+  { role:'Postdocs', count:'4 positions', desc:'Research fellowships in AI, simulation, health analytics, and security.' },
+  { role:'Research Staff', count:'Rolling', desc:'Engineers, data scientists, and research associates.' },
+  { role:'Undergraduates', count:'Open', desc:'Summer projects, thesis work, and maker residencies.' }
+];
+
+const THEMES = [
+  'AI Pedagogy','Epidemiological Modeling','Computational Health','Climate Science',
+  'Digital Humanities','Materials Science','Biodiversity','Digital Fabrication','Post-Quantum Cryptography'
+];
+
+/* ═══════════════════════════════════════════
+   BUILD TICKER
+   ═══════════════════════════════════════════ */
+(function buildTicker() {
+  const track = document.getElementById('tickerTrack');
+  const items = THEMES.map(t => `<span class="ticker-item"><span class="sep">&#9670;</span> ${t}</span>`).join('');
+  track.innerHTML = items + items; // duplicate for seamless loop
+})();
+
+/* ═══════════════════════════════════════════
+   BUILD PILLARS
+   ═══════════════════════════════════════════ */
+(function buildPillars() {
+  const grid = document.getElementById('pillarsGrid');
+  grid.innerHTML = PILLARS.map((p, i) => `
+    <div class="pillar-card reveal" style="--pillar-color:${p.color}; transition-delay:${i * 140}ms; transform:translateY(${i * 8}px);">
+      <div class="pillar-count" style="color:${p.color};">${p.count}</div>
+      <div class="pillar-count-label">Projects</div>
+      <div class="pillar-name">${p.name}</div>
+      <div class="pillar-desc">${p.desc}</div>
+    </div>
+  `).join('');
+})();
+
+/* ═══════════════════════════════════════════
+   BUILD FEATURED BANDS
+   ═══════════════════════════════════════════ */
+(function buildFeatured() {
+  const container = document.getElementById('featuredBands');
+  container.innerHTML = FEATURED.map((f, i) => {
+    const num = String(i + 1).padStart(2, '0');
+    let imgHTML;
+    if (f.img) {
+      const overlayStyle = f.overlay ? `background:${f.overlay};position:absolute;inset:0;z-index:1;` : '';
+      imgHTML = `
+        <div class="featured-image" data-band-img="${i}">
+          ${f.overlay ? `<div style="${overlayStyle}"></div>` : ''}
+          <img src="${f.img}" alt="${f.title}" onerror="this.parentElement.innerHTML='<div class=placeholder style=background:${f.pillarColor}15>${f.pillar.toUpperCase()}</div>'">
+          <div class="scan-line" style="background:${f.pillarColor};box-shadow:0 0 8px ${f.pillarColor};"></div>
+          <div class="progress-readout">0%</div>
+        </div>`;
+    } else {
+      imgHTML = `
+        <div class="featured-image" data-band-img="${i}" style="background:radial-gradient(circle at 50% 50%, ${f.pillarColor}30, var(--bg-dark));">
+          <div class="placeholder">${f.placeholder}</div>
+          <div class="scan-line" style="background:${f.pillarColor};box-shadow:0 0 8px ${f.pillarColor};"></div>
+          <div class="progress-readout">0%</div>
+        </div>`;
+    }
+    return `
+    <div class="featured-band" data-band="${i}">
+      <div class="featured-band-inner">
+        <div class="featured-text" data-band-text="${i}">
+          <div class="featured-pillar-label" style="color:${f.pillarColor};">${f.pillar}</div>
+          <h3 class="featured-title">${f.title}</h3>
+          <p class="featured-desc">${f.desc}</p>
+          <div class="featured-meta-row">
+            <span class="featured-pub">${f.pub}</span>
+            <a href="#" class="featured-link">Read More &rarr;</a>
+          </div>
+        </div>
+        ${imgHTML}
+      </div>
+      <div class="ghost-number">${num}</div>
+    </div>`;
+  }).join('');
+})();
+
+/* ═══════════════════════════════════════════
+   BUILD STATS
+   ═══════════════════════════════════════════ */
+(function buildStats() {
+  const grid = document.getElementById('statsGrid');
+  grid.innerHTML = STATS.map((s, i) => `
+    <div class="stat-item reveal" style="transition-delay:${i * 100}ms;">
+      <div class="stat-number" data-target="${s.num}" data-suffix="${s.suffix}">0${s.suffix}</div>
+      <div class="stat-label">${s.label.replace('\n','<br>')}</div>
+    </div>
+  `).join('');
+})();
+
+/* ═══════════════════════════════════════════
+   BUILD NEWS
+   ═══════════════════════════════════════════ */
+(function buildNews() {
+  const grid = document.getElementById('newsGrid');
+  grid.innerHTML = NEWS.map((n, i) => `
+    <div class="news-card reveal" style="transition-delay:${i * 140}ms;">
+      <div class="news-date">${n.date}</div>
+      <h3 class="news-title">${n.title}</h3>
+      <p class="news-excerpt">${n.excerpt}</p>
+    </div>
+  `).join('');
+})();
+
+/* ═══════════════════════════════════════════
+   BUILD FACULTY
+   ═══════════════════════════════════════════ */
+(function buildFaculty() {
+  const grid = document.getElementById('facultyGrid');
+  grid.innerHTML = FACULTY.map((f, i) => `
+    <div class="faculty-card reveal" style="transition-delay:${i * 60}ms;">
+      <div class="faculty-avatar">
+        <img src="${f.img}" alt="${f.name}" onerror="this.style.display='none'">
+      </div>
+      <div class="faculty-name">${f.name}</div>
+      <div class="faculty-role">${f.role}</div>
+    </div>
+  `).join('');
+})();
+
+/* ═══════════════════════════════════════════
+   BUILD JOIN
+   ═══════════════════════════════════════════ */
+(function buildJoin() {
+  const grid = document.getElementById('joinGrid');
+  grid.innerHTML = JOIN.map((j, i) => `
+    <div class="join-card reveal" style="transition-delay:${i * 100}ms;">
+      <div class="join-role">${j.role}</div>
+      <div class="join-count">${j.count}</div>
+      <div class="join-desc">${j.desc}</div>
+    </div>
+  `).join('');
+})();
+
+/* ═══════════════════════════════════════════
+   HERO WORD SPLIT + REVEAL
+   ═══════════════════════════════════════════ */
+(function splitHeroWords() {
+  const title = document.getElementById('heroTitle');
+  const text = title.textContent;
+  title.innerHTML = text.split(' ').map((w, i) =>
+    `<span class="word" style="transition-delay:${i * 120 + 300}ms">${w}</span>`
+  ).join(' ');
+  requestAnimationFrame(() => {
+    title.querySelectorAll('.word').forEach(w => w.classList.add('visible'));
+  });
+})();
+
+/* ═══════════════════════════════════════════
+   SCROLL: HERO TRANSFORM + PROGRESS + HUD
+   ═══════════════════════════════════════════ */
+const hero = document.getElementById('hero');
+const progressBar = document.getElementById('scrollProgress');
+const hudPos = document.querySelector('.hud-pos');
+
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      const sy = window.scrollY;
+
+      // Hero cinematic transform
+      const opacity = Math.max(0, 1 - sy / 700);
+      const scale = Math.max(0.92, 1 - sy / 8000);
+      const translateY = Math.min(200, sy * 0.3);
+      hero.style.opacity = opacity;
+      hero.style.transform = `scale(${scale}) translateY(${translateY}px)`;
+
+      // Progress bar
+      const pct = Math.min(100, sy / 60);
+      progressBar.style.width = pct + '%';
+
+      // HUD position
+      hudPos.textContent = 'POS ' + String(Math.floor(sy)).padStart(5, '0');
+
+      // Featured band parallax
+      document.querySelectorAll('.featured-band').forEach(band => {
+        const idx = parseInt(band.dataset.band);
+        const rect = band.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const progress = 1 - (rect.top + rect.height) / (vh + rect.height);
+        const clampedProgress = Math.max(0, Math.min(1, progress));
+
+        const textEl = band.querySelector('.featured-text');
+        const imgEl = band.querySelector('.featured-image');
+        const scanLine = band.querySelector('.scan-line');
+        const readout = band.querySelector('.progress-readout');
+
+        if (textEl) {
+          textEl.style.transform = `translateY(${(clampedProgress - 0.5) * -40}px)`;
+        }
+        if (imgEl) {
+          imgEl.style.transform = `translateY(${(clampedProgress - 0.5) * 140}px)`;
+        }
+        if (scanLine) {
+          scanLine.style.top = (clampedProgress * 100) + '%';
+        }
+        if (readout) {
+          readout.textContent = Math.round(clampedProgress * 100) + '%';
+        }
+      });
+
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+/* ═══════════════════════════════════════════
+   HUD TIME COUNTER
+   ═══════════════════════════════════════════ */
+const hudTime = document.querySelector('.hud-time');
+let timeCount = 0;
+setInterval(() => {
+  timeCount++;
+  hudTime.textContent = 'T+' + String(timeCount).padStart(4, '0');
+}, 1500);
+
+/* ═══════════════════════════════════════════
+   INTERSECTION OBSERVER — REVEALS
+   ═══════════════════════════════════════════ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ═══════════════════════════════════════════
+   COUNT-UP ANIMATION (1800ms)
+   ═══════════════════════════════════════════ */
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.target);
+      const suffix = el.dataset.suffix;
+      const duration = 1800;
+      const start = performance.now();
+
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(1, elapsed / duration);
+        // Ease out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(eased * target);
+        el.textContent = current + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      statObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.stat-number').forEach(el => statObserver.observe(el));
+
+</script>
+</body>
+</html>

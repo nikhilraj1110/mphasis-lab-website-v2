@@ -1,0 +1,201 @@
+/* ============================================
+   HEADER & NAVIGATION
+   ============================================ */
+
+.header {
+  position: fixed;
+  top: 3px; /* Below progress bar */
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--header-height);
+  background-color: rgba(252, 251, 249, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border);
+  transition: box-shadow var(--transition-base);
+}
+
+.header--scrolled {
+  box-shadow: var(--shadow-md);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: var(--container-2xl);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* ── Logo ── */
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+.header__logo img {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ── Desktop Navigation ── */
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nav__link {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  padding: var(--space-2) 10px;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-md);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.nav__link:hover {
+  color: var(--color-navy);
+  background-color: var(--gray-50);
+}
+
+.nav__link--active {
+  color: var(--color-navy);
+  font-weight: var(--weight-semibold);
+}
+
+.nav__link--active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  background-color: var(--color-red);
+  border-radius: 1px;
+}
+
+/* ── Mobile Menu Toggle ── */
+
+.header__menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  gap: 5px;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast);
+}
+
+.header__menu-toggle:hover {
+  background-color: var(--gray-50);
+}
+
+.header__menu-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: var(--color-navy);
+  border-radius: 1px;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+.header__menu-toggle--open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.header__menu-toggle--open span:nth-child(2) {
+  opacity: 0;
+}
+
+.header__menu-toggle--open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile Navigation ── */
+
+.nav-mobile {
+  display: none;
+  position: fixed;
+  top: calc(var(--header-height) + 3px);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(252, 251, 249, 0.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 999;
+  overflow-y: auto;
+  padding: var(--space-6);
+}
+
+.nav-mobile--open {
+  display: block;
+  animation: fadeSlideDown 250ms ease forwards;
+}
+
+.nav-mobile__link {
+  display: block;
+  padding: var(--space-4) var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border-light);
+  transition: color var(--transition-fast);
+}
+
+.nav-mobile__link:hover,
+.nav-mobile__link--active {
+  color: var(--color-navy);
+}
+
+.nav-mobile__link--active {
+  border-left: 3px solid var(--color-red);
+  padding-left: var(--space-4);
+}
+
+.nav-mobile__link:last-child {
+  border-bottom: none;
+}
+
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ── */
+
+/* ── Header Actions (search + hamburger) ── */
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+@media (max-width: 1140px) {
+  .nav { display: none; }
+  .header__menu-toggle { display: flex; }
+}
+
+@media (max-width: 768px) {
+  .header__inner { padding: 0 var(--space-4); }
+  .header__logo img { height: 48px; }
+}

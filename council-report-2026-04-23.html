@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM Council Report — PRD Review</title>
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --bg-alt: #F8F9FA;
+    --bg-verdict: #F0F4F8;
+    --border: #E2E8F0;
+    --text: #1A202C;
+    --text-muted: #64748B;
+    --accent-blue: #0D3862;
+    --accent-red: #C4122F;
+    --accent-green: #16A34A;
+    --accent-amber: #D97706;
+    --accent-purple: #7C3AED;
+    --contrarian: #DC2626;
+    --firstprinciples: #2563EB;
+    --expansionist: #7C3AED;
+    --outsider: #D97706;
+    --executor: #16A34A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .header {
+    border-bottom: 3px solid var(--accent-blue);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    margin-bottom: 0.25rem;
+  }
+
+  .header .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+
+  .header .date {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+  }
+
+  .question-box {
+    background: var(--bg-alt);
+    border-left: 4px solid var(--accent-blue);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .question-box h2 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .question-box p {
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+
+  .question-box ol {
+    margin-top: 0.5rem;
+    padding-left: 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .question-box ol li {
+    margin-bottom: 0.25rem;
+  }
+
+  /* Verdict Section */
+  .verdict {
+    background: var(--bg-verdict);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .verdict h2 {
+    font-size: 1.35rem;
+    color: var(--accent-blue);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--accent-blue);
+  }
+
+  .verdict-section {
+    margin-bottom: 1.75rem;
+  }
+
+  .verdict-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .verdict-section h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .verdict-section h3 .icon {
+    font-size: 1.1rem;
+  }
+
+  .verdict-section p, .verdict-section li {
+    font-size: 0.92rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .verdict-section ul {
+    padding-left: 1.25rem;
+  }
+
+  .verdict-section ul li {
+    margin-bottom: 0.4rem;
+  }
+
+  .do-first {
+    background: white;
+    border: 2px solid var(--accent-red);
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .do-first h3 {
+    color: var(--accent-red);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+  }
+
+  .do-first p {
+    font-size: 0.92rem;
+  }
+
+  /* Agreement Visual */
+  .agreement-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .agreement-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    background: white;
+  }
+
+  .agreement-card h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent-blue);
+  }
+
+  .advisor-positions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .advisor-pill {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .advisor-pill.agree { opacity: 1; }
+  .advisor-pill.partial { opacity: 0.6; }
+  .advisor-pill.disagree { opacity: 0.35; }
+
+  .pill-contrarian { background: var(--contrarian); }
+  .pill-firstprinciples { background: var(--firstprinciples); }
+  .pill-expansionist { background: var(--expansionist); }
+  .pill-outsider { background: var(--outsider); }
+  .pill-executor { background: var(--executor); }
+
+  .position-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+  }
+
+  /* Collapsible Sections */
+  details {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    background: white;
+  }
+
+  summary {
+    padding: 1rem 1.25rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  summary::-webkit-details-marker { display: none; }
+
+  summary::before {
+    content: '+';
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    width: 1.25rem;
+    text-align: center;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  details[open] summary::before {
+    content: '-';
+  }
+
+  .advisor-tag {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .detail-content {
+    padding: 0 1.25rem 1.25rem 3rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .detail-content p {
+    margin-bottom: 0.75rem;
+  }
+
+  .detail-content strong {
+    color: var(--text);
+  }
+
+  .section-heading {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Peer Review Section */
+  .peer-review-summary {
+    background: var(--bg-alt);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .peer-review-summary h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--accent-blue);
+  }
+
+  .peer-votes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .vote-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .vote-label {
+    font-weight: 600;
+    min-width: 110px;
+  }
+
+  .vote-value {
+    color: var(--text-muted);
+  }
+
+  .footer-note {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  /* Execution Order Table */
+  .exec-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin-bottom: 1rem;
+  }
+
+  .exec-table th {
+    background: var(--accent-blue);
+    color: white;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .exec-table td {
+    padding: 0.55rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .exec-table tr:nth-child(even) { background: var(--bg-alt); }
+
+  .exec-table .order-num {
+    font-weight: 700;
+    color: var(--accent-blue);
+    text-align: center;
+  }
+
+  .recommendation-box {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .recommendation-box h4 {
+    font-size: 0.9rem;
+    color: var(--accent-blue);
+    margin-bottom: 0.5rem;
+  }
+
+  .recommendation-box p {
+    font-size: 0.88rem;
+    margin-bottom: 0.4rem;
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 1rem; }
+    .verdict { padding: 1.25rem; }
+    .peer-votes { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>LLM Council Report</h1>
+  <div class="subtitle">PRD Review: Website Finishing Pass &mdash; Mphasis AI &amp; Applied Tech Lab</div>
+  <div class="date">April 23, 2026 &bull; 5 Advisors &bull; 5 Peer Reviews &bull; Chairman Synthesis</div>
+</div>
+
+<div class="question-box">
+  <h2>The Question</h2>
+  <p>Review the PRD for the website finishing pass (unifying 9 HTML pages with 3 incompatible architectural systems):</p>
+  <ol>
+    <li>Is this the best implementation approach? What's wrong or over-engineered?</li>
+    <li>What's missing that could cause problems in a multi-session AI workflow?</li>
+    <li>Does it enforce page-by-page execution with approval gates and session-resumable logging?</li>
+  </ol>
+</div>
+
+<!-- CHAIRMAN'S VERDICT -->
+<div class="verdict">
+  <h2>Chairman's Verdict</h2>
+
+  <div class="verdict-section">
+    <h3>Where the Council Agrees</h3>
+    <ul>
+      <li><strong>The PRD is good documentation but a poor AI workflow spec.</strong> Every advisor independently arrived at the same conclusion: the 600-line document tells Claude <em>what</em> the website should look like but not <em>how to verify it got there</em> or <em>how to resume safely</em>. It assumes a single continuous worker with perfect memory, but the actual execution environment is stateless sessions with bounded context windows.</li>
+      <li><strong>Page-by-page with approval gates is the correct model &mdash; and the PRD doesn't implement it.</strong> The current 4-phase structure cuts across pages horizontally. The user's need is vertical: finish index.html completely, get approval, then move to about.html. 4/5 peer reviews ranked The Executor strongest for identifying this mismatch.</li>
+      <li><strong>Cross-page regression is the real risk.</strong> Fixing page 4 can break page 2. Copy-pasted shared elements are a "divergence machine." No advisor proposed a concrete regression detection mechanism.</li>
+    </ul>
+  </div>
+
+  <div class="verdict-section">
+    <h3>Where the Council Clashes</h3>
+    <ul>
+      <li><strong>How much infrastructure before touching HTML?</strong> The Outsider says "stop over-engineering, just do it." First Principles says "build constraints first or entropy wins." Resolution: at 5-9 sessions, you need <em>lightweight</em> verification &mdash; not a full framework, but more than nothing.</li>
+      <li><strong>Is the 600-line PRD an asset or liability?</strong> It competes with file contents for AI context budget. Resolution: split into invariant spec (~100 lines, always loaded) + mutable session log (read first, written last).</li>
+    </ul>
+  </div>
+
+  <div class="verdict-section">
+    <h3>Blind Spots Caught in Peer Review</h3>
+    <ul>
+      <li><strong>No machine-readable canonical state.</strong> Metric numbers (25+ projects, 30+ publications, 27+ faculty) appear on multiple pages with no single-source-of-truth file. A JSON/JS constants file would eliminate an entire class of inconsistency bugs.</li>
+      <li><strong>Approval gates have no verification mechanism.</strong> A new session can't confirm whether the user actually approved page 3 or the previous session just wrote "APPROVED." Needs timestamped user confirmation.</li>
+      <li><strong>No re-validation before starting new work.</strong> Before touching page 5, confirm pages 1-4 are still in their approved state. Without this, regression is invisible.</li>
+    </ul>
+  </div>
+
+  <div class="verdict-section">
+    <h3>The Recommendation</h3>
+    <p><strong>Restructure the PRD into three documents, then execute page-by-page starting with index.html.</strong></p>
+    <div class="recommendation-box">
+      <h4>Document 1: SPEC.md (~100 lines, invariant)</h4>
+      <p>The canonical reference. Design tokens, font stack, nav structure, shared component patterns, metric values, content rules. Claude reads it at session start, validates against it. Never changes mid-session.</p>
+    </div>
+    <div class="recommendation-box">
+      <h4>Document 2: STATUS.md (~30 lines, mutable)</h4>
+      <p>Per-page status table: Page | Status | Session Date | Verified By. Statuses: NOT STARTED / IN PROGRESS / DONE-PENDING-REVIEW / APPROVED. Each APPROVED row lists shared elements present so the next session can verify nothing regressed.</p>
+    </div>
+    <div class="recommendation-box">
+      <h4>Document 3: CHANGES.md (append-only log)</h4>
+      <p>Every session appends what it changed, which files it touched, what it left for next time. The execution log the PRD is missing.</p>
+    </div>
+
+    <h4 style="margin-top: 1.25rem; margin-bottom: 0.75rem; color: var(--accent-blue); font-size: 0.9rem;">Recommended Execution Order</h4>
+    <table class="exec-table">
+      <thead>
+        <tr><th>#</th><th>Page</th><th>Rationale</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="order-num">1</td><td>index.html</td><td>Most complex, most visible. Sets all patterns. If wrong, mistake repeats 8x.</td></tr>
+        <tr><td class="order-num">2</td><td>pages/about.html</td><td>High-traffic. Establishes subpage pattern from index template.</td></tr>
+        <tr><td class="order-num">3</td><td>pages/research.html</td><td>Core content page. Complex filtering. Tests card/grid patterns.</td></tr>
+        <tr><td class="order-num">4</td><td>pages/people.html</td><td>Directory page. Tests profile card patterns.</td></tr>
+        <tr><td class="order-num">5</td><td>pages/publications.html</td><td>List-heavy. Tests year-grouped layout.</td></tr>
+        <tr><td class="order-num">6</td><td>pages/impact.html</td><td>Dark sections + stat counters. Tests animation patterns.</td></tr>
+        <tr><td class="order-num">7</td><td>pages/makerspace.html</td><td>Mixed content. Equipment + project cards.</td></tr>
+        <tr><td class="order-num">8</td><td>pages/news.html</td><td>Card feed. Already closest to target (System C).</td></tr>
+        <tr><td class="order-num">9</td><td>pages/contact.html</td><td>Simplest page. Lowest risk. Validates final consistency.</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size: 0.85rem; color: var(--text-muted);">One page per approval gate. Before starting each page, verify all previously-approved pages still match SPEC.md.</p>
+  </div>
+
+  <div class="do-first">
+    <h3>The One Thing to Do First</h3>
+    <p><strong>Create SPEC.md.</strong> Extract from the current PRD the exact shared elements every page must have: the <code>&lt;head&gt;</code> block, nav HTML, footer HTML, script loading pattern, and canonical metric values. Make it short enough that Claude can hold it in context alongside an entire page's HTML. Until this file exists, every session is guessing at what "consistent" means &mdash; and each will guess differently.</p>
+  </div>
+</div>
+
+<!-- ADVISOR ALIGNMENT VISUAL -->
+<h2 class="section-heading">Advisor Alignment</h2>
+
+<div class="agreement-grid">
+  <div class="agreement-card">
+    <h3>"PRD is good docs but poor AI workflow spec"</h3>
+    <div class="advisor-positions">
+      <span class="advisor-pill agree pill-contrarian">Contrarian</span>
+      <span class="advisor-pill agree pill-firstprinciples">First Principles</span>
+      <span class="advisor-pill partial pill-expansionist">Expansionist</span>
+      <span class="advisor-pill agree pill-outsider">Outsider</span>
+      <span class="advisor-pill agree pill-executor">Executor</span>
+    </div>
+    <div class="position-label">Strong agreement (4/5 direct, 1 partial)</div>
+  </div>
+
+  <div class="agreement-card">
+    <h3>"Needs page-by-page execution, not phase-by-phase"</h3>
+    <div class="advisor-positions">
+      <span class="advisor-pill partial pill-contrarian">Contrarian</span>
+      <span class="advisor-pill partial pill-firstprinciples">First Principles</span>
+      <span class="advisor-pill disagree pill-expansionist">Expansionist</span>
+      <span class="advisor-pill agree pill-outsider">Outsider</span>
+      <span class="advisor-pill agree pill-executor">Executor</span>
+    </div>
+    <div class="position-label">Moderate agreement (2 direct, 2 partial, 1 did not address)</div>
+  </div>
+
+  <div class="agreement-card">
+    <h3>"Cross-page regression is the real risk"</h3>
+    <div class="advisor-positions">
+      <span class="advisor-pill partial pill-contrarian">Contrarian</span>
+      <span class="advisor-pill agree pill-firstprinciples">First Principles</span>
+      <span class="advisor-pill disagree pill-expansionist">Expansionist</span>
+      <span class="advisor-pill agree pill-outsider">Outsider</span>
+      <span class="advisor-pill partial pill-executor">Executor</span>
+    </div>
+    <div class="position-label">Moderate agreement (2 direct, 2 partial, 1 did not address)</div>
+  </div>
+
+  <div class="agreement-card">
+    <h3>"Need a persistent change log (CHANGES.md)"</h3>
+    <div class="advisor-positions">
+      <span class="advisor-pill agree pill-contrarian">Contrarian</span>
+      <span class="advisor-pill partial pill-firstprinciples">First Principles</span>
+      <span class="advisor-pill agree pill-expansionist">Expansionist</span>
+      <span class="advisor-pill agree pill-outsider">Outsider</span>
+      <span class="advisor-pill agree pill-executor">Executor</span>
+    </div>
+    <div class="position-label">Strong agreement (4/5 direct, 1 partial)</div>
+  </div>
+</div>
+
+<!-- PEER REVIEW HIGHLIGHTS -->
+<h2 class="section-heading">Peer Review Highlights</h2>
+
+<div class="peer-review-summary">
+  <h3>Strongest Advisor (by peer vote)</h3>
+  <div class="peer-votes">
+    <div class="vote-row"><span class="vote-label">Review 1:</span> <span class="vote-value">First Principles</span></div>
+    <div class="vote-row"><span class="vote-label">Review 2:</span> <span class="vote-value">Executor</span></div>
+    <div class="vote-row"><span class="vote-label">Review 3:</span> <span class="vote-value">Executor</span></div>
+    <div class="vote-row"><span class="vote-label">Review 4:</span> <span class="vote-value">Executor</span></div>
+    <div class="vote-row"><span class="vote-label">Review 5:</span> <span class="vote-value">Executor</span></div>
+  </div>
+  <p style="margin-top: 0.75rem; font-size: 0.85rem; color: var(--text-muted);"><strong>Winner: The Executor</strong> (4/5 votes) &mdash; for directly answering all 3 questions with actionable steps</p>
+</div>
+
+<div class="peer-review-summary">
+  <h3>Biggest Blind Spot (by peer vote)</h3>
+  <div class="peer-votes">
+    <div class="vote-row"><span class="vote-label">All 5 reviews:</span> <span class="vote-value">The Expansionist</span></div>
+  </div>
+  <p style="margin-top: 0.75rem; font-size: 0.85rem; color: var(--text-muted);">Unanimous: praised the PRD as "publishable methodology" instead of identifying concrete workflow gaps</p>
+</div>
+
+<details>
+  <summary>What all 5 peer reviews independently flagged as missed</summary>
+  <div class="detail-content">
+    <p><strong>The context window problem:</strong> 600 lines of PRD + file contents = something gets dropped. Split into invariant spec + mutable log.</p>
+    <p><strong>No canonical state file:</strong> Cross-page values (metrics, nav links, footer) have no single source of truth.</p>
+    <p><strong>Regression detection gap:</strong> Fixing page N can silently break page N-2. No re-validation step exists.</p>
+    <p><strong>Approval gates are undefined:</strong> "User approves" has no mechanical definition. New sessions can't verify a gate was genuinely passed.</p>
+    <p><strong>Per-page hashing:</strong> A snapshot of each page's shared-element state at approval time, checked at next session start, would catch regressions.</p>
+  </div>
+</details>
+
+<!-- INDIVIDUAL ADVISOR RESPONSES -->
+<h2 class="section-heading">Advisor Responses</h2>
+
+<details>
+  <summary>
+    <span class="advisor-tag" style="background: var(--contrarian);">Contrarian</span>
+    Three fatal gaps: script bloat, variable drift, no execution log
+  </summary>
+  <div class="detail-content">
+    <p><strong>The 11-script load stack is a trap.</strong> Loading GSAP, ScrollTrigger, and 6 other scripts on every page means Contact &mdash; which needs none of this &mdash; pays the full performance cost. You'll fail your own Lighthouse 90+ target on pages where these scripts do nothing.</p>
+    <p><strong>The CSS architecture will create merge conflicts.</strong> No locked variable manifest means each session rewrites the foundation slightly differently. There's no contract saying "these 47 tokens are frozen, do not rename or remove."</p>
+    <p><strong>No execution log with verified checksums.</strong> A new session reads "Phase 1 complete" and has no way to verify the previous session actually finished correctly. It will either redo completed work or build on a broken foundation.</p>
+    <p>The PRD describes what to build. It doesn't describe how to verify each step actually worked.</p>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="advisor-tag" style="background: var(--firstprinciples);">First Principles</span>
+    Root cause: standalone HTML is a divergence machine
+  </summary>
+  <div class="detail-content">
+    <p>The PRD answers "how to unify" without asking "why are they diverging?" Standalone HTML files with copy-pasted shared elements create drift by design. A finishing pass fixes the symptom once. The next 10 sessions recreate the problem.</p>
+    <p><strong>What you're actually solving:</strong> How to maintain consistency in a no-build-tool environment across AI-assisted multi-session development.</p>
+    <p>The missing piece is a <strong>constraint mechanism</strong> &mdash; a machine-readable canonical reference that Claude validates every file against before editing. brand.css can drift. A validation script cannot lie.</p>
+    <p>The PRD is good engineering documentation. It's not a resilient AI workflow spec.</p>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="advisor-tag" style="background: var(--expansionist);">Expansionist</span>
+    This workflow itself is a publishable methodology
+  </summary>
+  <div class="detail-content">
+    <p>The PRD undersells what's here. Once unified, this becomes something genuinely rare: a university lab site that's both aesthetically credible AND factually rigorous.</p>
+    <p>The workflow &mdash; PRD-driven, AI-executed, session-logged, approval-gated &mdash; is itself publishable. A replicable methodology for small-team institutional web publishing using AI assistance.</p>
+    <p><strong>Missing:</strong> A semantic diff log (not just "approved" but "what changed and why"). Approval gates don't check content accuracy regression, which is the lab's actual differentiator.</p>
+    <p><strong>Biggest undervalued move:</strong> Publish the source code + PRD on GitHub as a template for other academic labs.</p>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="advisor-tag" style="background: var(--outsider);">Outsider</span>
+    Over-engineered. 600 lines is too much for AI working memory.
+  </summary>
+  <div class="detail-content">
+    <p>You have 9 HTML files that need to share CSS and JS. Pick one page, make it right, copy-paste the head block to 8 others. A 600-line document introduces a new problem: the AI has to understand it while also editing code.</p>
+    <p>The AI will read the PRD, confidently say it understands, then make decisions that subtly contradict it. You'll get "I followed the PRD" alongside a <code>&lt;link&gt;</code> tag pointing to the wrong stylesheet.</p>
+    <p><strong>Hidden flaw:</strong> If the AI breaks something on Page 4 that was already fixed on Page 2, you won't catch it until much later.</p>
+    <p><strong>The real risk:</strong> The AI will hallucinate that it's done when it isn't. You need a mechanical checklist &mdash; literally count the <code>&lt;link&gt;</code> tags &mdash; not prose confirmation. Trust the diff, not the summary.</p>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="advisor-tag" style="background: var(--executor);">Executor</span>
+    The 4-phase structure is wrong. Here's the actual execution order.
+  </summary>
+  <div class="detail-content">
+    <p>You said page-by-page with approval gates &mdash; that's not what the PRD has. The phases cut across pages horizontally. Fix it.</p>
+    <p><strong>Execution order:</strong> Start with index.html (most complex, sets the pattern). Then about, people, research (high-traffic). Leave contact for last.</p>
+    <p><strong>Three gaps that will kill multi-session execution:</strong></p>
+    <p>1. <strong>No change log.</strong> Create CHANGES.md. Every session writes: page name, what changed, what was skipped, what needs user decision.</p>
+    <p>2. <strong>No per-page "done" state.</strong> Add a status table: Page | Foundation | Structural | Components | Polish | Approved.</p>
+    <p>3. <strong>Approval mechanics undefined.</strong> Specify: user checks on localhost, replies "approved" or lists issues.</p>
+    <p><strong>Monday action:</strong> Add status table, create CHANGES.md, instruct Claude: "Read CHANGES.md first. Update after every page. Stop and wait for approval."</p>
+  </div>
+</details>
+
+<div class="footer-note">
+  LLM Council &bull; April 23, 2026 &bull; Counciled: PRD.md for website finishing pass<br>
+  Methodology: 5 independent advisors &rarr; anonymized peer review &rarr; chairman synthesis<br>
+  Full transcript: <code>council-transcript-2026-04-23.md</code>
+</div>
+
+</body>
+</html>

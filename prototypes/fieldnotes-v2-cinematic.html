@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Field Notes v2 — Cinematic | Mphasis AI &amp; Applied Tech Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+/* ── Reset ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── Tokens ── */
+:root {
+  --bg: #F5EBD3;
+  --text: #1B2E1A;
+  --secondary: #2B3A1C;
+  --tertiary: #5C4A2E;
+  --rust: #8B3A1F;
+  --dark: #1B2E1A;
+  --dark-text: #F5EBD3;
+  --card: #FDF5E2;
+  --plate-bg: #EDDFB8;
+  --amber: #E4A03B;
+  --footer-bg: #0E1A0D;
+  --border-major: 2px solid #3D2F1F;
+  --border-dashed: 1px dashed #3D2F1F;
+  --font-heading: 'Georgia', 'Times New Roman', serif;
+  --font-meta: 'Zilla Slab', serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-heading);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Paper texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(139,58,31,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(91,74,46,0.05) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 80%, rgba(228,160,59,0.03) 0%, transparent 45%);
+}
+
+/* ── Sticky Top Bar ── */
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 48px;
+  border-bottom: var(--border-major);
+  font-family: var(--font-meta);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+  background: transparent;
+}
+.top-bar.scrolled {
+  background: rgba(245, 235, 211, 0.95);
+  box-shadow: 0 2px 12px rgba(27,46,26,0.08);
+  backdrop-filter: blur(6px);
+}
+.top-bar .lab-name { font-weight: 600; color: var(--text); }
+.top-bar nav { display: flex; gap: 28px; }
+.top-bar nav a {
+  color: var(--tertiary);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.top-bar nav a:hover { color: var(--rust); }
+
+/* ── Hero ── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 64px;
+  padding: 80px 48px 72px;
+  min-height: 85vh;
+  align-items: start;
+}
+.hero-left { max-width: 680px; }
+.hero-title {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 112px;
+  line-height: 0.92;
+  color: var(--text);
+  margin-bottom: 32px;
+}
+.hero-title .line {
+  display: block;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.hero-title .line.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.hero-subtitle {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--secondary);
+  margin-bottom: 40px;
+  max-width: 560px;
+  opacity: 0;
+  transform: translateY(16px);
+}
+.hero-subtitle.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s ease 0.6s, transform 0.7s ease 0.6s;
+}
+.hero-pullquote {
+  position: relative;
+  padding-left: 24px;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--tertiary);
+  line-height: 1.7;
+  max-width: 520px;
+  opacity: 0;
+  transform: translateY(16px);
+}
+.hero-pullquote.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s ease 0.9s, transform 0.7s ease 0.9s;
+}
+.hero-pullquote .border-anim {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 0;
+  background: var(--rust);
+  transition: height 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s;
+}
+.hero-pullquote.revealed .border-anim {
+  height: 100%;
+}
+
+/* Field Card */
+.field-card {
+  background: var(--card);
+  border: var(--border-major);
+  padding: 0;
+  width: 400px;
+  opacity: 0;
+  transform: translateY(40px) rotateX(2deg);
+  perspective: 800px;
+}
+.field-card.revealed {
+  opacity: 1;
+  transform: translateY(0) rotateX(0deg);
+  transition: opacity 1.2s cubic-bezier(.2,.8,.2,1) 0.4s, transform 1.2s cubic-bezier(.2,.8,.2,1) 0.4s;
+}
+.field-card-header {
+  padding: 20px 24px 16px;
+  border-bottom: var(--border-dashed);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.field-card-header h3 {
+  font-family: var(--font-meta);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--tertiary);
+}
+.field-card-header span {
+  font-family: var(--font-meta);
+  font-size: 11px;
+  color: var(--rust);
+  font-weight: 600;
+}
+.field-card-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  border-bottom: var(--border-dashed);
+  font-size: 14px;
+}
+.field-card-row:last-child { border-bottom: none; }
+.field-card-label {
+  padding: 10px 16px 10px 24px;
+  font-family: var(--font-meta);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--tertiary);
+  border-right: var(--border-dashed);
+  display: flex;
+  align-items: center;
+}
+.field-card-value {
+  padding: 10px 16px;
+  color: var(--text);
+  font-style: italic;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Sampler Band ── */
+.sampler-band {
+  background: var(--dark);
+  color: var(--dark-text);
+  padding: 48px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  border-top: var(--border-major);
+  border-bottom: var(--border-major);
+}
+.sampler-stat {
+  text-align: center;
+  padding: 16px 8px;
+  border-right: 1px solid rgba(245,235,211,0.15);
+}
+.sampler-stat:last-child { border-right: none; }
+.sampler-number {
+  font-family: var(--font-meta);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--amber);
+  margin-bottom: 6px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sampler-label {
+  font-family: var(--font-meta);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(245,235,211,0.6);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.sampler-label.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Chapter Headings ── */
+.chapter-header {
+  padding: 72px 48px 24px;
+}
+.chapter-number {
+  font-family: var(--font-meta);
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  color: var(--rust);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: inline-block;
+  opacity: 0.3;
+  transform: scale(1.15);
+  transform-origin: left center;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.chapter-number.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+.chapter-title {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 48px;
+  color: var(--text);
+  line-height: 1.1;
+}
+.chapter-rule {
+  width: 80px;
+  height: 2px;
+  background: var(--rust);
+  margin-top: 16px;
+}
+
+/* ── Specimen Cards (Pillars) ── */
+.specimen-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  padding: 0 48px 64px;
+}
+.specimen-card {
+  background: var(--card);
+  border: var(--border-major);
+  margin-right: -2px;
+  margin-bottom: -2px;
+  padding: 0;
+  opacity: 0;
+  transform: translateY(30px) rotate(0deg);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.specimen-card.revealed {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+.specimen-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 20px 20px 12px;
+}
+.specimen-name {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 22px;
+  padding: 0 20px;
+  margin-bottom: 4px;
+}
+.specimen-meta {
+  font-family: var(--font-meta);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--tertiary);
+  padding: 0 20px;
+}
+.specimen-count {
+  font-family: var(--font-meta);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text);
+  padding: 24px 20px 8px;
+}
+.specimen-unit {
+  font-family: var(--font-meta);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--tertiary);
+  padding: 0 20px 20px;
+}
+.chapter-subtitle-label {
+  font-family: var(--font-meta);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--tertiary);
+  padding: 0 48px 16px;
+  margin-top: -8px;
+}
+
+/* ── Plates (Featured Research) ── */
+.plates-section {
+  background: var(--plate-bg);
+  padding: 0 48px 72px;
+  border-top: var(--border-major);
+  border-bottom: var(--border-major);
+}
+.plate {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-bottom: 48px;
+  background: var(--card);
+  border: var(--border-major);
+  box-shadow: 0 0 0 var(--text);
+  transition: box-shadow 0.6s ease;
+  overflow: hidden;
+}
+.plate.revealed {
+  box-shadow: 4px 4px 0 var(--text);
+}
+.plate:nth-child(even) { direction: rtl; }
+.plate:nth-child(even) > * { direction: ltr; }
+.plate-image-wrap {
+  background: var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  overflow: hidden;
+  position: relative;
+}
+.plate-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+.plate-image-placeholder {
+  font-family: var(--font-meta);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(245,235,211,0.3);
+}
+.plate-content {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.plate-fig {
+  font-family: var(--font-meta);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--rust);
+  margin-bottom: 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.plate-fig.revealed { opacity: 1; transform: translateY(0); }
+.plate-title {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 28px;
+  color: var(--text);
+  margin-bottom: 12px;
+  line-height: 1.2;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease 0.15s, transform 0.5s ease 0.15s;
+}
+.plate-title.revealed { opacity: 1; transform: translateY(0); }
+.plate-desc {
+  font-size: 15px;
+  color: var(--secondary);
+  line-height: 1.6;
+  margin-bottom: 12px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+}
+.plate-desc.revealed { opacity: 1; transform: translateY(0); }
+.plate-venue {
+  font-family: var(--font-meta);
+  font-size: 12px;
+  color: var(--tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease 0.45s, transform 0.5s ease 0.45s;
+}
+.plate-venue.revealed { opacity: 1; transform: translateY(0); }
+
+/* ── Almanac (News) ── */
+.almanac-section {
+  padding: 0 48px 72px;
+}
+.news-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0;
+  border-bottom: var(--border-dashed);
+  padding: 20px 0;
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.news-row.revealed {
+  opacity: 1;
+  transform: translateX(0) !important;
+}
+.news-date {
+  font-family: var(--font-meta);
+  font-size: 13px;
+  color: var(--rust);
+  font-weight: 600;
+}
+.news-title {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--text);
+}
+
+/* ── People ── */
+.people-section {
+  background: var(--dark);
+  color: var(--dark-text);
+  padding: 64px 48px;
+  border-top: var(--border-major);
+}
+.people-section .chapter-number { color: var(--amber); }
+.people-section .chapter-title { color: var(--dark-text); }
+.people-section .chapter-rule { background: var(--amber); }
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-top: 40px;
+}
+.person-card { text-align: center; }
+.person-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(245,235,211,0.2);
+  margin-bottom: 14px;
+  filter: grayscale(100%) sepia(30%);
+  transition: filter 1.2s ease;
+}
+.person-photo.revealed {
+  filter: grayscale(0%) sepia(0%);
+}
+.person-name {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--dark-text);
+  margin-bottom: 4px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.person-name.revealed { opacity: 1; transform: translateY(0); }
+.person-role {
+  font-family: var(--font-meta);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(245,235,211,0.5);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.person-role.revealed { opacity: 1; transform: translateY(0); }
+
+/* ── Footer ── */
+.footer {
+  background: var(--footer-bg);
+  color: rgba(245,235,211,0.5);
+  padding: 40px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-meta);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-top: 2px solid #3D2F1F;
+}
+.footer a {
+  color: var(--amber);
+  text-decoration: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; }
+  .field-card { width: 100%; max-width: 420px; }
+  .specimen-grid { grid-template-columns: repeat(3, 1fr); }
+  .people-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .top-bar { padding: 12px 20px; }
+  .top-bar nav { gap: 16px; }
+  .hero { padding: 48px 20px 40px; }
+  .hero-title { font-size: 64px; }
+  .sampler-band {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 32px 20px;
+  }
+  .specimen-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 20px 48px;
+  }
+  .chapter-header { padding: 48px 20px 20px; }
+  .chapter-subtitle-label { padding: 0 20px 12px; }
+  .plates-section { padding: 0 20px 48px; }
+  .plate { grid-template-columns: 1fr; }
+  .plate:nth-child(even) { direction: ltr; }
+  .almanac-section { padding: 0 20px 48px; }
+  .people-section { padding: 48px 20px; }
+  .people-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .footer { padding: 32px 20px; flex-direction: column; gap: 12px; text-align: center; }
+}
+@media (max-width: 480px) {
+  .hero-title { font-size: 48px; }
+  .sampler-band { grid-template-columns: repeat(2, 1fr); }
+  .specimen-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Top Bar ── -->
+<header class="top-bar" id="topBar">
+  <div class="lab-name">Mphasis AI &amp; Applied Tech Lab</div>
+  <nav>
+    <a href="#">Research</a>
+    <a href="#">People</a>
+    <a href="#">Publications</a>
+    <a href="#">Impact</a>
+    <a href="#">About</a>
+  </nav>
+</header>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-left">
+    <h1 class="hero-title">
+      <span class="line">Field</span>
+      <span class="line">Notes</span>
+    </h1>
+    <p class="hero-subtitle">The Mphasis AI &amp; Applied Tech Lab at Ashoka University conducts rigorous interdisciplinary research — from epidemic simulation at population scale, to cancer analytics at single-cell resolution, to tutors that teach computer science in rural classrooms.</p>
+    <blockquote class="hero-pullquote">
+      <span class="border-anim"></span>
+      "A lab is a place where careful people do careful work — and sometimes, on good days, the careful work matters to the world."
+    </blockquote>
+  </div>
+  <div class="field-card" id="fieldCard">
+    <div class="field-card-header">
+      <h3>Field Identification Card</h3>
+      <span>Ashoka University</span>
+    </div>
+    <div class="field-card-row"><div class="field-card-label">Est.</div><div class="field-card-value">Circa 2020</div></div>
+    <div class="field-card-row"><div class="field-card-label">Habitat</div><div class="field-card-value">Interdisciplinary</div></div>
+    <div class="field-card-row"><div class="field-card-label">Faculty</div><div class="field-card-value">27 across 7 depts.</div></div>
+    <div class="field-card-row"><div class="field-card-label">Projects</div><div class="field-card-value">25+ in the field</div></div>
+    <div class="field-card-row"><div class="field-card-label">Range</div><div class="field-card-value">40+ partners · 15 countries</div></div>
+    <div class="field-card-row"><div class="field-card-label">Output</div><div class="field-card-value">30+ publications</div></div>
+  </div>
+</section>
+
+<!-- ── Sampler Band ── -->
+<section class="sampler-band" id="samplerBand">
+  <div class="sampler-stat">
+    <div class="sampler-number" data-target="25" data-suffix="+">—</div>
+    <div class="sampler-label">Research Projects</div>
+  </div>
+  <div class="sampler-stat">
+    <div class="sampler-number" data-target="30" data-suffix="+">—</div>
+    <div class="sampler-label">Publications</div>
+  </div>
+  <div class="sampler-stat">
+    <div class="sampler-number" data-target="27" data-suffix="+">—</div>
+    <div class="sampler-label">Faculty · 7 Departments</div>
+  </div>
+  <div class="sampler-stat">
+    <div class="sampler-number" data-target="6" data-suffix="">—</div>
+    <div class="sampler-label">Deployed Systems</div>
+  </div>
+  <div class="sampler-stat">
+    <div class="sampler-number" data-target="40" data-suffix="+">—</div>
+    <div class="sampler-label">Partnerships</div>
+  </div>
+  <div class="sampler-stat">
+    <div class="sampler-number" data-target="15" data-suffix="+">—</div>
+    <div class="sampler-label">Countries</div>
+  </div>
+</section>
+
+<!-- ── Chapter I: Pillars ── -->
+<div class="chapter-header">
+  <div class="chapter-number" data-reveal="scale">§ I</div>
+  <h2 class="chapter-title">Pillars</h2>
+  <div class="chapter-rule"></div>
+</div>
+<p class="chapter-subtitle-label">Five fields of study</p>
+
+<div class="specimen-grid" id="specimenGrid">
+  <div class="specimen-card" data-reveal="fan" data-index="0">
+    <div class="specimen-dot" style="background:#2563EB"></div>
+    <div class="specimen-name">AI@Ashoka</div>
+    <div class="specimen-meta">Pillar I</div>
+    <div class="specimen-count">9</div>
+    <div class="specimen-unit">Projects</div>
+  </div>
+  <div class="specimen-card" data-reveal="fan" data-index="1">
+    <div class="specimen-dot" style="background:#059669"></div>
+    <div class="specimen-name">BharatSim</div>
+    <div class="specimen-meta">Pillar II</div>
+    <div class="specimen-count">4</div>
+    <div class="specimen-unit">Projects</div>
+  </div>
+  <div class="specimen-card" data-reveal="fan" data-index="2">
+    <div class="specimen-dot" style="background:#D97706"></div>
+    <div class="specimen-name">CHART</div>
+    <div class="specimen-meta">Pillar III</div>
+    <div class="specimen-count">5</div>
+    <div class="specimen-unit">Projects</div>
+  </div>
+  <div class="specimen-card" data-reveal="fan" data-index="3">
+    <div class="specimen-dot" style="background:#7C3AED"></div>
+    <div class="specimen-name">Cybersecurity</div>
+    <div class="specimen-meta">Pillar IV</div>
+    <div class="specimen-count">3</div>
+    <div class="specimen-unit">Projects</div>
+  </div>
+  <div class="specimen-card" data-reveal="fan" data-index="4">
+    <div class="specimen-dot" style="background:#DC2626"></div>
+    <div class="specimen-name">Makerspace</div>
+    <div class="specimen-meta">Pillar V</div>
+    <div class="specimen-count">4</div>
+    <div class="specimen-unit">Projects</div>
+  </div>
+</div>
+
+<!-- ── Chapter II: Featured Research (Plates) ── -->
+<section class="plates-section">
+  <div class="chapter-header" style="padding-left:0;padding-right:0;">
+    <div class="chapter-number" data-reveal="scale">§ II</div>
+    <h2 class="chapter-title">Plates</h2>
+    <div class="chapter-rule"></div>
+  </div>
+
+  <div class="plate" data-reveal="plate">
+    <div class="plate-image-wrap">
+      <img src="assets/bharatsim-network.png" alt="BharatSim network visualization" class="plate-img" data-parallax>
+    </div>
+    <div class="plate-content">
+      <div class="plate-fig" data-reveal="caption">Fig. 1</div>
+      <div class="plate-title" data-reveal="caption">India-Scale Epidemic Simulation</div>
+      <p class="plate-desc" data-reveal="caption">BharatSim enables agent-based epidemic modelling at the scale of India's billion-plus population, integrating synthetic populations with disease dynamics.</p>
+      <div class="plate-venue" data-reveal="caption">BMC Public Health · 2025</div>
+    </div>
+  </div>
+
+  <div class="plate" data-reveal="plate">
+    <div class="plate-image-wrap">
+      <img src="assets/earth-dark.jpg" alt="OncoMark diagnostics" class="plate-img" data-parallax>
+    </div>
+    <div class="plate-content">
+      <div class="plate-fig" data-reveal="caption">Fig. 2</div>
+      <div class="plate-title" data-reveal="caption">OncoMark — Cancer Diagnostics AI</div>
+      <p class="plate-desc" data-reveal="caption">Machine-learning pipeline for triple-negative breast cancer prognostics, identifying biomarker signatures from multi-omic patient data.</p>
+      <div class="plate-venue" data-reveal="caption">Communications Biology · 2025</div>
+    </div>
+  </div>
+
+  <div class="plate" data-reveal="plate">
+    <div class="plate-image-wrap">
+      <span class="plate-image-placeholder">Specimen Pending</span>
+    </div>
+    <div class="plate-content">
+      <div class="plate-fig" data-reveal="caption">Fig. 3</div>
+      <div class="plate-title" data-reveal="caption">World Food Atlas</div>
+      <p class="plate-desc" data-reveal="caption">A computational cartography of global culinary traditions — mapping ingredient networks, flavour profiles, and food culture across continents.</p>
+      <div class="plate-venue" data-reveal="caption">Ongoing · CHART</div>
+    </div>
+  </div>
+
+  <div class="plate" data-reveal="plate">
+    <div class="plate-image-wrap">
+      <span class="plate-image-placeholder">Specimen Pending</span>
+    </div>
+    <div class="plate-content">
+      <div class="plate-fig" data-reveal="caption">Fig. 4</div>
+      <div class="plate-title" data-reveal="caption">AI-Driven Biodiversity Monitoring</div>
+      <p class="plate-desc" data-reveal="caption">Automated species identification and population tracking using computer vision and acoustic analysis across Indian wildlife corridors.</p>
+      <div class="plate-venue" data-reveal="caption">Oxford · Schmidt Fellowship</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Chapter III: Almanac (News) ── -->
+<section class="almanac-section">
+  <div class="chapter-header" style="padding-left:0;padding-right:0;">
+    <div class="chapter-number" data-reveal="scale">§ III</div>
+    <h2 class="chapter-title">Almanac</h2>
+    <div class="chapter-rule"></div>
+  </div>
+
+  <div class="news-row" data-reveal="news" data-index="0" style="transform:translateX(-40px)">
+    <div class="news-date">Mar 21–22, 2026</div>
+    <div class="news-title">WiCSCon 3.0</div>
+  </div>
+  <div class="news-row" data-reveal="news" data-index="1" style="transform:translateX(40px)">
+    <div class="news-date">Mar 21, 2026</div>
+    <div class="news-title">ACM COMPUTE 2026</div>
+  </div>
+  <div class="news-row" data-reveal="news" data-index="2" style="transform:translateX(-40px)">
+    <div class="news-date">March 2026</div>
+    <div class="news-title">ITiCSE Papers Accepted</div>
+  </div>
+  <div class="news-row" data-reveal="news" data-index="3" style="transform:translateX(40px)">
+    <div class="news-date">Feb 6–8, 2026</div>
+    <div class="news-title">RedBrick Hacks III</div>
+  </div>
+</section>
+
+<!-- ── People ── -->
+<section class="people-section">
+  <div class="chapter-number" data-reveal="scale">§ IV</div>
+  <h2 class="chapter-title">Faculty</h2>
+  <div class="chapter-rule"></div>
+
+  <div class="people-grid" id="peopleGrid">
+    <div class="person-card">
+      <img class="person-photo" src="assets/people/debayan-gupta.jpg" alt="Debayan Gupta" data-reveal="sepia">
+      <div class="person-name" data-reveal="person" data-index="0">Debayan Gupta</div>
+      <div class="person-role" data-reveal="person" data-index="0">Computer Science</div>
+    </div>
+    <div class="person-card">
+      <img class="person-photo" src="assets/people/gautam-menon.jpg" alt="Gautam Menon" data-reveal="sepia">
+      <div class="person-name" data-reveal="person" data-index="1">Gautam Menon</div>
+      <div class="person-role" data-reveal="person" data-index="1">Physics &amp; Biology</div>
+    </div>
+    <div class="person-card">
+      <img class="person-photo" src="assets/people/rintu-kutum.jpg" alt="Rintu Kutum" data-reveal="sepia">
+      <div class="person-name" data-reveal="person" data-index="2">Rintu Kutum</div>
+      <div class="person-role" data-reveal="person" data-index="2">Computer Science</div>
+    </div>
+    <div class="person-card">
+      <img class="person-photo" src="assets/people/meghna-agarwala.jpg" alt="Meghna Agarwala" data-reveal="sepia">
+      <div class="person-name" data-reveal="person" data-index="3">Meghna Agarwala</div>
+      <div class="person-role" data-reveal="person" data-index="3">Environmental Studies</div>
+    </div>
+    <div class="person-card">
+      <img class="person-photo" src="assets/people/aalok-thakkar.jpg" alt="Aalok Thakkar" data-reveal="sepia">
+      <div class="person-name" data-reveal="person" data-index="4">Aalok Thakkar</div>
+      <div class="person-role" data-reveal="person" data-index="4">Computer Science</div>
+    </div>
+    <div class="person-card">
+      <img class="person-photo" src="assets/people/bittu-rajaraman.jpg" alt="Bittu K. Rajaraman" data-reveal="sepia">
+      <div class="person-name" data-reveal="person" data-index="5">Bittu K. Rajaraman</div>
+      <div class="person-role" data-reveal="person" data-index="5">Biology</div>
+    </div>
+    <div class="person-card">
+      <img class="person-photo" src="assets/people/ls-shashidhara.jpg" alt="L.S. Shashidhara" data-reveal="sepia">
+      <div class="person-name" data-reveal="person" data-index="6">L.S. Shashidhara</div>
+      <div class="person-role" data-reveal="person" data-index="6">Biology</div>
+    </div>
+    <div class="person-card">
+      <img class="person-photo" src="assets/people/kasturi-mitra.jpg" alt="Kasturi Mitra" data-reveal="sepia">
+      <div class="person-name" data-reveal="person" data-index="7">Kasturi Mitra</div>
+      <div class="person-role" data-reveal="person" data-index="7">Biology</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div>Mphasis AI &amp; Applied Tech Lab · Ashoka University</div>
+  <div><a href="#">Field Notes</a> — a design prototype</div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // ─── Sticky header background ───
+  const topBar = document.getElementById('topBar');
+  let lastScroll = 0;
+  function onScroll() {
+    const y = window.scrollY;
+    if (y > 100 && !topBar.classList.contains('scrolled')) {
+      topBar.classList.add('scrolled');
+    } else if (y <= 100 && topBar.classList.contains('scrolled')) {
+      topBar.classList.remove('scrolled');
+    }
+    lastScroll = y;
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // ─── Hero entrance animations ───
+  window.addEventListener('load', function() {
+    // Title lines stagger
+    const lines = document.querySelectorAll('.hero-title .line');
+    lines.forEach(function(line, i) {
+      setTimeout(function() { line.classList.add('revealed'); }, 200 + i * 200);
+    });
+    // Subtitle
+    setTimeout(function() {
+      document.querySelector('.hero-subtitle').classList.add('revealed');
+    }, 100);
+    // Pullquote
+    setTimeout(function() {
+      document.querySelector('.hero-pullquote').classList.add('revealed');
+    }, 100);
+    // Field card
+    setTimeout(function() {
+      document.getElementById('fieldCard').classList.add('revealed');
+    }, 100);
+  });
+
+  // ─── Mechanical counter effect ───
+  function mechanicalCounter(el, target, suffix, delay) {
+    const duration = 800;
+    const scrambleRatio = 0.6;
+    const start = performance.now() + delay;
+
+    function tick(now) {
+      const elapsed = now - start;
+      if (elapsed < 0) {
+        requestAnimationFrame(tick);
+        return;
+      }
+      const progress = Math.min(elapsed / duration, 1);
+      if (progress < scrambleRatio) {
+        // Random digits
+        const digits = String(target).length;
+        let rand = '';
+        for (let i = 0; i < digits; i++) {
+          rand += Math.floor(Math.random() * 10);
+        }
+        el.textContent = rand + suffix;
+      } else {
+        // Ease into target
+        const easeProgress = (progress - scrambleRatio) / (1 - scrambleRatio);
+        const eased = Math.round(target * easeProgress);
+        if (progress >= 1) {
+          el.textContent = target + suffix;
+          return;
+        }
+        // Mix random with approaching target
+        if (Math.random() < easeProgress) {
+          el.textContent = target + suffix;
+        } else {
+          const near = target + Math.floor((Math.random() - 0.5) * 4);
+          el.textContent = Math.max(0, near) + suffix;
+        }
+        requestAnimationFrame(tick);
+        return;
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // ─── IntersectionObserver setup ───
+  let samplerFired = false;
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+
+      // Sampler band
+      if (el.id === 'samplerBand' && !samplerFired) {
+        samplerFired = true;
+        const nums = el.querySelectorAll('.sampler-number');
+        nums.forEach(function(numEl, i) {
+          const target = parseInt(numEl.dataset.target, 10);
+          const suffix = numEl.dataset.suffix || '';
+          mechanicalCounter(numEl, target, suffix, i * 120);
+          // Reveal label after counter settles
+          const label = numEl.parentElement.querySelector('.sampler-label');
+          setTimeout(function() { label.classList.add('revealed'); }, i * 120 + 900);
+        });
+        return;
+      }
+
+      // Chapter number scale
+      if (el.dataset.reveal === 'scale') {
+        el.classList.add('revealed');
+        observer.unobserve(el);
+        return;
+      }
+
+      // Specimen cards fan in
+      if (el.dataset.reveal === 'fan') {
+        const idx = parseInt(el.dataset.index, 10);
+        const rotation = idx % 2 === 0 ? -1.5 : 1.5;
+        el.style.transform = 'translateY(30px) rotate(' + rotation + 'deg)';
+        setTimeout(function() {
+          el.classList.add('revealed');
+        }, idx * 120);
+        observer.unobserve(el);
+        return;
+      }
+
+      // Plate shadow expansion
+      if (el.dataset.reveal === 'plate') {
+        el.classList.add('revealed');
+        // Reveal captions inside
+        const captions = el.querySelectorAll('[data-reveal="caption"]');
+        captions.forEach(function(cap) { cap.classList.add('revealed'); });
+        observer.unobserve(el);
+        return;
+      }
+
+      // News rows alternating slide
+      if (el.dataset.reveal === 'news') {
+        const idx = parseInt(el.dataset.index, 10);
+        setTimeout(function() {
+          el.classList.add('revealed');
+        }, idx * 150);
+        observer.unobserve(el);
+        return;
+      }
+
+      // People sepia to color
+      if (el.dataset.reveal === 'sepia') {
+        el.classList.add('revealed');
+        observer.unobserve(el);
+        return;
+      }
+
+      // People name/role
+      if (el.dataset.reveal === 'person') {
+        const idx = parseInt(el.dataset.index, 10);
+        setTimeout(function() {
+          el.classList.add('revealed');
+        }, idx * 80);
+        observer.unobserve(el);
+        return;
+      }
+    });
+  }, { threshold: 0.15 });
+
+  // Observe everything
+  document.getElementById('samplerBand') && observer.observe(document.getElementById('samplerBand'));
+
+  document.querySelectorAll('[data-reveal="scale"]').forEach(function(el) { observer.observe(el); });
+  document.querySelectorAll('[data-reveal="fan"]').forEach(function(el) { observer.observe(el); });
+  document.querySelectorAll('[data-reveal="plate"]').forEach(function(el) { observer.observe(el); });
+  document.querySelectorAll('[data-reveal="news"]').forEach(function(el) { observer.observe(el); });
+  document.querySelectorAll('[data-reveal="sepia"]').forEach(function(el) { observer.observe(el); });
+  document.querySelectorAll('[data-reveal="person"]').forEach(function(el) { observer.observe(el); });
+
+  // ─── Plate image parallax ───
+  function updateParallax() {
+    const images = document.querySelectorAll('.plate-img[data-parallax]');
+    images.forEach(function(img) {
+      const rect = img.closest('.plate').getBoundingClientRect();
+      const vh = window.innerHeight;
+      // Progress: 0 when plate enters bottom, 1 when exits top
+      const progress = 1 - (rect.bottom / (vh + rect.height));
+      const clamped = Math.max(0, Math.min(1, progress));
+      const offset = (clamped - 0.5) * 60; // ±30px
+      img.style.transform = 'translateY(' + offset + 'px) scale(1.08)';
+    });
+  }
+  window.addEventListener('scroll', updateParallax, { passive: true });
+  updateParallax();
+
+})();
+</script>
+</body>
+</html>

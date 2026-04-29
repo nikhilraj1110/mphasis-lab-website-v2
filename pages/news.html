@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="News, events, and highlights from the Mphasis AI & Applied Tech Lab — RedBrick Hacks, workshops, talks, and media coverage.">
+  <meta name="theme-color" content="#1B2A4A">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="News & Events | Mphasis AI & Applied Tech Lab">
+  <meta property="og:description" content="Latest news, events, talks, and hackathon updates from the Lab.">
+  <meta property="og:type" content="website">
+
+  <title>News & Events | Mphasis AI & Applied Tech Lab</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../src/assets/images/logos/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../src/assets/images/logos/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../src/assets/images/logos/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../src/css/variables.css">
+  <link rel="stylesheet" href="../src/css/reset.css">
+  <link rel="stylesheet" href="../src/css/base.css">
+  <link rel="stylesheet" href="../src/css/layout.css">
+  <link rel="stylesheet" href="../src/css/header.css">
+  <link rel="stylesheet" href="../src/css/footer.css">
+  <link rel="stylesheet" href="../src/css/components.css">
+  <link rel="stylesheet" href="../src/css/animations.css">
+  <link rel="stylesheet" href="../src/css/pages.css">
+  <link rel="stylesheet" href="../src/css/utilities.css">
+  <link rel="stylesheet" href="../src/css/search.css">
+  <link rel="stylesheet" href="../src/css/floating-nav.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="progress-bar" id="progress-bar" aria-hidden="true"></div>  <!-- Floating Buttons -->
+  <button class="float-menu-btn" id="floatMenuBtn" aria-label="Open navigation">
+    <div class="float-menu-btn__icon"><span></span><span></span><span></span></div>
+    <span class="float-menu-btn__label">Menu</span>
+  </button>
+  <button class="float-search-btn" id="floatSearchBtn" aria-label="Search">
+    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+    <span class="float-search-btn__label">Search</span>
+  </button>
+
+  <!-- Side Navigation -->
+  <nav class="side-nav" id="side-nav" aria-label="Side navigation">
+    <div class="side-nav__backdrop" id="side-nav-backdrop"></div>
+    <div class="side-nav__panel">
+      <div class="side-nav__header">
+        <a href="../index.html" style="display:inline-block; margin-left:-70px;">
+          <img src="../src/assets/images/logos/lab-logo.png" alt="Mphasis AI & Applied Tech Lab" style="height:100px; width:auto;">
+        </a>
+        <button class="side-nav__close" id="side-nav-close" aria-label="Close menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>Close</span>
+        </button>
+      </div>
+      <div class="side-nav__body">
+        <div class="side-nav__col-pages">
+          <span class="side-nav__subtitle">Navigate</span>
+          <ul class="side-nav__list">
+            <li class="side-nav__item"><a href="../index.html" class="side-nav__link">Home</a></li>
+            <li class="side-nav__item"><a href="about.html" class="side-nav__link">About</a></li>
+            <li class="side-nav__item"><a href="research.html" class="side-nav__link">Research</a></li>
+            <li class="side-nav__item"><a href="people.html" class="side-nav__link">People</a></li>
+            <li class="side-nav__item"><a href="publications.html" class="side-nav__link">Publications</a></li>
+            <li class="side-nav__item"><a href="makerspace.html" class="side-nav__link">Makerspace</a></li>
+            <li class="side-nav__item"><a href="news.html" class="side-nav__link">News &amp; Events</a></li>
+            <li class="side-nav__item"><a href="impact.html" class="side-nav__link">Impact</a></li>
+            <li class="side-nav__item"><a href="contact.html" class="side-nav__link">Contact</a></li>
+          </ul>
+        </div>
+        <div class="side-nav__col-pillars">
+          <span class="side-nav__subtitle">Research Pillars</span>
+          <ul class="side-nav__pill-list">
+            <li class="side-nav__item"><a href="pillar.html?pillar=ai" class="side-nav__pill-card" style="--pill-color:#2563EB;"><span class="side-nav__pill-icon" style="background:#DBEAFE;color:#2563EB;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span><span class="side-nav__pill-name">AI</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=bharatsim" class="side-nav__pill-card" style="--pill-color:#059669;"><span class="side-nav__pill-icon" style="background:#D1FAE5;color:#059669;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/><path d="M2 7c2-3 4-3 6 0s4 3 6 0 4-3 6 0" opacity="0.4"/></svg></span><span class="side-nav__pill-name">BharatSim</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=chart" class="side-nav__pill-card" style="--pill-color:#D97706;"><span class="side-nav__pill-icon" style="background:#FEF3C7;color:#D97706;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h4l3-6 4 12 3-6h4"/></svg></span><span class="side-nav__pill-name">CHART</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=cyber" class="side-nav__pill-card" style="--pill-color:#7C3AED;"><span class="side-nav__pill-icon" style="background:#EDE9FE;color:#7C3AED;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 4v5c0 5.5-3.8 10.2-8 12-4.2-1.8-8-6.5-8-12V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="side-nav__pill-name">Cybersecurity</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=makerspace" class="side-nav__pill-card" style="--pill-color:#009BDE;"><span class="side-nav__pill-icon" style="background:#E0F2FE;color:#009BDE;"><img src="../src/assets/images/logos/makerspace-logo.png" alt="Makerspace"></span><span class="side-nav__pill-name">Makerspace</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="side-nav__footer">
+        <div class="side-nav__contact">
+          <a href="mailto:mphasis.lab.edu.in">mphasis.lab.edu.in</a> &nbsp;&middot;&nbsp; Ashoka University, Sonipat, India
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div class="page">
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search" hidden>
+      <div class="search-overlay__backdrop"></div>
+      <div class="search-overlay__panel">
+        <div class="search-overlay__header">
+          <div class="search-overlay__input-wrapper">
+            <svg class="search-overlay__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+            <input type="search" class="search-overlay__input" id="search-input" placeholder="Search projects, people, publications..." autocomplete="off">
+            <kbd class="search-overlay__kbd">ESC</kbd>
+          </div>
+        </div>
+        <div class="search-overlay__results" id="search-results" aria-live="polite">
+          <div class="search-overlay__empty">
+            <p class="search-overlay__empty-text">Type to search across projects, people, and publications</p>
+          </div>
+        </div>
+        <div class="search-overlay__footer">
+          <span><kbd>&#8984;</kbd><kbd>K</kbd> to toggle</span>
+          <span><kbd>&#8593;</kbd><kbd>&#8595;</kbd> to navigate</span>
+          <span><kbd>Enter</kbd> to select</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header" role="banner">
+      <div class="header__inner">
+        <a href="../index.html" class="header__logo" aria-label="Mphasis AI & Applied Tech Lab — Home">
+          <img src="../src/assets/images/logos/lab-logo.png" alt="Mphasis AI & Applied Tech Lab Logo">
+        </a>
+        <nav class="nav" role="navigation" aria-label="Primary navigation">
+          <a href="../index.html" class="nav__link">Home</a>
+          <a href="about.html" class="nav__link">About</a>
+          <a href="research.html" class="nav__link">Research</a>
+          <a href="people.html" class="nav__link">People</a>
+          <a href="publications.html" class="nav__link">Publications</a>
+          <a href="makerspace.html" class="nav__link">Makerspace</a>
+          <a href="news.html" class="nav__link nav__link--active">News & Events</a>
+          <a href="impact.html" class="nav__link">Impact</a>
+          <a href="contact.html" class="nav__link">Contact</a>
+        </nav>
+        <div class="header__actions">
+          <button class="header__search-trigger" aria-label="Search" aria-expanded="false" aria-controls="search-overlay">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+          </button>
+          <button class="header__menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="nav-mobile" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+      <a href="../index.html" class="nav-mobile__link">Home</a>
+      <a href="about.html" class="nav-mobile__link">About</a>
+      <a href="research.html" class="nav-mobile__link">Research</a>
+      <a href="people.html" class="nav-mobile__link">People</a>
+      <a href="publications.html" class="nav-mobile__link">Publications</a>
+      <a href="makerspace.html" class="nav-mobile__link">Makerspace</a>
+      <a href="news.html" class="nav-mobile__link nav-mobile__link--active">News & Events</a>
+      <a href="impact.html" class="nav-mobile__link">Impact</a>
+      <a href="contact.html" class="nav-mobile__link">Contact</a>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="page__content" id="main-content" role="main">
+
+      <!-- Page Hero -->
+      <section class="page-hero">
+        <canvas class="page-hero__canvas" data-page="news" aria-hidden="true"></canvas>
+        <div class="container">
+          <span class="page-hero__eyebrow reveal">News & Events</span>
+          <h1 class="page-hero__title reveal">What's Happening</h1>
+          <p class="page-hero__description reveal">
+            Hackathons, workshops, talks, and milestones from across the Lab.
+          </p>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           REDBRICK HACKS — FLAGSHIP EVENT
+           ═══════════════════════════════════════ -->
+      <section class="section">
+        <div class="container">
+          <div class="section__header reveal">
+            <span class="section__eyebrow" style="color: var(--color-red);">Flagship Event</span>
+            <h2 class="section__title">RedBrick Hacks III</h2>
+            <p class="section__subtitle">A national student hackathon — February 6&ndash;8, 2026, Ashoka University</p>
+          </div>
+
+          <div class="grid grid--2 reveal" style="gap: var(--space-6); margin-top: var(--space-8);">
+            <!-- Stats -->
+            <div>
+              <div class="grid grid--2" style="gap: var(--space-4);">
+                <div class="stat-card reveal">
+                  <div class="stat-card__number" data-count="430">0<span class="stat-card__suffix">+</span></div>
+                  <div class="stat-card__label">Applications</div>
+                </div>
+                <div class="stat-card reveal">
+                  <div class="stat-card__number" data-count="91">0</div>
+                  <div class="stat-card__label">Universities</div>
+                </div>
+                <div class="stat-card reveal">
+                  <div class="stat-card__number" data-count="60">0</div>
+                  <div class="stat-card__label">Finalists</div>
+                </div>
+                <div class="stat-card reveal">
+                  <div class="stat-card__number" data-count="4">0</div>
+                  <div class="stat-card__label">Challenge Tracks</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="reveal">
+              <p style="color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-4);">
+                RedBrick Hacks is the Lab's annual student hackathon, bringing together students from across India to build solutions for real-world challenges. The third edition featured four challenge tracks: Quality Education, Climate Action, Sustainable Cities, and Hardware.
+              </p>
+              <p style="color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-4);">
+                After a month-long online submission phase, 60 finalists were invited to Ashoka University for 48 hours of building, mentoring, and pitching. Notable guests included Prof. Partha Pratim Chakrabarti (former Director, IIT Kharagpur) and Kailash Nadh (CTO, Zerodha).
+              </p>
+              <p style="color: var(--color-text-muted); font-size: var(--text-sm);">
+                1,300+ total applications across all three editions of RedBrick Hacks.
+              </p>
+            </div>
+          </div>
+
+          <!-- Winning Projects -->
+          <div class="section__header reveal" style="margin-top: var(--space-12);">
+            <h3 class="section__title" style="font-size: var(--text-2xl);">Winning &amp; Recognized Projects</h3>
+          </div>
+
+          <div class="grid grid--2 reveal-stagger" style="gap: var(--space-5); margin-top: var(--space-6);">
+
+            <article class="project-list-card reveal" style="border-left: 3px solid var(--color-red);">
+              <div class="project-list-card__body">
+                <div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2);">
+                  <span class="tag tag--sm" style="background: var(--color-red); color: white;">1st Prize</span>
+                </div>
+                <h3 class="project-list-card__title">Sylithe</h3>
+                <p class="project-list-card__pi">Thakur College of Engineering</p>
+                <p class="project-list-card__desc">AI Carbon Credit Verification — using satellite imagery, LiDAR, and machine learning for forest carbon credit validation.</p>
+              </div>
+            </article>
+
+            <article class="project-list-card reveal" style="border-left: 3px solid var(--color-blue);">
+              <div class="project-list-card__body">
+                <div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2);">
+                  <span class="tag tag--sm" style="background: var(--color-blue); color: white;">Runner-up</span>
+                </div>
+                <h3 class="project-list-card__title">SheSafe</h3>
+                <p class="project-list-card__desc">Women's safety platform providing access to safety resources and sanitation facilities.</p>
+              </div>
+            </article>
+
+            <article class="project-list-card reveal" style="border-left: 3px solid var(--color-navy);">
+              <div class="project-list-card__body">
+                <div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2);">
+                  <span class="tag tag--sm" style="background: var(--color-navy); color: white;">2nd Runner-up</span>
+                </div>
+                <h3 class="project-list-card__title">SignLearn</h3>
+                <p class="project-list-card__pi">Access Builders</p>
+                <p class="project-list-card__desc">Sign language learning tool, built by a first-year Ashoka student who is mute and hearing-impaired.</p>
+              </div>
+            </article>
+
+            <article class="project-list-card reveal">
+              <div class="project-list-card__body">
+                <div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2);">
+                  <span class="tag tag--sm">Outstanding Project</span>
+                </div>
+                <h3 class="project-list-card__title">Spare</h3>
+                <p class="project-list-card__pi">IIIT-D, DTU, Srishti Manipal</p>
+                <p class="project-list-card__desc">Food rescue marketplace with functional iOS app and merchant dashboard. Team connected with investors post-hackathon.</p>
+              </div>
+            </article>
+
+            <article class="project-list-card reveal">
+              <div class="project-list-card__body">
+                <div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2);">
+                  <span class="tag tag--sm">Outstanding Award</span>
+                </div>
+                <h3 class="project-list-card__title">ShistoDx</h3>
+                <p class="project-list-card__desc">Field-deployable schistosomiasis detection using ML on planktoscope.</p>
+              </div>
+            </article>
+
+            <article class="project-list-card reveal">
+              <div class="project-list-card__body">
+                <div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2);">
+                  <span class="tag tag--sm">Hardware Recognition</span>
+                </div>
+                <h3 class="project-list-card__title">Tap-Box &amp; HarvesSink</h3>
+                <p class="project-list-card__desc">Refreshable Braille display device and greywater quality monitoring system. Both teams recognized for outstanding hardware innovation.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           EVENTS & WORKSHOPS
+           ═══════════════════════════════════════ -->
+      <section class="section section--alt">
+        <div class="container">
+          <div class="section__header reveal">
+            <h2 class="section__title">Events &amp; Workshops</h2>
+          </div>
+
+          <div class="timeline reveal" style="margin-top: var(--space-8);">
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Mar 21&ndash;22, 2026</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title"><a href="../posts/2026-03-wicscon-3.html" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">WiCSCon 3.0: Designing Tomorrow, Today</a></h4>
+                <p class="timeline__venue">Ashoka University</p>
+                <p class="timeline__desc">India's first student-led conference on inclusivity and diversity in CS. 440 sign-ups, 50+ external participants, speakers from Microsoft AI, Evolve AI, Neysa AI, Space Kidz India, and more. Three competitive tracks: HackHERthon, Mini-MUN, and AI Policy Competition.</p>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Mar 21, 2026</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title"><a href="../posts/2026-03-acm-compute-2026.html" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">ACM COMPUTE 2026 Regional Workshop</a></h4>
+                <p class="timeline__venue">Ashoka University</p>
+                <p class="timeline__desc">Discussion forum on CS education themes and two hands-on workshops with 10&ndash;12 participants each. Organised by Prof. Aalok Thakkar with Prajish Prasad (FLAME University).</p>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Mar 2026</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title"><a href="../posts/2026-03-iticse-papers-accepted.html" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">Two Papers Accepted at ITiCSE</a></h4>
+                <p class="timeline__venue">To be presented in Spain, July 2026</p>
+                <p class="timeline__desc">Two papers from the AI Pedagogy / BOOP project accepted at ITiCSE. Students Ayush Thonge and Vaani Goenka will present.</p>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Feb 17, 2026</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title"><a href="../src/assets/docs/India-AI-Impact-Summit-2026-AI-in-Education-Compendium.pdf" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">India-AI Impact Summit</a></h4>
+                <p class="timeline__venue">Bharat Mandapam, New Delhi</p>
+                <p class="timeline__desc">SocraticAI — an AI tutoring system for foundational CS education — featured as a case study in MeitY's Compendium on the Real-World Impact of AI in Education.</p>
+                <span class="tag tag--sm">AI@Ashoka</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Feb 7, 2026</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">AI &amp; Academic Integrity Workshop</h4>
+                <p class="timeline__venue">Ashoka University (Online)</p>
+                <p class="timeline__desc">34 attendees explored the intersection of AI tools and academic writing integrity.</p>
+                <span class="tag tag--sm">AI@Ashoka</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Feb 6&ndash;8, 2026</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title"><a href="../posts/2026-02-redbrick-hacks-iii.html" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">RedBrick Hacks III</a></h4>
+                <p class="timeline__venue">Ashoka University</p>
+                <p class="timeline__desc">430+ applicants from 91+ universities across 23 states. 57 finalists competed across four SDG-aligned challenge tracks over 48 hours.</p>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Dec 24, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">JUST-NLP Workshop at IJCNLP-AACL 2025</h4>
+                <p class="timeline__venue">Mumbai, India</p>
+                <p class="timeline__desc">Paper presented on "LLM Driven Legal Text Analytics: A Case Study For Food Safety Violation Cases" at the Workshop on NLP for Empowering Justice.</p>
+                <span class="tag tag--sm">CHART</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Dec 7&ndash;9, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">ACM COMPUTE 2025</h4>
+                <p class="timeline__venue">IIT Ropar</p>
+                <p class="timeline__desc">Four papers accepted on formal methods tools, scaffolded AI tutoring, and accessibility in computer science education.</p>
+                <span class="tag tag--sm">AI@Ashoka</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Dec 6, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">GenAI4Health Workshop at NeurIPS</h4>
+                <p class="timeline__venue">San Diego, USA</p>
+                <p class="timeline__desc">PRISM paper presented &mdash; Physician Rules Integrated with Small LLMs for probable diagnoses associated with abdominal pain.</p>
+                <span class="tag tag--sm">CHART</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Dec 4&ndash;5, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">INFUSE Innovation Summit 2025</h4>
+                <p class="timeline__venue">National Institute of Nutrition, ICMR, Hyderabad</p>
+                <p class="timeline__desc">SmartDiet India received the Promising Innovation Award for its unified digital framework for dietary data and precision nutrition.</p>
+                <span class="tag tag--sm">CHART</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Nov 19, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">AI Integration in Education Panel</h4>
+                <p class="timeline__venue">O.P. Jindal Global University</p>
+                <p class="timeline__desc">Panelist at "AI Integration in Education: Transforming Teaching, Learning and Assessment" during the 3-day Pedagogy and Research Workshop.</p>
+                <span class="tag tag--sm">AI@Ashoka</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Nov 5&ndash;9, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">EMNLP 2025</h4>
+                <p class="timeline__venue">Suzhou, China</p>
+                <p class="timeline__desc">NLP research paper accepted at Findings of EMNLP 2025, an A*-ranked conference in natural language processing.</p>
+                <span class="tag tag--sm">CHART</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Nov 3&ndash;5, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">Wellcome Trust Workshop on Ethics of Prediction for Health</h4>
+                <p class="timeline__venue">Wellcome Trust, London</p>
+                <p class="timeline__desc">BharatSim team participated in discussions on the ethics of prediction for health as invited participants.</p>
+                <span class="tag tag--sm">BharatSim</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Oct 31, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">Halloween Community Event</h4>
+                <p class="timeline__venue">Ashoka University</p>
+                <p class="timeline__desc">1,000+ participants. Co-organized with the Ashoka University student Cultural Ministry using Makerspace resources.</p>
+                <span class="tag tag--sm">Makerspace</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Oct 28, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">ACM MMFood'25 at ACM Multimedia</h4>
+                <p class="timeline__venue">Dublin, Ireland</p>
+                <p class="timeline__desc">Three papers presented on food knowledge graphs, cooking procedure ontologies, and indigenous Indian food datasets.</p>
+                <span class="tag tag--sm">CHART</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Oct 1, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">WHO-SEARO Responsible AI in Healthcare Webinar</h4>
+                <p class="timeline__venue">Online</p>
+                <p class="timeline__desc">BharatSim team participated as panelists on "From Collection to Care: Ensuring Fair and Accountable Health Data Governance."</p>
+                <span class="tag tag--sm">BharatSim</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Sep 23, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">Kailash Nadh &mdash; "Tinker, Thinker, Maker, Mover"</h4>
+                <p class="timeline__venue">Ashoka University</p>
+                <p class="timeline__desc">Talk by the CTO of Zerodha on the culture of making and building.</p>
+                <span class="tag tag--sm">Makerspace</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Sep 19, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">Tote-Bag Design Workshop</h4>
+                <p class="timeline__venue">Ashoka University</p>
+                <p class="timeline__desc">Custom tote-bag design workshop organized by the Makerspace, open to all students.</p>
+                <span class="tag tag--sm">Makerspace</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Sep 17, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">McGill University Convergent Innovation Webinar</h4>
+                <p class="timeline__venue">Online (McGill University, Canada)</p>
+                <p class="timeline__desc">Invited talk on "AI and Cultural Food, Diet and Recipes: The Case of India" in the Farm, Food and Diet series.</p>
+                <span class="tag tag--sm">CHART</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Aug 25&ndash;29, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">ACM ASIACCS 2025</h4>
+                <p class="timeline__venue">Hanoi, Vietnam</p>
+                <p class="timeline__desc">Paper on "Quantum-safe Signatureless DNSSEC" presented at the ACM Asia Conference on Computer and Communications Security.</p>
+                <span class="tag tag--sm">Cybersecurity</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Aug 16&ndash;22, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">Orientation Week</h4>
+                <p class="timeline__venue">Ashoka University</p>
+                <p class="timeline__desc">Makerspace showcased live 3D printing, rapid builds, and projection mapping for incoming first-year students.</p>
+                <span class="tag tag--sm">Makerspace</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Jul 16&ndash;18, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">RASOI Data Challenge at NCVPRIPG 2025</h4>
+                <p class="timeline__venue">IIT Jammu / NIT Srinagar</p>
+                <p class="timeline__desc">Organized the RASOI data challenge on recognition and segmentation of Indian thali using AI. Datasets curated from Ashoka food images and published on Kaggle.</p>
+                <span class="tag tag--sm">CHART</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Jul 5, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">Citizen Science Expo &mdash; "The Power of People in Science"</h4>
+                <p class="timeline__venue">IISER Pune</p>
+                <p class="timeline__desc">TNBC project's breast cancer awareness poster received active engagement from the general public, organized by Pune Knowledge Cluster.</p>
+                <span class="tag tag--sm">CHART</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Jun 22&ndash;27, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">HCII 2025 (HCI International)</h4>
+                <p class="timeline__venue">Gothenburg, Sweden</p>
+                <p class="timeline__desc">Poster presentation of "Dots: Refreshable Tactile Dot Grid" &mdash; an affordable alternative to commercial refreshable displays.</p>
+                <span class="tag tag--sm">Makerspace</span>
+              </div>
+            </div>
+
+            <div class="timeline__item reveal">
+              <div class="timeline__date">Jun 16&ndash;19, 2025</div>
+              <div class="timeline__content">
+                <h4 class="timeline__title">EACR 2025 Conference</h4>
+                <p class="timeline__venue">Lisbon, Portugal</p>
+                <p class="timeline__desc">TNBC research presented at the European Association for Cancer Research 2025 conference.</p>
+                <span class="tag tag--sm">CHART</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           MEDIA COVERAGE
+           ═══════════════════════════════════════ -->
+      <section class="section">
+        <div class="container">
+          <div class="section__header reveal">
+            <h2 class="section__title">In the Media</h2>
+            <p class="section__subtitle">Coverage of Lab research by national and international outlets.</p>
+          </div>
+
+          <div class="grid grid--3 reveal-stagger" style="gap: var(--space-5); margin-top: var(--space-8);">
+
+            <article class="card reveal">
+              <div class="card__body">
+                <span class="card__eyebrow">BharatSim &mdash; H5N1 Study</span>
+                <h4 class="card__title">20+ International Outlets</h4>
+                <p class="card__text">
+                  Research on potential H5N1 zoonotic spillover in India covered by BBC, CNBC-TV18, NDTV, Nature India, Sydney Morning Herald, The Sun, Yahoo News, and others.
+                </p>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="card__body">
+                <span class="card__eyebrow">Cancer (ACSCEND &amp; OncoMark)</span>
+                <h4 class="card__title">Nature Portfolio Publication</h4>
+                <p class="card__text">
+                  OncoMark AI framework for cancer hallmark quantification published in Communications Biology. Covered by India New England News, Medical Buyer, The Tribune, and more.
+                </p>
+              </div>
+            </article>
+
+            <article class="card reveal">
+              <div class="card__body">
+                <span class="card__eyebrow">CS Pedagogy</span>
+                <h4 class="card__title">Government Recognition</h4>
+                <p class="card__text">
+                  SocraticAI featured as a case study in MeitY's <a href="../src/assets/docs/India-AI-Impact-Summit-2026-AI-in-Education-Compendium.pdf" target="_blank" rel="noopener">Compendium on the Real-World Impact of AI in Education</a>, launched at the India-AI Impact Summit, Bharat Mandapam.
+                </p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section section--alt">
+        <div class="container text-center">
+          <div class="reveal">
+            <h3 style="margin-bottom: var(--space-4);">Explore Our Research</h3>
+            <p style="color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+              Discover the projects driving these outcomes.
+            </p>
+            <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+              <a href="research.html" class="btn btn--primary">View Research</a>
+              <a href="contact.html" class="btn btn--secondary">Get in Touch</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <img src="../src/assets/images/logos/lab-logo.png" alt="Lab Logo" class="footer__brand-logo">
+            <p class="footer__brand-text">
+              Advancing interdisciplinary research in AI, health, fabrication, and beyond at Ashoka University.
+            </p>
+            <div class="footer__brand-partner">
+              <span>Supported by</span>
+              <img src="../src/assets/images/logos/mphasis-foundation.png" alt="Mphasis F1 Foundation">
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Navigate</h4>
+            <div class="footer__links">
+              <a href="../index.html" class="footer__link">Home</a>
+              <a href="about.html" class="footer__link">About</a>
+              <a href="research.html" class="footer__link">Research</a>
+              <a href="people.html" class="footer__link">People</a>
+              <a href="publications.html" class="footer__link">Publications</a>
+              <a href="makerspace.html" class="footer__link">Makerspace</a>
+              <a href="news.html" class="footer__link">News & Events</a>
+              <a href="impact.html" class="footer__link">Impact</a>
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Research</h4>
+            <div class="footer__links">
+              <a href="pillar.html?pillar=ai" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-ai);"></span>AI@Ashoka</a>
+              <a href="pillar.html?pillar=bharatsim" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-bharatsim);"></span>BharatSim</a>
+              <a href="pillar.html?pillar=chart" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-chart);"></span>CHART</a>
+              <a href="pillar.html?pillar=cyber" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-cyber);"></span>Cybersecurity</a>
+              <a href="pillar.html?pillar=makerspace" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-makerspace);"></span>Makerspace</a>
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Contact</h4>
+            <div>
+              <div class="footer__contact-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M2 3l6 5 6-5"/></svg>
+                <a href="mailto:mphasis.lab@ashoka.edu.in" style="color: rgba(255,255,255,0.8);">mphasis.lab@ashoka.edu.in</a>
+              </div>
+              <div class="footer__contact-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6.7C14 11.3 8 15.3 8 15.3S2 11.3 2 6.7a6 6 0 1 1 12 0z"/><circle cx="8" cy="6.7" r="2"/></svg>
+                <span>Ashoka University<br>Sonipat, Haryana, India</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__copyright">&copy; 2026 Mphasis AI & Applied Tech Lab, Ashoka University. All rights reserved.</p>
+          <div class="footer__bottom-links">
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="../src/data/projects.js"></script>
+  <script src="../src/data/people.js"></script>
+  <script src="../src/data/publications.js"></script>
+  <script src="../src/data/pillars.js"></script>
+  <script src="../src/vendor/gsap.min.js"></script>
+  <script src="../src/vendor/ScrollTrigger.min.js"></script>
+  <script src="../src/js/gsap-animations.js"></script>
+  <script src="../src/js/main.js"></script>
+  <script src="../src/js/search.js"></script>
+  <script src="../src/js/floating-nav.js"></script>
+  <script src="../src/js/page-canvases.js"></script>
+</body>
+</html>

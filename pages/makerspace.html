@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Makerspace at Ashoka University — laser cutters, 3D printers, CNC machines, drones, and a culture of building. Home of RedBrick Hacks and the Maker-in-Residence program.">
+  <meta name="theme-color" content="#1B2A4A">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Makerspace | Mphasis AI & Applied Tech Lab">
+  <meta property="og:description" content="A 4,500 sq ft fabrication facility housing laser cutters, 3D printers, CNC machines, drones, and a thriving maker community at Ashoka University.">
+  <meta property="og:type" content="website">
+
+  <title>Makerspace | Mphasis AI & Applied Tech Lab</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../src/assets/images/logos/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../src/assets/images/logos/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../src/assets/images/logos/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../src/css/variables.css">
+  <link rel="stylesheet" href="../src/css/reset.css">
+  <link rel="stylesheet" href="../src/css/base.css">
+  <link rel="stylesheet" href="../src/css/layout.css">
+  <link rel="stylesheet" href="../src/css/header.css">
+  <link rel="stylesheet" href="../src/css/footer.css">
+  <link rel="stylesheet" href="../src/css/components.css">
+  <link rel="stylesheet" href="../src/css/animations.css">
+  <link rel="stylesheet" href="../src/css/pages.css">
+  <link rel="stylesheet" href="../src/css/utilities.css">
+  <link rel="stylesheet" href="../src/css/search.css">
+  <link rel="stylesheet" href="../src/css/floating-nav.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="progress-bar" id="progress-bar" aria-hidden="true"></div>  <!-- Floating Buttons -->
+  <button class="float-menu-btn" id="floatMenuBtn" aria-label="Open navigation">
+    <div class="float-menu-btn__icon"><span></span><span></span><span></span></div>
+    <span class="float-menu-btn__label">Menu</span>
+  </button>
+  <button class="float-search-btn" id="floatSearchBtn" aria-label="Search">
+    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+    <span class="float-search-btn__label">Search</span>
+  </button>
+
+  <!-- Side Navigation -->
+  <nav class="side-nav" id="side-nav" aria-label="Side navigation">
+    <div class="side-nav__backdrop" id="side-nav-backdrop"></div>
+    <div class="side-nav__panel">
+      <div class="side-nav__header">
+        <a href="../index.html" style="display:inline-block; margin-left:-70px;">
+          <img src="../src/assets/images/logos/lab-logo.png" alt="Mphasis AI & Applied Tech Lab" style="height:100px; width:auto;">
+        </a>
+        <button class="side-nav__close" id="side-nav-close" aria-label="Close menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>Close</span>
+        </button>
+      </div>
+      <div class="side-nav__body">
+        <div class="side-nav__col-pages">
+          <span class="side-nav__subtitle">Navigate</span>
+          <ul class="side-nav__list">
+            <li class="side-nav__item"><a href="../index.html" class="side-nav__link">Home</a></li>
+            <li class="side-nav__item"><a href="about.html" class="side-nav__link">About</a></li>
+            <li class="side-nav__item"><a href="research.html" class="side-nav__link">Research</a></li>
+            <li class="side-nav__item"><a href="people.html" class="side-nav__link">People</a></li>
+            <li class="side-nav__item"><a href="publications.html" class="side-nav__link">Publications</a></li>
+            <li class="side-nav__item"><a href="makerspace.html" class="side-nav__link">Makerspace</a></li>
+            <li class="side-nav__item"><a href="news.html" class="side-nav__link">News &amp; Events</a></li>
+            <li class="side-nav__item"><a href="impact.html" class="side-nav__link">Impact</a></li>
+            <li class="side-nav__item"><a href="contact.html" class="side-nav__link">Contact</a></li>
+          </ul>
+        </div>
+        <div class="side-nav__col-pillars">
+          <span class="side-nav__subtitle">Research Pillars</span>
+          <ul class="side-nav__pill-list">
+            <li class="side-nav__item"><a href="pillar.html?pillar=ai" class="side-nav__pill-card" style="--pill-color:#2563EB;"><span class="side-nav__pill-icon" style="background:#DBEAFE;color:#2563EB;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span><span class="side-nav__pill-name">AI</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=bharatsim" class="side-nav__pill-card" style="--pill-color:#059669;"><span class="side-nav__pill-icon" style="background:#D1FAE5;color:#059669;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/><path d="M2 7c2-3 4-3 6 0s4 3 6 0 4-3 6 0" opacity="0.4"/></svg></span><span class="side-nav__pill-name">BharatSim</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=chart" class="side-nav__pill-card" style="--pill-color:#D97706;"><span class="side-nav__pill-icon" style="background:#FEF3C7;color:#D97706;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h4l3-6 4 12 3-6h4"/></svg></span><span class="side-nav__pill-name">CHART</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=cyber" class="side-nav__pill-card" style="--pill-color:#7C3AED;"><span class="side-nav__pill-icon" style="background:#EDE9FE;color:#7C3AED;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 4v5c0 5.5-3.8 10.2-8 12-4.2-1.8-8-6.5-8-12V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="side-nav__pill-name">Cybersecurity</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=makerspace" class="side-nav__pill-card" style="--pill-color:#009BDE;"><span class="side-nav__pill-icon" style="background:#E0F2FE;color:#009BDE;"><img src="../src/assets/images/logos/makerspace-logo.png" alt="Makerspace"></span><span class="side-nav__pill-name">Makerspace</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="side-nav__footer">
+        <div class="side-nav__contact">
+          <a href="mailto:mphasis.lab.edu.in">mphasis.lab.edu.in</a> &nbsp;&middot;&nbsp; Ashoka University, Sonipat, India
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div class="page">
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search" hidden>
+      <div class="search-overlay__backdrop"></div>
+      <div class="search-overlay__panel">
+        <div class="search-overlay__header">
+          <div class="search-overlay__input-wrapper">
+            <svg class="search-overlay__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+            <input type="search" class="search-overlay__input" id="search-input" placeholder="Search projects, people, publications..." autocomplete="off">
+            <kbd class="search-overlay__kbd">ESC</kbd>
+          </div>
+        </div>
+        <div class="search-overlay__results" id="search-results" aria-live="polite">
+          <div class="search-overlay__empty">
+            <p class="search-overlay__empty-text">Type to search across projects, people, and publications</p>
+          </div>
+        </div>
+        <div class="search-overlay__footer">
+          <span><kbd>&#8984;</kbd><kbd>K</kbd> to toggle</span>
+          <span><kbd>&#8593;</kbd><kbd>&#8595;</kbd> to navigate</span>
+          <span><kbd>Enter</kbd> to select</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header" role="banner">
+      <div class="header__inner">
+        <a href="../index.html" class="header__logo" aria-label="Mphasis AI & Applied Tech Lab — Home">
+          <img src="../src/assets/images/logos/lab-logo.png" alt="Mphasis AI & Applied Tech Lab Logo">
+        </a>
+        <nav class="nav" role="navigation" aria-label="Primary navigation">
+          <a href="../index.html" class="nav__link">Home</a>
+          <a href="about.html" class="nav__link">About</a>
+          <a href="research.html" class="nav__link">Research</a>
+          <a href="people.html" class="nav__link">People</a>
+          <a href="publications.html" class="nav__link">Publications</a>
+          <a href="makerspace.html" class="nav__link nav__link--active">Makerspace</a>
+          <a href="news.html" class="nav__link">News & Events</a>
+          <a href="impact.html" class="nav__link">Impact</a>
+          <a href="contact.html" class="nav__link">Contact</a>
+        </nav>
+        <div class="header__actions">
+          <button class="header__search-trigger" aria-label="Search" aria-expanded="false" aria-controls="search-overlay">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+          </button>
+          <button class="header__menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="nav-mobile" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+      <a href="../index.html" class="nav-mobile__link">Home</a>
+      <a href="about.html" class="nav-mobile__link">About</a>
+      <a href="research.html" class="nav-mobile__link">Research</a>
+      <a href="people.html" class="nav-mobile__link">People</a>
+      <a href="publications.html" class="nav-mobile__link">Publications</a>
+      <a href="makerspace.html" class="nav-mobile__link nav-mobile__link--active">Makerspace</a>
+      <a href="news.html" class="nav-mobile__link">News & Events</a>
+      <a href="impact.html" class="nav-mobile__link">Impact</a>
+      <a href="contact.html" class="nav-mobile__link">Contact</a>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="page__content" id="main-content" role="main">
+
+      <!-- Page Hero -->
+      <section class="page-hero">
+        <canvas class="page-hero__canvas" data-page="makerspace" aria-hidden="true"></canvas>
+        <div class="container">
+          <div class="page-hero__logo reveal" style="margin-bottom: var(--space-4);">
+            <img src="../src/assets/images/logos/makerspace-logo.png" alt="Makerspace logo" style="height: 64px; width: auto;">
+          </div>
+          <h1 class="page-hero__title reveal">Where Ideas Become Real</h1>
+          <p class="page-hero__description reveal">
+            A 4,500 sq ft fabrication facility at Ashoka University — laser cutters, 3D printers, CNC machines, drones, and a culture of building things that matter.
+          </p>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           THE SPACE — OVERVIEW
+           ═══════════════════════════════════════ -->
+      <section class="section">
+        <div class="container">
+          <div class="section__header reveal">
+            <span class="section__eyebrow" style="color: var(--pillar-makerspace);">The Facility</span>
+            <h2 class="section__title">Built for Making</h2>
+            <p class="section__subtitle">
+              Located in the Innovation Centre at Ashoka University, our Makerspace gives students, researchers, and residents the tools to go from concept to prototype — and beyond.
+            </p>
+          </div>
+
+          <!-- Stats Row -->
+          <div class="grid grid--4 reveal" style="gap: var(--space-6); margin-top: var(--space-8);">
+            <div class="card card--stat" style="text-align: center; padding: var(--space-6);">
+              <div class="stat__number" data-count="4500" style="font-size: var(--text-3xl); font-weight: var(--weight-extrabold); color: var(--pillar-makerspace);">4,500</div>
+              <div class="stat__label" style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-top: var(--space-1);">Sq Ft Facility</div>
+            </div>
+            <div class="card card--stat" style="text-align: center; padding: var(--space-6);">
+              <div class="stat__number" data-count="1450" style="font-size: var(--text-3xl); font-weight: var(--weight-extrabold); color: var(--pillar-makerspace);">1,450+</div>
+              <div class="stat__label" style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-top: var(--space-1);">Students Engaged</div>
+            </div>
+            <div class="card card--stat" style="text-align: center; padding: var(--space-6);">
+              <div class="stat__number" data-count="2000" style="font-size: var(--text-3xl); font-weight: var(--weight-extrabold); color: var(--pillar-makerspace);">2,000+</div>
+              <div class="stat__label" style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-top: var(--space-1);">Community Outreach</div>
+            </div>
+            <div class="card card--stat" style="text-align: center; padding: var(--space-6);">
+              <div class="stat__number" data-count="1300" style="font-size: var(--text-3xl); font-weight: var(--weight-extrabold); color: var(--pillar-makerspace);">1,300+</div>
+              <div class="stat__label" style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-top: var(--space-1);">Hackathon Applicants (All Editions)</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           EQUIPMENT
+           ═══════════════════════════════════════ -->
+      <section class="section section--alt">
+        <div class="container">
+          <div class="section__header reveal">
+            <span class="section__eyebrow" style="color: var(--pillar-makerspace);">Equipment</span>
+            <h2 class="section__title">Industrial-Grade Tools</h2>
+            <p class="section__subtitle">Professional fabrication equipment accessible to every student — from first-years to PhD researchers.</p>
+          </div>
+
+          <div class="grid grid--3 reveal" style="gap: var(--space-6); margin-top: var(--space-8);">
+
+            <!-- Laser Cutter -->
+            <div class="card" style="padding: var(--space-6);">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-lg); background-color: rgba(232, 90, 42, 0.1); color: var(--pillar-makerspace); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+              </div>
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Trotec Speedy 400 Flexx</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                Dual-source laser cutter — 120W CO2 + 50W Fiber. Cuts and engraves wood, acrylic, metal, fabric, and more.
+              </p>
+            </div>
+
+            <!-- CNC Router -->
+            <div class="card" style="padding: var(--space-6);">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-lg); background-color: rgba(232, 90, 42, 0.1); color: var(--pillar-makerspace); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 7h10v10H7z"/><path d="M12 2v5M12 17v5M2 12h5M17 12h5"/></svg>
+              </div>
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">CNC Router (Mehta FX-1325V-ATC)</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                Automatic tool changer, large-format bed. Precision milling for wood, composites, and soft metals.
+              </p>
+            </div>
+
+            <!-- CNC Turning -->
+            <div class="card" style="padding: var(--space-6);">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-lg); background-color: rgba(232, 90, 42, 0.1); color: var(--pillar-makerspace); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg>
+              </div>
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">CNC Turning Machine (Jyoti DX60)</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                High-precision lathe for metal turning, threading, and cylindrical parts fabrication.
+              </p>
+            </div>
+
+            <!-- SLS 3D Printer -->
+            <div class="card" style="padding: var(--space-6);">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-lg); background-color: rgba(232, 90, 42, 0.1); color: var(--pillar-makerspace); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Formlabs Fuse 1+ (SLS)</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                Selective laser sintering — industrial-quality nylon parts without support structures. Ideal for functional prototypes.
+              </p>
+            </div>
+
+            <!-- SLA 3D Printer -->
+            <div class="card" style="padding: var(--space-6);">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-lg); background-color: rgba(232, 90, 42, 0.1); color: var(--pillar-makerspace); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Formlabs Form 4L (SLA)</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                Large-format resin printing at micron-level detail. Biocompatible, castable, and engineering resins.
+              </p>
+            </div>
+
+            <!-- Drones -->
+            <div class="card" style="padding: var(--space-6);">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-lg); background-color: rgba(232, 90, 42, 0.1); color: var(--pillar-makerspace); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg>
+              </div>
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Drone Fleet</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                DJI Matrice 4T and Mavic 3E. Thermal imaging, survey-grade mapping, and environmental monitoring. Certified drone pilots on staff.
+              </p>
+            </div>
+
+            <!-- Fabric Workstations -->
+            <div class="card" style="padding: var(--space-6);">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-lg); background-color: rgba(232, 90, 42, 0.1); color: var(--pillar-makerspace); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"/><path d="M14 2v6h6"/></svg>
+              </div>
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Fabric & Textile Workstations</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                Three industrial sewing machines for soft goods prototyping, wearable tech, and textile-based projects.
+              </p>
+            </div>
+
+            <!-- Wood Workshop -->
+            <div class="card" style="padding: var(--space-6);">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-lg); background-color: rgba(232, 90, 42, 0.1); color: var(--pillar-makerspace); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 7v1a3 3 0 006 0V7m0 1a3 3 0 006 0V7m0 1a3 3 0 006 0V7H3l2-4h14l2 4"/></svg>
+              </div>
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Wood Workshop</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                Extended wood workshop with dust extraction, hand tools, and power tools. Managed by experienced woodworking staff.
+              </p>
+            </div>
+
+            <!-- Computing -->
+            <div class="card" style="padding: var(--space-6);">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-lg); background-color: rgba(232, 90, 42, 0.1); color: var(--pillar-makerspace); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-4);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </div>
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Computing & Design</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                High-performance workstations, creative tools, and high-capacity data storage for computational design and media production.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           CMT — ONE OF A KIND IN INDIA
+           ═══════════════════════════════════════ -->
+      <section class="section">
+        <div class="container">
+          <div class="section__header reveal">
+            <span class="section__eyebrow" style="color: var(--pillar-makerspace);">Research Instrument</span>
+            <h2 class="section__title">Covalent Magnetic Tweezers</h2>
+            <p class="section__subtitle">One of its kind in India — a single-molecule force spectroscopy instrument built in-house, enabling nanometer-resolution biophysics research.</p>
+          </div>
+
+          <div class="grid grid--2 reveal" style="gap: var(--space-8); margin-top: var(--space-8);">
+
+            <!-- CMT Description -->
+            <div>
+              <p style="font-size: var(--text-base); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-4);">
+                The CMT instrument monitors hundreds of single molecules simultaneously at millisecond and nanometer resolution. It enables non-invasive manipulation of biological and synthetic particles for applications spanning biophysics, protein dynamics, drug screening, and nanotechnology.
+              </p>
+              <p style="font-size: var(--text-base); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-6);">
+                Built with a custom C++/Python hybrid software system, the instrument features real-time bead tracking, force ramps, force clamps, and unfolding/refolding cycle analysis. The Makerspace team fabricated a custom 3D-printed magnet holder with C-mount threads — the kind of cross-disciplinary build that defines what we do.
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: var(--space-2);">
+                <span class="tag tag--makerspace">Biophysics</span>
+                <span class="tag tag--makerspace">Nanotechnology</span>
+                <span class="tag tag--makerspace">Drug Screening</span>
+                <span class="tag tag--makerspace">Protein Dynamics</span>
+              </div>
+            </div>
+
+            <!-- CMT Specs -->
+            <div class="card" style="padding: var(--space-6);">
+              <h3 style="font-size: var(--text-lg); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-4);">Instrument Components</h3>
+              <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: var(--space-3); border-bottom: 1px solid var(--color-border-light); font-size: var(--text-sm);">
+                  <span style="color: var(--color-text-secondary);">Microscope</span>
+                  <span style="font-weight: var(--weight-semibold); color: var(--color-navy);">Zeiss Axiovert 5</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: var(--space-3); border-bottom: 1px solid var(--color-border-light); font-size: var(--text-sm);">
+                  <span style="color: var(--color-text-secondary);">Camera</span>
+                  <span style="font-weight: var(--weight-semibold); color: var(--color-navy);">XIMEA xiQ</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: var(--space-3); border-bottom: 1px solid var(--color-border-light); font-size: var(--text-sm);">
+                  <span style="color: var(--color-text-secondary);">Piezo Stage</span>
+                  <span style="font-weight: var(--weight-semibold); color: var(--color-navy);">P-725 + E709 Controller</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; padding-bottom: var(--space-3); border-bottom: 1px solid var(--color-border-light); font-size: var(--text-sm);">
+                  <span style="color: var(--color-text-secondary);">Voice-Coil</span>
+                  <span style="font-weight: var(--weight-semibold); color: var(--color-navy);">LFA-2010 + SCA814</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: var(--text-sm);">
+                  <span style="color: var(--color-text-secondary);">Magnet Holder</span>
+                  <span style="font-weight: var(--weight-semibold); color: var(--color-navy);">Custom 3D-printed (Makerspace)</span>
+                </div>
+              </div>
+              <div style="margin-top: var(--space-5); padding-top: var(--space-4); border-top: 1px solid var(--color-border);">
+                <p style="font-size: var(--text-xs); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: var(--tracking-wider); margin-bottom: var(--space-2);">Recognition</p>
+                <p style="font-size: var(--text-sm); color: var(--color-navy); font-weight: var(--weight-medium);">Cell Press Technology of the Month</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CMT Publications -->
+          <div class="reveal" style="margin-top: var(--space-8);">
+            <h3 style="font-size: var(--text-lg); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-4);">Publications from this Instrument</h3>
+            <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+              <div class="card" style="padding: var(--space-4); border-left: 4px solid var(--pillar-makerspace);">
+                <p style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-1);">Communications Biology (Nature portfolio)</p>
+                <p style="font-size: var(--text-xs); color: var(--color-text-secondary);">DOI: 10.1038/s42003-025-08727-z</p>
+              </div>
+              <div class="card" style="padding: var(--space-4); border-left: 4px solid var(--pillar-makerspace);">
+                <p style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-1);">Protein Science — Antibodies enhance antigen mechanical robustness</p>
+                <p style="font-size: var(--text-xs); color: var(--color-text-secondary);">Protein Science (2025), 34: e70201</p>
+              </div>
+              <div class="card" style="padding: var(--space-4); border-left: 4px solid var(--pillar-makerspace);">
+                <p style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-1);">Biochemistry — p47 stabilizing role in protein folding</p>
+                <p style="font-size: var(--text-xs); color: var(--color-text-secondary);">Biochemistry (2025), 64(15):3272-3279</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           FLAGSHIP PROJECTS
+           ═══════════════════════════════════════ -->
+      <section class="section section--alt">
+        <div class="container">
+          <div class="section__header reveal">
+            <span class="section__eyebrow" style="color: var(--pillar-makerspace);">Flagship Projects</span>
+            <h2 class="section__title">What We're Building</h2>
+            <p class="section__subtitle">From air quality sensors to autonomous robots — projects that combine engineering skill with real-world impact.</p>
+          </div>
+
+          <div class="grid grid--2 reveal" style="gap: var(--space-6); margin-top: var(--space-8);">
+
+            <!-- Air Quality Sensor Network -->
+            <div class="card" style="padding: var(--space-6); border-left: 4px solid var(--pillar-makerspace);">
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Indoor Air Quality Sensor Network</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-3);">
+                Open-source sensor nodes monitoring six key parameters — particulate matter, CO2, volatile organic compounds, temperature, and humidity — with centralized dashboards for real-time campus-wide air quality monitoring.
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: var(--space-1);">
+                <span class="tag" style="font-size: var(--text-xs);">IoT</span>
+                <span class="tag" style="font-size: var(--text-xs);">Environmental Monitoring</span>
+              </div>
+            </div>
+
+            <!-- SLAM Robot -->
+            <div class="card" style="padding: var(--space-6); border-left: 4px solid var(--pillar-makerspace);">
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">SLAM Robot</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-3);">
+                Autonomous navigation system using depth cameras and stereoscopic vision. Open-source. Built by Maker-in-Residence Ayush Tiwari.
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: var(--space-1);">
+                <span class="tag" style="font-size: var(--text-xs);">Robotics</span>
+                <span class="tag" style="font-size: var(--text-xs);">Open Source</span>
+              </div>
+            </div>
+
+            <!-- Drosophila Thermal Maze -->
+            <div class="card" style="padding: var(--space-6); border-left: 4px solid var(--pillar-makerspace);">
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Drosophila Thermal Maze</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-3);">
+                Custom instrument for sleep and behaviour research — Peltier-based temperature control, LED panorama, IR camera tracking. Only 2&ndash;3 labs globally have built this apparatus.
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: var(--space-1);">
+                <span class="tag" style="font-size: var(--text-xs);">Biology</span>
+                <span class="tag" style="font-size: var(--text-xs);">Custom Instrument</span>
+              </div>
+            </div>
+
+            <!-- IKS Jantar Mantar -->
+            <div class="card" style="padding: var(--space-6); border-left: 4px solid var(--pillar-makerspace);">
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">IKS Jantar Mantar</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-3);">
+                3D-printed parametric reconstructions of Jantar Mantar astronomical instruments for hands-on science education.
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: var(--space-1);">
+                <span class="tag" style="font-size: var(--text-xs);">Education</span>
+                <span class="tag" style="font-size: var(--text-xs);">3D Printing</span>
+              </div>
+            </div>
+
+            <!-- Dots: Tactile Dot Grid -->
+            <div class="card" style="padding: var(--space-6); border-left: 4px solid var(--pillar-makerspace);">
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Dots: Tactile Dot Grid</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-3);">
+                Refreshable tactile dot grid for accessibility. Presented at HCII 2025, Gothenburg, Sweden.
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: var(--space-1);">
+                <span class="tag" style="font-size: var(--text-xs);">Accessibility</span>
+                <span class="tag" style="font-size: var(--text-xs);">HCII 2025</span>
+              </div>
+            </div>
+
+            <!-- DIY Air Purifier -->
+            <div class="card" style="padding: var(--space-6); border-left: 4px solid var(--pillar-makerspace);">
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">DIY Air Purifier (2nd Gen)</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-3);">
+                HEPA + activated carbon filtration unit designed for community builds. Open-design, low-cost air purification.
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: var(--space-1);">
+                <span class="tag" style="font-size: var(--text-xs);">Community</span>
+                <span class="tag" style="font-size: var(--text-xs);">Open Design</span>
+              </div>
+            </div>
+
+            <!-- Hexagon PCB -->
+            <div class="card" style="padding: var(--space-6); border-left: 4px solid var(--pillar-makerspace);">
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Hexagon PCB</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-3);">
+                Custom PCB flagship project designed for production runs — bringing electronics manufacturing capability in-house.
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: var(--space-1);">
+                <span class="tag" style="font-size: var(--text-xs);">Electronics</span>
+                <span class="tag" style="font-size: var(--text-xs);">PCB Design</span>
+              </div>
+            </div>
+
+            <!-- Low-cost Electroporator -->
+            <div class="card" style="padding: var(--space-6); border-left: 4px solid var(--pillar-makerspace);">
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Low-Cost Electroporator</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-3);">
+                Low-cost biophysical gene transfection setup enabling genome editing experiments at a fraction of commercial instrument costs.
+              </p>
+              <div style="display: flex; flex-wrap: wrap; gap: var(--space-1);">
+                <span class="tag" style="font-size: var(--text-xs);">Biology</span>
+                <span class="tag" style="font-size: var(--text-xs);">Low-Cost</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           MAKER-IN-RESIDENCE
+           ═══════════════════════════════════════ -->
+      <section class="section">
+        <div class="container">
+          <div class="section__header reveal">
+            <span class="section__eyebrow" style="color: var(--pillar-makerspace);">Residency Program</span>
+            <h2 class="section__title">Maker-in-Residence</h2>
+            <p class="section__subtitle">
+              A fellowship embedding makers, engineers, and designers in the Makerspace for up to nine months to tackle ambitious research and engineering projects alongside the Lab.
+            </p>
+          </div>
+
+          <div class="grid grid--2 reveal" style="gap: var(--space-6); margin-top: var(--space-8);">
+
+            <div class="card" style="padding: var(--space-6);">
+              <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4);">
+                <div style="width: 48px; height: 48px; border-radius: var(--radius-full); background-color: rgba(232, 90, 42, 0.1); color: var(--pillar-makerspace); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div>
+                  <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy);">Ayush Tiwari</h3>
+                  <p style="font-size: var(--text-sm); color: var(--color-text-secondary);">July 2025 &ndash; March 2026</p>
+                </div>
+              </div>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                Building the SLAM Robot — an autonomous navigation system using depth cameras and stereoscopic vision. Open-source repositories published.
+              </p>
+            </div>
+
+            <div class="card" style="padding: var(--space-6);">
+              <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4);">
+                <div style="width: 48px; height: 48px; border-radius: var(--radius-full); background-color: rgba(232, 90, 42, 0.1); color: var(--pillar-makerspace); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div>
+                  <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy);">Ajad Ismail</h3>
+                  <p style="font-size: var(--text-sm); color: var(--color-text-secondary);">August 2025 &ndash; March 2026</p>
+                </div>
+              </div>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                Building the Drosophila Thermal Maze for sleep and adaptive behaviour research — a custom instrument with only 2&ndash;3 equivalents globally.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           PHYSICS EXPERIMENTS
+           ═══════════════════════════════════════ -->
+      <section class="section section--alt">
+        <div class="container">
+          <div class="section__header reveal">
+            <span class="section__eyebrow" style="color: var(--pillar-makerspace);">Research Enabled</span>
+            <h2 class="section__title">Physics & Experimental Science</h2>
+            <p class="section__subtitle">The Makerspace enables research that can't be done with off-the-shelf equipment — custom experimental setups designed and fabricated in-house.</p>
+          </div>
+
+          <div class="grid grid--2 reveal" style="gap: var(--space-6); margin-top: var(--space-8);">
+
+            <!-- Table Top Experiments -->
+            <div class="card" style="padding: var(--space-6);">
+              <h3 style="font-size: var(--text-lg); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Table Top Experiments: Glacier Flow Dynamics</h3>
+              <p style="font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-3);">Pramoda Kumar &middot; Assistant Professor, Physics</p>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-4);">
+                Using non-Newtonian fluid (xanthan gum) flows to model glacier dynamics. 35+ controlled experiments demonstrating universal self-similar scaling of viscous gravity currents, with Fourier analysis of fingering instabilities and custom Python analysis tools.
+              </p>
+              <div style="display: flex; flex-direction: column; gap: var(--space-2); font-size: var(--text-sm);">
+                <div style="display: flex; align-items: flex-start; gap: var(--space-2);">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--pillar-makerspace)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;"><path d="M13.3 4L6 11.3 2.7 8"/></svg>
+                  <span style="color: var(--color-text-secondary);">3rd place — Meera Memorial Paper Reading Competition, St. Stephen's College, Delhi University</span>
+                </div>
+                <div style="display: flex; align-items: flex-start; gap: var(--space-2);">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--pillar-makerspace)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;"><path d="M13.3 4L6 11.3 2.7 8"/></svg>
+                  <span style="color: var(--color-text-secondary);">2 interns placed at ANU (Australia) and GIST (South Korea)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pedagogical Experiments -->
+            <div class="card" style="padding: var(--space-6);">
+              <h3 style="font-size: var(--text-lg); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Pedagogical Experiments: Quantum & Statistical Physics</h3>
+              <p style="font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-3);">Pramoda Kumar &middot; with Dipankar Bhattacharya</p>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed); margin-bottom: var(--space-4);">
+                Designed and built novel experimental setups for undergraduate quantum and statistical physics labs, including quantum optics experiments and statistical physics setups now integrated into the Physics department curriculum.
+              </p>
+              <div style="display: inline-block; padding: var(--space-1) var(--space-3); background-color: var(--color-green-bg, rgba(34, 197, 94, 0.1)); color: var(--color-green, #16a34a); border-radius: var(--radius-full); font-size: var(--text-xs); font-weight: var(--weight-semibold);">
+                Completed
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           CROSS-PILLAR SUPPORT
+           ═══════════════════════════════════════ -->
+      <section class="section">
+        <div class="container">
+          <div class="section__header reveal">
+            <span class="section__eyebrow" style="color: var(--pillar-makerspace);">Cross-Pillar Impact</span>
+            <h2 class="section__title">Infrastructure for the Entire Lab</h2>
+            <p class="section__subtitle">The Makerspace doesn't just serve its own projects — it builds tools, instruments, and custom hardware for research across all five pillars.</p>
+          </div>
+
+          <div class="grid grid--3 reveal" style="gap: var(--space-6); margin-top: var(--space-8);">
+
+            <div class="card" style="padding: var(--space-5); text-align: center;">
+              <span class="tag tag--ai" style="margin-bottom: var(--space-3); display: inline-block;">AI@Ashoka</span>
+              <h3 style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Pollen Project</h3>
+              <p style="font-size: var(--text-xs); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">Custom robotic microscope stage attachment for 3D pollen imaging</p>
+            </div>
+
+            <div class="card" style="padding: var(--space-5); text-align: center;">
+              <span class="tag tag--ai" style="margin-bottom: var(--space-3); display: inline-block;">AI@Ashoka</span>
+              <h3 style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Fire Mapping</h3>
+              <p style="font-size: var(--text-xs); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">Drone access for fire and wildlife research surveys</p>
+            </div>
+
+            <div class="card" style="padding: var(--space-5); text-align: center;">
+              <span class="tag tag--makerspace" style="margin-bottom: var(--space-3); display: inline-block;">Biology</span>
+              <h3 style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Low-Cost Electroporator</h3>
+              <p style="font-size: var(--text-xs); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">Low-cost electroporator collaboration for gene transfection</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           COMMUNITY & OUTREACH
+           ═══════════════════════════════════════ -->
+      <section class="section section--alt">
+        <div class="container">
+          <div class="section__header reveal">
+            <span class="section__eyebrow" style="color: var(--pillar-makerspace);">Community</span>
+            <h2 class="section__title">Beyond the Lab</h2>
+            <p class="section__subtitle">Building a maker culture at Ashoka and connecting with the wider K-12 and maker community.</p>
+          </div>
+
+          <div class="grid grid--3 reveal" style="gap: var(--space-6); margin-top: var(--space-8);">
+
+            <div class="card" style="padding: var(--space-6);">
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Community Outreach</h3>
+              <p style="font-size: var(--text-2xl); font-weight: var(--weight-extrabold); color: var(--pillar-makerspace); margin-bottom: var(--space-2);">2,000+</p>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                Students and community members reached through CS Olympiad, Young Scholars Programme sessions, Lodha Genius Programme, and community events.
+              </p>
+            </div>
+
+            <div class="card" style="padding: var(--space-6);">
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Campus Events</h3>
+              <p style="font-size: var(--text-2xl); font-weight: var(--weight-extrabold); color: var(--pillar-makerspace); margin-bottom: var(--space-2);">800+</p>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                First-year students engaged through Orientation Week — live 3D printing, rapid builds, and projection mapping demos.
+              </p>
+            </div>
+
+            <div class="card" style="padding: var(--space-6);">
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Maker Culture</h3>
+              <p style="font-size: var(--text-2xl); font-weight: var(--weight-extrabold); color: var(--pillar-makerspace); margin-bottom: var(--space-2);">17</p>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                Student mentors trained in peer leadership. Makerspace Club founded. Academic credit internship formalized (2&ndash;4 credits).
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Events List -->
+          <div class="reveal" style="margin-top: var(--space-10);">
+            <h3 style="font-size: var(--text-lg); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-6);">Events & Engagements</h3>
+            <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+
+              <div style="display: flex; gap: var(--space-4); align-items: flex-start;">
+                <div style="min-width: 100px; font-size: var(--text-xs); font-weight: var(--weight-semibold); color: var(--color-red); text-transform: uppercase; padding-top: 2px;">Sep 2025</div>
+                <div>
+                  <p style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-navy);">Kailash Nadh — "Tinker Thinker Maker Mover"</p>
+                  <p style="font-size: var(--text-xs); color: var(--color-text-secondary);">CTO of Zerodha. 100+ attendees + fireside chats.</p>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: var(--space-4); align-items: flex-start;">
+                <div style="min-width: 100px; font-size: var(--text-xs); font-weight: var(--weight-semibold); color: var(--color-red); text-transform: uppercase; padding-top: 2px;">Oct 2025</div>
+                <div>
+                  <p style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-navy);">Hacktoberfest 2025</p>
+                  <p style="font-size: var(--text-xs); color: var(--color-text-secondary);">240+ interactions — OSINT, open-source contributions, custom projects.</p>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: var(--space-4); align-items: flex-start;">
+                <div style="min-width: 100px; font-size: var(--text-xs); font-weight: var(--weight-semibold); color: var(--color-red); text-transform: uppercase; padding-top: 2px;">Oct 2025</div>
+                <div>
+                  <p style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-navy);">Halloween Collaboration</p>
+                  <p style="font-size: var(--text-xs); color: var(--color-text-secondary);">With Ashoka University student Cultural Ministry. ~1,000 participants.</p>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: var(--space-4); align-items: flex-start;">
+                <div style="min-width: 100px; font-size: var(--text-xs); font-weight: var(--weight-semibold); color: var(--color-red); text-transform: uppercase; padding-top: 2px;">Feb 2026</div>
+                <div>
+                  <p style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-navy);">RedBrick Hacks III</p>
+                  <p style="font-size: var(--text-xs); color: var(--color-text-secondary);">430+ applicants from 91 universities. 60 on-campus finalists. <a href="news.html" style="color: var(--color-blue); font-weight: var(--weight-semibold);">Full coverage &rarr;</a></p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           PARTNERSHIPS
+           ═══════════════════════════════════════ -->
+      <section class="section">
+        <div class="container">
+          <div class="section__header reveal">
+            <span class="section__eyebrow" style="color: var(--pillar-makerspace);">Partnerships</span>
+            <h2 class="section__title">Our Network</h2>
+          </div>
+
+          <div class="grid grid--2 reveal" style="gap: var(--space-6); margin-top: var(--space-6);">
+
+            <div class="card" style="padding: var(--space-6);">
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Param Foundation</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                Partnership for co-hosting hackathons, educational grants, and Delhi exhibit space collaboration.
+              </p>
+            </div>
+
+            <div class="card" style="padding: var(--space-6);">
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">TinkerHub Foundation</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                Student maker community partnership from Kochi. Challenge-style hackathon structure collaboration.
+              </p>
+            </div>
+
+            <div class="card" style="padding: var(--space-6);">
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Maker Bhavan Foundation</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                Makerspace development advisory. RedBrick Hacks III collaboration and maker ecosystem building.
+              </p>
+            </div>
+
+            <div class="card" style="padding: var(--space-6);">
+              <h3 style="font-size: var(--text-base); font-weight: var(--weight-semibold); color: var(--color-navy); margin-bottom: var(--space-2);">Stanford University</h3>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-relaxed);">
+                ShistoDx team (RedBrick Hacks III Outstanding Award) selected for research collaboration with Prof. Manu Prakash's lab.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           CTA
+           ═══════════════════════════════════════ -->
+      <section class="section section--alt" style="text-align: center;">
+        <div class="container reveal">
+          <h2 class="section__title" style="margin-bottom: var(--space-4);">Want to Build Something?</h2>
+          <p style="font-size: var(--text-lg); color: var(--color-text-secondary); max-width: 560px; margin: 0 auto var(--space-6);">
+            The Makerspace is open to all Ashoka students and researchers. Reach out to start a project, apply for the Maker-in-Residence program, or just come explore.
+          </p>
+          <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+            <a href="contact.html" class="btn btn--primary">Get in Touch</a>
+            <a href="research.html?pillar=makerspace" class="btn btn--secondary">Explore Makerspace Research</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <img src="../src/assets/images/logos/lab-logo.png" alt="Lab Logo" class="footer__brand-logo">
+            <p class="footer__brand-text">
+              Advancing interdisciplinary research in AI, health, fabrication, and beyond at Ashoka University.
+            </p>
+            <div class="footer__brand-partner">
+              <span>Supported by</span>
+              <img src="../src/assets/images/logos/mphasis-foundation.png" alt="Mphasis F1 Foundation">
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Navigate</h4>
+            <div class="footer__links">
+              <a href="../index.html" class="footer__link">Home</a>
+              <a href="about.html" class="footer__link">About</a>
+              <a href="research.html" class="footer__link">Research</a>
+              <a href="people.html" class="footer__link">People</a>
+              <a href="publications.html" class="footer__link">Publications</a>
+              <a href="makerspace.html" class="footer__link">Makerspace</a>
+              <a href="news.html" class="footer__link">News & Events</a>
+              <a href="impact.html" class="footer__link">Impact</a>
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Research</h4>
+            <div class="footer__links">
+              <a href="pillar.html?pillar=ai" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-ai);"></span>AI@Ashoka</a>
+              <a href="pillar.html?pillar=bharatsim" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-bharatsim);"></span>BharatSim</a>
+              <a href="pillar.html?pillar=chart" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-chart);"></span>CHART</a>
+              <a href="pillar.html?pillar=cyber" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-cyber);"></span>Cybersecurity</a>
+              <a href="pillar.html?pillar=makerspace" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-makerspace);"></span>Makerspace</a>
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Contact</h4>
+            <div>
+              <div class="footer__contact-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M2 3l6 5 6-5"/></svg>
+                <a href="mailto:mphasis.lab@ashoka.edu.in" style="color: rgba(255,255,255,0.8);">mphasis.lab@ashoka.edu.in</a>
+              </div>
+              <div class="footer__contact-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6.7C14 11.3 8 15.3 8 15.3S2 11.3 2 6.7a6 6 0 1 1 12 0z"/><circle cx="8" cy="6.7" r="2"/></svg>
+                <span>Ashoka University<br>Sonipat, Haryana, India</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__copyright">&copy; 2026 Mphasis AI & Applied Tech Lab, Ashoka University. All rights reserved.</p>
+          <div class="footer__bottom-links">
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="../src/data/projects.js"></script>
+  <script src="../src/data/people.js"></script>
+  <script src="../src/data/publications.js"></script>
+  <script src="../src/data/pillars.js"></script>
+  <script src="../src/vendor/gsap.min.js"></script>
+  <script src="../src/vendor/ScrollTrigger.min.js"></script>
+  <script src="../src/js/gsap-animations.js"></script>
+  <script src="../src/js/main.js"></script>
+  <script src="../src/js/search.js"></script>
+  <script src="../src/js/floating-nav.js"></script>
+  <script src="../src/js/page-canvases.js"></script>
+</body>
+</html>

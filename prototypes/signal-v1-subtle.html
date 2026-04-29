@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mphasis AI & Applied Tech Lab — Signal V1 Subtle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Zilla+Slab:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ========== RESET & BASE ========== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: #0B1E33;
+  color: #FBF3DF;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========== GRID OVERLAY ========== */
+.grid-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(to right, rgba(251,243,223,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(251,243,223,0.06) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* ========== TYPOGRAPHY ========== */
+.font-georgia { font-family: Georgia, serif; }
+.font-zilla { font-family: 'Zilla Slab', Georgia, serif; }
+.font-body { font-family: 'Open Sans', sans-serif; }
+
+/* ========== COLORS ========== */
+:root {
+  --bg: #0B1E33;
+  --bg-deep: #061628;
+  --bg-dark: #04101F;
+  --cream: #FBF3DF;
+  --dim: rgba(251,243,223,0.7);
+  --dimmer: rgba(251,243,223,0.45);
+  --line: rgba(251,243,223,0.15);
+  --accent: #E8586F;
+  --crimson: #C4122F;
+  --amber: #E4A03B;
+  --green: #4ADE80;
+  --blue: #60A5FA;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+@keyframes marq {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ========== REVEAL SYSTEM ========== */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 800ms ease, transform 800ms ease;
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-stagger { transition-delay: var(--stagger, 0ms); }
+
+/* ========== HERO WORD ANIMATION ========== */
+.hero-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.hero-word span {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.hero-word.animate span {
+  transform: translateY(0);
+}
+
+/* ========== TOP BAR ========== */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(11,30,51,0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 32px;
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+}
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.topbar-left img {
+  height: 32px;
+  filter: brightness(0) invert(1);
+}
+.topbar-left span {
+  color: var(--dimmer);
+}
+.topbar-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 1.5s infinite;
+}
+.topbar-center .status-text {
+  color: var(--green);
+  font-size: 12px;
+}
+.topbar-center .counter-text {
+  color: var(--dimmer);
+  font-size: 12px;
+}
+.topbar-right {
+  border: 1px solid var(--line);
+  padding: 6px 14px;
+  color: var(--dimmer);
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+}
+.topbar-right:hover {
+  border-color: var(--cream);
+  color: var(--cream);
+}
+
+/* ========== HERO ========== */
+.hero {
+  padding: 100px 56px 64px;
+  position: relative;
+}
+.hero-meta {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 40px;
+  display: flex;
+  gap: 32px;
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+.hero-meta.animate { opacity: 1; }
+.hero-title {
+  font-family: Georgia, serif;
+  font-size: 148px;
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  margin-bottom: 40px;
+}
+.hero-title .line2 {
+  font-style: italic;
+  color: var(--accent);
+}
+.hero-subtitle {
+  font-size: 22px;
+  line-height: 1.5;
+  max-width: 820px;
+  color: var(--dim);
+  margin-bottom: 56px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 800ms ease 900ms, transform 800ms ease 900ms;
+}
+.hero-subtitle.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero-telemetry {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 28px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 800ms ease 1100ms, transform 800ms ease 1100ms;
+}
+.hero-telemetry.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+.telemetry-item {
+  text-align: left;
+}
+.telemetry-item .tel-label {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+  margin-bottom: 4px;
+}
+.telemetry-item .tel-value {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 36px;
+  font-weight: 400;
+  color: var(--cream);
+}
+.telemetry-item .tel-value .plus {
+  color: var(--accent);
+}
+
+/* ========== TICKER ========== */
+.ticker {
+  background: var(--bg-deep);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  padding: 14px 0;
+}
+.ticker-track {
+  display: flex;
+  white-space: nowrap;
+  animation: marq 40s linear infinite;
+}
+.ticker-item {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 0 24px;
+  flex-shrink: 0;
+}
+
+/* ========== SECTION SHARED ========== */
+.section-eyebrow {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.section-title {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+/* ========== ABOUT MANIFESTO ========== */
+.about {
+  padding: 120px 200px;
+  text-align: center;
+}
+.about .section-title {
+  font-size: 42px;
+  line-height: 1.3;
+  font-style: italic;
+  text-wrap: balance;
+}
+
+/* ========== PILLARS ========== */
+.pillars {
+  padding: 100px 56px;
+}
+.pillars .section-title {
+  font-size: 72px;
+  margin-bottom: 56px;
+}
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+.pillar-card {
+  background: rgba(251,243,223,0.03);
+  border: 1px solid var(--line);
+  padding: 28px 24px;
+  min-height: 260px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.pillar-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+}
+.pillar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+.pillar-id {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+}
+.pillar-count {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 32px;
+  color: var(--cream);
+  line-height: 1;
+}
+.pillar-name {
+  font-family: Georgia, serif;
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 12px;
+  margin-top: auto;
+}
+.pillar-desc {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  color: var(--dim);
+  line-height: 1.5;
+}
+
+/* ========== FEATURED BANDS ========== */
+.band {
+  padding: 72px 56px;
+  border-top: 1px solid var(--line);
+}
+.band.alt { background: var(--bg-deep); }
+.band-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.band-grid.reversed .band-text { order: 2; }
+.band-grid.reversed .band-image { order: 1; }
+.band-meta {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.band-title {
+  font-family: Georgia, serif;
+  font-size: 52px;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.band-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--dim);
+}
+.band-image {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: rgba(251,243,223,0.05);
+}
+.band-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.band-image .rec-label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.band-image .blue-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(96,165,250,0.3) 0%, rgba(11,30,51,0.8) 70%);
+}
+.band-image .placeholder-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 18px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ========== IMPACT NUMBERS ========== */
+.impact {
+  padding: 100px 56px;
+  border-top: 1px solid var(--line);
+}
+.impact .section-title {
+  font-size: 72px;
+  margin-bottom: 56px;
+}
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+.impact-stat {
+  border-top: 1px solid var(--line);
+  padding: 32px 24px 40px;
+}
+.impact-stat .stat-number {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 88px;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.impact-stat .stat-number .plus {
+  color: var(--accent);
+}
+.impact-stat .stat-label {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ========== NEWS ========== */
+.news {
+  padding: 100px 56px;
+  background: var(--bg-deep);
+  border-top: 1px solid var(--line);
+}
+.news .section-title {
+  font-size: 72px;
+  margin-bottom: 56px;
+}
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.news-card {
+  border: 1px solid var(--line);
+  padding: 28px 24px;
+}
+.news-date {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.news-title {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+.news-desc {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  color: var(--dim);
+  line-height: 1.5;
+}
+
+/* ========== FACULTY ========== */
+.faculty {
+  padding: 100px 56px;
+  border-top: 1px solid var(--line);
+}
+.faculty .section-title {
+  font-size: 72px;
+  margin-bottom: 56px;
+}
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.faculty-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.faculty-photo {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--amber);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.faculty-info {}
+.faculty-name {
+  font-family: Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+.faculty-role {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-top: 2px;
+}
+
+/* ========== JOIN ========== */
+.join {
+  padding: 100px 56px;
+  background: var(--bg-deep);
+  border-top: 1px solid var(--line);
+}
+.join-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  margin-bottom: 56px;
+  align-items: end;
+}
+.join-header .section-title {
+  font-size: 72px;
+}
+.join-header .join-subtitle {
+  font-size: 18px;
+  color: var(--dim);
+  line-height: 1.6;
+  align-self: end;
+}
+.join-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.join-card {
+  border: 1px solid var(--line);
+  padding: 28px 24px;
+  position: relative;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+.join-count {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 12px;
+}
+.join-role {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+.join-desc {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  color: var(--dim);
+  line-height: 1.5;
+  flex: 1;
+}
+.join-arrow {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 20px;
+  color: var(--dimmer);
+}
+
+/* ========== PARTNERS ========== */
+.partners {
+  padding: 72px 56px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 56px;
+}
+.partners-logos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.partners-label {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 8px;
+}
+.partners-logos img {
+  height: 36px;
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+.partners-contact h4,
+.partners-nav h4 {
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+  margin-bottom: 16px;
+}
+.partners-contact p,
+.partners-nav a {
+  font-size: 14px;
+  color: var(--dim);
+  line-height: 1.8;
+  text-decoration: none;
+}
+.partners-nav a {
+  display: block;
+}
+.partners-nav a:hover {
+  color: var(--cream);
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  background: var(--bg-dark);
+  border-top: 2px solid var(--crimson);
+  padding: 20px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Zilla Slab', Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1200px) {
+  .hero-title { font-size: 100px; }
+  .pillar-grid { grid-template-columns: repeat(3, 1fr); }
+  .about { padding: 80px 80px; }
+}
+@media (max-width: 900px) {
+  .hero { padding: 80px 32px 48px; }
+  .hero-title { font-size: 64px; }
+  .hero-subtitle { font-size: 18px; }
+  .hero-telemetry { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .pillar-grid { grid-template-columns: repeat(2, 1fr); }
+  .band-grid { grid-template-columns: 1fr; }
+  .band-grid.reversed .band-text { order: 1; }
+  .band-grid.reversed .band-image { order: 2; }
+  .impact-grid { grid-template-columns: repeat(2, 1fr); }
+  .news-grid { grid-template-columns: 1fr; }
+  .faculty-grid { grid-template-columns: repeat(2, 1fr); }
+  .join-header { grid-template-columns: 1fr; }
+  .join-header .section-title { font-size: 48px; }
+  .join-grid { grid-template-columns: repeat(2, 1fr); }
+  .partners { grid-template-columns: 1fr; }
+  .about { padding: 64px 32px; }
+  .about .section-title { font-size: 32px; }
+  .impact .section-title,
+  .news .section-title,
+  .faculty .section-title,
+  .pillars .section-title { font-size: 48px; }
+  .band-title { font-size: 36px; }
+  .impact-stat .stat-number { font-size: 56px; }
+  .topbar-center { display: none; }
+}
+@media (max-width: 600px) {
+  .hero-title { font-size: 44px; }
+  .hero-telemetry { grid-template-columns: 1fr 1fr; }
+  .pillar-grid { grid-template-columns: 1fr; }
+  .impact-grid { grid-template-columns: 1fr; }
+  .faculty-grid { grid-template-columns: 1fr; }
+  .join-grid { grid-template-columns: 1fr; }
+  .topbar { padding: 10px 16px; }
+  .topbar-right { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Grid Overlay -->
+<div class="grid-overlay"></div>
+
+<!-- ========== TOP BAR ========== -->
+<header class="topbar">
+  <div class="topbar-left">
+    <img src="assets/lab-logo.png" alt="Lab Logo">
+    <span>// Ashoka University</span>
+  </div>
+  <div class="topbar-center">
+    <div class="status-dot"></div>
+    <span class="status-text">Systems Nominal</span>
+    <span class="counter-text">| <span id="hud-counter">0000</span> &middot; 23 APR 2026</span>
+  </div>
+  <div class="topbar-right">Search &middot; &#8984; K</div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-meta" id="hero-meta">
+    <span>FILE &middot; 0010.2026</span>
+    <span>VOL &middot; X</span>
+    <span>CLASSIFICATION &middot; PUBLIC</span>
+  </div>
+
+  <h1 class="hero-title" id="hero-title">
+    <div class="hero-line line1" data-text="Research,"></div>
+    <div class="hero-line line2" data-text="operational."></div>
+  </h1>
+
+  <p class="hero-subtitle" id="hero-subtitle">A university lab running 25+ live research programs across artificial intelligence, epidemic simulation, clinical analytics, cybersecurity, and digital fabrication &mdash; with deployed systems at NACO, the Indian government, and 40+ partner institutions in 15+ countries.</p>
+
+  <div class="hero-telemetry" id="hero-telemetry">
+    <div class="telemetry-item">
+      <div class="tel-label">Projects Live</div>
+      <div class="tel-value"><span class="countup" data-target="25">0</span><span class="plus">+</span></div>
+    </div>
+    <div class="telemetry-item">
+      <div class="tel-label">Papers</div>
+      <div class="tel-value"><span class="countup" data-target="30">0</span><span class="plus">+</span></div>
+    </div>
+    <div class="telemetry-item">
+      <div class="tel-label">Deployed</div>
+      <div class="tel-value"><span class="countup" data-target="6">0</span></div>
+    </div>
+    <div class="telemetry-item">
+      <div class="tel-label">Partnerships</div>
+      <div class="tel-value"><span class="countup" data-target="40">0</span><span class="plus">+</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TICKER ========== -->
+<div class="ticker">
+  <div class="ticker-track" id="ticker-track">
+    <span class="ticker-item">&#9670; AI Pedagogy</span>
+    <span class="ticker-item">&#9670; Epidemiological Modeling</span>
+    <span class="ticker-item">&#9670; Computational Health</span>
+    <span class="ticker-item">&#9670; Climate Science</span>
+    <span class="ticker-item">&#9670; Digital Humanities</span>
+    <span class="ticker-item">&#9670; Materials Science</span>
+    <span class="ticker-item">&#9670; Biodiversity</span>
+    <span class="ticker-item">&#9670; Digital Fabrication</span>
+    <span class="ticker-item">&#9670; Post-Quantum Cryptography</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ticker-item">&#9670; AI Pedagogy</span>
+    <span class="ticker-item">&#9670; Epidemiological Modeling</span>
+    <span class="ticker-item">&#9670; Computational Health</span>
+    <span class="ticker-item">&#9670; Climate Science</span>
+    <span class="ticker-item">&#9670; Digital Humanities</span>
+    <span class="ticker-item">&#9670; Materials Science</span>
+    <span class="ticker-item">&#9670; Biodiversity</span>
+    <span class="ticker-item">&#9670; Digital Fabrication</span>
+    <span class="ticker-item">&#9670; Post-Quantum Cryptography</span>
+  </div>
+</div>
+
+<!-- ========== ABOUT MANIFESTO ========== -->
+<section class="about">
+  <div class="reveal">
+    <div class="section-eyebrow">&#9670; About</div>
+    <h2 class="section-title">A research lab at Ashoka University. 27 faculty across 7 departments. Rigorous, interdisciplinary work &mdash; from theory to deployed systems.</h2>
+  </div>
+</section>
+
+<!-- ========== PILLARS ========== -->
+<section class="pillars">
+  <div class="reveal">
+    <div class="section-eyebrow">&#9670; Research Vectors &middot; 05</div>
+    <h2 class="section-title">Five pillars, one lab.</h2>
+  </div>
+  <div class="pillar-grid">
+    <div class="pillar-card reveal reveal-stagger" style="--stagger: 0ms">
+      <div class="pillar-bar" style="background: #2563EB;"></div>
+      <div class="pillar-header">
+        <span class="pillar-id">P.01</span>
+        <span class="pillar-count">9</span>
+      </div>
+      <div style="flex:1"></div>
+      <div class="pillar-name">AI@Ashoka</div>
+      <div class="pillar-desc">Education, health, environment, humanities, fundamental sciences.</div>
+    </div>
+    <div class="pillar-card reveal reveal-stagger" style="--stagger: 100ms">
+      <div class="pillar-bar" style="background: #059669;"></div>
+      <div class="pillar-header">
+        <span class="pillar-id">P.02</span>
+        <span class="pillar-count">4</span>
+      </div>
+      <div style="flex:1"></div>
+      <div class="pillar-name">BharatSim</div>
+      <div class="pillar-desc">India-scale agent-based simulation for epidemiology & public health.</div>
+    </div>
+    <div class="pillar-card reveal reveal-stagger" style="--stagger: 200ms">
+      <div class="pillar-bar" style="background: #D97706;"></div>
+      <div class="pillar-header">
+        <span class="pillar-id">P.03</span>
+        <span class="pillar-count">5</span>
+      </div>
+      <div style="flex:1"></div>
+      <div class="pillar-name">CHART</div>
+      <div class="pillar-desc">Health analytics, food computing, cancer diagnostics.</div>
+    </div>
+    <div class="pillar-card reveal reveal-stagger" style="--stagger: 300ms">
+      <div class="pillar-bar" style="background: #7C3AED;"></div>
+      <div class="pillar-header">
+        <span class="pillar-id">P.04</span>
+        <span class="pillar-count">3</span>
+      </div>
+      <div style="flex:1"></div>
+      <div class="pillar-name">Cybersecurity</div>
+      <div class="pillar-desc">Post-quantum cryptography against quantum-era threats.</div>
+    </div>
+    <div class="pillar-card reveal reveal-stagger" style="--stagger: 400ms">
+      <div class="pillar-bar" style="background: #DC2626;"></div>
+      <div class="pillar-header">
+        <span class="pillar-id">P.05</span>
+        <span class="pillar-count">4</span>
+      </div>
+      <div style="flex:1"></div>
+      <div class="pillar-name">Makerspace</div>
+      <div class="pillar-desc">Digital fabrication, maker education, physical prototyping.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURED BAND 1: BharatSim ========== -->
+<section class="band">
+  <div class="band-grid reveal">
+    <div class="band-text">
+      <div class="band-meta" style="color: #059669;">&#9670; BharatSim | BMC Public Health &middot; 2025</div>
+      <h3 class="band-title">India-Scale Epidemic Simulation</h3>
+      <p class="band-desc">Agent-based modelling of a nation. Our H5N1 avian flu study was covered by BBC, NDTV, Nature India, and 20+ international outlets. The platform is now deployed to the National AIDS Control Organization for HIV predictive modelling.</p>
+    </div>
+    <div class="band-image">
+      <span class="rec-label" style="color: #059669;">REC &middot; 004X</span>
+      <img src="assets/bharatsim-network.png" alt="BharatSim Network Visualization">
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURED BAND 2: OncoMark ========== -->
+<section class="band alt">
+  <div class="band-grid reversed reveal">
+    <div class="band-text">
+      <div class="band-meta" style="color: #60A5FA;">&#9670; AI@Ashoka | Communications Biology &middot; 2025</div>
+      <h3 class="band-title">OncoMark &mdash; Cancer at Single-Cell Resolution.</h3>
+      <p class="band-desc">An AI framework quantifying cancer hallmarks across millions of single cells. Published in Communications Biology (Nature portfolio). Government recognition followed: SocraticAI featured in MeitY's India-AI Impact Summit Compendium.</p>
+    </div>
+    <div class="band-image">
+      <span class="rec-label" style="color: #60A5FA;">REC &middot; 004X</span>
+      <img src="assets/earth-dark.jpg" alt="OncoMark Visualization">
+      <div class="blue-overlay"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURED BAND 3: World Food Atlas ========== -->
+<section class="band">
+  <div class="band-grid reveal">
+    <div class="band-text">
+      <div class="band-meta" style="color: #D97706;">&#9670; CHART | Ongoing &middot; CHART</div>
+      <h3 class="band-title">World Food Atlas</h3>
+      <p class="band-desc">Multimodal food computing platform mapping global cuisines &mdash; ingredients, recipes, nutrition at scale.</p>
+    </div>
+    <div class="band-image">
+      <span class="rec-label" style="color: #D97706;">REC &middot; 004X</span>
+      <div class="placeholder-text" style="color: #D97706;">PLATE &middot; 003</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== IMPACT NUMBERS ========== -->
+<section class="impact">
+  <div class="reveal">
+    <div class="section-eyebrow">&#9670; By the Numbers</div>
+    <h2 class="section-title">The lab at a glance.</h2>
+  </div>
+  <div class="impact-grid">
+    <div class="impact-stat reveal">
+      <div class="stat-number"><span class="countup" data-target="25">0</span><span class="plus">+</span></div>
+      <div class="stat-label">Research Projects</div>
+    </div>
+    <div class="impact-stat reveal">
+      <div class="stat-number"><span class="countup" data-target="30">0</span><span class="plus">+</span></div>
+      <div class="stat-label">Publications</div>
+    </div>
+    <div class="impact-stat reveal">
+      <div class="stat-number"><span class="countup" data-target="27">0</span><span class="plus">+</span></div>
+      <div class="stat-label">Faculty, 7 Departments</div>
+    </div>
+    <div class="impact-stat reveal">
+      <div class="stat-number"><span class="countup" data-target="6">0</span></div>
+      <div class="stat-label">Deployed Systems</div>
+    </div>
+    <div class="impact-stat reveal">
+      <div class="stat-number"><span class="countup" data-target="40">0</span><span class="plus">+</span></div>
+      <div class="stat-label">Partnerships</div>
+    </div>
+    <div class="impact-stat reveal">
+      <div class="stat-number"><span class="countup" data-target="15">0</span><span class="plus">+</span></div>
+      <div class="stat-label">Countries</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== NEWS ========== -->
+<section class="news">
+  <div class="reveal">
+    <div class="section-eyebrow">&#9670; Transmissions</div>
+    <h2 class="section-title">Latest dispatches.</h2>
+  </div>
+  <div class="news-grid">
+    <div class="news-card reveal reveal-stagger" style="--stagger: 0ms">
+      <div class="news-date">March 21&ndash;22, 2026</div>
+      <h3 class="news-title">WiCSCon 3.0 &mdash; Designing Tomorrow, Today</h3>
+      <p class="news-desc">India's first student-led conference on inclusivity and diversity in CS. Speakers from Microsoft AI, Evolve AI, Neysa AI. 440 sign-ups.</p>
+    </div>
+    <div class="news-card reveal reveal-stagger" style="--stagger: 100ms">
+      <div class="news-date">March 21, 2026</div>
+      <h3 class="news-title">ACM COMPUTE 2026 Regional Workshop</h3>
+      <p class="news-desc">Hosted at Ashoka &mdash; forum on CS education themes and hands-on workshops.</p>
+    </div>
+    <div class="news-card reveal reveal-stagger" style="--stagger: 200ms">
+      <div class="news-date">March 2026</div>
+      <h3 class="news-title">Two Papers Accepted at ITiCSE</h3>
+      <p class="news-desc">AI Pedagogy / BOOP project. Students will present in Spain in July 2026.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FACULTY ========== -->
+<section class="faculty">
+  <div class="reveal">
+    <div class="section-eyebrow">&#9670; Contributors</div>
+    <h2 class="section-title">The hands behind the work.</h2>
+  </div>
+  <div class="faculty-grid">
+    <div class="faculty-card reveal reveal-stagger" style="--stagger: 0ms">
+      <img class="faculty-photo" src="assets/people/debayan-gupta.png" alt="Debayan Gupta">
+      <div class="faculty-info">
+        <div class="faculty-name">Debayan Gupta</div>
+        <div class="faculty-role">Director, AI@Ashoka</div>
+      </div>
+    </div>
+    <div class="faculty-card reveal reveal-stagger" style="--stagger: 50ms">
+      <img class="faculty-photo" src="assets/people/gautam-menon.png" alt="Gautam Menon">
+      <div class="faculty-info">
+        <div class="faculty-name">Gautam Menon</div>
+        <div class="faculty-role">Lead, BharatSim</div>
+      </div>
+    </div>
+    <div class="faculty-card reveal reveal-stagger" style="--stagger: 100ms">
+      <img class="faculty-photo" src="assets/people/rintu-kutum.png" alt="Rintu Kutum">
+      <div class="faculty-info">
+        <div class="faculty-name">Rintu Kutum</div>
+        <div class="faculty-role">Lead, CHART</div>
+      </div>
+    </div>
+    <div class="faculty-card reveal reveal-stagger" style="--stagger: 150ms">
+      <img class="faculty-photo" src="assets/people/meghna-agarwala.png" alt="Meghna Agarwala">
+      <div class="faculty-info">
+        <div class="faculty-name">Meghna Agarwala</div>
+        <div class="faculty-role">Lead, Biodiversity</div>
+      </div>
+    </div>
+    <div class="faculty-card reveal reveal-stagger" style="--stagger: 200ms">
+      <img class="faculty-photo" src="assets/people/aalok-thakkar.png" alt="Aalok Thakkar">
+      <div class="faculty-info">
+        <div class="faculty-name">Aalok Thakkar</div>
+        <div class="faculty-role">Cybersecurity</div>
+      </div>
+    </div>
+    <div class="faculty-card reveal reveal-stagger" style="--stagger: 250ms">
+      <img class="faculty-photo" src="assets/people/bittu.png" alt="Bittu K. Rajaraman">
+      <div class="faculty-info">
+        <div class="faculty-name">Bittu K. Rajaraman</div>
+        <div class="faculty-role">Neuroscience & AI</div>
+      </div>
+    </div>
+    <div class="faculty-card reveal reveal-stagger" style="--stagger: 300ms">
+      <img class="faculty-photo" src="assets/people/ls-shashidhara.png" alt="L.S. Shashidhara">
+      <div class="faculty-info">
+        <div class="faculty-name">L.S. Shashidhara</div>
+        <div class="faculty-role">Dean, Research</div>
+      </div>
+    </div>
+    <div class="faculty-card reveal reveal-stagger" style="--stagger: 350ms">
+      <img class="faculty-photo" src="assets/people/kasturi-mitra.png" alt="Kasturi Mitra">
+      <div class="faculty-info">
+        <div class="faculty-name">Kasturi Mitra</div>
+        <div class="faculty-role">Cell Biology</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== JOIN ========== -->
+<section class="join">
+  <div class="reveal">
+    <div class="section-eyebrow">&#9670; Join the Lab</div>
+    <div class="join-header">
+      <h2 class="section-title">We're hiring across every pillar.</h2>
+      <p class="join-subtitle">Research runs on people. We take PhDs, postdocs, engineers, and undergraduates &mdash; year-round.</p>
+    </div>
+  </div>
+  <div class="join-grid">
+    <div class="join-card reveal reveal-stagger" style="--stagger: 0ms">
+      <div class="join-count">12 Positions</div>
+      <div class="join-role">PhD Students</div>
+      <div class="join-desc">Fully funded doctoral positions across all five research pillars. Interdisciplinary work encouraged.</div>
+      <span class="join-arrow">&rarr;</span>
+    </div>
+    <div class="join-card reveal reveal-stagger" style="--stagger: 100ms">
+      <div class="join-count">4 Positions</div>
+      <div class="join-role">Postdocs</div>
+      <div class="join-desc">Postdoctoral fellowships in AI, computational biology, and cybersecurity research.</div>
+      <span class="join-arrow">&rarr;</span>
+    </div>
+    <div class="join-card reveal reveal-stagger" style="--stagger: 200ms">
+      <div class="join-count">Rolling</div>
+      <div class="join-role">Research Staff</div>
+      <div class="join-desc">Research engineers, lab managers, and technical staff. Rolling applications accepted.</div>
+      <span class="join-arrow">&rarr;</span>
+    </div>
+    <div class="join-card reveal reveal-stagger" style="--stagger: 300ms">
+      <div class="join-count">Open</div>
+      <div class="join-role">Undergraduates</div>
+      <div class="join-desc">Summer and semester-long research internships for Ashoka undergraduates.</div>
+      <span class="join-arrow">&rarr;</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PARTNERS ========== -->
+<section class="partners">
+  <div class="partners-logos reveal">
+    <div class="partners-label">&#9670; In partnership with</div>
+    <img src="assets/mphasis-foundation.png" alt="Mphasis Foundation">
+    <img src="assets/lab-logo.png" alt="Mphasis AI & Applied Tech Lab">
+    <img src="assets/makerspace-logo.png" alt="Digital Makerspace">
+  </div>
+  <div class="partners-contact reveal">
+    <h4>Contact</h4>
+    <p>nikhil.raj@ashoka.edu.in</p>
+    <p>Mphasis AI & Applied Tech Lab<br>Ashoka University<br>Sonipat, Haryana 131029<br>India</p>
+  </div>
+  <div class="partners-nav reveal">
+    <h4>Navigate</h4>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Research</a>
+    <a href="#">People</a>
+    <a href="#">Publications</a>
+    <a href="#">Makerspace</a>
+    <a href="#">Impact</a>
+    <a href="#">News</a>
+    <a href="#">Contact</a>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <span>&copy; 2026 Mphasis AI &amp; Applied Tech Lab</span>
+  <span>Volume X &middot; Edition One</span>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // ========== HUD COUNTER ==========
+  let hudCount = 0;
+  const hudEl = document.getElementById('hud-counter');
+  setInterval(() => {
+    hudCount++;
+    hudEl.textContent = String(hudCount).padStart(4, '0');
+  }, 1500);
+
+  // ========== HERO WORD ANIMATION ==========
+  function splitHeroWords() {
+    const lines = document.querySelectorAll('.hero-line');
+    lines.forEach((line, lineIndex) => {
+      const text = line.getAttribute('data-text');
+      const words = text.split(/\s+/);
+      const isLine2 = line.classList.contains('line2');
+      line.innerHTML = words.map((word, i) => {
+        const baseDelay = lineIndex === 0 ? 300 : 600;
+        const delay = baseDelay + (i * 60);
+        return `<span class="hero-word"><span style="transition-delay:${delay}ms">${word}</span></span>`;
+      }).join(' ');
+      if (isLine2) {
+        line.style.fontStyle = 'italic';
+        line.style.color = 'var(--accent)';
+      }
+    });
+  }
+
+  function triggerHeroAnimation() {
+    // Meta line
+    document.getElementById('hero-meta').classList.add('animate');
+    // Words
+    document.querySelectorAll('.hero-word').forEach(w => w.classList.add('animate'));
+    // Subtitle
+    document.getElementById('hero-subtitle').classList.add('animate');
+    // Telemetry
+    document.getElementById('hero-telemetry').classList.add('animate');
+  }
+
+  splitHeroWords();
+  // Small delay to ensure CSS is ready
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      triggerHeroAnimation();
+      // Trigger hero countups
+      document.querySelectorAll('.hero-telemetry .countup').forEach(el => {
+        countUp(el, 1100);
+      });
+    });
+  });
+
+  // ========== COUNT UP ==========
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function countUp(el, extraDelay) {
+    const target = parseInt(el.getAttribute('data-target'), 10);
+    const duration = 1400;
+    const delay = extraDelay || 0;
+    let started = false;
+
+    setTimeout(() => {
+      const startTime = performance.now();
+      function tick(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeOutCubic(progress);
+        el.textContent = Math.round(eased * target);
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = target;
+        }
+      }
+      requestAnimationFrame(tick);
+    }, delay);
+  }
+
+  // ========== INTERSECTION OBSERVER FOR REVEALS ==========
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+
+        // Trigger countups inside this element
+        const countups = entry.target.querySelectorAll('.countup');
+        countups.forEach(el => {
+          if (!el.dataset.counted) {
+            el.dataset.counted = 'true';
+            countUp(el, 0);
+          }
+        });
+
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px'
+  });
+
+  // Observe all .reveal elements (but NOT the hero ones which animate on load)
+  document.querySelectorAll('.reveal').forEach(el => {
+    // Skip hero elements
+    if (el.closest('.hero')) return;
+    revealObserver.observe(el);
+  });
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field Notes — Mphasis AI & Applied Tech Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ===== TOKENS ===== */
+        :root {
+            --bg-paper: #F5EBD3;
+            --text-primary: #1B2E1A;
+            --text-secondary: #2B3A1C;
+            --text-tertiary: #5C4A2E;
+            --accent-rust: #8B3A1F;
+            --dark-bg: #1B2E1A;
+            --dark-text: #F5EBD3;
+            --card-bg: #FDF5E2;
+            --plate-bg: #EDDFB8;
+            --amber: #E4A03B;
+            --footer-bg: #0E1A0D;
+            --border-dark: #3D2F1F;
+            --font-body: Georgia, serif;
+            --font-label: 'Zilla Slab', Georgia, serif;
+        }
+
+        /* ===== BASE ===== */
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-paper);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        /* ===== PAPER TEXTURE ===== */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.4;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(139,94,52,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139,94,52,0.06) 0%, transparent 50%);
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+
+        /* ===== ANIMATION BASE ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 800ms cubic-bezier(.2,.8,.2,1), transform 800ms cubic-bezier(.2,.8,.2,1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== TOP BAR ===== */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 64px;
+            border-bottom: 2px solid var(--text-primary);
+            position: relative;
+            z-index: 100;
+        }
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-label);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        .topbar-left img {
+            height: 36px;
+        }
+        .topbar-nav {
+            display: flex;
+            gap: 32px;
+            font-family: var(--font-label);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        .topbar-nav a:hover { color: var(--accent-rust); }
+        .topbar-search {
+            font-family: var(--font-label);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border: 1px solid var(--border-dark);
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+        .topbar-search:hover { background: var(--text-primary); color: var(--bg-paper); }
+
+        /* ===== HERO ===== */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 64px;
+            padding: 72px 64px 56px;
+        }
+        .hero-left {}
+        .hero-issue {
+            font-family: var(--font-label);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent-rust);
+            margin-bottom: 24px;
+        }
+        .hero-title {
+            font-family: var(--font-body);
+            font-size: 112px;
+            font-weight: 400;
+            line-height: 0.98;
+            letter-spacing: -0.02em;
+            font-style: italic;
+            margin-bottom: 28px;
+        }
+        .hero-title .not-italic { font-style: normal; }
+        .hero-subtitle {
+            font-size: 20px;
+            line-height: 1.55;
+            max-width: 640px;
+            color: var(--text-secondary);
+        }
+        .hero-pullquote {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 22px;
+            line-height: 1.45;
+            color: var(--border-dark);
+            border-left: 3px solid var(--accent-rust);
+            padding-left: 24px;
+            margin-top: 32px;
+            max-width: 580px;
+        }
+
+        /* ===== FIELD CARD ===== */
+        .field-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-dark);
+            padding: 36px 32px;
+            box-shadow: 6px 6px 0 var(--text-primary);
+            align-self: start;
+        }
+        .field-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px dashed var(--border-dark);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            font-family: var(--font-label);
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-rust);
+        }
+        .field-card-title {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 28px;
+            margin-bottom: 4px;
+        }
+        .field-card-subtitle {
+            font-family: var(--font-label);
+            font-size: 13px;
+            color: var(--accent-rust);
+            margin-bottom: 20px;
+        }
+        .field-row {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-body);
+            font-size: 15px;
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(61,47,31,0.3);
+        }
+        .field-row-label { color: var(--text-tertiary); }
+        .field-row-value { text-align: right; }
+        .field-card-footer {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 14px;
+            color: var(--text-tertiary);
+            margin-top: 28px;
+            line-height: 1.5;
+        }
+
+        /* ===== SAMPLER BAND (STATS) ===== */
+        .sampler {
+            padding: 60px 64px;
+            border-top: 2px solid var(--text-primary);
+            border-bottom: 2px solid var(--text-primary);
+            background: var(--dark-bg);
+            color: var(--dark-text);
+        }
+        .sampler-eyebrow {
+            font-family: var(--font-label);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 36px;
+        }
+        .sampler-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+        }
+        .sampler-item {
+            border-left: 1px solid rgba(245,235,211,0.25);
+            padding-left: 16px;
+        }
+        .sampler-value {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 64px;
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .sampler-suffix {
+            color: var(--amber);
+            font-style: normal;
+        }
+        .sampler-label {
+            font-family: var(--font-label);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(245,235,211,0.7);
+        }
+
+        /* ===== SECTION HEADER (CHAPTER) ===== */
+        .section-header {
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 64px;
+            align-items: end;
+            margin-bottom: 64px;
+        }
+        .section-numeral {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 140px;
+            line-height: 1;
+            color: var(--accent-rust);
+        }
+        .section-numeral-label {
+            font-family: var(--font-label);
+            font-size: 13px;
+            color: var(--accent-rust);
+            letter-spacing: 0.15em;
+            margin-top: 4px;
+        }
+        .section-title {
+            font-family: var(--font-body);
+            font-size: 56px;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+        .section-lede {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 19px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            max-width: 600px;
+        }
+
+        /* ===== PILLARS ===== */
+        .pillars {
+            padding: 96px 64px;
+        }
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+        .pillar-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-dark);
+            padding: 20px 18px 24px;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+        }
+        .pillar-card .spec-number {
+            font-family: var(--font-label);
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-rust);
+            margin-bottom: 12px;
+        }
+        .pillar-card .pillar-name {
+            font-family: var(--font-body);
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+        .pillar-card .pillar-count {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 12px;
+            color: var(--accent-rust);
+            margin-bottom: 12px;
+        }
+        .pillar-card .pillar-desc {
+            font-family: var(--font-body);
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            flex: 1;
+        }
+        .pillar-card .pillar-footer {
+            font-family: var(--font-label);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border-top: 1px dashed var(--border-dark);
+            padding-top: 12px;
+            margin-top: 16px;
+            cursor: pointer;
+        }
+        .pillar-card .pillar-footer:hover { opacity: 0.7; }
+
+        /* ===== PLATES (FEATURED WORK) ===== */
+        .plates {
+            background: var(--plate-bg);
+            border-top: 2px solid var(--text-primary);
+            border-bottom: 2px solid var(--text-primary);
+            padding: 80px 64px;
+        }
+        .plates-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+        .plate-frame {
+            background: var(--bg-paper);
+            border: 1px solid var(--border-dark);
+            padding: 20px;
+            box-shadow: 4px 4px 0 var(--text-primary);
+        }
+        .plate-image {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .plate-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .plate-image .placeholder {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 20px;
+            color: var(--amber);
+        }
+        .plate-caption {
+            padding-top: 16px;
+        }
+        .plate-fig {
+            font-family: var(--font-label);
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-rust);
+            margin-bottom: 6px;
+        }
+        .plate-title {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        .plate-desc {
+            font-family: var(--font-body);
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+        .plate-venue {
+            font-family: var(--font-label);
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        /* ===== ALMANAC (NEWS) ===== */
+        .almanac {
+            padding: 96px 64px;
+        }
+        .almanac-list { margin-top: 0; }
+        .almanac-item {
+            display: grid;
+            grid-template-columns: 220px 1fr 60px;
+            align-items: start;
+            border-top: 1px solid var(--border-dark);
+            padding: 28px 0;
+        }
+        .almanac-date {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 18px;
+            color: var(--accent-rust);
+        }
+        .almanac-content {}
+        .almanac-title {
+            font-family: var(--font-body);
+            font-size: 26px;
+            margin-bottom: 6px;
+            line-height: 1.25;
+        }
+        .almanac-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .almanac-arrow {
+            font-size: 26px;
+            color: var(--accent-rust);
+            text-align: right;
+            cursor: pointer;
+        }
+
+        /* ===== PEOPLE ===== */
+        .people {
+            padding: 80px 64px;
+            background: var(--dark-bg);
+            color: var(--dark-text);
+            border-top: 2px solid var(--text-primary);
+        }
+        .people-eyebrow {
+            font-family: var(--font-label);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 12px;
+        }
+        .people-title {
+            font-family: var(--font-body);
+            font-size: 56px;
+            margin-bottom: 48px;
+        }
+        .people-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .person {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(245,235,211,0.2);
+        }
+        .person-photo {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 2px solid var(--amber);
+            overflow: hidden;
+            flex-shrink: 0;
+            background: rgba(245,235,211,0.1);
+        }
+        .person-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .person-name {
+            font-family: var(--font-body);
+            font-size: 17px;
+        }
+        .person-role {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 13px;
+            color: var(--amber);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 56px 64px;
+            background: var(--footer-bg);
+            color: var(--dark-text);
+            border-top: 2px solid var(--amber);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 48px;
+        }
+        .footer-lab-name {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 36px;
+            margin-bottom: 16px;
+            line-height: 1.15;
+        }
+        .footer-address {
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(245,235,211,0.7);
+        }
+        .footer-heading {
+            font-family: var(--font-label);
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 16px;
+        }
+        .footer-text {
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(245,235,211,0.7);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1100px) {
+            .hero { grid-template-columns: 1fr; gap: 40px; }
+            .hero-title { font-size: 72px; }
+            .pillar-grid { grid-template-columns: repeat(3, 1fr); }
+            .sampler-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+            .section-header { grid-template-columns: 1fr; gap: 24px; }
+            .section-numeral { font-size: 80px; }
+            .people-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .topbar { flex-direction: column; gap: 16px; padding: 16px 24px; }
+            .topbar-nav { flex-wrap: wrap; justify-content: center; gap: 16px; }
+            .hero { padding: 40px 24px; }
+            .hero-title { font-size: 48px; }
+            .hero-subtitle { font-size: 17px; }
+            .hero-pullquote { font-size: 18px; }
+            .pillars, .almanac { padding: 56px 24px; }
+            .plates { padding: 56px 24px; }
+            .pillar-grid { grid-template-columns: 1fr 1fr; }
+            .plates-grid { grid-template-columns: 1fr; }
+            .sampler { padding: 40px 24px; }
+            .sampler-grid { grid-template-columns: repeat(2, 1fr); }
+            .sampler-value { font-size: 40px; }
+            .almanac-item { grid-template-columns: 1fr; gap: 8px; }
+            .almanac-arrow { text-align: left; }
+            .section-title { font-size: 36px; }
+            .people { padding: 56px 24px; }
+            .people-title { font-size: 36px; }
+            .people-grid { grid-template-columns: 1fr; }
+            .footer { padding: 40px 24px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .footer-lab-name { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <img src="assets/lab-logo.png" alt="Mphasis AI & Applied Tech Lab">
+            <span>· Ashoka University, Sonipat</span>
+        </div>
+        <nav class="topbar-nav">
+            <a href="#">Field Notes</a>
+            <a href="#">Specimens</a>
+            <a href="#">Publications</a>
+            <a href="#">Contributors</a>
+            <a href="#">Almanac</a>
+        </nav>
+        <div class="topbar-search">Search ⌘ K</div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-left">
+            <div class="hero-issue reveal">◆ Volume X · Spring Issue · MMXXVI</div>
+            <h1 class="hero-title reveal"><span class="not-italic">Field notes</span> from a working laboratory.</h1>
+            <p class="hero-subtitle reveal">The Mphasis AI &amp; Applied Tech Lab at Ashoka University conducts rigorous interdisciplinary research — from epidemic simulation at population scale, to cancer analytics at single-cell resolution, to tutors that teach computer science in rural classrooms.</p>
+            <blockquote class="hero-pullquote reveal">"A lab is a place where careful people do careful work — and sometimes, on good days, the careful work matters to the world."</blockquote>
+        </div>
+        <div class="field-card reveal">
+            <div class="field-card-header">
+                <span>Spec. No. 0010</span>
+                <span>Recorded 23 · IV · 2026</span>
+            </div>
+            <div class="field-card-title">Mphasis AI &amp; Applied Tech Lab</div>
+            <div class="field-card-subtitle">Ashoka University — Sonipat, Haryana</div>
+            <div class="field-row"><span class="field-row-label">Est.</span><span class="field-row-value">Circa 2020</span></div>
+            <div class="field-row"><span class="field-row-label">Habitat</span><span class="field-row-value">Interdisciplinary</span></div>
+            <div class="field-row"><span class="field-row-label">Faculty</span><span class="field-row-value">27 across 7 depts.</span></div>
+            <div class="field-row"><span class="field-row-label">Projects</span><span class="field-row-value">25+ in the field</span></div>
+            <div class="field-row"><span class="field-row-label">Range</span><span class="field-row-value">40+ partners · 15 countries</span></div>
+            <div class="field-row"><span class="field-row-label">Output</span><span class="field-row-value">30+ publications</span></div>
+            <div class="field-card-footer">"Observed flourishing in the foothills north of Delhi. Productive when cross-pollinated with partner institutions."</div>
+        </div>
+    </section>
+
+    <!-- SAMPLER BAND -->
+    <section class="sampler">
+        <div class="sampler-eyebrow reveal">◆ An accounting of the lab, to date</div>
+        <div class="sampler-grid">
+            <div class="sampler-item reveal">
+                <div class="sampler-value"><span class="countup" data-target="25">0</span><span class="sampler-suffix">+</span></div>
+                <div class="sampler-label">Research Projects</div>
+            </div>
+            <div class="sampler-item reveal">
+                <div class="sampler-value"><span class="countup" data-target="30">0</span><span class="sampler-suffix">+</span></div>
+                <div class="sampler-label">Publications</div>
+            </div>
+            <div class="sampler-item reveal">
+                <div class="sampler-value"><span class="countup" data-target="27">0</span><span class="sampler-suffix">+</span> <span style="font-size:24px;font-style:normal;opacity:0.6">Faculty</span></div>
+                <div class="sampler-label">7 Departments</div>
+            </div>
+            <div class="sampler-item reveal">
+                <div class="sampler-value"><span class="countup" data-target="6">0</span></div>
+                <div class="sampler-label">Deployed Systems</div>
+            </div>
+            <div class="sampler-item reveal">
+                <div class="sampler-value"><span class="countup" data-target="40">0</span><span class="sampler-suffix">+</span></div>
+                <div class="sampler-label">Partnerships</div>
+            </div>
+            <div class="sampler-item reveal">
+                <div class="sampler-value"><span class="countup" data-target="15">0</span><span class="sampler-suffix">+</span></div>
+                <div class="sampler-label">Countries</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHAPTER I — PILLARS -->
+    <section class="pillars">
+        <div class="section-header">
+            <div class="reveal">
+                <div class="section-numeral">§ I</div>
+                <div class="section-numeral-label">Five fields of study</div>
+            </div>
+            <div class="reveal">
+                <h2 class="section-title">Pillars of the lab, illustrated.</h2>
+                <p class="section-lede">Each pillar runs as its own program — a distinct field of inquiry with dedicated faculty, students, and research questions. Together they form a single organism.</p>
+            </div>
+        </div>
+        <div class="pillar-grid" id="pillarGrid">
+            <!-- Populated by JS for stagger -->
+        </div>
+    </section>
+
+    <!-- PLATES — FEATURED WORK -->
+    <section class="plates">
+        <div class="section-header">
+            <div class="reveal">
+                <div class="section-numeral">§ II</div>
+                <div class="section-numeral-label">Selected plates</div>
+            </div>
+            <div class="reveal">
+                <h2 class="section-title">Work in the field.</h2>
+                <p class="section-lede">Four studies from the current volume.</p>
+            </div>
+        </div>
+        <div class="plates-grid" id="platesGrid">
+            <!-- Populated by JS for stagger -->
+        </div>
+    </section>
+
+    <!-- ALMANAC — NEWS -->
+    <section class="almanac">
+        <div class="section-header">
+            <div class="reveal">
+                <div class="section-numeral">§ III</div>
+                <div class="section-numeral-label">Almanac</div>
+            </div>
+            <div class="reveal">
+                <h2 class="section-title">Recent entries.</h2>
+                <p class="section-lede">A log of the lab's public-facing events, papers, and gatherings.</p>
+            </div>
+        </div>
+        <div class="almanac-list">
+            <div class="almanac-item reveal">
+                <div class="almanac-date">March 21–22, 2026</div>
+                <div class="almanac-content">
+                    <div class="almanac-title">WiCSCon 3.0 — Designing Tomorrow, Today</div>
+                    <div class="almanac-desc">India's first student-led conference on inclusivity and diversity in CS. Speakers from Microsoft AI, Evolve AI, Neysa AI. 440 sign-ups.</div>
+                </div>
+                <div class="almanac-arrow">→</div>
+            </div>
+            <div class="almanac-item reveal">
+                <div class="almanac-date">March 21, 2026</div>
+                <div class="almanac-content">
+                    <div class="almanac-title">ACM COMPUTE 2026 Regional Workshop</div>
+                    <div class="almanac-desc">Hosted at Ashoka — forum on CS education themes and hands-on workshops.</div>
+                </div>
+                <div class="almanac-arrow">→</div>
+            </div>
+            <div class="almanac-item reveal">
+                <div class="almanac-date">March 2026</div>
+                <div class="almanac-content">
+                    <div class="almanac-title">Two Papers Accepted at ITiCSE</div>
+                    <div class="almanac-desc">AI Pedagogy / BOOP project. Students will present in Spain in July 2026.</div>
+                </div>
+                <div class="almanac-arrow">→</div>
+            </div>
+            <div class="almanac-item reveal">
+                <div class="almanac-date">February 6–8, 2026</div>
+                <div class="almanac-content">
+                    <div class="almanac-title">RedBrick Hacks III</div>
+                    <div class="almanac-desc">430+ applicants from 91+ universities across 23 states. 57 finalists competed across four SDG-aligned tracks.</div>
+                </div>
+                <div class="almanac-arrow">→</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PEOPLE -->
+    <section class="people">
+        <div class="people-eyebrow reveal">◆ Contributors to this volume</div>
+        <h2 class="people-title reveal">The hands behind the work.</h2>
+        <div class="people-grid" id="peopleGrid">
+            <!-- Populated by JS -->
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-lab-name">Mphasis AI &amp; Applied Tech Lab</div>
+                <div class="footer-address">
+                    Ashoka University<br>
+                    Rajiv Gandhi Education City<br>
+                    Sonipat, Haryana 131029, India<br><br>
+                    nikhil.raj@ashoka.edu.in
+                </div>
+            </div>
+            <div>
+                <div class="footer-heading">Colophon</div>
+                <div class="footer-text">
+                    Set in Georgia &amp; Zilla Slab<br>
+                    Printed on the web · 2026<br>
+                    Edition of one
+                </div>
+            </div>
+            <div>
+                <div class="footer-heading">In partnership</div>
+                <div class="footer-text">
+                    Mphasis F1 Foundation<br>
+                    Ashoka Makerspace<br>
+                    40+ institutions worldwide
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* ===== DATA ===== */
+        const pillars = [
+            { name: 'AI@Ashoka', color: '#2563EB', count: 9, desc: 'Education, health, environment, humanities, fundamental sciences.' },
+            { name: 'BharatSim', color: '#059669', count: 4, desc: 'India-scale agent-based simulation for epidemiology & public health.' },
+            { name: 'CHART', color: '#D97706', count: 5, desc: 'Health analytics, food computing, cancer diagnostics.' },
+            { name: 'Cybersecurity', color: '#7C3AED', count: 3, desc: 'Post-quantum cryptography against quantum-era threats.' },
+            { name: 'Makerspace', color: '#DC2626', count: 4, desc: 'Digital fabrication, maker education, physical prototyping.' }
+        ];
+
+        const featuredWork = [
+            {
+                fig: 1, pillar: 'BharatSim',
+                title: 'India-Scale Epidemic Simulation',
+                desc: 'Agent-based modelling of a nation. Our H5N1 avian flu study was covered by BBC, NDTV, Nature India, and 20+ international outlets. The platform is now deployed to the National AIDS Control Organization for HIV predictive modelling.',
+                venue: 'BMC Public Health · 2025',
+                image: 'assets/bharatsim-network.png'
+            },
+            {
+                fig: 2, pillar: 'AI@Ashoka',
+                title: 'OncoMark — Cancer Diagnostics AI',
+                desc: 'Framework quantifying cancer hallmarks across millions of single cells. Published in Communications Biology.',
+                venue: 'Communications Biology · 2025',
+                image: 'assets/earth-dark.jpg'
+            },
+            {
+                fig: 3, pillar: 'CHART',
+                title: 'World Food Atlas',
+                desc: 'Multimodal food computing platform mapping global cuisines — ingredients, recipes, nutrition at scale.',
+                venue: 'Ongoing · CHART',
+                image: null
+            },
+            {
+                fig: 4, pillar: 'AI@Ashoka',
+                title: 'AI-Driven Biodiversity Monitoring',
+                desc: 'Meghna Agarwala — 3-year Schmidt AI for Science Fellowship at Oxford for work on AI pollen detection.',
+                venue: 'Oxford · Schmidt Fellowship',
+                image: null
+            }
+        ];
+
+        const people = [
+            { name: 'Debayan Gupta', role: 'Director, AI@Ashoka', photo: 'assets/people/debayan-gupta.jpg' },
+            { name: 'Gautam Menon', role: 'Lead, BharatSim', photo: 'assets/people/gautam-menon.jpg' },
+            { name: 'Rintu Kutum', role: 'Lead, CHART', photo: 'assets/people/rintu-kutum.jpg' },
+            { name: 'Meghna Agarwala', role: 'Lead, Biodiversity', photo: 'assets/people/meghna-agarwala.jpg' },
+            { name: 'Aalok Thakkar', role: 'Cybersecurity', photo: 'assets/people/aalok-thakkar.jpg' },
+            { name: 'Bittu K. Rajaraman', role: 'Neuroscience & AI', photo: 'assets/people/bittu-rajaraman.jpg' },
+            { name: 'L.S. Shashidhara', role: 'Dean, Research', photo: 'assets/people/ls-shashidhara.jpg' },
+            { name: 'Kasturi Mitra', role: 'Cell Biology', photo: 'assets/people/kasturi-mitra.jpg' }
+        ];
+
+        /* ===== RENDER PILLAR CARDS ===== */
+        const pillarGrid = document.getElementById('pillarGrid');
+        pillars.forEach((p, i) => {
+            const card = document.createElement('div');
+            card.className = 'pillar-card reveal';
+            card.style.transitionDelay = `${i * 100}ms`;
+            card.innerHTML = `
+                <div class="spec-number">Spec. 0${i + 1}</div>
+                <div class="pillar-name">${p.name}</div>
+                <div class="pillar-count">${p.count} specimens catalogued</div>
+                <div class="pillar-desc">${p.desc}</div>
+                <div class="pillar-footer" style="color:${p.color}">Observe →</div>
+            `;
+            pillarGrid.appendChild(card);
+        });
+
+        /* ===== RENDER PLATES ===== */
+        const platesGrid = document.getElementById('platesGrid');
+        featuredWork.forEach((w, i) => {
+            const plate = document.createElement('div');
+            plate.className = 'plate-frame reveal';
+            plate.style.transitionDelay = `${i * 150}ms`;
+            const imgContent = w.image
+                ? `<img src="${w.image}" alt="${w.title}">`
+                : `<span class="placeholder">[ plate · 0${w.fig} ]</span>`;
+            plate.innerHTML = `
+                <div class="plate-image">${imgContent}</div>
+                <div class="plate-caption">
+                    <div class="plate-fig">Fig. ${w.fig} · ${w.pillar}</div>
+                    <div class="plate-title">${w.title}</div>
+                    <div class="plate-desc">${w.desc}</div>
+                    <div class="plate-venue">— ${w.venue}</div>
+                </div>
+            `;
+            platesGrid.appendChild(plate);
+        });
+
+        /* ===== RENDER PEOPLE ===== */
+        const peopleGrid = document.getElementById('peopleGrid');
+        people.forEach((p, i) => {
+            const el = document.createElement('div');
+            el.className = 'person reveal';
+            el.style.transitionDelay = `${i * 80}ms`;
+            el.innerHTML = `
+                <div class="person-photo"><img src="${p.photo}" alt="${p.name}" onerror="this.style.display='none'"></div>
+                <div>
+                    <div class="person-name">${p.name}</div>
+                    <div class="person-role">${p.role}</div>
+                </div>
+            `;
+            peopleGrid.appendChild(el);
+        });
+
+        /* ===== INTERSECTION OBSERVER ===== */
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+
+                    // Trigger countup if this element contains one
+                    const counters = entry.target.querySelectorAll('.countup');
+                    counters.forEach(c => animateCount(c));
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        /* ===== COUNT UP ===== */
+        function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+        function animateCount(el) {
+            const target = parseInt(el.dataset.target, 10);
+            const duration = 1400;
+            const start = performance.now();
+
+            function tick(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const easedProgress = easeOutCubic(progress);
+                el.textContent = Math.round(easedProgress * target);
+                if (progress < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Research at the Mphasis AI & Applied Tech Lab — 25+ projects across 5 pillars: AI@Ashoka, BharatSim, CHART, Cybersecurity, and Makerspace.">
+  <meta name="theme-color" content="#1B2A4A">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Research | Mphasis AI & Applied Tech Lab">
+  <meta property="og:description" content="25+ research projects across five pillars — from AI-driven drug discovery to India-scale epidemic modelling.">
+  <meta property="og:type" content="website">
+
+  <title>Research | Mphasis AI & Applied Tech Lab</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../src/assets/images/logos/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../src/assets/images/logos/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../src/assets/images/logos/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../src/css/variables.css">
+  <link rel="stylesheet" href="../src/css/reset.css">
+  <link rel="stylesheet" href="../src/css/base.css">
+  <link rel="stylesheet" href="../src/css/layout.css">
+  <link rel="stylesheet" href="../src/css/header.css">
+  <link rel="stylesheet" href="../src/css/footer.css">
+  <link rel="stylesheet" href="../src/css/components.css">
+  <link rel="stylesheet" href="../src/css/animations.css">
+  <link rel="stylesheet" href="../src/css/pages.css">
+  <link rel="stylesheet" href="../src/css/detail-pages.css">
+  <link rel="stylesheet" href="../src/css/utilities.css">
+  <link rel="stylesheet" href="../src/css/search.css">
+  <link rel="stylesheet" href="../src/css/floating-nav.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="progress-bar" id="progress-bar" aria-hidden="true"></div>  <!-- Floating Buttons -->
+  <button class="float-menu-btn" id="floatMenuBtn" aria-label="Open navigation">
+    <div class="float-menu-btn__icon"><span></span><span></span><span></span></div>
+    <span class="float-menu-btn__label">Menu</span>
+  </button>
+  <button class="float-search-btn" id="floatSearchBtn" aria-label="Search">
+    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+    <span class="float-search-btn__label">Search</span>
+  </button>
+
+  <!-- Side Navigation -->
+  <nav class="side-nav" id="side-nav" aria-label="Side navigation">
+    <div class="side-nav__backdrop" id="side-nav-backdrop"></div>
+    <div class="side-nav__panel">
+      <div class="side-nav__header">
+        <a href="../index.html" style="display:inline-block; margin-left:-70px;">
+          <img src="../src/assets/images/logos/lab-logo.png" alt="Mphasis AI & Applied Tech Lab" style="height:100px; width:auto;">
+        </a>
+        <button class="side-nav__close" id="side-nav-close" aria-label="Close menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>Close</span>
+        </button>
+      </div>
+      <div class="side-nav__body">
+        <div class="side-nav__col-pages">
+          <span class="side-nav__subtitle">Navigate</span>
+          <ul class="side-nav__list">
+            <li class="side-nav__item"><a href="../index.html" class="side-nav__link">Home</a></li>
+            <li class="side-nav__item"><a href="about.html" class="side-nav__link">About</a></li>
+            <li class="side-nav__item"><a href="research.html" class="side-nav__link">Research</a></li>
+            <li class="side-nav__item"><a href="people.html" class="side-nav__link">People</a></li>
+            <li class="side-nav__item"><a href="publications.html" class="side-nav__link">Publications</a></li>
+            <li class="side-nav__item"><a href="makerspace.html" class="side-nav__link">Makerspace</a></li>
+            <li class="side-nav__item"><a href="news.html" class="side-nav__link">News &amp; Events</a></li>
+            <li class="side-nav__item"><a href="impact.html" class="side-nav__link">Impact</a></li>
+            <li class="side-nav__item"><a href="contact.html" class="side-nav__link">Contact</a></li>
+          </ul>
+        </div>
+        <div class="side-nav__col-pillars">
+          <span class="side-nav__subtitle">Research Pillars</span>
+          <ul class="side-nav__pill-list">
+            <li class="side-nav__item"><a href="pillar.html?pillar=ai" class="side-nav__pill-card" style="--pill-color:#2563EB;"><span class="side-nav__pill-icon" style="background:#DBEAFE;color:#2563EB;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span><span class="side-nav__pill-name">AI</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=bharatsim" class="side-nav__pill-card" style="--pill-color:#059669;"><span class="side-nav__pill-icon" style="background:#D1FAE5;color:#059669;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/><path d="M2 7c2-3 4-3 6 0s4 3 6 0 4-3 6 0" opacity="0.4"/></svg></span><span class="side-nav__pill-name">BharatSim</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=chart" class="side-nav__pill-card" style="--pill-color:#D97706;"><span class="side-nav__pill-icon" style="background:#FEF3C7;color:#D97706;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h4l3-6 4 12 3-6h4"/></svg></span><span class="side-nav__pill-name">CHART</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=cyber" class="side-nav__pill-card" style="--pill-color:#7C3AED;"><span class="side-nav__pill-icon" style="background:#EDE9FE;color:#7C3AED;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 4v5c0 5.5-3.8 10.2-8 12-4.2-1.8-8-6.5-8-12V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="side-nav__pill-name">Cybersecurity</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=makerspace" class="side-nav__pill-card" style="--pill-color:#009BDE;"><span class="side-nav__pill-icon" style="background:#E0F2FE;color:#009BDE;"><img src="../src/assets/images/logos/makerspace-logo.png" alt="Makerspace"></span><span class="side-nav__pill-name">Makerspace</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="side-nav__footer">
+        <div class="side-nav__contact">
+          <a href="mailto:mphasis.lab.edu.in">mphasis.lab.edu.in</a> &nbsp;&middot;&nbsp; Ashoka University, Sonipat, India
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div class="page">
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search" hidden>
+      <div class="search-overlay__backdrop"></div>
+      <div class="search-overlay__panel">
+        <div class="search-overlay__header">
+          <div class="search-overlay__input-wrapper">
+            <svg class="search-overlay__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+            <input type="search" class="search-overlay__input" id="search-input" placeholder="Search projects, people, publications..." autocomplete="off">
+            <kbd class="search-overlay__kbd">ESC</kbd>
+          </div>
+        </div>
+        <div class="search-overlay__results" id="search-results" aria-live="polite">
+          <div class="search-overlay__empty">
+            <p class="search-overlay__empty-text">Type to search across projects, people, and publications</p>
+          </div>
+        </div>
+        <div class="search-overlay__footer">
+          <span><kbd>&#8984;</kbd><kbd>K</kbd> to toggle</span>
+          <span><kbd>&#8593;</kbd><kbd>&#8595;</kbd> to navigate</span>
+          <span><kbd>Enter</kbd> to select</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header" role="banner">
+      <div class="header__inner">
+        <a href="../index.html" class="header__logo" aria-label="Mphasis AI & Applied Tech Lab — Home">
+          <img src="../src/assets/images/logos/lab-logo.png" alt="Mphasis AI & Applied Tech Lab Logo">
+        </a>
+        <nav class="nav" role="navigation" aria-label="Primary navigation">
+          <a href="../index.html" class="nav__link">Home</a>
+          <a href="about.html" class="nav__link">About</a>
+          <a href="research.html" class="nav__link nav__link--active">Research</a>
+          <a href="people.html" class="nav__link">People</a>
+          <a href="publications.html" class="nav__link">Publications</a>
+          <a href="makerspace.html" class="nav__link">Makerspace</a>
+          <a href="news.html" class="nav__link">News & Events</a>
+          <a href="impact.html" class="nav__link">Impact</a>
+          <a href="contact.html" class="nav__link">Contact</a>
+        </nav>
+        <div class="header__actions">
+          <button class="header__search-trigger" aria-label="Search" aria-expanded="false" aria-controls="search-overlay">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+          </button>
+          <button class="header__menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="nav-mobile" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+      <a href="../index.html" class="nav-mobile__link">Home</a>
+      <a href="about.html" class="nav-mobile__link">About</a>
+      <a href="research.html" class="nav-mobile__link nav-mobile__link--active">Research</a>
+      <a href="people.html" class="nav-mobile__link">People</a>
+      <a href="publications.html" class="nav-mobile__link">Publications</a>
+      <a href="makerspace.html" class="nav-mobile__link">Makerspace</a>
+      <a href="news.html" class="nav-mobile__link">News & Events</a>
+      <a href="impact.html" class="nav-mobile__link">Impact</a>
+      <a href="contact.html" class="nav-mobile__link">Contact</a>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="page__content" id="main-content" role="main">
+
+      <!-- Page Hero -->
+      <section class="page-hero">
+        <canvas class="page-hero__canvas" data-page="research" aria-hidden="true"></canvas>
+        <div class="container">
+          <span class="page-hero__eyebrow reveal">Research</span>
+          <h1 class="page-hero__title reveal">Our Research</h1>
+          <p class="page-hero__description reveal">
+            25+ projects across five pillars — from AI-driven drug discovery and India-scale epidemic modelling to post-quantum cryptography and digital fabrication.
+          </p>
+        </div>
+      </section>
+
+      <!-- Pillar Filter -->
+      <section class="section section--sm">
+        <div class="container">
+          <div class="filter-bar reveal" id="pillar-filter" role="toolbar" aria-label="Filter by research pillar">
+            <button class="filter-bar__btn filter-bar__btn--active" data-filter="all" aria-pressed="true">All Pillars</button>
+            <button class="filter-bar__btn" data-filter="ai" aria-pressed="false">AI@Ashoka</button>
+            <button class="filter-bar__btn" data-filter="bharatsim" aria-pressed="false">BharatSim</button>
+            <button class="filter-bar__btn" data-filter="chart" aria-pressed="false">CHART</button>
+            <button class="filter-bar__btn" data-filter="cyber" aria-pressed="false">Cybersecurity</button>
+            <button class="filter-bar__btn" data-filter="makerspace" aria-pressed="false">Makerspace</button>
+          </div>
+          <div class="filter-bar filter-bar--secondary reveal" id="theme-filter" role="toolbar" aria-label="Filter by research theme" style="margin-top: var(--space-3);">
+            <button class="filter-bar__btn filter-bar__btn--active" data-filter="all" aria-pressed="true">All Themes</button>
+          </div>
+          <div id="filter-live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           PILLAR 1: AI@ASHOKA
+           ═══════════════════════════════════════ -->
+      <section class="section filter-target" id="ai" data-section-pillar="ai" style="--pillar-color: var(--pillar-ai); --pillar-light: var(--pillar-ai-bg);">
+        <div class="container">
+          <div class="pillar-section__header reveal">
+            <div class="pillar-section__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><path d="M5.6 5.6l2.9 2.9M15.5 15.5l2.9 2.9M18.4 5.6l-2.9 2.9M8.5 15.5l-2.9 2.9"/>
+              </svg>
+            </div>
+            <div class="pillar-section__meta">
+              <h2 class="pillar-section__title">AI@Ashoka</h2>
+              <p class="pillar-section__subtitle">Artificial intelligence and machine learning applied across health, biodiversity, education, policy, and materials science. Spanning Computer Science, Biology, Chemistry, Environmental Studies, Physics, Psychology, and the Centre for Writing and Communication (CWC).</p>
+              <div class="pillar-section__stats">
+                <span class="pillar-section__stat"><strong>14</strong> projects</span>
+                <span class="pillar-section__stat"><strong>17</strong> faculty</span>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid--2 reveal-stagger" style="gap: var(--space-5);">
+
+            <!-- Cancer Ascend -->
+            <article class="project-list-card reveal" data-pillar="ai">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">Cancer Ascend</h3>
+                <p class="project-list-card__pi">Debayan Gupta &amp; Shubhasis Haldar</p>
+                <p class="project-list-card__desc">OncoMark framework published in Communications Biology (Nature portfolio) — first tool to predict all 10 cancer hallmarks concurrently, with high accuracy across multiple cancer types and independent validation cohorts.</p>
+              </div>
+            </article>
+
+            <!-- NS3 Inhibitors -->
+            <article class="project-list-card reveal" data-pillar="ai">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">Dengue NS3 Protease Inhibitors</h3>
+                <p class="project-list-card__pi">Sourav Chatterjee &amp; Rintu Kutum</p>
+                <p class="project-list-card__desc">Screened millions of molecules using ensemble ML and identified promising compounds as potential dengue NS3 protease inhibitors. A lead compound demonstrated significant viral inhibition in experimental validation with IISER Kolkata.</p>
+              </div>
+            </article>
+
+            <!-- AI-Driven Antibiotic Discovery -->
+            <article class="project-list-card reveal" data-pillar="ai">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">AI-Driven Antibiotic Discovery</h3>
+                <p class="project-list-card__pi">Imroze Khan</p>
+                <p class="project-list-card__desc">Discovering antimicrobial peptides from archaic hominin genomes — identified ~10,000 AMPs from 11 lineages including Neanderthal and Denisovan. 178 peptides validated via molecular dynamics, 4 synthesized for in-vitro screening against multidrug-resistant pathogens.</p>
+              </div>
+            </article>
+
+            <!-- AI-Powered Biomarker Discovery -->
+            <article class="project-list-card reveal" data-pillar="ai">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">AI-Powered Biomarker Discovery</h3>
+                <p class="project-list-card__pi">Kasturi Mitra</p>
+                <p class="project-list-card__desc">Using AI and cancer cell biology to predict mitochondrial redox function from structural features. Machine learning models demonstrated strong predictive performance across experimental groups, with a meta-learning approach generalizing effectively to unseen data.</p>
+              </div>
+            </article>
+
+            <!-- Demographic Inference -->
+            <article class="project-list-card reveal" data-pillar="ai">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">AI-Driven Demographic Inference</h3>
+                <p class="project-list-card__pi">Kritika Garg &amp; Balaji Chattopadhyay</p>
+                <p class="project-list-card__desc">ML pipeline for inferring demographic history from genetic data. Validated on real-world Siamese crocodile genetic data, successfully predicting a documented population bottleneck.</p>
+              </div>
+            </article>
+
+            <!-- AIM-Flow -->
+            <article class="project-list-card reveal" data-pillar="ai">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">AIM-Flow</h3>
+                <p class="project-list-card__pi">Rama Akondy</p>
+                <p class="project-list-card__desc">AI tools for acute myeloid leukemia diagnosis from flow cytometry data. Validated on public datasets with strong classification performance across patient cohorts.</p>
+              </div>
+            </article>
+
+            <!-- Infant Gaze -->
+            <article class="project-list-card reveal" data-pillar="ai">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">Infant Gaze Pattern Analysis</h3>
+                <p class="project-list-card__pi">Madhavi Maganti</p>
+                <p class="project-list-card__desc">Screening infant neurodevelopmental risk using AI analysis of gaze patterns at Dr. RML Hospital, New Delhi. Hundreds of infants assessed using a structured clinical framework by neonatologists, with ML-based age classification models developed.</p>
+              </div>
+            </article>
+
+            <!-- COF Screening -->
+            <article class="project-list-card reveal" data-pillar="ai">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">High-Throughput COF Screening</h3>
+                <p class="project-list-card__pi">Vidya Avasare</p>
+                <p class="project-list-card__desc">AI-accelerated discovery of Covalent Organic Frameworks for carbon dioxide capture. Large-scale computational screening pipeline developed with hundreds of optimized structures and a curated experimental database.</p>
+              </div>
+            </article>
+
+            <!-- Fire Mapping -->
+            <article class="project-list-card reveal" data-pillar="ai">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">High-Resolution Fire Mapping</h3>
+                <p class="project-list-card__pi">Meghna Agarwala</p>
+                <p class="project-list-card__desc">High-resolution AI models for fire detection using satellite imagery. 35 students trained on GIS, remote sensing, and ML. Presented at NASA-SARI meeting. Wall-to-wall fire product code finalized for Central India.</p>
+              </div>
+            </article>
+
+            <!-- Pollen Project -->
+            <article class="project-list-card reveal" data-pillar="ai">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">AI Detection of Pollen</h3>
+                <p class="project-list-card__pi">Meghna Agarwala</p>
+                <p class="project-list-card__desc">AI-powered pollen identification for paleo-ecology. Pollen library calibrated for 12 taxa with 40+ species from Satpura Tiger Reserve. Robotic microscope attachment developed with Digital Makerspace. PI awarded Schmidt AI for Science Fellowship at Oxford.</p>
+              </div>
+            </article>
+
+            <!-- Acoustic Biodiversity -->
+            <article class="project-list-card reveal" data-pillar="ai">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">Acoustic Biodiversity Monitoring</h3>
+                <p class="project-list-card__pi">Bittu Kaveri Rajaraman</p>
+                <p class="project-list-card__desc">Automating biodiversity assessment through acoustic monitoring of ground insect species in Assam. ~120 hours of audio data collected over 55+ recording days in Bihpuria, North Lakhimpur District.</p>
+              </div>
+            </article>
+
+            <!-- CS Pedagogy -->
+            <article class="project-list-card reveal" data-pillar="ai">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">Adaptive &amp; Inclusive CS Pedagogy</h3>
+                <p class="project-list-card__pi">Aalok Thakkar</p>
+                <p class="project-list-card__desc">BOOP (VS Code extension for formal methods) and SocraticAI (guardrailed LLM for scaffolded learning) deployed across 2 semesters at Ashoka. 4 papers at ACM COMPUTE 2025. SocraticAI featured as a case study in MeitY's Compendium on the Real-World Impact of AI in Education.</p>
+              </div>
+            </article>
+
+            <!-- CWC -->
+            <article class="project-list-card reveal" data-pillar="ai">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">Assistive AI for Academic Writing (CWC)</h3>
+                <p class="project-list-card__pi">Neerav Dwivedi, Sampurna Dutta &amp; Archishman Sarker</p>
+                <p class="project-list-card__desc">Assessed AI tools for argumentation in academic writing through a controlled experiment with 26 participants across 5 disciplines. Report launched February 2026 with an AI &amp; Academic Integrity Workshop (34 attendees).</p>
+              </div>
+            </article>
+
+            <!-- IndiaMediaLens -->
+            <article class="project-list-card reveal" data-pillar="ai">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">IndiaMediaLens</h3>
+                <p class="project-list-card__pi">Anirban Sen &amp; Debayan Gupta</p>
+                <p class="project-list-card__desc">Two live systems for media monitoring: a News Adjudication Monitor dashboard and a Chrome browser plugin with bias indicators. Analyses thousands of articles from 20+ sources alongside decades of Press Council data.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           PILLAR 2: BHARATSIM
+           ═══════════════════════════════════════ -->
+      <section class="section section--alt filter-target" id="bharatsim" data-section-pillar="bharatsim" style="--pillar-color: var(--pillar-bharatsim); --pillar-light: var(--pillar-bharatsim-bg);">
+        <div class="container">
+          <div class="pillar-section__header reveal">
+            <div class="pillar-section__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/><path d="M2 7c2-3 4-3 6 0s4 3 6 0 4-3 6 0" opacity="0.4"/><path d="M2 17c2-3 4-3 6 0s4 3 6 0 4-3 6 0" opacity="0.4"/>
+              </svg>
+            </div>
+            <div class="pillar-section__meta">
+              <h2 class="pillar-section__title">BharatSim</h2>
+              <p class="pillar-section__subtitle">Distributed, multi-scale agent-based simulation framework for epidemic modelling and population health. International media coverage across 20+ outlets including BBC.</p>
+              <div class="pillar-section__stats">
+                <span class="pillar-section__stat"><strong>1</strong> project</span>
+                <span class="pillar-section__stat"><strong>10+</strong> invited talks</span>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid--2 reveal-stagger" style="gap: var(--space-5);">
+
+            <article class="project-list-card reveal" data-pillar="bharatsim">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">BharatSim Agent-Based Modelling</h3>
+                <p class="project-list-card__pi">Gautam Menon &amp; Debayan Gupta</p>
+                <p class="project-list-card__desc">H5N1 avian influenza modelling paper published in BMC Public Health, covered by BBC, NDTV, CNBC-TV18, Nature India, and 20+ international outlets. Presentations at Wellcome Trust (London), WHO-SEARO, Border Security Force Academy, IIM Kozhikode, and more.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           PILLAR 3: CHART
+           ═══════════════════════════════════════ -->
+      <section class="section filter-target" id="chart" data-section-pillar="chart" style="--pillar-color: var(--pillar-chart); --pillar-light: var(--pillar-chart-bg);">
+        <div class="container">
+          <div class="pillar-section__header reveal">
+            <div class="pillar-section__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12h4l3-6 4 12 3-6h4"/>
+              </svg>
+            </div>
+            <div class="pillar-section__meta">
+              <h2 class="pillar-section__title">CHART</h2>
+              <p class="pillar-section__subtitle">Centre for Health Analytics Research and Trends — AI at the intersection of healthcare, food systems, and translational medicine. Organized the first International Workshop on Multimodal Food Computing at ACM Multimedia 2025.</p>
+              <div class="pillar-section__stats">
+                <span class="pillar-section__stat"><strong>3</strong> projects</span>
+                <span class="pillar-section__stat"><strong>8+</strong> publications</span>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid--2 reveal-stagger" style="gap: var(--space-5);">
+
+            <!-- Folk Computing -->
+            <article class="project-list-card reveal" data-pillar="chart">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">Folk Computing for Abdominal Pain</h3>
+                <p class="project-list-card__pi">Rintu Kutum</p>
+                <p class="project-list-card__desc">PRISM (Physician Rules Integrated with Small LLMs) for conversational diagnosis of abdominal pain, accepted at NeurIPS 2025 GenAI4Health Workshop. Supports Hindi voice interaction for accessible clinical use.</p>
+              </div>
+            </article>
+
+            <!-- Multimodal Food Computing -->
+            <article class="project-list-card reveal" data-pillar="chart">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">Multimodal Food Computing</h3>
+                <p class="project-list-card__pi">Lipika Dey &amp; Partha Pratim Das</p>
+                <p class="project-list-card__desc">Multiple peer-reviewed publications. Organized MMFood'25 at ACM Multimedia in Dublin. SmartDiet won the Promising Innovation Award at INFUSE Innovation Summit 2025. Food Composition Table expanded to 10,000+ recipes. Indian Recipe Dialogue System (IRDS) deployed with voice interaction and vernacular language support.</p>
+              </div>
+            </article>
+
+            <!-- TNBC -->
+            <article class="project-list-card reveal" data-pillar="chart">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">Triple Negative Breast Cancer (TNBC)</h3>
+                <p class="project-list-card__pi">L.S. Shashidhara</p>
+                <p class="project-list-card__desc">Profiled 100+ TNBC patients across 9 actionable molecular markers. Presented at EACR 2025 in Lisbon. Clinical data curated from nearly 5,000 breast cancer cases. Key finding: patients with high tumour-infiltrating lymphocytes showed significantly better survival outcomes.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           PILLAR 4: CYBERSECURITY
+           ═══════════════════════════════════════ -->
+      <section class="section section--alt filter-target" id="cyber" data-section-pillar="cyber" style="--pillar-color: var(--pillar-cyber); --pillar-light: var(--pillar-cyber-bg);">
+        <div class="container">
+          <div class="pillar-section__header reveal">
+            <div class="pillar-section__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l8 4v5c0 5.5-3.8 10.2-8 12-4.2-1.8-8-6.5-8-12V7l8-4z"/><path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <div class="pillar-section__meta">
+              <h2 class="pillar-section__title">Cybersecurity</h2>
+              <p class="pillar-section__subtitle">Post-quantum cryptography research developing DNS security protocols resilient against quantum computing threats. Published at ACM ASIACCS 2025.</p>
+              <div class="pillar-section__stats">
+                <span class="pillar-section__stat"><strong>1</strong> project</span>
+                <span class="pillar-section__stat"><strong>4</strong> publications</span>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid--2 reveal-stagger" style="gap: var(--space-5);">
+
+            <article class="project-list-card reveal" data-pillar="cyber">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">Post-Quantum Cryptography (PQC)</h3>
+                <p class="project-list-card__pi">Mahavir Jhawar</p>
+                <p class="project-list-card__desc">Presented at ACM ASIACCS 2025 (Hanoi). Research spans post-quantum DNS security protocols, lattice-based cryptographic foundations, and network security analysis.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+           PILLAR 5: MAKERSPACE
+           ═══════════════════════════════════════ -->
+      <section class="section filter-target" id="makerspace" data-section-pillar="makerspace" style="--pillar-color: var(--pillar-makerspace); --pillar-light: var(--pillar-makerspace-bg);">
+        <div class="container">
+          <div class="pillar-section__header reveal">
+            <div class="pillar-section__icon">
+              <img src="../src/assets/images/logos/makerspace-logo.png" alt="Makerspace logo">
+            </div>
+            <div class="pillar-section__meta">
+              <h2 class="pillar-section__title">Makerspace</h2>
+              <p class="pillar-section__subtitle">Digital fabrication lab, scientific instrumentation, student innovation hub, and enabling platform for research across all pillars. Publications in Nature portfolio and Proceedings of the Royal Society B.</p>
+              <div class="pillar-section__stats">
+                <span class="pillar-section__stat"><strong>4</strong> projects</span>
+                <span class="pillar-section__stat"><strong>2,000+</strong> K-12 students</span>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid--2 reveal-stagger" style="gap: var(--space-5);">
+
+            <!-- Digital Makerspace -->
+            <article class="project-list-card reveal" data-pillar="makerspace">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">Digital Makerspace</h3>
+                <p class="project-list-card__pi">Deepraj Pandey, Sai Khurana &amp; Kanishk Singh</p>
+                <p class="project-list-card__desc">Innovation hub reaching ~1,450 students and 2,000+ school students. Major equipment includes laser cutters, CNC routers, industrial 3D printers, and drones. Hosted RedBrick Hacks III (430+ applicants from 91 universities).</p>
+              </div>
+            </article>
+
+            <!-- CMT -->
+            <article class="project-list-card reveal" data-pillar="makerspace">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">Covalent Magnetic Tweezers (CMT)</h3>
+                <p class="project-list-card__pi">Debayan Gupta &amp; Shubhasis Haldar</p>
+                <p class="project-list-card__desc">Built a complete single-molecule force spectroscopy instrument — described as "unique in India." Published in Communications Biology (Nature), Protein Science, and Biochemistry. Awarded Cell Press Technology of the Month.</p>
+              </div>
+            </article>
+
+            <!-- Table Top Experiments -->
+            <article class="project-list-card reveal" data-pillar="makerspace">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">Table-Top Glacier Flow Dynamics</h3>
+                <p class="project-list-card__pi">Pramoda Kumar</p>
+                <p class="project-list-card__desc">Table-top fluid experiments studying glacier flow dynamics. Controlled experiments confirmed self-similar flow profiles. Analysis of fingering instability developed. 3rd place at Meera Memorial Competition.</p>
+              </div>
+            </article>
+
+            <!-- Pedagogical Experiments -->
+            <article class="project-list-card reveal" data-pillar="makerspace">
+              <div class="project-list-card__body">
+                <h3 class="project-list-card__title">Pedagogical Physics Experiments</h3>
+                <p class="project-list-card__pi">Pramoda Kumar</p>
+                <p class="project-list-card__desc">Quantum optics and statistical physics experimental setups designed and built for the Physics department curriculum, enabling hands-on learning with advanced instrumentation.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Research Stats -->
+      <section class="section section--dark section--lg">
+        <div class="container">
+          <div class="section__header text-center reveal">
+            <span class="section__eyebrow">Cumulative Impact</span>
+            <h2 class="section__title">Research at a Glance</h2>
+          </div>
+          <div class="stats-grid reveal-stagger">
+            <div class="stat-card reveal">
+              <div class="stat-card__number" data-count="25">0<span class="stat-card__suffix">+</span></div>
+              <div class="stat-card__label">Research Projects</div>
+            </div>
+            <div class="stat-card reveal">
+              <div class="stat-card__number" data-count="25">0<span class="stat-card__suffix">+</span></div>
+              <div class="stat-card__label">Ashoka Faculty</div>
+            </div>
+            <div class="stat-card reveal">
+              <div class="stat-card__number" data-count="30">0<span class="stat-card__suffix">+</span></div>
+              <div class="stat-card__label">Publications</div>
+            </div>
+            <div class="stat-card reveal">
+              <div class="stat-card__number" data-count="7">0</div>
+              <div class="stat-card__label">Departments Spanned</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section">
+        <div class="container text-center">
+          <h2 class="section__title reveal">Explore Further</h2>
+          <p class="section__description reveal" style="margin: 0 auto var(--space-8);">
+            Meet the researchers behind these projects, explore our publications, or learn about the Lab.
+          </p>
+          <div class="hero__actions reveal" style="justify-content: center;">
+            <a href="people.html" class="btn btn--primary btn--lg">
+              Meet Our People
+              <svg class="btn__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10h10M11 6l4 4-4 4"/></svg>
+            </a>
+            <a href="publications.html" class="btn btn--secondary btn--lg">View Publications</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <img src="../src/assets/images/logos/lab-logo.png" alt="Lab Logo" class="footer__brand-logo">
+            <p class="footer__brand-text">
+              Advancing interdisciplinary research in AI, health, fabrication, and beyond at Ashoka University.
+            </p>
+            <div class="footer__brand-partner">
+              <span>Supported by</span>
+              <img src="../src/assets/images/logos/mphasis-foundation.png" alt="Mphasis F1 Foundation">
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Navigate</h4>
+            <div class="footer__links">
+              <a href="../index.html" class="footer__link">Home</a>
+              <a href="about.html" class="footer__link">About</a>
+              <a href="research.html" class="footer__link">Research</a>
+              <a href="people.html" class="footer__link">People</a>
+              <a href="publications.html" class="footer__link">Publications</a>
+              <a href="makerspace.html" class="footer__link">Makerspace</a>
+              <a href="news.html" class="footer__link">News & Events</a>
+              <a href="impact.html" class="footer__link">Impact</a>
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Research</h4>
+            <div class="footer__links">
+              <a href="pillar.html?pillar=ai" class="footer__pillar-link">
+                <span class="footer__pillar-dot" style="background-color: var(--pillar-ai);"></span>
+                AI@Ashoka
+              </a>
+              <a href="pillar.html?pillar=bharatsim" class="footer__pillar-link">
+                <span class="footer__pillar-dot" style="background-color: var(--pillar-bharatsim);"></span>
+                BharatSim
+              </a>
+              <a href="pillar.html?pillar=chart" class="footer__pillar-link">
+                <span class="footer__pillar-dot" style="background-color: var(--pillar-chart);"></span>
+                CHART
+              </a>
+              <a href="pillar.html?pillar=cyber" class="footer__pillar-link">
+                <span class="footer__pillar-dot" style="background-color: var(--pillar-cyber);"></span>
+                Cybersecurity
+              </a>
+              <a href="pillar.html?pillar=makerspace" class="footer__pillar-link">
+                <span class="footer__pillar-dot" style="background-color: var(--pillar-makerspace);"></span>
+                Makerspace
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Contact</h4>
+            <div>
+              <div class="footer__contact-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M2 3l6 5 6-5"/></svg>
+                <a href="mailto:mphasis.lab@ashoka.edu.in" style="color: rgba(255,255,255,0.8);">mphasis.lab@ashoka.edu.in</a>
+              </div>
+              <div class="footer__contact-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6.7C14 11.3 8 15.3 8 15.3S2 11.3 2 6.7a6 6 0 1 1 12 0z"/><circle cx="8" cy="6.7" r="2"/></svg>
+                <span>Ashoka University<br>Sonipat, Haryana, India</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__copyright">&copy; 2026 Mphasis AI & Applied Tech Lab, Ashoka University. All rights reserved.</p>
+          <div class="footer__bottom-links">
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="../src/data/projects.js"></script>
+  <script src="../src/data/people.js"></script>
+  <script src="../src/data/publications.js"></script>
+  <script src="../src/data/pillars.js"></script>
+  <script src="../src/vendor/gsap.min.js"></script>
+  <script src="../src/vendor/ScrollTrigger.min.js"></script>
+  <script src="../src/js/gsap-animations.js"></script>
+  <script src="../src/js/main.js"></script>
+  <script src="../src/js/search.js"></script>
+  <script src="../src/js/floating-nav.js"></script>
+  <script>
+    /* Make project cards link to detail pages */
+    (function () {
+      var slugMap = {
+        'Cancer Ascend': 'cancer-ascend',
+        'Dengue NS3 Protease': 'ns3-inhibitors',
+        'AI-Driven Antibiotic Discovery': 'ai-antibiotic-discovery',
+        'AI-Powered Biomarker Discovery': 'ai-biomarker-discovery',
+        'AI-Driven Demographic Inference': 'ai-demographic-inference',
+        'AIM-Flow': 'aim-flow',
+        'Infant Gaze Pattern Analysis': 'infant-gaze-analysis',
+        'High-Throughput COF Screening': 'cof-screening',
+        'High-Resolution Fire Mapping': 'fire-mapping',
+        'AI Detection of Pollen': 'pollen-project',
+        'Acoustic Biodiversity Monitoring': 'acoustic-biodiversity',
+        'CS Pedagogy': 'cs-pedagogy',
+        'Assistive AI for Academic Writing': 'cwc',
+        'IndiaMediaLens': 'indiamedialens',
+        'BharatSim Agent-Based Modelling': 'bharatsim',
+        'Folk Computing for Abdominal Pain': 'folk-computing',
+        'Multimodal Food Computing': 'multimodal-food-computing',
+        'Triple Negative Breast Cancer': 'tnbc',
+        'Post-Quantum Cryptography': 'pqc',
+        'Covalent Magnetic Tweezers': 'cmt',
+        'Digital Makerspace': 'digital-makerspace',
+        'Table-Top Glacier Flow': 'table-top-experiments',
+        'Pedagogical Physics': 'pedagogical-experiments'
+      };
+
+      document.querySelectorAll('.project-list-card').forEach(function (card) {
+        var titleEl = card.querySelector('.project-list-card__title');
+        if (!titleEl) return;
+        var text = titleEl.textContent.trim();
+
+        var slug = null;
+        for (var key in slugMap) {
+          if (text.indexOf(key) !== -1) { slug = slugMap[key]; break; }
+        }
+        if (!slug) return;
+
+        var link = document.createElement('a');
+        link.href = 'project.html?id=' + slug;
+        link.className = 'related-project-card';
+        link.style.textDecoration = 'none';
+        link.style.color = 'inherit';
+        card.parentNode.insertBefore(link, card);
+        link.appendChild(card);
+      });
+
+      /* Make pillar section titles link to pillar pages */
+      var pillarMap = { ai: 'ai', bharatsim: 'bharatsim', chart: 'chart', cyber: 'cyber', makerspace: 'makerspace' };
+      document.querySelectorAll('[id]').forEach(function (section) {
+        if (!pillarMap[section.id]) return;
+        var title = section.querySelector('.pillar-section__title');
+        if (!title) return;
+        var link = document.createElement('a');
+        link.href = 'pillar.html?pillar=' + pillarMap[section.id];
+        link.style.color = 'inherit';
+        link.style.textDecoration = 'none';
+        link.innerHTML = title.innerHTML + ' <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;opacity:0.4;"><path d="M6 3l5 5-5 5"/></svg>';
+        title.innerHTML = '';
+        title.appendChild(link);
+      });
+    })();
+  </script>
+
+  <!-- Research Page Dynamic Filtering -->
+  <script>
+    (function () {
+      'use strict';
+
+      var themeFilter = document.getElementById('theme-filter');
+      var pillarFilter = document.getElementById('pillar-filter');
+      var liveRegion = document.getElementById('filter-live');
+      if (!themeFilter || !pillarFilter) return;
+
+      /* ── Collect themes from project data and annotate cards ── */
+      var allThemes = {};
+      var slugMap = {
+        'Cancer Ascend': 'cancer-ascend', 'Dengue NS3 Protease': 'ns3-inhibitors',
+        'AI-Driven Antibiotic Discovery': 'ai-antibiotic-discovery',
+        'AI-Powered Biomarker Discovery': 'ai-biomarker-discovery',
+        'AI-Driven Demographic Inference': 'ai-demographic-inference',
+        'AIM-Flow': 'aim-flow', 'Infant Gaze Pattern Analysis': 'infant-gaze-analysis',
+        'High-Throughput COF Screening': 'cof-screening',
+        'High-Resolution Fire Mapping': 'fire-mapping',
+        'AI Detection of Pollen': 'pollen-project',
+        'Acoustic Biodiversity Monitoring': 'acoustic-biodiversity',
+        'CS Pedagogy': 'cs-pedagogy', 'Assistive AI for Academic Writing': 'cwc',
+        'IndiaMediaLens': 'indiamedialens',
+        'BharatSim Agent-Based Modelling': 'bharatsim',
+        'Folk Computing for Abdominal Pain': 'folk-computing',
+        'Multimodal Food Computing': 'multimodal-food-computing',
+        'Triple Negative Breast Cancer': 'tnbc',
+        'Post-Quantum Cryptography': 'pqc',
+        'Covalent Magnetic Tweezers': 'cmt',
+        'Digital Makerspace': 'digital-makerspace',
+        'Table-Top Glacier Flow': 'table-top-experiments',
+        'Pedagogical Physics': 'pedagogical-experiments'
+      };
+
+      if (window.PROJECTS_DATA) {
+        for (var pid in window.PROJECTS_DATA) {
+          var p = window.PROJECTS_DATA[pid];
+          if (p.themes) {
+            p.themes.forEach(function (t) { allThemes[t] = true; });
+          }
+        }
+      }
+
+      /* Populate theme filter buttons */
+      var themeList = Object.keys(allThemes).sort();
+      themeList.forEach(function (theme) {
+        var btn = document.createElement('button');
+        btn.className = 'filter-bar__btn';
+        btn.setAttribute('data-filter', theme);
+        btn.setAttribute('aria-pressed', 'false');
+        btn.textContent = theme;
+        themeFilter.appendChild(btn);
+      });
+
+      /* Annotate project cards with data-themes */
+      document.querySelectorAll('.project-list-card').forEach(function (card) {
+        var titleEl = card.querySelector('.project-list-card__title');
+        if (!titleEl) return;
+        var text = titleEl.textContent.trim();
+        var slug = null;
+        for (var key in slugMap) {
+          if (text.indexOf(key) !== -1) { slug = slugMap[key]; break; }
+        }
+        if (slug && window.PROJECTS_DATA && window.PROJECTS_DATA[slug] && window.PROJECTS_DATA[slug].themes) {
+          card.setAttribute('data-themes', window.PROJECTS_DATA[slug].themes.join('|'));
+        }
+      });
+
+      /* ── Filter state ── */
+      var activePillar = 'all';
+      var activeTheme = 'all';
+
+      function applyFilters() {
+        var sections = document.querySelectorAll('[data-section-pillar]');
+        var totalVisible = 0;
+
+        sections.forEach(function (section) {
+          var sectionPillar = section.getAttribute('data-section-pillar');
+          var pillarMatch = activePillar === 'all' || sectionPillar === activePillar;
+
+          if (!pillarMatch) {
+            section.style.display = 'none';
+            return;
+          }
+
+          section.style.display = '';
+
+          /* Theme filtering within visible sections */
+          var cards = section.querySelectorAll('.project-list-card');
+          var visibleInSection = 0;
+
+          cards.forEach(function (card) {
+            var themes = card.getAttribute('data-themes') || '';
+            var themeMatch = activeTheme === 'all' || themes.indexOf(activeTheme) !== -1;
+
+            /* The card might be wrapped in an <a.related-project-card> link */
+            var wrapper = card.closest('.related-project-card') || card;
+
+            if (themeMatch) {
+              wrapper.style.display = '';
+              visibleInSection++;
+              totalVisible++;
+            } else {
+              wrapper.style.display = 'none';
+            }
+          });
+
+          /* Hide section header if no cards match the theme filter */
+          if (activeTheme !== 'all' && visibleInSection === 0) {
+            section.style.display = 'none';
+          }
+        });
+
+        /* Announce to screen readers */
+        if (liveRegion) {
+          liveRegion.textContent = totalVisible + ' project' + (totalVisible !== 1 ? 's' : '') + ' shown';
+        }
+      }
+
+      /* ── Wire up pillar filter ── */
+      pillarFilter.addEventListener('click', function (e) {
+        var btn = e.target.closest('.filter-bar__btn');
+        if (!btn) return;
+        activePillar = btn.getAttribute('data-filter');
+        pillarFilter.querySelectorAll('.filter-bar__btn').forEach(function (b) {
+          b.classList.remove('filter-bar__btn--active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('filter-bar__btn--active');
+        btn.setAttribute('aria-pressed', 'true');
+        applyFilters();
+      });
+
+      /* ── Wire up theme filter ── */
+      themeFilter.addEventListener('click', function (e) {
+        var btn = e.target.closest('.filter-bar__btn');
+        if (!btn) return;
+        activeTheme = btn.getAttribute('data-filter');
+        themeFilter.querySelectorAll('.filter-bar__btn').forEach(function (b) {
+          b.classList.remove('filter-bar__btn--active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('filter-bar__btn--active');
+        btn.setAttribute('aria-pressed', 'true');
+        applyFilters();
+      });
+
+      /* ── Read URL params on load ── */
+      var params = new URLSearchParams(window.location.search);
+      var pillarParam = params.get('pillar');
+      var themeParam = params.get('theme');
+
+      if (pillarParam) {
+        var pBtn = pillarFilter.querySelector('[data-filter="' + pillarParam + '"]');
+        if (pBtn) pBtn.click();
+      }
+      if (themeParam) {
+        var decoded = decodeURIComponent(themeParam);
+        var tBtn = themeFilter.querySelector('[data-filter="' + decoded + '"]');
+        if (tBtn) tBtn.click();
+      }
+    })();
+  </script>
+  <script src="../src/js/page-canvases.js"></script>
+</body>
+</html>

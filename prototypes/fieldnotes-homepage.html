@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mphasis AI & Applied Tech Lab at Ashoka University — Advancing interdisciplinary research in AI, health, fabrication, and beyond at Ashoka University.">
+  <title>Mphasis AI & Applied Tech Lab | Ashoka University</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../src/assets/images/logos/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../src/assets/images/logos/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../src/assets/images/logos/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Zilla+Slab:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../src/css/variables.css">
+  <link rel="stylesheet" href="../src/css/reset.css">
+  <link rel="stylesheet" href="../src/css/base.css">
+  <link rel="stylesheet" href="../src/css/layout.css">
+  <link rel="stylesheet" href="../src/css/header.css">
+  <link rel="stylesheet" href="../src/css/footer.css">
+  <link rel="stylesheet" href="../src/css/components.css">
+  <link rel="stylesheet" href="../src/css/animations.css">
+  <link rel="stylesheet" href="../src/css/utilities.css">
+  <link rel="stylesheet" href="../src/css/search.css">
+
+  <style>
+    /* ═══════════════════════════════════════════════════
+       FIELD NOTES THEME — Brand-compliant version
+       Uses Ashoka University brand palette (pp. 16-18)
+       with warm paper aesthetic from Field Notes direction
+       ═══════════════════════════════════════════════════ */
+    :root {
+      /* Typography — Brand fonts, serif-forward display */
+      --font-display: Georgia, 'Times New Roman', serif;
+      --font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Zilla Slab', Georgia, serif;
+
+      /* Primary Brand Colors — Ashoka guidelines p.16 */
+      --color-navy: #0D3862;
+      --color-navy-light: #134A80;
+      --color-navy-dark: #092847;
+      --color-red: #C4122F;
+      --color-red-light: #E8586F;
+      --color-red-dark: #A70E13;
+
+      /* Remove F1 gradient from design system */
+      --gradient-f1: none;
+
+      /* Semantic — Brand-compliant with warm paper bg */
+      --color-bg: #FBF3DF;
+      --color-bg-alt: #F7EBD3;
+      --color-bg-dark: #0D3862;
+      --color-border: #C9D4DB;
+      --color-border-light: #E8E0D0;
+      --color-text: #1a1a1a;
+      --color-text-secondary: #4a5568;
+      --color-text-muted: #6D7F89;
+      --color-text-inverse: #FFFFFF;
+      --color-link: #0D3862;
+      --color-link-hover: #092847;
+
+      /* Neutrals — warm-shifted per brand */
+      --gray-50: #FDFBF7;
+      --gray-100: #FBF3DF;
+      --gray-200: #E8E0D0;
+      --gray-300: #C9D4DB;
+      --gray-400: #7F93A0;
+      --gray-500: #6D7F89;
+      --gray-600: #4a5568;
+      --gray-700: #2d3748;
+      --gray-800: #1a202c;
+      --gray-900: #171923;
+
+      /* Container — brand spec */
+      --container-xl: 1200px;
+
+      /* Line height — brand spec */
+      --leading-relaxed: 1.65;
+    }
+
+    /* ═══ Subtle paper texture overlay ═══ */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.2;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(139,94,52,0.06), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(139,94,52,0.04), transparent 40%);
+    }
+
+    /* ═══ Global: warm paper background ═══ */
+    body {
+      background-color: #FBF3DF;
+      color: #1a1a1a;
+    }
+
+    /* Section eyebrows: Open Sans, brand red */
+    .section__eyebrow {
+      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      color: #C4122F !important;
+    }
+
+    /* Card titles: Georgia weight 400 */
+    .card__title,
+    .pillar-card__title {
+      font-family: Georgia, 'Times New Roman', serif !important;
+      font-weight: 400 !important;
+    }
+
+    /* Stat numbers: Georgia italic */
+    .stat-card__number {
+      font-family: Georgia, 'Times New Roman', serif !important;
+      font-style: italic !important;
+    }
+
+    /* ═══ NORMAL SCROLL — Remove stack engine ═══ */
+    html, body {
+      margin: 0; padding: 0;
+      overflow: auto !important;
+      height: auto !important;
+    }
+
+    /* Remove all stack-panel positioning */
+    .stack-viewport {
+      position: static !important;
+      overflow: visible !important;
+    }
+    .stack-panel {
+      position: static !important;
+      width: auto !important;
+      height: auto !important;
+      overflow: visible !important;
+      transform: none !important;
+      opacity: 1 !important;
+      transition: none !important;
+      will-change: auto !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      pointer-events: auto !important;
+    }
+    .stack-panel.below,
+    .stack-panel.above {
+      transform: none !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      z-index: auto !important;
+    }
+
+    /* Hide nav dots */
+    .snap-dots { display: none !important; }
+
+    /* ═══ HERO — full viewport, normal flow ═══ */
+    .stack-panel:first-child {
+      display: flex; flex-direction: column;
+      min-height: 100vh;
+    }
+    .stack-panel .hero {
+      flex: 1; min-height: 0;
+      display: flex; flex-direction: column;
+      padding: 0;
+      background: #FBF3DF;
+    }
+    .stack-panel .hero > .container {
+      flex: 1; display: flex; align-items: center;
+      padding-top: 2rem;
+    }
+    .stack-panel .hero__canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+    }
+    .stack-panel .ticker { flex-shrink: 0; }
+
+    /* Hero colors */
+    .hero__title {
+      color: #0D3862 !important;
+    }
+    .hero__badge {
+      border-color: #C4122F !important;
+      color: #0D3862 !important;
+    }
+    .hero__badge-dot {
+      background: #C4122F !important;
+    }
+    .morph-text {
+      color: #C4122F !important;
+    }
+    .hero__tagline {
+      color: #4a5568 !important;
+    }
+    .hero__description {
+      color: #4a5568 !important;
+    }
+
+    /* Hero buttons */
+    .btn--primary {
+      background: #0D3862 !important;
+      border-color: #0D3862 !important;
+      color: #FFFFFF !important;
+    }
+    .btn--primary:hover {
+      background: #C4122F !important;
+      border-color: #C4122F !important;
+    }
+    .btn--secondary {
+      border-color: #0D3862 !important;
+      color: #0D3862 !important;
+    }
+    .btn--secondary:hover {
+      background: #0D3862 !important;
+      color: #FFFFFF !important;
+    }
+
+    /* ═══ HIDE THE ENTIRE FIXED HEADER ═══ */
+    .header { display: none !important; }
+    .nav-mobile { display: none !important; }
+
+    /* ═══ FLOATING BUTTONS — Brand colors ═══ */
+    .float-menu-btn {
+      position: fixed;
+      top: 1.75rem;
+      left: 2rem;
+      z-index: 1000;
+      width: auto;
+      height: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: opacity 0.3s ease;
+    }
+    .float-menu-btn__icon {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      width: 28px;
+    }
+    .float-menu-btn__icon span {
+      display: block;
+      height: 2px;
+      background: #0D3862;
+      border-radius: 1px;
+      transition: all 0.3s ease;
+    }
+    .float-menu-btn__icon span:nth-child(1) { width: 28px; }
+    .float-menu-btn__icon span:nth-child(2) { width: 20px; }
+    .float-menu-btn__icon span:nth-child(3) { width: 24px; }
+    .float-menu-btn:hover .float-menu-btn__icon span { width: 28px; }
+    .float-menu-btn__label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #0D3862;
+      transition: color 0.3s ease;
+    }
+    .float-menu-btn:hover .float-menu-btn__label { color: #C4122F; }
+
+    .float-search-btn {
+      position: fixed;
+      top: 1.75rem;
+      right: 2rem;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #0D3862;
+      padding: 0;
+      transition: color 0.3s ease;
+    }
+    .float-search-btn:hover { color: #C4122F; }
+    .float-search-btn__label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* On dark sections — switch to white */
+    .float-menu-btn.on-dark .float-menu-btn__icon span { background: #fff; }
+    .float-menu-btn.on-dark .float-menu-btn__label { color: #fff; }
+    .float-menu-btn.on-dark:hover .float-menu-btn__label { color: #C4122F; }
+    .float-search-btn.on-dark { color: #fff; }
+    .float-search-btn.on-dark:hover { color: #C4122F; }
+    .float-search-btn.on-dark .float-search-btn__label { color: #fff; }
+
+    /* ═══ PANEL SECTIONS — Normal flow styling ═══ */
+
+    /* ═══════════════════════════════════════════════════
+       DOSSIER — Alternating editorial bands
+       Merged Spotlight + Impact. Brand-compliant.
+       ═══════════════════════════════════════════════════ */
+
+    .dossier {
+      background: #FBF3DF;
+    }
+
+    /* ── Header ── */
+    .dos-head {
+      padding: 80px clamp(2rem, 5vw, 80px) 56px;
+      border-bottom: 1px solid #C9D4DB;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 48px;
+      align-items: end;
+    }
+    .dos-head__eye {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #C4122F;
+      font-weight: 700;
+    }
+    .dos-head__title {
+      font-family: Georgia, serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 0.95;
+      margin: 14px 0 0;
+      color: #0D3862;
+    }
+    .dos-head__italic { font-style: italic; color: #C4122F; }
+    .dos-head__sub {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: #6D7F89;
+      max-width: 480px;
+      line-height: 1.45;
+      margin: 0;
+    }
+    .dos-head__folio {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #0D3862;
+      text-align: right;
+      border-left: 1px solid #C9D4DB;
+      padding-left: 24px;
+      line-height: 1.6;
+    }
+
+    /* ── Band — each featured project ── */
+    .dos-band {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 0;
+      position: relative;
+      border-bottom: 1px solid #C9D4DB;
+      background: #FBF3DF;
+      color: #0D3862;
+      min-height: 400px;
+      transition: background 0.3s ease;
+    }
+    .dos-band--reverse {
+      grid-template-columns: 1fr 1.1fr;
+    }
+    .dos-band--dark {
+      background: #0D3862;
+      color: #FBF3DF;
+      border-bottom-color: rgba(255,255,255,0.1);
+    }
+    .dos-band--dark .dos-band__title {
+      color: #FBF3DF;
+    }
+
+    /* ── Image plate ── */
+    .dos-band__plate {
+      position: relative;
+      overflow: hidden;
+      min-height: 400px;
+    }
+    .dos-band__img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      inset: 0;
+      transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .dos-band:hover .dos-band__img {
+      transform: scale(1.04);
+    }
+    .dos-band__plate-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(13,56,98,0) 60%, rgba(13,56,98,0.55) 100%);
+      pointer-events: none;
+    }
+    .dos-band__plate-accent {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 6px;
+      transition: width 0.3s ease, box-shadow 0.3s ease;
+    }
+    .dos-band:hover .dos-band__plate-accent {
+      width: 8px;
+      box-shadow: 0 0 24px rgba(0,0,0,0.3);
+    }
+    .dos-band__plate-accent-r {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 6px;
+      transition: width 0.3s ease;
+    }
+    .dos-band:hover .dos-band__plate-accent-r {
+      width: 8px;
+    }
+    .dos-band__plate-label {
+      display: none;
+    }
+    .dos-band__plate--empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dos-band__plate-num {
+      font-family: Georgia, serif;
+      font-size: clamp(12rem, 18vw, 17.5rem);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      opacity: 0.18;
+      transition: opacity 0.4s ease;
+    }
+    .dos-band:hover .dos-band__plate-num {
+      opacity: 0.28;
+    }
+
+    /* ── Body content ── */
+    .dos-band__body {
+      padding: 68px 64px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+    /* Serial + metric — hidden */
+    .dos-band__serial,
+    .dos-band__rule,
+    .dos-band__metric { display: none; }
+
+    /* Pillar label */
+    .dos-band__pillar {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .dos-band__dot {
+      width: 8px; height: 8px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+
+    /* Title */
+    .dos-band__title {
+      font-family: Georgia, serif;
+      font-size: clamp(1.75rem, 3.5vw, 3rem);
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      line-height: 1.08;
+      margin: 0 0 18px;
+      text-wrap: balance;
+    }
+
+    /* Description */
+    .dos-band__desc {
+      font-family: Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      max-width: 540px;
+      margin: 0 0 28px;
+      color: inherit;
+      opacity: 0.85;
+    }
+
+    /* Badges */
+    .dos-band__badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 30px;
+    }
+    .dos-band__badge {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #C9D4DB;
+      color: #0D3862;
+      background: transparent;
+    }
+    .dos-band__badge--dark {
+      border-color: rgba(251,243,223,0.3);
+      color: rgba(251,243,223,0.9);
+      background: rgba(251,243,223,0.06);
+    }
+
+    /* Footer row */
+    .dos-band__foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;
+      border-top: 1px dashed currentColor;
+      opacity: 0.7;
+    }
+    .dos-band__venue {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+    }
+    .dos-band__cta {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #C4122F;
+      text-decoration: none;
+      transition: letter-spacing 0.3s ease;
+    }
+    .dos-band__cta:hover {
+      letter-spacing: 0.15em;
+    }
+    .dos-band__cta--dark {
+      color: #C4122F;
+    }
+
+    /* ── Dossier footer bar ── */
+    .dos-footer {
+      padding: 56px clamp(2rem, 5vw, 80px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 2px solid #C4122F;
+      background: #F7EBD3;
+    }
+    .dos-footer__all {
+      font-family: Georgia, serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-style: italic;
+      color: #0D3862;
+    }
+    .dos-footer__link {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #C4122F;
+      text-decoration: none;
+    }
+    .dos-footer__link:hover { text-decoration: underline; }
+
+    /* ── Hover: subtle band lift ── */
+    .dos-band {
+      transition: box-shadow 0.4s ease;
+    }
+    .dos-band:hover {
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+    }
+    .dos-band--dark:hover {
+      box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .dos-head {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .dos-head__folio { border-left: none; padding-left: 0; text-align: left; }
+      .dos-band,
+      .dos-band--reverse {
+        grid-template-columns: 1fr;
+      }
+      .dos-band__plate { min-height: 300px; }
+      .dos-band__body { padding: 40px 24px; }
+      .dos-band__metric { position: static; text-align: left; margin-bottom: 20px; }
+      .dos-band__serial { left: 24px; }
+      .dos-band__rule { left: 24px; }
+    }
+
+    /* Panel 2: Pillars (brand beige) */
+    .panel-pillars {
+      background: #F7EBD3;
+      padding: 5rem clamp(2rem, 5vw, 6rem);
+    }
+    .panel-pillars .section__header { margin-bottom: 2rem; }
+    .panel-pillars .section__title { color: #0D3862; }
+    .panel-pillars .section__description { color: #6D7F89; }
+
+    /* Pillar cards — specimen card feel */
+    .pillar-card {
+      background: #FDFBF7 !important;
+      border: 1px solid #C9D4DB !important;
+      box-shadow: 3px 3px 0 #0D3862 !important;
+      transition: box-shadow 0.25s ease, transform 0.25s ease !important;
+    }
+    .pillar-card:hover {
+      box-shadow: 5px 5px 0 #0D3862 !important;
+      transform: translate(-1px, -1px) !important;
+    }
+    .pillar-card__title {
+      color: #0D3862 !important;
+    }
+    .pillar-card__description {
+      color: #6D7F89 !important;
+    }
+
+    /* Panel 3: Impact — MERGED INTO DOSSIER */
+
+    /* Panel 4: News + Footer */
+    .panel-news-footer {
+      background: #FBF3DF;
+    }
+    .panel-news-footer > .section {
+      padding: 5rem 0;
+    }
+    .panel-news-footer .section__title { color: #0D3862; }
+
+    /* News cards */
+    .panel-news-footer .card,
+    .panel-news-footer .news-card {
+      background: #FDFBF7 !important;
+      border: 1px solid #C9D4DB !important;
+    }
+    .panel-news-footer .card__body { padding: var(--space-6); }
+    .panel-news-footer .card__date {
+      color: #C4122F !important;
+      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    }
+    .panel-news-footer .card__title {
+      color: #0D3862 !important;
+      font-family: Georgia, 'Times New Roman', serif !important;
+    }
+    .panel-news-footer .card__text {
+      color: #6D7F89 !important;
+    }
+
+    /* ═══ Progress bar — brand red ═══ */
+    .progress-bar {
+      display: block !important;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: #C4122F;
+      z-index: 400;
+      transition: width 50ms linear;
+    }
+
+    /* ═══ Ticker — deep blue ═══ */
+    .ticker {
+      background: #15113E !important;
+    }
+    .ticker__item {
+      color: rgba(255,255,255,0.7) !important;
+    }
+    .ticker__separator {
+      color: #C4122F !important;
+    }
+
+    /* ═══ SIDE NAVIGATION — Field Notes themed ═══ */
+    .side-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2000;
+      pointer-events: none;
+    }
+    .side-nav--open { pointer-events: auto; }
+
+    .side-nav__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(13, 56, 98, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+    .side-nav--open .side-nav__backdrop { opacity: 1; pointer-events: auto; }
+
+    .side-nav__panel {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 80%;
+      max-width: 1100px;
+      height: 100%;
+      background: #FBF3DF;
+      box-shadow: 30px 0 80px rgba(0,0,0,0.15);
+      transform: translateX(-100%);
+      transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 2.5rem 4rem 2rem;
+      z-index: 10;
+      pointer-events: auto;
+    }
+    .side-nav__header a img { margin-left: -2px; }
+    .side-nav--open .side-nav__panel { transform: translateX(0); }
+    .side-nav--peek .side-nav__panel { transform: translateX(calc(-100% + 10px)); }
+
+    .side-nav__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      flex-shrink: 0;
+    }
+    .side-nav__close {
+      background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font-sans); font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: #0D3862; transition: color 0.2s;
+      padding: 0.5rem 0;
+    }
+    .side-nav__close:hover { color: #C4122F; }
+
+    .side-nav__body {
+      flex: 1;
+      display: flex;
+      gap: 4rem;
+      align-items: center;
+      min-height: 0;
+    }
+    .side-nav__col-pages { flex: 1; }
+    .side-nav__col-pillars { flex: 1; }
+
+    .side-nav__subtitle {
+      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 0.65rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      color: #C4122F; margin-bottom: 1.5rem; display: block;
+    }
+
+    .side-nav__list {
+      list-style: none; padding: 0; margin: 0;
+    }
+    .side-nav__item {
+      margin-bottom: 0.4rem;
+      opacity: 0; transform: translateX(-20px);
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .side-nav--open .side-nav__item { opacity: 1; transform: translateX(0); }
+    .side-nav--open .side-nav__item:nth-child(1) { transition-delay: 0.08s; }
+    .side-nav--open .side-nav__item:nth-child(2) { transition-delay: 0.12s; }
+    .side-nav--open .side-nav__item:nth-child(3) { transition-delay: 0.16s; }
+    .side-nav--open .side-nav__item:nth-child(4) { transition-delay: 0.20s; }
+    .side-nav--open .side-nav__item:nth-child(5) { transition-delay: 0.24s; }
+    .side-nav--open .side-nav__item:nth-child(6) { transition-delay: 0.28s; }
+    .side-nav--open .side-nav__item:nth-child(7) { transition-delay: 0.32s; }
+    .side-nav--open .side-nav__item:nth-child(8) { transition-delay: 0.36s; }
+    .side-nav--open .side-nav__item:nth-child(9) { transition-delay: 0.40s; }
+
+    .side-nav__link {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 400;
+      color: #0D3862 !important;
+      text-decoration: none;
+      transition: color 0.2s, padding-left 0.2s;
+      display: inline-block;
+      line-height: 1.3;
+    }
+    .side-nav__link:hover { color: #C4122F !important; padding-left: 6px; }
+    .side-nav__link--active { color: #C4122F !important; }
+
+    .side-nav__pill-list {
+      list-style: none; padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .side-nav__pill-card {
+      display: flex; align-items: center; gap: 1rem;
+      text-decoration: none;
+      background: #fff;
+      border: 1px solid #E8E0D0;
+      border-left: 4px solid var(--pill-color, #C9D4DB);
+      border-radius: 4px;
+      padding: 0.9rem 1.25rem;
+      transition: all 0.25s ease;
+    }
+    .side-nav__pill-card:hover {
+      border-left-width: 6px;
+      box-shadow: 0 4px 12px rgba(13,56,98,0.08);
+      transform: translateX(4px);
+    }
+    .side-nav__pill-icon {
+      width: 32px; height: 32px; border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .side-nav__pill-icon svg { width: 18px; height: 18px; }
+    .side-nav__pill-icon img { width: 22px; height: 22px; object-fit: contain; }
+    .side-nav__pill-name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 400;
+      color: #0D3862 !important;
+      line-height: 1.2;
+    }
+    .side-nav__pill-card:hover .side-nav__pill-name { color: #C4122F !important; }
+
+    .side-nav__footer {
+      flex-shrink: 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(13,56,98,0.1);
+    }
+    .side-nav__contact {
+      font-size: 0.8rem; color: var(--color-text-muted); line-height: 1.6;
+      font-family: var(--font-sans);
+    }
+    .side-nav__contact a { color: #0D3862; text-decoration: none; }
+    .side-nav__contact a:hover { color: #C4122F; }
+
+    /* ═══ Footer — deep blue ═══ */
+    .footer {
+      background: #15113E !important;
+      border-top: 2px solid #C4122F !important;
+      color: rgba(255,255,255,0.8) !important;
+    }
+    .footer__brand-logo {
+      margin-left: -42px !important;
+      max-height: 120px;
+    }
+    .footer__heading {
+      color: #C4122F !important;
+    }
+    .footer__link {
+      color: rgba(255,255,255,0.8) !important;
+    }
+    .footer__link:hover {
+      color: #C4122F !important;
+    }
+    .footer__pillar-link {
+      color: rgba(255,255,255,0.8) !important;
+    }
+    .footer__pillar-link:hover {
+      color: #C4122F !important;
+    }
+    .footer__brand-text {
+      color: rgba(255,255,255,0.8) !important;
+    }
+    .footer__brand-partner span {
+      color: rgba(255,255,255,0.5) !important;
+    }
+    .footer__copyright {
+      color: rgba(255,255,255,0.5) !important;
+    }
+    .footer__contact-item {
+      color: rgba(255,255,255,0.8) !important;
+    }
+    .footer__contact-item a {
+      color: rgba(255,255,255,0.8) !important;
+    }
+    .footer__contact-item a:hover {
+      color: #C4122F !important;
+    }
+    .footer__contact-item svg {
+      stroke: rgba(255,255,255,0.5) !important;
+    }
+    .footer__bottom {
+      border-top-color: rgba(255,255,255,0.1) !important;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progress-bar"></div>
+
+  <!-- Floating Buttons (no header bar) -->
+  <button class="float-menu-btn" id="floatMenuBtn" aria-label="Open navigation">
+    <div class="float-menu-btn__icon"><span></span><span></span><span></span></div>
+    <span class="float-menu-btn__label">Menu</span>
+  </button>
+  <button class="float-search-btn" id="floatSearchBtn" aria-label="Search">
+    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+    <span class="float-search-btn__label">Search</span>
+  </button>
+
+  <!-- SIDE NAVIGATION (Microbexplorer Style — full viewport, 2-column, no scroll) -->
+  <nav class="side-nav" id="side-nav" aria-label="Side navigation">
+    <div class="side-nav__backdrop" id="side-nav-backdrop"></div>
+    <div class="side-nav__panel">
+      <div class="side-nav__header">
+        <a href="../index.html" style="display:inline-block; margin-left:-70px;">
+          <img src="../src/assets/images/logos/lab-logo.png" alt="Mphasis AI & Applied Tech Lab" style="height:100px; width:auto;">
+        </a>
+        <button class="side-nav__close" id="side-nav-close" aria-label="Close menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>Close</span>
+        </button>
+      </div>
+
+      <div class="side-nav__body">
+        <div class="side-nav__col-pages">
+          <span class="side-nav__subtitle">Navigate</span>
+          <ul class="side-nav__list">
+            <li class="side-nav__item"><a href="../index.html" class="side-nav__link side-nav__link--active">Home</a></li>
+            <li class="side-nav__item"><a href="../pages/about.html" class="side-nav__link">About</a></li>
+            <li class="side-nav__item"><a href="../pages/research.html" class="side-nav__link">Research</a></li>
+            <li class="side-nav__item"><a href="../pages/people.html" class="side-nav__link">People</a></li>
+            <li class="side-nav__item"><a href="../pages/publications.html" class="side-nav__link">Publications</a></li>
+            <li class="side-nav__item"><a href="../pages/makerspace.html" class="side-nav__link">Makerspace</a></li>
+            <li class="side-nav__item"><a href="../pages/news.html" class="side-nav__link">News &amp; Events</a></li>
+            <li class="side-nav__item"><a href="../pages/impact.html" class="side-nav__link">Impact</a></li>
+            <li class="side-nav__item"><a href="../pages/contact.html" class="side-nav__link">Contact</a></li>
+          </ul>
+        </div>
+        <div class="side-nav__col-pillars">
+          <span class="side-nav__subtitle">Research Pillars</span>
+          <ul class="side-nav__pill-list">
+            <li class="side-nav__item"><a href="../pages/pillar.html?pillar=ai" class="side-nav__pill-card" style="--pill-color:#2563EB;"><span class="side-nav__pill-icon" style="background:#DBEAFE;color:#2563EB;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span><span class="side-nav__pill-name">AI@Ashoka</span></a></li>
+            <li class="side-nav__item"><a href="../pages/pillar.html?pillar=bharatsim" class="side-nav__pill-card" style="--pill-color:#059669;"><span class="side-nav__pill-icon" style="background:#D1FAE5;color:#059669;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/><path d="M2 7c2-3 4-3 6 0s4 3 6 0 4-3 6 0" opacity="0.4"/></svg></span><span class="side-nav__pill-name">BharatSim</span></a></li>
+            <li class="side-nav__item"><a href="../pages/pillar.html?pillar=chart" class="side-nav__pill-card" style="--pill-color:#D97706;"><span class="side-nav__pill-icon" style="background:#FEF3C7;color:#D97706;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h4l3-6 4 12 3-6h4"/></svg></span><span class="side-nav__pill-name">CHART</span></a></li>
+            <li class="side-nav__item"><a href="../pages/pillar.html?pillar=cyber" class="side-nav__pill-card" style="--pill-color:#7C3AED;"><span class="side-nav__pill-icon" style="background:#EDE9FE;color:#7C3AED;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 4v5c0 5.5-3.8 10.2-8 12-4.2-1.8-8-6.5-8-12V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="side-nav__pill-name">Cybersecurity</span></a></li>
+            <li class="side-nav__item"><a href="../pages/pillar.html?pillar=makerspace" class="side-nav__pill-card" style="--pill-color:#009BDE;"><span class="side-nav__pill-icon" style="background:#E0F2FE;color:#009BDE;"><img src="../src/assets/images/logos/makerspace-logo.png" alt="Makerspace"></span><span class="side-nav__pill-name">Makerspace</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="side-nav__footer">
+        <div class="side-nav__contact">
+          <a href="mailto:mphasis.lab@ashoka.edu.in">mphasis.lab@ashoka.edu.in</a> &nbsp;&middot;&nbsp; Ashoka University, Sonipat, India
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page">
+
+    <!-- Search Overlay (identical) -->
+    <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search" hidden>
+      <div class="search-overlay__backdrop"></div>
+      <div class="search-overlay__panel">
+        <div class="search-overlay__header">
+          <div class="search-overlay__input-wrapper">
+            <svg class="search-overlay__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+            <input type="search" class="search-overlay__input" id="search-input" placeholder="Search projects, people, publications..." autocomplete="off">
+            <kbd class="search-overlay__kbd">ESC</kbd>
+          </div>
+        </div>
+        <div class="search-overlay__results" id="search-results" aria-live="polite">
+          <div class="search-overlay__empty">
+            <p class="search-overlay__empty-text">Type to search across projects, people, and publications</p>
+          </div>
+        </div>
+        <div class="search-overlay__footer">
+          <span><kbd>&#8984;</kbd><kbd>K</kbd> to toggle</span>
+          <span><kbd>&#8593;</kbd><kbd>&#8595;</kbd> to navigate</span>
+          <span><kbd>Enter</kbd> to select</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER (hidden via CSS, kept for structure) -->
+    <header class="header header--on-hero" id="site-header" role="banner">
+      <div class="header__inner">
+        <a href="../index.html" class="header__logo" aria-label="Mphasis AI & Applied Tech Lab — Home">
+          <img src="../src/assets/images/logos/lab-logo.png" alt="Mphasis AI & Applied Tech Lab Logo">
+        </a>
+        <nav class="nav" role="navigation" aria-label="Primary navigation">
+          <a href="../index.html" class="nav__link nav__link--active">Home</a>
+          <a href="../pages/about.html" class="nav__link">About</a>
+          <a href="../pages/research.html" class="nav__link">Research</a>
+          <a href="../pages/people.html" class="nav__link">People</a>
+          <a href="../pages/publications.html" class="nav__link">Publications</a>
+          <a href="../pages/makerspace.html" class="nav__link">Makerspace</a>
+          <a href="../pages/news.html" class="nav__link">News & Events</a>
+          <a href="../pages/impact.html" class="nav__link">Impact</a>
+          <a href="../pages/contact.html" class="nav__link">Contact</a>
+        </nav>
+        <div class="header__actions">
+          <button class="header__search-trigger" aria-label="Search" aria-expanded="false" aria-controls="search-overlay">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+          </button>
+          <button class="header__menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══ NORMAL SCROLL SECTIONS (was stack-viewport) ═══ -->
+    <div id="stackViewport">
+
+      <!-- ═══ SECTION 0: HERO + TICKER ═══ -->
+      <section class="stack-panel" data-theme="light">
+        <section class="hero" id="hero-section">
+          <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
+          <div class="hero__grain" aria-hidden="true"></div>
+          <div class="container">
+            <div class="hero__content">
+              <div class="hero__badge">
+                <span class="hero__badge-dot"></span>
+                Ashoka University
+              </div>
+              <h1 class="hero__title">Mphasis AI &amp;<br>Applied Tech Lab</h1>
+              <p class="hero__tagline">
+                Pioneering <span class="morph-text" data-words='["Artificial Intelligence","Health Simulation","Computational Medicine","Cybersecurity","Digital Fabrication"]'>Artificial Intelligence</span> at Ashoka University
+              </p>
+              <p class="hero__description">
+                Where rigorous science meets real-world deployment. 25+ active research programmes across AI, public health, cybersecurity, and digital fabrication.
+              </p>
+              <div class="hero__actions">
+                <a href="../pages/research.html" class="btn btn--primary btn--lg">
+                  Explore Research
+                  <svg class="btn__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10h10M11 6l4 4-4 4"/></svg>
+                </a>
+                <a href="../pages/about.html" class="btn btn--secondary btn--lg">About the Lab</a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="ticker" aria-label="Research themes">
+          <div class="ticker__track">
+            <span class="ticker__item">AI Pedagogy</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+            <span class="ticker__item">Epidemiological Modeling</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+            <span class="ticker__item">Computational Health</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+            <span class="ticker__item">Climate Science</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+            <span class="ticker__item">Digital Humanities</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+            <span class="ticker__item">Materials Science</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+            <span class="ticker__item">Biodiversity &amp; Conservation</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+            <span class="ticker__item">Digital Fabrication</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+            <span class="ticker__item">Post-Quantum Cryptography</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+            <span class="ticker__item">AI Pedagogy</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+            <span class="ticker__item">Epidemiological Modeling</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+            <span class="ticker__item">Computational Health</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+            <span class="ticker__item">Climate Science</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+            <span class="ticker__item">Digital Humanities</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+            <span class="ticker__item">Materials Science</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+            <span class="ticker__item">Biodiversity &amp; Conservation</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+            <span class="ticker__item">Digital Fabrication</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+            <span class="ticker__item">Post-Quantum Cryptography</span><span class="ticker__separator" aria-hidden="true">&bull;</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ SECTION 1: DOSSIER — Merged Spotlight + Impact ═══ -->
+      <section class="stack-panel dossier" data-theme="light">
+
+        <!-- Band 1: BharatSim (light, image left) -->
+        <article class="dos-band" data-pillar-color="#059669">
+          <div class="dos-band__plate">
+            <img src="assets/bharatsim-network.png" alt="" class="dos-band__img">
+            <div class="dos-band__plate-overlay"></div>
+            <div class="dos-band__plate-accent" style="background:#059669;"></div>
+            <span class="dos-band__plate-label">Fig. 01</span>
+          </div>
+          <div class="dos-band__body">
+            <span class="dos-band__serial">№ 01 / 06</span>
+            <span class="dos-band__rule"></span>
+            <div class="dos-band__metric" style="color:#059669;">
+              <span class="dos-band__metric-val">20+</span>
+              <span class="dos-band__metric-lab">Outlets</span>
+            </div>
+            <div class="dos-band__pillar"><span class="dos-band__dot" style="background:#059669;"></span><span style="color:#059669;">BharatSim</span></div>
+            <h3 class="dos-band__title">India-Scale Epidemic Simulation</h3>
+            <p class="dos-band__desc">Agent-based modelling for public health policy. H5N1 study covered by BBC, NDTV, Nature India, and 20+ outlets; platform deployed to NACO for HIV modelling.</p>
+            <div class="dos-band__badges"><span class="dos-band__badge">BBC</span><span class="dos-band__badge">NDTV</span><span class="dos-band__badge">Nature India</span><span class="dos-band__badge">NACO Deployment</span></div>
+            <div class="dos-band__foot">
+              <span class="dos-band__venue">BMC Public Health · 2025</span>
+              <a href="../pages/project.html?id=bharatsim" class="dos-band__cta">Read the study →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Band 2: OncoMark (dark, image right) -->
+        <article class="dos-band dos-band--dark dos-band--reverse" data-pillar-color="#2563EB">
+          <div class="dos-band__body">
+            <span class="dos-band__serial">№ 02 / 06</span>
+            <span class="dos-band__rule"></span>
+            <div class="dos-band__metric" style="color:#2563EB;">
+              <span class="dos-band__metric-val">10M+</span>
+              <span class="dos-band__metric-lab">Cells</span>
+            </div>
+            <div class="dos-band__pillar"><span class="dos-band__dot" style="background:#2563EB;"></span><span style="color:#2563EB;">AI@Ashoka</span></div>
+            <h3 class="dos-band__title">OncoMark — Cancer at Single-Cell Resolution</h3>
+            <p class="dos-band__desc">AI framework quantifying cancer hallmarks across millions of single cells. Published in Communications Biology (Nature portfolio).</p>
+            <div class="dos-band__badges"><span class="dos-band__badge dos-band__badge--dark">Nature Portfolio</span><span class="dos-band__badge dos-band__badge--dark">Single-cell AI</span></div>
+            <div class="dos-band__foot">
+              <span class="dos-band__venue">Communications Biology · 2025</span>
+              <a href="../pages/project.html?id=cancer-ascend" class="dos-band__cta">Read the study →</a>
+            </div>
+          </div>
+          <div class="dos-band__plate">
+            <img src="assets/earth-dark.jpg" alt="" class="dos-band__img">
+            <div class="dos-band__plate-overlay"></div>
+            <div class="dos-band__plate-accent-r" style="background:#2563EB;"></div>
+            <span class="dos-band__plate-label">Fig. 02</span>
+          </div>
+        </article>
+
+        <!-- Band 3: World Food Atlas (light, image left — no photo) -->
+        <article class="dos-band" data-pillar-color="#D97706">
+          <div class="dos-band__plate dos-band__plate--empty" style="background:linear-gradient(135deg, rgba(217,119,6,0.15) 0%, #FBF3DF 100%);">
+            <span class="dos-band__plate-num" style="color:#D97706;">03</span>
+            <div class="dos-band__plate-accent" style="background:#D97706;"></div>
+            <span class="dos-band__plate-label">Fig. 03</span>
+          </div>
+          <div class="dos-band__body">
+            <span class="dos-band__serial">№ 03 / 06</span>
+            <span class="dos-band__rule"></span>
+            <div class="dos-band__metric" style="color:#D97706;">
+              <span class="dos-band__metric-val">Live</span>
+              <span class="dos-band__metric-lab">Platform</span>
+            </div>
+            <div class="dos-band__pillar"><span class="dos-band__dot" style="background:#D97706;"></span><span style="color:#D97706;">CHART</span></div>
+            <h3 class="dos-band__title">World Food Atlas</h3>
+            <p class="dos-band__desc">Multimodal food-computing platform mapping global cuisines through AI: ingredients, recipes, and nutritional analysis at scale.</p>
+            <div class="dos-band__badges"><span class="dos-band__badge">Multimodal</span><span class="dos-band__badge">Global Cuisines</span></div>
+            <div class="dos-band__foot">
+              <span class="dos-band__venue">Ongoing · CHART</span>
+              <a href="../pages/project.html?id=multimodal-food-computing" class="dos-band__cta">Explore the project →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Band 4: Oxford Fellowship (dark, image right) -->
+        <article class="dos-band dos-band--dark dos-band--reverse" data-pillar-color="#2563EB">
+          <div class="dos-band__body">
+            <span class="dos-band__serial">№ 04 / 06</span>
+            <span class="dos-band__rule"></span>
+            <div class="dos-band__metric" style="color:#2563EB;">
+              <span class="dos-band__metric-val">3 yr</span>
+              <span class="dos-band__metric-lab">Oxford</span>
+            </div>
+            <div class="dos-band__pillar"><span class="dos-band__dot" style="background:#2563EB;"></span><span style="color:#2563EB;">AI@Ashoka</span></div>
+            <h3 class="dos-band__title">Schmidt AI for Science Fellowship</h3>
+            <p class="dos-band__desc">Meghna Agarwala awarded a 3-year Schmidt Fellowship at Oxford for AI-driven pollen detection and biodiversity monitoring.</p>
+            <div class="dos-band__badges"><span class="dos-band__badge dos-band__badge--dark">Oxford</span><span class="dos-band__badge dos-band__badge--dark">3-year Fellowship</span></div>
+            <div class="dos-band__foot">
+              <span class="dos-band__venue">Oxford · 2026</span>
+              <a href="../pages/project.html?id=pollen-project" class="dos-band__cta dos-band__cta--dark">Read more →</a>
+            </div>
+          </div>
+          <div class="dos-band__plate">
+            <img src="assets/people/meghna-agarwala.png" alt="" class="dos-band__img" style="object-position: center 20%;">
+            <div class="dos-band__plate-overlay"></div>
+            <div class="dos-band__plate-accent-r" style="background:#2563EB;"></div>
+            <span class="dos-band__plate-label">Fig. 04</span>
+          </div>
+        </article>
+
+        <!-- Band 5: IndiaMediaLens (light, image left — no photo) -->
+        <article class="dos-band" data-pillar-color="#2563EB">
+          <div class="dos-band__plate dos-band__plate--empty" style="background:linear-gradient(135deg, rgba(37,99,235,0.12) 0%, #FBF3DF 100%);">
+            <span class="dos-band__plate-num" style="color:#2563EB;">05</span>
+            <div class="dos-band__plate-accent" style="background:#2563EB;"></div>
+            <span class="dos-band__plate-label">Fig. 05</span>
+          </div>
+          <div class="dos-band__body">
+            <span class="dos-band__serial">№ 05 / 06</span>
+            <span class="dos-band__rule"></span>
+            <div class="dos-band__metric" style="color:#2563EB;">
+              <span class="dos-band__metric-val">34</span>
+              <span class="dos-band__metric-lab">Years</span>
+            </div>
+            <div class="dos-band__pillar"><span class="dos-band__dot" style="background:#2563EB;"></span><span style="color:#2563EB;">AI@Ashoka</span></div>
+            <h3 class="dos-band__title">IndiaMediaLens</h3>
+            <p class="dos-band__desc">First national tool summarising Indian press complaints across 34 years of Press Council data, deployed at pressanalytics.in.</p>
+            <div class="dos-band__badges"><span class="dos-band__badge">34 yrs of data</span><span class="dos-band__badge">Public deploy</span></div>
+            <div class="dos-band__foot">
+              <span class="dos-band__venue">pressanalytics.in</span>
+              <a href="../pages/project.html?id=indiamedialens" class="dos-band__cta">Visit the platform →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Band 6: SocraticAI (dark, image right — no photo) -->
+        <article class="dos-band dos-band--dark dos-band--reverse" data-pillar-color="#2563EB">
+          <div class="dos-band__body">
+            <span class="dos-band__serial">№ 06 / 06</span>
+            <span class="dos-band__rule"></span>
+            <div class="dos-band__metric" style="color:#2563EB;">
+              <span class="dos-band__metric-val">GoI</span>
+              <span class="dos-band__metric-lab">Recognition</span>
+            </div>
+            <div class="dos-band__pillar"><span class="dos-band__dot" style="background:#2563EB;"></span><span style="color:#2563EB;">AI@Ashoka</span></div>
+            <h3 class="dos-band__title">SocraticAI — Government Recognition</h3>
+            <p class="dos-band__desc">AI tutor for foundational CS education, featured in MeitY's India-AI Impact Summit Compendium at Bharat Mandapam, New Delhi.</p>
+            <div class="dos-band__badges"><span class="dos-band__badge dos-band__badge--dark">MeitY Compendium</span><span class="dos-band__badge dos-band__badge--dark">Bharat Mandapam</span></div>
+            <div class="dos-band__foot">
+              <span class="dos-band__venue">Government of India · 2026</span>
+              <a href="../pages/project.html?id=cs-pedagogy" class="dos-band__cta dos-band__cta--dark">Read more →</a>
+            </div>
+          </div>
+          <div class="dos-band__plate dos-band__plate--empty" style="background:linear-gradient(135deg, rgba(37,99,235,0.2) 0%, #0D3862 100%);">
+            <span class="dos-band__plate-num" style="color:rgba(251,243,223,0.18);">06</span>
+            <div class="dos-band__plate-accent-r" style="background:#2563EB;"></div>
+            <span class="dos-band__plate-label">Fig. 06</span>
+          </div>
+        </article>
+
+        <!-- Dossier footer -->
+        <div class="dos-footer">
+          <span class="dos-footer__all">The full file →</span>
+          <a href="../pages/research.html" class="dos-footer__link">25+ projects · all research</a>
+        </div>
+
+      </section>
+
+      <!-- ═══ SECTION 2: PILLARS ═══ -->
+      <section class="stack-panel panel-pillars" data-theme="light">
+        <div class="container">
+          <div class="section__header">
+            <span class="section__eyebrow">Research</span>
+            <h2 class="section__title">Five Pillars of Innovation</h2>
+            <p class="section__description">Our research spans five interconnected pillars, each addressing critical challenges through technology and interdisciplinary collaboration.</p>
+          </div>
+          <div class="pillar-grid">
+            <a href="../pages/pillar.html?pillar=ai" class="pillar-card" data-pillar="ai">
+              <div class="pillar-card__header"><div class="pillar-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><path d="M5.6 5.6l2.9 2.9M15.5 15.5l2.9 2.9M18.4 5.6l-2.9 2.9M8.5 15.5l-2.9 2.9"/></svg></div></div>
+              <h3 class="pillar-card__title">AI@Ashoka</h3>
+              <p class="pillar-card__description">Advancing artificial intelligence research across education, health, environment, humanities, and fundamental sciences.</p>
+              <span class="pillar-card__arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H5M12 4v7"/></svg></span>
+            </a>
+            <a href="../pages/pillar.html?pillar=bharatsim" class="pillar-card" data-pillar="bharatsim">
+              <div class="pillar-card__header"><div class="pillar-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/><path d="M2 7c2-3 4-3 6 0s4 3 6 0 4-3 6 0" opacity="0.4"/><path d="M2 17c2-3 4-3 6 0s4 3 6 0 4-3 6 0" opacity="0.4"/></svg></div></div>
+              <h3 class="pillar-card__title">BharatSim</h3>
+              <p class="pillar-card__description">India-scale agent-based simulation framework for epidemiological modeling and public health policy planning.</p>
+              <span class="pillar-card__arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H5M12 4v7"/></svg></span>
+            </a>
+            <a href="../pages/pillar.html?pillar=chart" class="pillar-card" data-pillar="chart">
+              <div class="pillar-card__header"><div class="pillar-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-6 4 12 3-6h4"/></svg></div></div>
+              <h3 class="pillar-card__title">CHART</h3>
+              <p class="pillar-card__description">Centre for Health Analytics Research and Trends — clinical AI, food computing, and cancer diagnostics.</p>
+              <span class="pillar-card__arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H5M12 4v7"/></svg></span>
+            </a>
+            <a href="../pages/pillar.html?pillar=cyber" class="pillar-card" data-pillar="cyber">
+              <div class="pillar-card__header"><div class="pillar-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5.5-3.8 10.2-8 12-4.2-1.8-8-6.5-8-12V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div></div>
+              <h3 class="pillar-card__title">Cybersecurity</h3>
+              <p class="pillar-card__description">Post-quantum cryptography research to develop encryption systems resilient against quantum computing threats.</p>
+              <span class="pillar-card__arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H5M12 4v7"/></svg></span>
+            </a>
+            <a href="../pages/pillar.html?pillar=makerspace" class="pillar-card" data-pillar="makerspace">
+              <div class="pillar-card__header"><div class="pillar-card__icon"><img src="../src/assets/images/logos/makerspace-logo.png" alt="Makerspace logo"></div></div>
+              <h3 class="pillar-card__title">Makerspace</h3>
+              <p class="pillar-card__description">Digital fabrication, maker education, and hands-on innovation powering interdisciplinary research and student projects.</p>
+              <span class="pillar-card__arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4M12 4H5M12 4v7"/></svg></span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Impact section merged into Dossier above -->
+
+      <!-- ═══ SECTION 4: NEWS + FOOTER ═══ -->
+      <section class="stack-panel panel-news-footer" data-theme="light">
+        <section class="section" id="news">
+          <div class="container">
+            <div class="section__header flex flex--between flex--wrap" style="gap: var(--space-4);">
+              <div>
+                <span class="section__eyebrow">Updates</span>
+                <h2 class="section__title">Latest News &amp; Events</h2>
+              </div>
+              <a href="../pages/news.html" class="btn btn--secondary">
+                View All
+                <svg class="btn__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h8M8 4l4 4-4 4"/></svg>
+              </a>
+            </div>
+            <div class="grid grid--3">
+              <a href="../posts/2026-03-wicscon-3.html" class="card news-card" style="text-decoration: none; color: inherit;">
+                <div class="card__body">
+                  <span class="card__date">March 21&ndash;22, 2026</span>
+                  <h3 class="card__title">WiCSCon 3.0 at Ashoka University</h3>
+                  <p class="card__text">India's first student-led conference on inclusivity and diversity in CS. Theme: "Designing Tomorrow, Today." Speakers from Microsoft AI, Evolve AI, Neysa AI, and more. 440 sign-ups.</p>
+                </div>
+              </a>
+              <a href="../posts/2026-03-acm-compute-2026.html" class="card news-card" style="text-decoration: none; color: inherit;">
+                <div class="card__body">
+                  <span class="card__date">March 21, 2026</span>
+                  <h3 class="card__title">ACM COMPUTE 2026 Workshop Hosted</h3>
+                  <p class="card__text">ACM COMPUTE 2026 Regional Workshop hosted at Ashoka University — discussion forum on CS education themes and two hands-on workshops.</p>
+                </div>
+              </a>
+              <a href="../posts/2026-03-iticse-papers-accepted.html" class="card news-card" style="text-decoration: none; color: inherit;">
+                <div class="card__body">
+                  <span class="card__date">March 2026</span>
+                  <h3 class="card__title">Two Papers Accepted at ITiCSE</h3>
+                  <p class="card__text">Two papers from the AI Pedagogy / BOOP project accepted at ITiCSE, a leading CS education conference. Students Ayush Thonge and Vaani Goenka will present in Spain in July 2026.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+        <footer class="footer" role="contentinfo">
+          <div class="container">
+            <div class="footer__grid">
+              <div class="footer__brand">
+                <img src="../src/assets/images/logos/lab-logo.png" alt="Lab Logo" class="footer__brand-logo">
+                <p class="footer__brand-text">Advancing interdisciplinary research in AI, health, fabrication, and beyond at Ashoka University.</p>
+                <div class="footer__brand-partner"><span>Supported by</span><img src="../src/assets/images/logos/mphasis-foundation.png" alt="Mphasis F1 Foundation"></div>
+              </div>
+              <div><h4 class="footer__heading">Navigate</h4><div class="footer__links"><a href="../index.html" class="footer__link">Home</a><a href="../pages/about.html" class="footer__link">About</a><a href="../pages/research.html" class="footer__link">Research</a><a href="../pages/people.html" class="footer__link">People</a><a href="../pages/publications.html" class="footer__link">Publications</a><a href="../pages/makerspace.html" class="footer__link">Makerspace</a><a href="../pages/news.html" class="footer__link">News & Events</a><a href="../pages/impact.html" class="footer__link">Impact</a></div></div>
+              <div><h4 class="footer__heading">Research</h4><div class="footer__links"><a href="../pages/pillar.html?pillar=ai" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-ai);"></span>AI@Ashoka</a><a href="../pages/pillar.html?pillar=bharatsim" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-bharatsim);"></span>BharatSim</a><a href="../pages/pillar.html?pillar=chart" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-chart);"></span>CHART</a><a href="../pages/pillar.html?pillar=cyber" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-cyber);"></span>Cybersecurity</a><a href="../pages/pillar.html?pillar=makerspace" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-makerspace);"></span>Makerspace</a></div></div>
+              <div><h4 class="footer__heading">Contact</h4><div><div class="footer__contact-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13.3 2.7H2.7c-.7 0-1.4.6-1.4 1.3v8c0 .7.6 1.4 1.4 1.4h10.6c.7 0 1.4-.6 1.4-1.4V4c0-.7-.6-1.3-1.4-1.3z"/><path d="M14.7 4L8 8.7 1.3 4"/></svg><a href="mailto:mphasis.lab@ashoka.edu.in" style="color: rgba(245,235,211,0.8);">mphasis.lab@ashoka.edu.in</a></div><div class="footer__contact-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6.7C14 11.3 8 15.3 8 15.3S2 11.3 2 6.7a6 6 0 1 1 12 0z"/><circle cx="8" cy="6.7" r="2"/></svg><span>Ashoka University<br>Sonipat, Haryana, India</span></div></div></div>
+            </div>
+            <div class="footer__bottom"><p class="footer__copyright">&copy; 2026 Mphasis AI & Applied Tech Lab, Ashoka University. All rights reserved.</p><div class="footer__bottom-links"></div></div>
+          </div>
+        </footer>
+      </section>
+
+    </div>
+
+  </div>
+
+  <!-- Load existing JS (canvas, morph text, counters, search, etc.) -->
+  <script src="../src/data/projects.js"></script>
+  <script src="../src/data/people.js"></script>
+  <script src="../src/data/publications.js"></script>
+  <script src="../src/data/pillars.js"></script>
+  <script src="../src/vendor/gsap.min.js"></script>
+  <script src="../src/vendor/ScrollTrigger.min.js"></script>
+  <script src="../src/js/gsap-animations.js"></script>
+  <script src="../src/js/main.js"></script>
+  <script src="../src/js/search.js"></script>
+
+  <script>
+  (function() {
+    'use strict';
+
+    // ═══ CONTEXT-AWARE FLOATING BUTTONS ═══
+    var floatMenuBtn = document.getElementById('floatMenuBtn');
+    var floatSearchBtn = document.getElementById('floatSearchBtn');
+
+    if (floatMenuBtn && floatSearchBtn) {
+      function isDarkAt(x, y) {
+        floatMenuBtn.style.pointerEvents = 'none';
+        floatSearchBtn.style.pointerEvents = 'none';
+        var sn = document.getElementById('side-nav');
+        if (sn) sn.style.pointerEvents = 'none';
+
+        var el = document.elementFromPoint(x, y);
+
+        floatMenuBtn.style.pointerEvents = '';
+        floatSearchBtn.style.pointerEvents = '';
+        if (sn) sn.style.pointerEvents = '';
+
+        if (!el) return false;
+
+        var node = el;
+        while (node && node !== document.documentElement) {
+          var bg = getComputedStyle(node).backgroundColor;
+          if (bg && bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)') {
+            var m = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+            if (m) {
+              var r = parseInt(m[1]) / 255;
+              var g = parseInt(m[2]) / 255;
+              var b = parseInt(m[3]) / 255;
+              var lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+              return lum < 0.4;
+            }
+          }
+          if (node.getAttribute && node.getAttribute('data-theme') === 'dark') return true;
+          node = node.parentElement;
+        }
+        return false;
+      }
+
+      function updateFloatingButtons() {
+        var onDark = isDarkAt(60, 40) || isDarkAt(window.innerWidth - 60, 40);
+
+        if (onDark) {
+          floatMenuBtn.classList.add('on-dark');
+          floatSearchBtn.classList.add('on-dark');
+        } else {
+          floatMenuBtn.classList.remove('on-dark');
+          floatSearchBtn.classList.remove('on-dark');
+        }
+      }
+
+      window.addEventListener('scroll', updateFloatingButtons, { passive: true });
+      setTimeout(updateFloatingButtons, 100);
+      updateFloatingButtons();
+    }
+
+    // ═══ PROGRESS BAR ═══
+    var progressBar = document.getElementById('progress-bar');
+    if (progressBar) {
+      window.addEventListener('scroll', function() {
+        var scrollTop = window.scrollY;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        progressBar.style.width = progress + '%';
+      }, { passive: true });
+    }
+
+    // ═══ SIDE NAVIGATION ═══
+    var sideNav = document.getElementById('side-nav');
+    var sideNavClose = document.getElementById('side-nav-close');
+    var sideNavBackdrop = document.getElementById('side-nav-backdrop');
+    var navIsOpen = false;
+
+    function openSideNav() {
+      if (!sideNav || navIsOpen) return;
+      navIsOpen = true;
+      sideNav.classList.remove('side-nav--peek');
+      sideNav.classList.add('side-nav--open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSideNav() {
+      if (!sideNav || !navIsOpen) return;
+      navIsOpen = false;
+      sideNav.classList.remove('side-nav--open');
+      document.body.style.overflow = '';
+    }
+
+    // Floating menu button
+    if (floatMenuBtn) {
+      floatMenuBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        openSideNav();
+      });
+
+      // Hover peek
+      floatMenuBtn.addEventListener('mouseenter', function() {
+        if (!navIsOpen) {
+          sideNav.classList.add('side-nav--peek');
+        }
+      });
+      floatMenuBtn.addEventListener('mouseleave', function() {
+        if (!navIsOpen) {
+          sideNav.classList.remove('side-nav--peek');
+        }
+      });
+    }
+
+    // Floating search button triggers search overlay
+    var searchOverlay = document.getElementById('search-overlay');
+    var searchInput = searchOverlay ? searchOverlay.querySelector('#search-input') : null;
+    var searchBackdrop = searchOverlay ? searchOverlay.querySelector('.search-overlay__backdrop') : null;
+
+    function openSearch() {
+      if (!searchOverlay) return;
+      searchOverlay.hidden = false;
+      if (searchInput) setTimeout(function() { searchInput.focus(); }, 100);
+    }
+    function closeSearch() {
+      if (!searchOverlay) return;
+      searchOverlay.hidden = true;
+      if (searchInput) searchInput.value = '';
+    }
+
+    if (floatSearchBtn) {
+      floatSearchBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openSearch();
+      });
+    }
+
+    // Close search on backdrop click
+    if (searchBackdrop) {
+      searchBackdrop.addEventListener('click', closeSearch);
+    }
+
+    if (sideNavClose) sideNavClose.addEventListener('click', closeSideNav);
+    if (sideNavBackdrop) sideNavBackdrop.addEventListener('click', closeSideNav);
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && navIsOpen) {
+        closeSideNav();
+      }
+    });
+
+    // Handle internal links (close on click)
+    if (sideNav) {
+      sideNav.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', closeSideNav);
+      });
+    }
+
+  })();
+
+  // ═══ DOSSIER PARALLAX — plate images shift on scroll ═══
+  (function() {
+    var imgs = document.querySelectorAll('.dos-band__img');
+    if (!imgs.length) return;
+
+    function updateParallax() {
+      imgs.forEach(function(img) {
+        var plate = img.closest('.dos-band__plate');
+        if (!plate) return;
+        var rect = plate.getBoundingClientRect();
+        var vh = window.innerHeight;
+        if (rect.bottom < 0 || rect.top > vh) return;
+        var progress = (vh - rect.top) / (vh + rect.height);
+        var shift = (progress - 0.5) * 50;
+        // Preserve hover scale if active
+        var isHovered = plate.closest('.dos-band:hover');
+        var scale = isHovered ? 1.04 : 1;
+        img.style.transform = 'translateY(' + shift + 'px) scale(' + scale + ')';
+      });
+    }
+
+    window.addEventListener('scroll', updateParallax, { passive: true });
+    updateParallax();
+  })();
+  </script>
+</body>
+</html>

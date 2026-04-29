@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mphasis AI & Applied Tech Lab — Field Notes V3 Editorial</title>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+/* ========================================
+   RESET & BASE
+   ======================================== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #F5EBD3;
+  --text: #1B2E1A;
+  --secondary: #2B3A1C;
+  --tertiary: #5C4A2E;
+  --accent: #8B3A1F;
+  --dark: #1B2E1A;
+  --dark-text: #F5EBD3;
+  --card: #FDF5E2;
+  --plate-bg: #EDDFB8;
+  --amber: #E4A03B;
+  --footer-bg: #0E1A0D;
+  --border: #3D2F1F;
+  --rail-w: 200px;
+  --pillar-ai: #2563EB;
+  --pillar-bharatsim: #059669;
+  --pillar-chart: #D97706;
+  --pillar-cyber: #7C3AED;
+  --pillar-maker: #DC2626;
+}
+
+html { scroll-behavior: auto; }
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ========================================
+   READING PROGRESS BAR
+   ======================================== */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--accent);
+  z-index: 1000;
+  transition: width 60ms linear;
+}
+
+/* ========================================
+   MARGIN NOTES RAIL (LEFT)
+   ======================================== */
+.margin-rail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--rail-w);
+  height: 100vh;
+  background: var(--card);
+  border-right: 1px solid var(--border);
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  padding: 48px 20px 24px;
+  font-family: 'Zilla Slab', serif;
+}
+
+.rail-chapters {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.rail-chapter {
+  opacity: 0.3;
+  transition: opacity 0.5s ease, color 0.5s ease;
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+.rail-chapter.active {
+  opacity: 1;
+}
+
+.rail-chapter-symbol {
+  display: block;
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+}
+
+.rail-chapter-name {
+  display: block;
+  font-style: italic;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.rail-page {
+  font-size: 11px;
+  color: var(--tertiary);
+  opacity: 0.6;
+  margin-top: 2px;
+  font-style: italic;
+}
+
+.rail-footer {
+  margin-top: auto;
+  font-size: 10px;
+  color: var(--tertiary);
+  opacity: 0.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+
+/* ========================================
+   CONTENT AREA (right of rail)
+   ======================================== */
+.content-area {
+  margin-left: var(--rail-w);
+}
+
+/* ========================================
+   TOP BAR (sticky, within content area)
+   ======================================== */
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 400;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 48px;
+  font-family: 'Zilla Slab', serif;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.top-bar-chapter {
+  font-weight: 600;
+  color: var(--accent);
+  transition: opacity 0.3s ease;
+}
+
+.top-bar-nav {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.top-bar-nav a {
+  color: var(--tertiary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.top-bar-nav a:hover { color: var(--accent); text-decoration: none; }
+
+.top-bar-right {
+  color: var(--tertiary);
+  font-style: italic;
+  text-transform: none;
+  font-size: 11px;
+}
+
+/* ========================================
+   HERO (PROLOGUE)
+   ======================================== */
+.hero {
+  padding: 100px 64px 80px;
+  min-height: 90vh;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+}
+
+.hero-left { max-width: 640px; }
+
+.hero-issue {
+  font-family: 'Zilla Slab', serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+  min-height: 1.2em;
+  border-bottom: 1px solid var(--accent);
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.hero-issue .cursor {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  background: var(--accent);
+  margin-left: 2px;
+  animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink { 0%,100% { opacity:1 } 50% { opacity:0 } }
+
+.hero-title {
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 28px;
+  font-style: italic;
+}
+
+.hero-title-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.hero-title-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: var(--secondary);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.hero-subtitle.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-pullquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 20px;
+  font-style: italic;
+  color: var(--tertiary);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 500px;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.hero-pullquote.visible { opacity: 1; }
+
+.hero-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.hero-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.field-card {
+  background: var(--card);
+  border: 2px solid var(--border);
+  padding: 32px;
+  position: relative;
+}
+
+.field-card::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border: 1px dashed var(--border);
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.field-card-label {
+  font-family: 'Zilla Slab', serif;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.field-card-title {
+  font-size: 20px;
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.field-card-body {
+  font-size: 14px;
+  color: var(--secondary);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.field-card-meta {
+  font-family: 'Zilla Slab', serif;
+  font-size: 11px;
+  color: var(--tertiary);
+  letter-spacing: 0.04em;
+}
+
+.field-card-meta span {
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ========================================
+   SAMPLER BAND (Stats)
+   ======================================== */
+.sampler-band {
+  background: var(--dark);
+  color: var(--dark-text);
+  padding: 60px 64px;
+  border-top: 2px solid var(--border);
+  border-bottom: 2px solid var(--border);
+}
+
+.sampler-inner {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.sampler-stat {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.sampler-stat.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sampler-number {
+  font-family: 'Zilla Slab', serif;
+  font-size: 42px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+  transition: transform 0.1s ease;
+}
+
+.sampler-label {
+  font-family: 'Zilla Slab', serif;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(245,235,211,0.6);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.sampler-fill-track {
+  width: 60px;
+  height: 2px;
+  background: rgba(245,235,211,0.15);
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.sampler-fill-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--amber);
+  transition: width 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ========================================
+   SECTION HEADERS (Chapter dividers)
+   ======================================== */
+.chapter-header {
+  padding: 80px 64px 40px;
+  position: relative;
+}
+
+.chapter-header::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 64px;
+  right: 64px;
+  height: 1px;
+  background: var(--border);
+}
+
+.chapter-label {
+  font-family: 'Zilla Slab', serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+  display: inline-block;
+  background: var(--bg);
+  padding-right: 16px;
+  position: relative;
+}
+
+.chapter-title {
+  font-size: 36px;
+  font-style: italic;
+  color: var(--text);
+  font-weight: 400;
+}
+
+/* ========================================
+   SPECIMEN CARDS (Pillars) — STAGGERED
+   ======================================== */
+.specimens {
+  padding: 0 64px 80px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.specimen-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 24px 20px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(60px) rotate(1.5deg);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.specimen-card.visible {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+
+.specimen-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--border);
+  transition: width 0.6s ease 0.8s;
+}
+
+.specimen-card.visible::after {
+  width: 100%;
+}
+
+.specimen-swatch {
+  width: 100%;
+  height: 6px;
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
+.specimen-number {
+  font-family: 'Zilla Slab', serif;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--tertiary);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.specimen-name {
+  font-size: 18px;
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.specimen-count {
+  font-family: 'Zilla Slab', serif;
+  font-size: 13px;
+  color: var(--tertiary);
+}
+
+/* ========================================
+   PLATES — EDITORIAL SPREADS
+   ======================================== */
+.plates-section {
+  padding: 0 0 40px;
+}
+
+.plate-spread {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+  padding: 80px 64px;
+  position: relative;
+}
+
+.plate-spread + .plate-spread::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 64px;
+  right: 64px;
+  height: 1px;
+  background: var(--border);
+}
+
+.plate-sticky-col {
+  position: sticky;
+  top: 100px;
+  align-self: start;
+  padding-right: 48px;
+}
+
+.plate-frame {
+  background: var(--plate-bg);
+  border: 2px solid var(--border);
+  padding: 16px;
+  box-shadow: 4px 4px 0 rgba(61,47,31,0.15);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.plate-frame img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  filter: sepia(0.15) contrast(1.05);
+}
+
+.plate-frame-placeholder {
+  width: 100%;
+  height: 260px;
+  background: linear-gradient(135deg, var(--plate-bg) 0%, #d4c9a8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: italic;
+  color: var(--tertiary);
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.plate-figure {
+  font-family: 'Zilla Slab', serif;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 12px;
+}
+
+.plate-pillar {
+  font-family: 'Zilla Slab', serif;
+  font-size: 12px;
+  color: var(--tertiary);
+  margin-top: 4px;
+}
+
+.plate-progress-track {
+  width: 100%;
+  height: 2px;
+  background: rgba(61,47,31,0.15);
+  margin-top: 16px;
+  overflow: hidden;
+}
+
+.plate-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.1s linear;
+}
+
+.plate-text-col {
+  padding-left: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.plate-text-col.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.plate-title {
+  font-size: 36px;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.plate-desc {
+  font-size: 16px;
+  color: var(--secondary);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  max-width: 480px;
+}
+
+.plate-venue {
+  font-family: 'Zilla Slab', serif;
+  font-size: 13px;
+  color: var(--tertiary);
+  letter-spacing: 0.04em;
+  margin-bottom: 24px;
+}
+
+.plate-link {
+  font-family: 'Zilla Slab', serif;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  display: inline-block;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+
+.plate-link:hover { opacity: 0.7; text-decoration: none; }
+
+/* ========================================
+   ALMANAC (News) — ACCORDION
+   ======================================== */
+.almanac-section {
+  padding: 0 64px 80px;
+}
+
+.almanac-entry {
+  border-bottom: 1px dashed var(--border);
+  overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.almanac-entry:first-child {
+  border-top: 1px dashed var(--border);
+}
+
+.almanac-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.almanac-header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.almanac-date {
+  font-family: 'Zilla Slab', serif;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  min-width: 100px;
+}
+
+.almanac-title {
+  font-size: 20px;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.almanac-page {
+  font-family: 'Zilla Slab', serif;
+  font-size: 11px;
+  color: var(--tertiary);
+  opacity: 0.5;
+  font-style: italic;
+  min-width: 40px;
+  text-align: right;
+}
+
+.almanac-toggle {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--tertiary);
+  transition: transform 0.4s ease;
+  margin-left: 16px;
+}
+
+.almanac-entry.expanded .almanac-toggle {
+  transform: rotate(45deg);
+}
+
+.almanac-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease;
+  padding: 0 0 0 120px;
+}
+
+.almanac-entry.expanded .almanac-body {
+  max-height: 300px;
+  padding-bottom: 24px;
+}
+
+.almanac-body-text {
+  font-size: 15px;
+  color: var(--secondary);
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+.almanac-body-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-family: 'Zilla Slab', serif;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+/* ========================================
+   CONTRIBUTORS (People) — CONTACT SHEET
+   ======================================== */
+.contributors-section {
+  padding: 0 64px 80px;
+}
+
+.contributors-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  position: relative;
+}
+
+.contributors-row-rule {
+  grid-column: 1 / -1;
+  height: 1px;
+  background: var(--amber);
+  opacity: 0.4;
+}
+
+.contributor-card {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.contributor-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contributor-photo-wrap {
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border: 2px solid var(--border);
+  position: relative;
+  margin-bottom: 12px;
+  background: var(--plate-bg);
+}
+
+.contributor-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.6) contrast(0.9);
+  transition: filter 0.8s ease;
+}
+
+.contributor-card.visible .contributor-photo-wrap img {
+  filter: sepia(0) contrast(1);
+}
+
+.contributor-frame-num {
+  position: absolute;
+  bottom: 6px;
+  right: 8px;
+  font-family: 'Zilla Slab', serif;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--dark-text);
+  background: rgba(27,46,26,0.6);
+  padding: 2px 6px;
+}
+
+.contributor-name {
+  font-size: 15px;
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.contributor-role {
+  font-family: 'Zilla Slab', serif;
+  font-size: 11px;
+  color: var(--tertiary);
+  letter-spacing: 0.04em;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.site-footer {
+  background: var(--footer-bg);
+  color: rgba(245,235,211,0.5);
+  padding: 48px 64px;
+  border-top: 2px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Zilla Slab', serif;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.footer-left { font-style: italic; }
+
+.footer-right {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-right a {
+  color: rgba(245,235,211,0.5);
+  transition: color 0.2s;
+}
+
+.footer-right a:hover { color: var(--dark-text); }
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+@keyframes typewriter-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 1100px) {
+  .margin-rail { display: none; }
+  .content-area { margin-left: 0; }
+  .hero { grid-template-columns: 1fr; padding: 80px 32px 60px; }
+  .hero-right { display: none; }
+  .hero-title { font-size: 44px; }
+  .specimens { grid-template-columns: repeat(3, 1fr); padding: 0 32px 60px; }
+  .plate-spread { grid-template-columns: 1fr; padding: 60px 32px; }
+  .plate-sticky-col { position: relative; top: auto; padding-right: 0; margin-bottom: 32px; }
+  .plate-text-col { padding-left: 0; }
+  .sampler-inner { grid-template-columns: repeat(3, 1fr); }
+  .chapter-header { padding: 60px 32px 32px; }
+  .chapter-header::before { left: 32px; right: 32px; }
+  .almanac-section { padding: 0 32px 60px; }
+  .almanac-body { padding-left: 0 !important; }
+  .contributors-section { padding: 0 32px 60px; }
+  .contributors-grid { grid-template-columns: repeat(2, 1fr); }
+  .top-bar { padding: 12px 32px; }
+  .site-footer { padding: 32px; flex-direction: column; gap: 16px; text-align: center; }
+}
+
+@media (max-width: 600px) {
+  .hero-title { font-size: 32px; }
+  .specimens { grid-template-columns: 1fr; }
+  .sampler-inner { grid-template-columns: repeat(2, 1fr); }
+  .contributors-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .top-bar-nav { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- READING PROGRESS BAR -->
+<div class="reading-progress" id="readingProgress"></div>
+
+<!-- MARGIN NOTES RAIL -->
+<aside class="margin-rail" id="marginRail">
+  <div style="font-family:'Zilla Slab',serif;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Field Notes</div>
+  <div style="font-size:13px;font-style:italic;color:var(--text);line-height:1.3;">Mphasis AI &amp;<br>Applied Tech Lab</div>
+
+  <nav class="rail-chapters" id="railChapters">
+    <div class="rail-chapter active" data-target="hero">
+      <span class="rail-chapter-symbol">&sect; 0</span>
+      <span class="rail-chapter-name">Prologue</span>
+    </div>
+    <div class="rail-chapter" data-target="specimens">
+      <span class="rail-chapter-symbol">&sect; I</span>
+      <span class="rail-chapter-name">Specimens</span>
+    </div>
+    <div class="rail-chapter" data-target="plates">
+      <span class="rail-chapter-symbol">&sect; II</span>
+      <span class="rail-chapter-name">Plates</span>
+    </div>
+    <div class="rail-chapter" data-target="almanac">
+      <span class="rail-chapter-symbol">&sect; III</span>
+      <span class="rail-chapter-name">Almanac</span>
+    </div>
+    <div class="rail-chapter" data-target="contributors">
+      <span class="rail-chapter-symbol">&sect; IV</span>
+      <span class="rail-chapter-name">Contributors</span>
+    </div>
+  </nav>
+
+  <div class="rail-page" id="railPage">p. 1</div>
+
+  <div class="rail-footer">
+    Vol. X &middot; Spring &middot; MMXXVI
+  </div>
+</aside>
+
+<!-- CONTENT AREA -->
+<main class="content-area">
+
+  <!-- TOP BAR -->
+  <header class="top-bar">
+    <div class="top-bar-left">
+      <span class="top-bar-chapter" id="topBarChapter">&sect; 0 &middot; Prologue</span>
+      <ul class="top-bar-nav">
+        <li><a href="#">Research</a></li>
+        <li><a href="#">People</a></li>
+        <li><a href="#">Publications</a></li>
+        <li><a href="#">Impact</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </div>
+    <div class="top-bar-right">Ashoka University, Sonipat</div>
+  </header>
+
+  <!-- ===================== HERO / PROLOGUE ===================== -->
+  <section class="hero" id="hero" data-chapter="&sect; 0 &middot; Prologue">
+
+    <div class="hero-left">
+      <div class="hero-issue" id="heroIssue"></div>
+
+      <h1 class="hero-title">
+        <span class="hero-title-line" data-delay="400">A living record of</span>
+        <span class="hero-title-line" data-delay="700">research at the</span>
+        <span class="hero-title-line" data-delay="1000">frontier of applied technology.</span>
+      </h1>
+
+      <p class="hero-subtitle" id="heroSubtitle">
+        Documenting 25+ research projects across five pillars of inquiry &mdash; from agent-based epidemic modelling to post-quantum cryptography.
+      </p>
+
+      <blockquote class="hero-pullquote" id="heroPullquote">
+        &ldquo;To expand and enhance technology-enabled impact through research and innovation at Ashoka University.&rdquo;
+      </blockquote>
+    </div>
+
+    <div class="hero-right" id="heroCard">
+      <div class="field-card">
+        <div class="field-card-label">Field Station &mdash; Sonipat, Haryana</div>
+        <div class="field-card-title">Mphasis AI &amp; Applied Tech Lab</div>
+        <div class="field-card-body">
+          A multidisciplinary research initiative bridging computer science, biology, physics, the humanities, and engineering &mdash; housed at Ashoka University and funded through Mphasis&rsquo;s CSR initiative.
+        </div>
+        <div class="field-card-meta">
+          <span>Est. April 2023</span>
+          <span>MoU Period: 2023&ndash;2026</span>
+          <span>27+ Faculty &middot; 7 Departments</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===================== SAMPLER BAND ===================== -->
+  <section class="sampler-band" id="samplerBand">
+    <div class="sampler-inner">
+
+      <div class="sampler-stat" data-value="25" data-suffix="+">
+        <span class="sampler-number">0</span>
+        <span class="sampler-label">Research Projects</span>
+        <div class="sampler-fill-track"><div class="sampler-fill-bar"></div></div>
+      </div>
+
+      <div class="sampler-stat" data-value="30" data-suffix="+">
+        <span class="sampler-number">0</span>
+        <span class="sampler-label">Publications</span>
+        <div class="sampler-fill-track"><div class="sampler-fill-bar"></div></div>
+      </div>
+
+      <div class="sampler-stat" data-value="27" data-suffix="+">
+        <span class="sampler-number">0</span>
+        <span class="sampler-label">Faculty &middot; 7 Depts</span>
+        <div class="sampler-fill-track"><div class="sampler-fill-bar"></div></div>
+      </div>
+
+      <div class="sampler-stat" data-value="6" data-suffix="">
+        <span class="sampler-number">0</span>
+        <span class="sampler-label">Deployed Systems</span>
+        <div class="sampler-fill-track"><div class="sampler-fill-bar"></div></div>
+      </div>
+
+      <div class="sampler-stat" data-value="40" data-suffix="+">
+        <span class="sampler-number">0</span>
+        <span class="sampler-label">Partnerships</span>
+        <div class="sampler-fill-track"><div class="sampler-fill-bar"></div></div>
+      </div>
+
+      <div class="sampler-stat" data-value="15" data-suffix="+">
+        <span class="sampler-number">0</span>
+        <span class="sampler-label">Countries</span>
+        <div class="sampler-fill-track"><div class="sampler-fill-bar"></div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== CHAPTER I — SPECIMENS ===================== -->
+  <div class="chapter-header" id="specimens" data-chapter="&sect; I &middot; Five fields of study">
+    <div class="chapter-label">&sect; I</div>
+    <h2 class="chapter-title">Five fields of study</h2>
+  </div>
+
+  <div class="specimens">
+
+    <div class="specimen-card" data-stagger="0">
+      <div class="specimen-swatch" style="background:var(--pillar-ai)"></div>
+      <div class="specimen-number">Specimen No. 1</div>
+      <div class="specimen-name">AI@Ashoka</div>
+      <div class="specimen-count">9 active projects</div>
+    </div>
+
+    <div class="specimen-card" data-stagger="1">
+      <div class="specimen-swatch" style="background:var(--pillar-bharatsim)"></div>
+      <div class="specimen-number">Specimen No. 2</div>
+      <div class="specimen-name">BharatSim</div>
+      <div class="specimen-count">4 active projects</div>
+    </div>
+
+    <div class="specimen-card" data-stagger="2">
+      <div class="specimen-swatch" style="background:var(--pillar-chart)"></div>
+      <div class="specimen-number">Specimen No. 3</div>
+      <div class="specimen-name">CHART</div>
+      <div class="specimen-count">5 active projects</div>
+    </div>
+
+    <div class="specimen-card" data-stagger="3">
+      <div class="specimen-swatch" style="background:var(--pillar-cyber)"></div>
+      <div class="specimen-number">Specimen No. 4</div>
+      <div class="specimen-name">Cybersecurity</div>
+      <div class="specimen-count">3 active projects</div>
+    </div>
+
+    <div class="specimen-card" data-stagger="4">
+      <div class="specimen-swatch" style="background:var(--pillar-maker)"></div>
+      <div class="specimen-number">Specimen No. 5</div>
+      <div class="specimen-name">Makerspace</div>
+      <div class="specimen-count">4 active projects</div>
+    </div>
+
+  </div>
+
+  <!-- ===================== CHAPTER II — PLATES ===================== -->
+  <div class="chapter-header" id="plates" data-chapter="&sect; II &middot; Selected plates">
+    <div class="chapter-label">&sect; II</div>
+    <h2 class="chapter-title">Selected plates</h2>
+  </div>
+
+  <div class="plates-section">
+
+    <!-- Plate 1 -->
+    <div class="plate-spread" data-plate="0">
+      <div class="plate-sticky-col">
+        <div class="plate-frame">
+          <img src="assets/bharatsim-network.png" alt="BharatSim network simulation visualization">
+        </div>
+        <div class="plate-figure">Fig. 1</div>
+        <div class="plate-pillar">BharatSim</div>
+        <div class="plate-progress-track"><div class="plate-progress-fill"></div></div>
+      </div>
+      <div class="plate-text-col">
+        <h3 class="plate-title">India-Scale Epidemic Simulation</h3>
+        <p class="plate-desc">Agent-based modelling of a nation of 1.4 billion individuals, simulating disease dynamics at unprecedented scale. The BharatSim framework enables policy-relevant scenario analysis for public health decision-making across India&rsquo;s diverse demographic landscape.</p>
+        <div class="plate-venue">BMC Public Health &middot; 2025</div>
+        <a href="#" class="plate-link">Read the study &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Plate 2 -->
+    <div class="plate-spread" data-plate="1">
+      <div class="plate-sticky-col">
+        <div class="plate-frame">
+          <img src="assets/earth-dark.jpg" alt="OncoMark cancer diagnostics visualization">
+        </div>
+        <div class="plate-figure">Fig. 2</div>
+        <div class="plate-pillar">AI@Ashoka</div>
+        <div class="plate-progress-track"><div class="plate-progress-fill"></div></div>
+      </div>
+      <div class="plate-text-col">
+        <h3 class="plate-title">OncoMark &mdash; Cancer Diagnostics AI</h3>
+        <p class="plate-desc">Framework quantifying cancer hallmarks from gene expression data. OncoMark enables systematic characterisation of tumour biology, supporting clinicians in precision oncology through interpretable machine-learning-derived biomarker panels.</p>
+        <div class="plate-venue">Communications Biology &middot; 2025</div>
+        <a href="#" class="plate-link">Read the study &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Plate 3 -->
+    <div class="plate-spread" data-plate="2">
+      <div class="plate-sticky-col">
+        <div class="plate-frame">
+          <div class="plate-frame-placeholder">Illustration pending</div>
+        </div>
+        <div class="plate-figure">Fig. 3</div>
+        <div class="plate-pillar">CHART</div>
+        <div class="plate-progress-track"><div class="plate-progress-fill"></div></div>
+      </div>
+      <div class="plate-text-col">
+        <h3 class="plate-title">World Food Atlas</h3>
+        <p class="plate-desc">Multimodal food computing platform mapping global culinary traditions through computer vision and natural language processing. Cataloguing ingredients, techniques, and cultural food practices to build a comprehensive computational atlas of the world&rsquo;s cuisines.</p>
+        <div class="plate-venue">Ongoing &middot; CHART</div>
+        <a href="#" class="plate-link">View the project &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Plate 4 -->
+    <div class="plate-spread" data-plate="3">
+      <div class="plate-sticky-col">
+        <div class="plate-frame">
+          <div class="plate-frame-placeholder">Illustration pending</div>
+        </div>
+        <div class="plate-figure">Fig. 4</div>
+        <div class="plate-pillar">AI@Ashoka</div>
+        <div class="plate-progress-track"><div class="plate-progress-fill"></div></div>
+      </div>
+      <div class="plate-text-col">
+        <h3 class="plate-title">Biodiversity &amp; AI Conservation</h3>
+        <p class="plate-desc">Meghna Agarwala&rsquo;s 3-year Schmidt AI for Science Fellowship at Oxford, applying artificial intelligence to biodiversity conservation. Developing new computational approaches to monitor and protect ecosystems at scale.</p>
+        <div class="plate-venue">Oxford &middot; Schmidt Fellowship</div>
+        <a href="#" class="plate-link">Read the study &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===================== CHAPTER III — ALMANAC ===================== -->
+  <div class="chapter-header" id="almanac" data-chapter="&sect; III &middot; Almanac">
+    <div class="chapter-label">&sect; III</div>
+    <h2 class="chapter-title">Almanac &mdash; dispatches from the field</h2>
+  </div>
+
+  <div class="almanac-section">
+
+    <div class="almanac-entry expanded" data-almanac="0">
+      <div class="almanac-header">
+        <div class="almanac-header-left">
+          <span class="almanac-date">Mar 21&ndash;22</span>
+          <span class="almanac-title">WiCSCon 3.0 &mdash; Women in Computer Science</span>
+        </div>
+        <span class="almanac-page">p. 31</span>
+        <span class="almanac-toggle">+</span>
+      </div>
+      <div class="almanac-body">
+        <p class="almanac-body-text">The third edition of the Women in Computer Science Conference, hosted at Ashoka University, brought together researchers, practitioners, and students to discuss advances in computing and the role of women in shaping the future of technology.</p>
+        <a href="#" class="almanac-body-link">Read dispatch &rarr;</a>
+      </div>
+    </div>
+
+    <div class="almanac-entry" data-almanac="1">
+      <div class="almanac-header">
+        <div class="almanac-header-left">
+          <span class="almanac-date">Mar 21</span>
+          <span class="almanac-title">ACM COMPUTE &mdash; Indian Computing Conference</span>
+        </div>
+        <span class="almanac-page">p. 34</span>
+        <span class="almanac-toggle">+</span>
+      </div>
+      <div class="almanac-body">
+        <p class="almanac-body-text">Lab researchers presented work at ACM COMPUTE, India&rsquo;s premier computing conference. Multiple papers were accepted covering topics from agent-based modelling to natural language processing.</p>
+        <a href="#" class="almanac-body-link">Read dispatch &rarr;</a>
+      </div>
+    </div>
+
+    <div class="almanac-entry" data-almanac="2">
+      <div class="almanac-header">
+        <div class="almanac-header-left">
+          <span class="almanac-date">Mar 2026</span>
+          <span class="almanac-title">ITiCSE &mdash; Innovation in Teaching CS Education</span>
+        </div>
+        <span class="almanac-page">p. 37</span>
+        <span class="almanac-toggle">+</span>
+      </div>
+      <div class="almanac-body">
+        <p class="almanac-body-text">Accepted paper on integrating digital fabrication with computer science pedagogy, showcasing the Makerspace&rsquo;s model of hands-on, project-based learning for undergraduates.</p>
+        <a href="#" class="almanac-body-link">Read dispatch &rarr;</a>
+      </div>
+    </div>
+
+    <div class="almanac-entry" data-almanac="3">
+      <div class="almanac-header">
+        <div class="almanac-header-left">
+          <span class="almanac-date">Feb 6&ndash;8</span>
+          <span class="almanac-title">RedBrick Hacks III &mdash; National Hackathon</span>
+        </div>
+        <span class="almanac-page">p. 40</span>
+        <span class="almanac-toggle">+</span>
+      </div>
+      <div class="almanac-body">
+        <p class="almanac-body-text">The third edition of RedBrick Hacks drew 430+ student participants from across India for a 48-hour hackathon centered on real-world problem solving with emerging technologies.</p>
+        <a href="#" class="almanac-body-link">Read dispatch &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===================== CHAPTER IV — CONTRIBUTORS ===================== -->
+  <div class="chapter-header" id="contributors" data-chapter="&sect; IV &middot; Contributors">
+    <div class="chapter-label">&sect; IV</div>
+    <h2 class="chapter-title">Contributors &mdash; principal investigators</h2>
+  </div>
+
+  <div class="contributors-section">
+    <div class="contributors-grid">
+
+      <div class="contributor-card" data-person="0">
+        <div class="contributor-photo-wrap">
+          <img src="assets/people/debayan-gupta.png" alt="Debayan Gupta">
+          <span class="contributor-frame-num">01/08</span>
+        </div>
+        <div class="contributor-name">Debayan Gupta</div>
+        <div class="contributor-role">Computer Science</div>
+      </div>
+
+      <div class="contributor-card" data-person="1">
+        <div class="contributor-photo-wrap">
+          <img src="assets/people/gautam-menon.png" alt="Gautam Menon">
+          <span class="contributor-frame-num">02/08</span>
+        </div>
+        <div class="contributor-name">Gautam Menon</div>
+        <div class="contributor-role">Physics &amp; Biology</div>
+      </div>
+
+      <div class="contributor-card" data-person="2">
+        <div class="contributor-photo-wrap">
+          <img src="assets/people/rintu-kutum.png" alt="Rintu Kutum">
+          <span class="contributor-frame-num">03/08</span>
+        </div>
+        <div class="contributor-name">Rintu Kutum</div>
+        <div class="contributor-role">Computer Science</div>
+      </div>
+
+      <div class="contributor-card" data-person="3">
+        <div class="contributor-photo-wrap">
+          <img src="assets/people/meghna-agarwala.png" alt="Meghna Agarwala">
+          <span class="contributor-frame-num">04/08</span>
+        </div>
+        <div class="contributor-name">Meghna Agarwala</div>
+        <div class="contributor-role">Environmental Studies</div>
+      </div>
+
+      <!-- Row rule -->
+      <div class="contributors-row-rule"></div>
+
+      <div class="contributor-card" data-person="4">
+        <div class="contributor-photo-wrap">
+          <img src="assets/people/aalok-thakkar.png" alt="Aalok Thakkar">
+          <span class="contributor-frame-num">05/08</span>
+        </div>
+        <div class="contributor-name">Aalok Thakkar</div>
+        <div class="contributor-role">Computer Science</div>
+      </div>
+
+      <div class="contributor-card" data-person="5">
+        <div class="contributor-photo-wrap">
+          <img src="assets/people/bittu.png" alt="Bittu K. Rajaraman">
+          <span class="contributor-frame-num">06/08</span>
+        </div>
+        <div class="contributor-name">Bittu K. Rajaraman</div>
+        <div class="contributor-role">Biology</div>
+      </div>
+
+      <div class="contributor-card" data-person="6">
+        <div class="contributor-photo-wrap">
+          <img src="assets/people/ls-shashidhara.png" alt="L.S. Shashidhara">
+          <span class="contributor-frame-num">07/08</span>
+        </div>
+        <div class="contributor-name">L.S. Shashidhara</div>
+        <div class="contributor-role">Biology</div>
+      </div>
+
+      <div class="contributor-card" data-person="7">
+        <div class="contributor-photo-wrap">
+          <img src="assets/people/kasturi-mitra.png" alt="Kasturi Mitra">
+          <span class="contributor-frame-num">08/08</span>
+        </div>
+        <div class="contributor-name">Kasturi Mitra</div>
+        <div class="contributor-role">Biology</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="footer-left">
+      &copy; 2026 Mphasis AI &amp; Applied Tech Lab &middot; Ashoka University
+    </div>
+    <div class="footer-right">
+      <a href="#">Research</a>
+      <a href="#">People</a>
+      <a href="#">Publications</a>
+      <a href="#">Contact</a>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+/* ========================================
+   DATA & REFS
+   ======================================== */
+
+const CHAPTERS = [
+  { id: 'hero', symbol: '§ 0', name: 'Prologue', topBarLabel: '§ 0 · Prologue' },
+  { id: 'specimens', symbol: '§ I', name: 'Specimens', topBarLabel: '§ I · Five fields of study' },
+  { id: 'plates', symbol: '§ II', name: 'Plates', topBarLabel: '§ II · Selected plates' },
+  { id: 'almanac', symbol: '§ III', name: 'Almanac', topBarLabel: '§ III · Almanac' },
+  { id: 'contributors', symbol: '§ IV', name: 'Contributors', topBarLabel: '§ IV · Contributors' }
+];
+
+const ISSUE_TEXT = 'FIELD NOTES — VOL. X — SPRING 2026 — ASHOKA UNIVERSITY';
+const TOTAL_PAGES = 48;
+
+let heroAnimated = false;
+let statsAnimated = false;
+
+/* ========================================
+   TYPEWRITER EFFECT
+   ======================================== */
+function typewriter(el, text, speed = 40) {
+  el.textContent = '';
+  const cursor = document.createElement('span');
+  cursor.className = 'cursor';
+  el.appendChild(cursor);
+
+  let i = 0;
+  function type() {
+    if (i < text.length) {
+      el.insertBefore(document.createTextNode(text[i]), cursor);
+      i++;
+      setTimeout(type, speed);
+    } else {
+      setTimeout(() => { cursor.style.display = 'none'; }, 2000);
+    }
+  }
+  type();
+}
+
+/* ========================================
+   HERO ENTRANCE ANIMATION
+   ======================================== */
+function animateHero() {
+  if (heroAnimated) return;
+  heroAnimated = true;
+
+  // Typewriter for issue label
+  const issueEl = document.getElementById('heroIssue');
+  typewriter(issueEl, ISSUE_TEXT, 40);
+
+  // Title lines rise one at a time
+  const lines = document.querySelectorAll('.hero-title-line');
+  lines.forEach(line => {
+    const delay = parseInt(line.dataset.delay, 10);
+    setTimeout(() => line.classList.add('visible'), delay);
+  });
+
+  // Subtitle
+  setTimeout(() => {
+    document.getElementById('heroSubtitle').classList.add('visible');
+  }, 1100);
+
+  // Field card slides in from right
+  setTimeout(() => {
+    document.getElementById('heroCard').classList.add('visible');
+  }, 800);
+
+  // Pullquote fades in last
+  setTimeout(() => {
+    document.getElementById('heroPullquote').classList.add('visible');
+  }, 1400);
+}
+
+/* ========================================
+   COUNT-UP (easeOutCubic, 2000ms)
+   ======================================== */
+function easeOutCubic(t) {
+  return 1 - Math.pow(1 - t, 3);
+}
+
+function countUp(el, target, suffix, duration = 2000) {
+  const start = performance.now();
+  function tick(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const val = Math.round(easeOutCubic(progress) * target);
+    el.textContent = val + suffix;
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+function animateStats() {
+  if (statsAnimated) return;
+  statsAnimated = true;
+
+  const stats = document.querySelectorAll('.sampler-stat');
+  stats.forEach((stat, i) => {
+    // Stagger appearance
+    setTimeout(() => {
+      stat.classList.add('visible');
+
+      // Random stamp rotation
+      const rot = (Math.random() - 0.5) * 2; // ±1 deg
+      stat.querySelector('.sampler-number').style.transform = `rotate(${rot}deg)`;
+
+      // Count up
+      const target = parseInt(stat.dataset.value, 10);
+      const suffix = stat.dataset.suffix || '';
+      countUp(stat.querySelector('.sampler-number'), target, suffix, 2000);
+
+      // Fill bar
+      setTimeout(() => {
+        stat.querySelector('.sampler-fill-bar').style.width = '100%';
+      }, 200);
+    }, i * 120);
+  });
+}
+
+/* ========================================
+   SPECIMEN CARDS — STAGGERED REVEAL
+   ======================================== */
+function revealSpecimens(entries) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const cards = document.querySelectorAll('.specimen-card');
+      cards.forEach(card => {
+        const stagger = parseInt(card.dataset.stagger, 10);
+        // Alternate rotation direction
+        const rotDir = stagger % 2 === 0 ? 1.5 : -1.5;
+        card.style.transform = `translateY(60px) rotate(${rotDir}deg)`;
+
+        setTimeout(() => {
+          card.classList.add('visible');
+        }, stagger * 200);
+      });
+      specimensObserver.disconnect();
+    }
+  });
+}
+
+const specimensObserver = new IntersectionObserver(revealSpecimens, { threshold: 0.2 });
+
+/* ========================================
+   PLATE SPREADS — REVEAL + PROGRESS
+   ======================================== */
+function setupPlates() {
+  const plates = document.querySelectorAll('.plate-spread');
+
+  const plateObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelector('.plate-text-col').classList.add('visible');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  plates.forEach(plate => plateObserver.observe(plate));
+
+  // Progress fill on scroll
+  window.addEventListener('scroll', () => {
+    plates.forEach(plate => {
+      const rect = plate.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const totalTravel = rect.height + vh;
+      const traveled = vh - rect.top;
+      const progress = Math.max(0, Math.min(1, traveled / totalTravel));
+      const fill = plate.querySelector('.plate-progress-fill');
+      if (fill) fill.style.width = (progress * 100) + '%';
+    });
+  }, { passive: true });
+}
+
+/* ========================================
+   ALMANAC — ACCORDION / PROGRESSIVE REVEAL
+   ======================================== */
+function setupAlmanac() {
+  const entries = document.querySelectorAll('.almanac-entry');
+
+  // Click toggle
+  entries.forEach(entry => {
+    const header = entry.querySelector('.almanac-header');
+    header.addEventListener('click', () => {
+      entry.classList.toggle('expanded');
+    });
+  });
+
+  // Scroll-driven expand (non-first entries expand when scrolled into view)
+  const almanacObserver = new IntersectionObserver((observed) => {
+    observed.forEach(obs => {
+      if (obs.isIntersecting) {
+        obs.target.classList.add('expanded');
+      }
+    });
+  }, { threshold: 0.5 });
+
+  entries.forEach((entry, i) => {
+    if (i > 0) almanacObserver.observe(entry);
+  });
+}
+
+/* ========================================
+   CONTRIBUTORS — SEPIA → COLOR ON SCROLL
+   ======================================== */
+function setupContributors() {
+  const cards = document.querySelectorAll('.contributor-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = parseInt(entry.target.dataset.person, 10);
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, (idx % 4) * 150);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  cards.forEach(card => observer.observe(card));
+}
+
+/* ========================================
+   SCROLL TRACKING — PROGRESS BAR, RAIL, TOP BAR
+   ======================================== */
+function updateScrollTracking() {
+  const scrollY = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPct = docHeight > 0 ? scrollY / docHeight : 0;
+
+  // Reading progress bar
+  document.getElementById('readingProgress').style.width = (scrollPct * 100) + '%';
+
+  // Page counter
+  const page = Math.max(1, Math.ceil(scrollPct * TOTAL_PAGES));
+  document.getElementById('railPage').textContent = 'p. ' + page;
+
+  // Active chapter detection
+  const chapterEls = CHAPTERS.map(c => document.getElementById(c.id));
+  let activeIdx = 0;
+
+  for (let i = chapterEls.length - 1; i >= 0; i--) {
+    if (chapterEls[i]) {
+      const rect = chapterEls[i].getBoundingClientRect();
+      if (rect.top <= 150) {
+        activeIdx = i;
+        break;
+      }
+    }
+  }
+
+  // Update rail
+  const railItems = document.querySelectorAll('.rail-chapter');
+  railItems.forEach((item, i) => {
+    item.classList.toggle('active', i === activeIdx);
+  });
+
+  // Update top bar chapter label
+  document.getElementById('topBarChapter').textContent = CHAPTERS[activeIdx].topBarLabel;
+}
+
+/* ========================================
+   RAIL CLICK NAVIGATION
+   ======================================== */
+function setupRailNav() {
+  document.querySelectorAll('.rail-chapter').forEach(item => {
+    item.addEventListener('click', () => {
+      const targetId = item.dataset.target;
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+}
+
+/* ========================================
+   STATS OBSERVER
+   ======================================== */
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateStats();
+      statsObserver.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+
+/* ========================================
+   INIT
+   ======================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  // Hero entrance
+  setTimeout(animateHero, 200);
+
+  // Specimens observer
+  const specimensSection = document.querySelector('.specimens');
+  if (specimensSection) specimensObserver.observe(specimensSection);
+
+  // Stats observer
+  const samplerBand = document.getElementById('samplerBand');
+  if (samplerBand) statsObserver.observe(samplerBand);
+
+  // Plates
+  setupPlates();
+
+  // Almanac
+  setupAlmanac();
+
+  // Contributors
+  setupContributors();
+
+  // Rail nav
+  setupRailNav();
+
+  // Scroll tracking
+  window.addEventListener('scroll', updateScrollTracking, { passive: true });
+  updateScrollTracking();
+});
+</script>
+
+</body>
+</html>

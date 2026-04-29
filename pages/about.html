@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About the Mphasis AI & Applied Tech Lab at Ashoka University — mission, vision, partnership, and research pillars.">
+  <meta name="theme-color" content="#1B2A4A">
+
+  <meta property="og:title" content="About | Mphasis AI & Applied Tech Lab">
+  <meta property="og:description" content="Advancing interdisciplinary research in AI, health, fabrication, and beyond at Ashoka University.">
+  <meta property="og:type" content="website">
+
+  <title>About | Mphasis AI & Applied Tech Lab</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../src/assets/images/logos/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../src/assets/images/logos/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../src/assets/images/logos/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../src/css/variables.css">
+  <link rel="stylesheet" href="../src/css/reset.css">
+  <link rel="stylesheet" href="../src/css/base.css">
+  <link rel="stylesheet" href="../src/css/layout.css">
+  <link rel="stylesheet" href="../src/css/header.css">
+  <link rel="stylesheet" href="../src/css/footer.css">
+  <link rel="stylesheet" href="../src/css/components.css">
+  <link rel="stylesheet" href="../src/css/animations.css">
+  <link rel="stylesheet" href="../src/css/pages.css">
+  <link rel="stylesheet" href="../src/css/utilities.css">
+  <link rel="stylesheet" href="../src/css/search.css">
+  <link rel="stylesheet" href="../src/css/floating-nav.css">
+
+  <style>
+    /* ═══ STACK ENGINE ═══ */
+    html, body { margin: 0; padding: 0; overflow: hidden; height: 100vh; }
+
+    .stack-viewport { position: fixed; inset: 0; overflow: hidden; }
+
+    .stack-panel {
+      position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
+      overflow: hidden;
+      transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1),
+                  opacity 0.6s ease,
+                  box-shadow 0.8s ease,
+                  border-radius 0.8s ease;
+      will-change: transform, opacity;
+    }
+    .stack-panel.below  { transform: translateY(100vh) scale(0.98); opacity: 0; z-index: 0; }
+    .stack-panel.current { transform: translateY(0) scale(1); opacity: 1; z-index: 2; border-radius: 0; }
+    .stack-panel.above  { transform: translateY(-12vh) scale(0.92); opacity: 0; z-index: 1; border-radius: 12px; box-shadow: 0 20px 80px rgba(0,0,0,0.4); pointer-events: none; }
+
+    /* ═══ TELESCOPE ZOOM OVERRIDE ═══ */
+    .stack-panel.below { transform: translateY(100vh) scale(0.98); }
+    .stack-panel.current { animation: telescopeZoomIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    @keyframes telescopeZoomIn {
+      from { transform: translateY(0) scale(0.98); opacity: 0.85; }
+      to   { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .header { position: fixed; z-index: 300; }
+    .progress-bar { display: none; }
+
+    /* ═══ NAV DOTS ═══ */
+    .snap-dots {
+      position: fixed; right: 20px; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 8px; z-index: 200;
+    }
+    .snap-dots__dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      background: transparent; cursor: pointer; padding: 0;
+      transition: all 0.3s;
+    }
+    .snap-dots__dot.active {
+      background: #fff; border-color: #fff;
+      box-shadow: 0 0 8px rgba(255,255,255,0.3);
+    }
+    .snap-dots__dot[data-theme="light"] { border-color: rgba(10,25,41,0.2); }
+    .snap-dots__dot[data-theme="light"].active {
+      background: var(--color-navy); border-color: var(--color-navy);
+      box-shadow: 0 0 8px rgba(10,25,41,0.15);
+    }
+
+    /* ═══ PANEL 0: HERO (from Lens) ═══ */
+    .panel-lens-hero {
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: var(--space-32) var(--space-8);
+      position: relative; overflow: hidden;
+    }
+    .panel-lens-hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .lens-hero__inner { max-width: 800px; position: relative; z-index: 1; }
+    .lens-hero__eyebrow {
+      font-family: var(--font-mono); font-size: 0.6rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: #9BBDD8;
+      margin-bottom: 1rem; display: block;
+      opacity: 0; transform: translateY(20px); animation: lensReveal 0.8s ease forwards 0.2s;
+    }
+    .lens-hero__title {
+      font-family: var(--font-display); font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 800;
+      line-height: 1.1; letter-spacing: -0.04em; color: #0A1929;
+      opacity: 0; transform: translateY(30px); animation: lensReveal 0.8s ease forwards 0.4s;
+    }
+    .lens-hero__desc {
+      font-family: var(--font-sans); font-size: 0.95rem; line-height: 1.7;
+      color: #6B99B8; max-width: 600px; margin: 1rem auto 0;
+      opacity: 0; transform: translateY(20px); animation: lensReveal 0.8s ease forwards 0.6s;
+    }
+    .lens-hero__rule {
+      width: 80px; height: 2px; background: #0A1929; margin: 1.5rem auto 0;
+      opacity: 0; animation: lensReveal 0.8s ease forwards 0.7s;
+    }
+    @keyframes lensReveal { to { opacity: 1; transform: translateY(0); } }
+
+    /* ═══ PANEL 1: MISSION SPLIT (from Lens) ═══ */
+    .panel-lens-mission { background: var(--color-bg-dark); }
+    .lens-split { display: flex; width: 100%; height: 100%; }
+    .lens-split__left, .lens-split__right {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      padding: var(--space-16) var(--space-10); position: relative; overflow: hidden;
+    }
+    .lens-mission-text h3 {
+      font-family: var(--font-display); font-size: var(--text-3xl); font-weight: var(--weight-bold);
+      margin-bottom: var(--space-6); color: #fff;
+    }
+    .lens-mission-text p {
+      font-family: var(--font-sans); font-size: var(--text-base); line-height: var(--leading-relaxed);
+      color: rgba(255,255,255,0.75); margin-bottom: var(--space-5);
+    }
+    .lens-mission-text p:last-child { margin-bottom: 0; }
+    .lens-mission-visual { position: relative; width: 100%; height: 100%; }
+    .lens-mission-visual canvas { width: 100%; height: 100%; }
+    @media (max-width: 768px) {
+      .lens-split { flex-direction: column; }
+      .lens-split__left, .lens-split__right { padding: var(--space-8) var(--space-6); }
+    }
+
+    /* ═══ PANEL 2: CLOSER — Five Pillars (light) ═══ */
+    .panel-closer {
+      background: var(--color-bg);
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: calc(var(--header-height, 72px) + var(--space-4)) clamp(2rem, 5vw, 6rem) var(--space-4);
+    }
+    .panel-closer__header {
+      margin-bottom: var(--space-5);
+    }
+    .panel-closer__eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--color-red);
+      margin-bottom: var(--space-2);
+    }
+    .panel-closer__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--color-navy);
+      letter-spacing: -0.02em;
+    }
+    .panel-closer__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      max-width: 640px;
+      margin-top: var(--space-2);
+      line-height: 1.5;
+    }
+    .panel-closer__grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-4);
+    }
+    .pillar-detail-card {
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: var(--space-5);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .pillar-detail-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+    .pillar-detail-card[data-pillar="ai"]:hover { border-color: var(--pillar-ai); }
+    .pillar-detail-card[data-pillar="bharatsim"]:hover { border-color: var(--pillar-bharatsim); }
+    .pillar-detail-card[data-pillar="chart"]:hover { border-color: var(--pillar-chart); }
+    .pillar-detail-card[data-pillar="cyber"]:hover { border-color: var(--pillar-cyber); }
+    .pillar-detail-card[data-pillar="makerspace"]:hover { border-color: var(--pillar-makerspace); }
+    .pillar-detail-card__icon {
+      width: 40px; height: 40px;
+      margin-bottom: var(--space-3);
+      color: var(--color-text-secondary);
+    }
+    .pillar-detail-card[data-pillar="ai"] .pillar-detail-card__icon { color: var(--pillar-ai); }
+    .pillar-detail-card[data-pillar="bharatsim"] .pillar-detail-card__icon { color: var(--pillar-bharatsim); }
+    .pillar-detail-card[data-pillar="chart"] .pillar-detail-card__icon { color: var(--pillar-chart); }
+    .pillar-detail-card[data-pillar="cyber"] .pillar-detail-card__icon { color: var(--pillar-cyber); }
+    .pillar-detail-card[data-pillar="makerspace"] .pillar-detail-card__icon { color: var(--pillar-makerspace); }
+    .pillar-detail-card__tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.6;
+      margin-bottom: var(--space-1);
+    }
+    .pillar-detail-card__name {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 1.3vw, 1.2rem);
+      font-weight: 700;
+      color: var(--color-navy);
+      margin-bottom: var(--space-2);
+    }
+    .pillar-detail-card__text {
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: var(--color-text-secondary);
+    }
+    @media (max-width: 1024px) {
+      .panel-closer__grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .panel-closer__grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ═══ PANEL 3: DATA LAYER (dark, split) ═══ */
+    .panel-data {
+      background: var(--color-bg-dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding-top: var(--header-height, 72px);
+    }
+    .panel-data__left {
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: var(--space-8) clamp(2rem, 5vw, 5rem);
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .panel-data__left-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--color-red);
+      margin-bottom: var(--space-6);
+    }
+    .panel-data__stats {
+      display: flex; flex-direction: column;
+      gap: var(--space-6);
+    }
+    .data-stat {
+      display: flex; align-items: baseline; gap: var(--space-4);
+    }
+    .data-stat__number {
+      font-family: var(--font-mono);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      min-width: 120px;
+    }
+    .data-stat__suffix {
+      color: var(--color-red);
+    }
+    .data-stat__label {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .panel-data__right {
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: var(--space-8) clamp(2rem, 5vw, 5rem);
+      overflow-y: auto;
+    }
+    .panel-data__right-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--color-red);
+      margin-bottom: var(--space-6);
+    }
+    .compact-timeline {
+      position: relative;
+      padding-left: var(--space-6);
+    }
+    .compact-timeline::before {
+      content: '';
+      position: absolute;
+      left: 3px; top: 4px; bottom: 4px;
+      width: 1px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(217,79,138,0.3) 50%, rgba(255,255,255,0.15) 100%);
+    }
+    .compact-timeline__item {
+      position: relative;
+      padding-bottom: var(--space-5);
+    }
+    .compact-timeline__item:last-child { padding-bottom: 0; }
+    .compact-timeline__item::before {
+      content: '';
+      position: absolute;
+      left: calc(-1 * var(--space-6) + 0px);
+      top: 6px;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--color-red);
+      box-shadow: 0 0 8px rgba(217,79,138,0.4);
+    }
+    .compact-timeline__date {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--color-red);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .compact-timeline__title {
+      font-family: var(--font-display);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .compact-timeline__text {
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.45);
+    }
+    @media (max-width: 768px) {
+      .panel-data {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+      }
+      .panel-data__left { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); padding: var(--space-6) var(--space-4); }
+      .panel-data__right { padding: var(--space-6) var(--space-4); }
+    }
+
+    /* ═══ PANEL 4: GROUND LEVEL (dark) ═══ */
+    .panel-ground {
+      background: linear-gradient(180deg, #060D17 0%, #0A1525 100%);
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: calc(var(--header-height, 72px) + var(--space-2)) clamp(2rem, 5vw, 6rem) var(--space-4);
+      overflow-y: auto;
+    }
+    .panel-ground__header {
+      text-align: center;
+      margin-bottom: var(--space-4);
+    }
+    .panel-ground__eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--color-red);
+      margin-bottom: var(--space-2);
+    }
+    .panel-ground__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .panel-ground__subtitle {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.35);
+      max-width: 600px;
+      margin: var(--space-2) auto 0;
+    }
+    .achieve-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+    .achieve-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: var(--space-4);
+      transition: border-color 0.3s, background 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .achieve-card:hover {
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+    }
+    .achieve-card__pillar {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: var(--space-2);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .achieve-card__pillar-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      display: inline-block;
+    }
+    .achieve-card__title {
+      font-family: var(--font-display);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: var(--space-2);
+    }
+    .achieve-card__text {
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.45);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Research theme icons */
+    .theme-strip {
+      text-align: center;
+      padding-top: var(--space-4);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .theme-strip__label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: var(--space-3);
+    }
+    .theme-strip__grid {
+      display: flex; flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-4);
+    }
+    .theme-icon {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 6px;
+      width: 80px;
+    }
+    .theme-icon__svg {
+      width: 28px; height: 28px;
+      color: rgba(255,255,255,0.35);
+      transition: color 0.3s;
+    }
+    .theme-icon:hover .theme-icon__svg { color: var(--color-red); }
+    .theme-icon__name {
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      line-height: 1.3;
+    }
+    @media (max-width: 768px) {
+      .achieve-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .achieve-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ═══ PANEL 5: INSTITUTIONS + CTA + FOOTER ═══ */
+    .panel-final {
+      display: flex; flex-direction: column;
+      overflow-y: auto;
+      background: var(--color-bg);
+    }
+    .panel-final__cta {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: var(--header-height) var(--space-8) var(--space-8);
+    }
+    .panel-final__institutions_UNUSED {
+      background: var(--color-bg);
+      padding: calc(var(--header-height, 72px) + var(--space-6)) clamp(2rem, 5vw, 6rem) var(--space-6);
+      flex-shrink: 0;
+    }
+    .panel-final__inst-header {
+      text-align: center;
+      margin-bottom: var(--space-4);
+    }
+    .panel-final__inst-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--color-red);
+      margin-bottom: var(--space-2);
+    }
+    .panel-final__inst-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+      font-weight: 700;
+      color: var(--color-navy);
+      letter-spacing: -0.02em;
+    }
+    .panel-final__inst-desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      max-width: 600px;
+      margin: var(--space-2) auto 0;
+    }
+    /* CTA section */
+    .panel-final__cta {
+      background: var(--color-bg);
+      padding: var(--space-6) clamp(2rem, 5vw, 6rem) var(--space-8);
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .panel-final__cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--color-navy);
+      margin-bottom: var(--space-3);
+    }
+    .panel-final__cta-desc {
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      max-width: 540px;
+      margin: 0 auto var(--space-6);
+      line-height: 1.6;
+    }
+    .panel-final__cta-actions {
+      display: flex; justify-content: center; gap: var(--space-4); flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="progress-bar" id="progress-bar" aria-hidden="true"></div>  <!-- Floating Buttons -->
+  <button class="float-menu-btn" id="floatMenuBtn" aria-label="Open navigation">
+    <div class="float-menu-btn__icon"><span></span><span></span><span></span></div>
+    <span class="float-menu-btn__label">Menu</span>
+  </button>
+  <button class="float-search-btn" id="floatSearchBtn" aria-label="Search">
+    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+    <span class="float-search-btn__label">Search</span>
+  </button>
+
+  <!-- Side Navigation -->
+  <nav class="side-nav" id="side-nav" aria-label="Side navigation">
+    <div class="side-nav__backdrop" id="side-nav-backdrop"></div>
+    <div class="side-nav__panel">
+      <div class="side-nav__header">
+        <a href="../index.html" style="display:inline-block; margin-left:-70px;">
+          <img src="../src/assets/images/logos/lab-logo.png" alt="Mphasis AI & Applied Tech Lab" style="height:100px; width:auto;">
+        </a>
+        <button class="side-nav__close" id="side-nav-close" aria-label="Close menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>Close</span>
+        </button>
+      </div>
+      <div class="side-nav__body">
+        <div class="side-nav__col-pages">
+          <span class="side-nav__subtitle">Navigate</span>
+          <ul class="side-nav__list">
+            <li class="side-nav__item"><a href="../index.html" class="side-nav__link">Home</a></li>
+            <li class="side-nav__item"><a href="about.html" class="side-nav__link">About</a></li>
+            <li class="side-nav__item"><a href="research.html" class="side-nav__link">Research</a></li>
+            <li class="side-nav__item"><a href="people.html" class="side-nav__link">People</a></li>
+            <li class="side-nav__item"><a href="publications.html" class="side-nav__link">Publications</a></li>
+            <li class="side-nav__item"><a href="makerspace.html" class="side-nav__link">Makerspace</a></li>
+            <li class="side-nav__item"><a href="news.html" class="side-nav__link">News &amp; Events</a></li>
+            <li class="side-nav__item"><a href="impact.html" class="side-nav__link">Impact</a></li>
+            <li class="side-nav__item"><a href="contact.html" class="side-nav__link">Contact</a></li>
+          </ul>
+        </div>
+        <div class="side-nav__col-pillars">
+          <span class="side-nav__subtitle">Research Pillars</span>
+          <ul class="side-nav__pill-list">
+            <li class="side-nav__item"><a href="pillar.html?pillar=ai" class="side-nav__pill-card" style="--pill-color:#2563EB;"><span class="side-nav__pill-icon" style="background:#DBEAFE;color:#2563EB;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span><span class="side-nav__pill-name">AI</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=bharatsim" class="side-nav__pill-card" style="--pill-color:#059669;"><span class="side-nav__pill-icon" style="background:#D1FAE5;color:#059669;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/><path d="M2 7c2-3 4-3 6 0s4 3 6 0 4-3 6 0" opacity="0.4"/></svg></span><span class="side-nav__pill-name">BharatSim</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=chart" class="side-nav__pill-card" style="--pill-color:#D97706;"><span class="side-nav__pill-icon" style="background:#FEF3C7;color:#D97706;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h4l3-6 4 12 3-6h4"/></svg></span><span class="side-nav__pill-name">CHART</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=cyber" class="side-nav__pill-card" style="--pill-color:#7C3AED;"><span class="side-nav__pill-icon" style="background:#EDE9FE;color:#7C3AED;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 4v5c0 5.5-3.8 10.2-8 12-4.2-1.8-8-6.5-8-12V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="side-nav__pill-name">Cybersecurity</span></a></li>
+            <li class="side-nav__item"><a href="pillar.html?pillar=makerspace" class="side-nav__pill-card" style="--pill-color:#009BDE;"><span class="side-nav__pill-icon" style="background:#E0F2FE;color:#009BDE;"><img src="../src/assets/images/logos/makerspace-logo.png" alt="Makerspace"></span><span class="side-nav__pill-name">Makerspace</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="side-nav__footer">
+        <div class="side-nav__contact">
+          <a href="mailto:mphasis.lab.edu.in">mphasis.lab.edu.in</a> &nbsp;&middot;&nbsp; Ashoka University, Sonipat, India
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div class="page">
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search" hidden>
+      <div class="search-overlay__backdrop"></div>
+      <div class="search-overlay__panel">
+        <div class="search-overlay__header">
+          <div class="search-overlay__input-wrapper">
+            <svg class="search-overlay__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+            <input type="search" class="search-overlay__input" id="search-input" placeholder="Search projects, people, publications..." autocomplete="off">
+            <kbd class="search-overlay__kbd">ESC</kbd>
+          </div>
+        </div>
+        <div class="search-overlay__results" id="search-results" aria-live="polite">
+          <div class="search-overlay__empty">
+            <p class="search-overlay__empty-text">Type to search across projects, people, and publications</p>
+          </div>
+        </div>
+        <div class="search-overlay__footer">
+          <span><kbd>&#8984;</kbd><kbd>K</kbd> to toggle</span>
+          <span><kbd>&#8593;</kbd><kbd>&#8595;</kbd> to navigate</span>
+          <span><kbd>Enter</kbd> to select</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header" role="banner">
+      <div class="header__inner">
+        <a href="../index.html" class="header__logo" aria-label="Mphasis AI & Applied Tech Lab — Home">
+          <img src="../src/assets/images/logos/lab-logo.png" alt="Mphasis AI & Applied Tech Lab Logo">
+        </a>
+        <nav class="nav" role="navigation" aria-label="Primary navigation">
+          <a href="../index.html" class="nav__link">Home</a>
+          <a href="about.html" class="nav__link nav__link--active">About</a>
+          <a href="research.html" class="nav__link">Research</a>
+          <a href="people.html" class="nav__link">People</a>
+          <a href="publications.html" class="nav__link">Publications</a>
+          <a href="makerspace.html" class="nav__link">Makerspace</a>
+          <a href="news.html" class="nav__link">News & Events</a>
+          <a href="impact.html" class="nav__link">Impact</a>
+          <a href="contact.html" class="nav__link">Contact</a>
+        </nav>
+        <div class="header__actions">
+          <button class="header__search-trigger" aria-label="Search" aria-expanded="false" aria-controls="search-overlay">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+          </button>
+          <button class="header__menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="nav-mobile" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+      <a href="../index.html" class="nav-mobile__link">Home</a>
+      <a href="about.html" class="nav-mobile__link nav-mobile__link--active">About</a>
+      <a href="research.html" class="nav-mobile__link">Research</a>
+      <a href="people.html" class="nav-mobile__link">People</a>
+      <a href="publications.html" class="nav-mobile__link">Publications</a>
+      <a href="makerspace.html" class="nav-mobile__link">Makerspace</a>
+      <a href="news.html" class="nav-mobile__link">News & Events</a>
+      <a href="impact.html" class="nav-mobile__link">Impact</a>
+      <a href="contact.html" class="nav-mobile__link">Contact</a>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- STACK VIEWPORT -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="stack-viewport" id="main-content" role="main">
+
+      <!-- ═══ PANEL 0: BIG PICTURE ═══ -->
+      <section class="stack-panel current panel-lens-hero" data-theme="light" style="background:#fff">
+        <canvas class="page-hero__canvas" data-page="about" aria-hidden="true"></canvas>
+        <div class="lens-hero__inner">
+          <span class="lens-hero__eyebrow">About</span>
+          <h1 class="lens-hero__title">About the Lab</h1>
+          <p class="lens-hero__desc">
+            The Mphasis AI & Applied Tech Lab at Ashoka University advances interdisciplinary research in AI, health, fabrication, and beyond.
+          </p>
+          <div class="lens-hero__rule"></div>
+        </div>
+      </section>
+
+      <!-- ═══ PANEL 1: MISSION SPLIT (from Lens) ═══ -->
+      <section class="stack-panel below panel-lens-mission" data-theme="dark" style="background:var(--color-bg-dark)">
+        <div class="lens-split">
+          <div class="lens-split__left">
+            <div class="lens-mission-text">
+              <h3>Our Mission</h3>
+              <p>
+                The Mphasis AI & Applied Tech Lab at Ashoka University is a collaboration between Ashoka University and Mphasis F1 Foundation, a partnership that has grown stronger since its founding in 2020. The Lab brings together researchers from seven departments — from biology and chemistry to computer science and environmental studies — to tackle problems that no single discipline can solve.
+              </p>
+              <p>
+                The Lab runs 25+ active research projects across five pillars. BharatSim builds large-scale simulations for epidemic modelling and public health policy. CHART (Centre for Health Analytics Research &amp; Trends) works on clinical AI, food computing, and cancer diagnostics. AI@Ashoka applies AI and machine learning across biology, chemistry, environmental science, education, and media analysis. The Cybersecurity pillar develops post-quantum cryptography protocols for internet security.
+              </p>
+              <p>
+                The Digital Makerspace is a workshop and fabrication lab where students and researchers design, build, and test their ideas — from laser-cut prototypes to custom scientific instruments. From laser cutters and CNC routers to 3D printers and drones, the Makerspace supports both rapid prototyping and scientific instrumentation for research across multiple pillars.
+              </p>
+            </div>
+          </div>
+          <div class="lens-split__right">
+            <div class="lens-mission-visual">
+              <canvas id="mission-canvas" aria-hidden="true"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ PANEL 2: CLOSER — Five Pillars ═══ -->
+      <section class="stack-panel below panel-closer" data-theme="light">
+        <div class="panel-closer__header">
+          <div class="panel-closer__eyebrow">// Structure</div>
+          <h2 class="panel-closer__title">Five Research Pillars</h2>
+          <p class="panel-closer__desc">
+            Our research is organized into five interconnected pillars, each addressing distinct technological and scientific challenges while sharing infrastructure, talent, and cross-disciplinary insights.
+          </p>
+        </div>
+        <div class="panel-closer__grid">
+          <!-- AI@Ashoka -->
+          <a href="pillar.html?pillar=ai" class="pillar-detail-card" data-pillar="ai">
+            <div class="pillar-detail-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><path d="M5.6 5.6l2.9 2.9M15.5 15.5l2.9 2.9M18.4 5.6l-2.9 2.9M8.5 15.5l-2.9 2.9"/></svg>
+            </div>
+            <div class="pillar-detail-card__tag">Pillar</div>
+            <div class="pillar-detail-card__name">AI@Ashoka</div>
+            <p class="pillar-detail-card__text">AI and machine learning applied across health, biodiversity, education, policy, and materials science. 14 projects spanning seven departments.</p>
+          </a>
+          <!-- BharatSim -->
+          <a href="pillar.html?pillar=bharatsim" class="pillar-detail-card" data-pillar="bharatsim">
+            <div class="pillar-detail-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/><path d="M2 7c2-3 4-3 6 0s4 3 6 0 4-3 6 0" opacity="0.4"/><path d="M2 17c2-3 4-3 6 0s4 3 6 0 4-3 6 0" opacity="0.4"/></svg>
+            </div>
+            <div class="pillar-detail-card__tag">Pillar</div>
+            <div class="pillar-detail-card__name">BharatSim</div>
+            <p class="pillar-detail-card__text">India-scale simulation framework for epidemic modelling and public health policy. Research on H5N1, HIV, typhoid, and mpox covered by BBC, NDTV, Nature India, and 20+ international outlets.</p>
+          </a>
+          <!-- CHART -->
+          <a href="pillar.html?pillar=chart" class="pillar-detail-card" data-pillar="chart">
+            <div class="pillar-detail-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-6 4 12 3-6h4"/></svg>
+            </div>
+            <div class="pillar-detail-card__tag">Pillar</div>
+            <div class="pillar-detail-card__name">CHART</div>
+            <p class="pillar-detail-card__text">Centre for Health Analytics Research and Trends. AI applied to clinical diagnosis, nutrition and food science, and cancer research, in collaboration with hospitals and research institutes.</p>
+          </a>
+          <!-- Cybersecurity -->
+          <a href="pillar.html?pillar=cyber" class="pillar-detail-card" data-pillar="cyber">
+            <div class="pillar-detail-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5.5-3.8 10.2-8 12-4.2-1.8-8-6.5-8-12V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <div class="pillar-detail-card__tag">Pillar</div>
+            <div class="pillar-detail-card__name">Cybersecurity</div>
+            <p class="pillar-detail-card__text">Post-quantum cryptography research developing encryption protocols that can withstand quantum computing. Published at ACM ASIACCS 2025.</p>
+          </a>
+          <!-- Makerspace -->
+          <a href="pillar.html?pillar=makerspace" class="pillar-detail-card" data-pillar="makerspace">
+            <div class="pillar-detail-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7l9-5z"/><path d="M12 12l9-5M12 12v10M12 12L3 7"/></svg>
+            </div>
+            <div class="pillar-detail-card__tag">Pillar</div>
+            <div class="pillar-detail-card__name">Makerspace</div>
+            <p class="pillar-detail-card__text">A fabrication lab equipped with laser cutters, 3D printers, CNC machines, and drones. Students and researchers build prototypes, scientific instruments, and hardware projects. Also home to RedBrick Hacks.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- ═══ PANEL 3: DATA LAYER (dark, split) ═══ -->
+      <section class="stack-panel below panel-data" data-theme="dark">
+        <!-- Left: Stats in large monospace -->
+        <div class="panel-data__left">
+          <div class="panel-data__left-eyebrow">// The Lab in Numbers</div>
+          <div class="panel-data__stats">
+            <div class="data-stat">
+              <div class="data-stat__number" data-count="25">25<span class="data-stat__suffix">+</span></div>
+              <div class="data-stat__label">Research Projects</div>
+            </div>
+            <div class="data-stat">
+              <div class="data-stat__number" data-count="30">30<span class="data-stat__suffix">+</span></div>
+              <div class="data-stat__label">Publications</div>
+            </div>
+            <div class="data-stat">
+              <div class="data-stat__number" data-count="40">40<span class="data-stat__suffix">+</span></div>
+              <div class="data-stat__label">Partnerships</div>
+            </div>
+            <div class="data-stat">
+              <div class="data-stat__number" data-count="25">25<span class="data-stat__suffix">+</span></div>
+              <div class="data-stat__label">Faculty Researchers</div>
+            </div>
+          </div>
+        </div>
+        <!-- Right: Compact Timeline -->
+        <div class="panel-data__right">
+          <div class="panel-data__right-eyebrow">// Our Journey</div>
+          <div class="compact-timeline">
+            <div class="compact-timeline__item">
+              <div class="compact-timeline__date">August 2020</div>
+              <div class="compact-timeline__title">Lab Established</div>
+              <p class="compact-timeline__text">Partnership established between Mphasis F1 Foundation and Ashoka University.</p>
+            </div>
+            <div class="compact-timeline__item">
+              <div class="compact-timeline__date">2020 – 2023</div>
+              <div class="compact-timeline__title">Foundation</div>
+              <p class="compact-timeline__text">Research launched with 12 faculty researchers across AI, epidemiological modelling, and cybersecurity. 9 publications. BharatSim simulation framework developed.</p>
+            </div>
+            <div class="compact-timeline__item">
+              <div class="compact-timeline__date">2023</div>
+              <div class="compact-timeline__title">Growth</div>
+              <p class="compact-timeline__text">The Lab expanded into five research pillars: AI@Ashoka, BharatSim, CHART, Cybersecurity, and Makerspace. Our Research Interns won 1st place in Privacy-Preserved Federated Learning and 4th place in the SENSORIUM Challenge at NeurIPS 2023.</p>
+            </div>
+            <div class="compact-timeline__item">
+              <div class="compact-timeline__date">2023 – 2024</div>
+              <div class="compact-timeline__title">Expansion</div>
+              <p class="compact-timeline__text">Faculty researchers grew from 12 to 19 across 7 departments. 12 new publications across the five pillars.</p>
+            </div>
+            <div class="compact-timeline__item">
+              <div class="compact-timeline__date">2024 – 2026</div>
+              <div class="compact-timeline__title">Current</div>
+              <p class="compact-timeline__text">25+ active projects with 25+ faculty researchers across 7 departments. 30+ publications across journals and conferences. 40+ partnerships with institutions in India and internationally.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ PANEL 4: GROUND LEVEL (dark) ═══ -->
+      <section class="stack-panel below panel-ground" data-theme="dark">
+        <div class="panel-ground__header">
+          <div class="panel-ground__eyebrow">// Highlights</div>
+          <h2 class="panel-ground__title">Key Achievements</h2>
+          <p class="panel-ground__subtitle">Some of the milestones that define the Lab's impact — from global media coverage to national recognition.</p>
+        </div>
+
+        <!-- 6 Achievement Cards (3x2) -->
+        <div class="achieve-grid">
+          <div class="achieve-card">
+            <div class="achieve-card__pillar">
+              <span class="achieve-card__pillar-dot" style="background: var(--pillar-bharatsim);"></span>
+              <span style="color: var(--pillar-bharatsim);">BharatSim</span>
+            </div>
+            <div class="achieve-card__title">Global Media Coverage</div>
+            <p class="achieve-card__text">The BharatSim H5N1 avian influenza study was covered by BBC, NDTV, Nature India, and 20+ international media outlets, bringing the Lab's epidemiological modelling work to a global audience.</p>
+          </div>
+          <div class="achieve-card">
+            <div class="achieve-card__pillar">
+              <span class="achieve-card__pillar-dot" style="background: var(--pillar-ai);"></span>
+              <span style="color: var(--pillar-ai);">AI@Ashoka</span>
+            </div>
+            <div class="achieve-card__title">Schmidt AI Fellowship at Oxford</div>
+            <p class="achieve-card__text">Faculty from the Lab were awarded the prestigious Schmidt AI in Science Fellowship at the University of Oxford, recognizing excellence in AI-driven interdisciplinary research.</p>
+          </div>
+          <div class="achieve-card">
+            <div class="achieve-card__pillar">
+              <span class="achieve-card__pillar-dot" style="background: var(--pillar-ai);"></span>
+              <span style="color: var(--pillar-ai);">AI@Ashoka</span>
+            </div>
+            <div class="achieve-card__title">India-AI Impact Summit Compendium</div>
+            <p class="achieve-card__text">SocraticAI — an AI tutoring system for foundational CS education — was selected as a case study in MeitY's <a href="../src/assets/docs/India-AI-Impact-Summit-2026-AI-in-Education-Compendium.pdf" target="_blank" rel="noopener" style="color: rgba(255,255,255,0.9); text-decoration: underline;">Compendium on the Real-World Impact of AI in Education</a>.</p>
+          </div>
+          <div class="achieve-card">
+            <div class="achieve-card__pillar">
+              <span class="achieve-card__pillar-dot" style="background: var(--pillar-ai);"></span>
+              <span style="color: var(--pillar-ai);">AI@Ashoka</span>
+            </div>
+            <div class="achieve-card__title">NeurIPS 2023 Competition Wins</div>
+            <p class="achieve-card__text">Our Research Interns won 1st place in Privacy-Preserved Federated Learning and 4th place in the SENSORIUM Challenge at NeurIPS 2023.</p>
+          </div>
+          <div class="achieve-card">
+            <div class="achieve-card__pillar">
+              <span class="achieve-card__pillar-dot" style="background: var(--pillar-cyber);"></span>
+              <span style="color: var(--pillar-cyber);">Cybersecurity</span>
+            </div>
+            <div class="achieve-card__title">ACM ASIACCS 2025 Publication</div>
+            <p class="achieve-card__text">Post-quantum cryptography research from the Lab was published at ACM ASIACCS 2025, one of the top venues in computer security.</p>
+          </div>
+          <div class="achieve-card">
+            <div class="achieve-card__pillar">
+              <span class="achieve-card__pillar-dot" style="background: var(--pillar-makerspace);"></span>
+              <span style="color: var(--pillar-makerspace);">Makerspace</span>
+            </div>
+            <div class="achieve-card__title">RedBrick Hacks</div>
+            <p class="achieve-card__text">The Lab's flagship hackathon series has engaged 430+ participants across multiple editions, fostering innovation and hands-on problem-solving among students.</p>
+          </div>
+        </div>
+
+        <!-- 9 Research Theme Icons -->
+        <div class="theme-strip">
+          <div class="theme-strip__label">9 Research Themes</div>
+          <div class="theme-strip__grid">
+            <div class="theme-icon">
+              <svg class="theme-icon__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+              <span class="theme-icon__name">AI Pedagogy</span>
+            </div>
+            <div class="theme-icon">
+              <svg class="theme-icon__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/></svg>
+              <span class="theme-icon__name">Public Health</span>
+            </div>
+            <div class="theme-icon">
+              <svg class="theme-icon__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-6 4 12 3-6h4"/></svg>
+              <span class="theme-icon__name">Computational Health</span>
+            </div>
+            <div class="theme-icon">
+              <svg class="theme-icon__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c-4.97 0-9-2.24-9-5v-6c0-2.76 4.03-5 9-5s9 2.24 9 5v6c0 2.76-4.03 5-9 5z"/><path d="M3 11c0 2.76 4.03 5 9 5s9-2.24 9-5"/></svg>
+              <span class="theme-icon__name">Climate Science</span>
+            </div>
+            <div class="theme-icon">
+              <svg class="theme-icon__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+              <span class="theme-icon__name">Digital Humanities</span>
+            </div>
+            <div class="theme-icon">
+              <svg class="theme-icon__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7l9-5z"/></svg>
+              <span class="theme-icon__name">Materials Science</span>
+            </div>
+            <div class="theme-icon">
+              <svg class="theme-icon__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5h11v11h-11z"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+              <span class="theme-icon__name">Biodiversity</span>
+            </div>
+            <div class="theme-icon">
+              <svg class="theme-icon__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7l9-5z"/><path d="M12 12l9-5M12 12v10M12 12L3 7"/></svg>
+              <span class="theme-icon__name">Digital Fabrication</span>
+            </div>
+            <div class="theme-icon">
+              <svg class="theme-icon__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5.5-3.8 10.2-8 12-4.2-1.8-8-6.5-8-12V7l8-4z"/></svg>
+              <span class="theme-icon__name">Cybersecurity</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ PANEL 5: INSTITUTIONS + CTA + FOOTER ═══ -->
+      <section class="stack-panel below panel-final" data-theme="light" style="background:var(--color-bg);display:flex;flex-direction:column;overflow:auto;padding-top:var(--header-height)">
+
+        <!-- CTA -->
+        <div class="panel-final__cta">
+          <h2 class="panel-final__cta-title">Explore Our Work</h2>
+          <p class="panel-final__cta-desc">Discover our research projects, meet our people, and see the impact we're making.</p>
+          <div class="panel-final__cta-actions">
+            <a href="research.html" class="btn btn--primary btn--lg">
+              View Research
+              <svg class="btn__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10h10M11 6l4 4-4 4"/></svg>
+            </a>
+            <a href="people.html" class="btn btn--secondary btn--lg">Meet Our People</a>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer" role="contentinfo">
+          <div class="container">
+            <div class="footer__grid">
+              <div class="footer__brand">
+                <img src="../src/assets/images/logos/lab-logo.png" alt="Lab Logo" class="footer__brand-logo">
+                <p class="footer__brand-text">Advancing interdisciplinary research in AI, health, fabrication, and beyond at Ashoka University.</p>
+                <div class="footer__brand-partner"><span>Supported by</span><img src="../src/assets/images/logos/mphasis-foundation.png" alt="Mphasis F1 Foundation"></div>
+              </div>
+              <div><h4 class="footer__heading">Navigate</h4><div class="footer__links"><a href="../index.html" class="footer__link">Home</a><a href="about.html" class="footer__link">About</a><a href="research.html" class="footer__link">Research</a><a href="people.html" class="footer__link">People</a><a href="publications.html" class="footer__link">Publications</a><a href="makerspace.html" class="footer__link">Makerspace</a><a href="news.html" class="footer__link">News & Events</a><a href="impact.html" class="footer__link">Impact</a></div></div>
+              <div><h4 class="footer__heading">Research</h4><div class="footer__links"><a href="pillar.html?pillar=ai" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-ai);"></span>AI@Ashoka</a><a href="pillar.html?pillar=bharatsim" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-bharatsim);"></span>BharatSim</a><a href="pillar.html?pillar=chart" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-chart);"></span>CHART</a><a href="pillar.html?pillar=cyber" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-cyber);"></span>Cybersecurity</a><a href="pillar.html?pillar=makerspace" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-makerspace);"></span>Makerspace</a></div></div>
+              <div><h4 class="footer__heading">Contact</h4><div><div class="footer__contact-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M2 3l6 5 6-5"/></svg><a href="mailto:mphasis.lab@ashoka.edu.in" style="color: rgba(255,255,255,0.8);">mphasis.lab@ashoka.edu.in</a></div><div class="footer__contact-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6.7C14 11.3 8 15.3 8 15.3S2 11.3 2 6.7a6 6 0 1 1 12 0z"/><circle cx="8" cy="6.7" r="2"/></svg><span>Ashoka University<br>Sonipat, Haryana, India</span></div></div></div>
+            </div>
+            <div class="footer__bottom"><p class="footer__copyright">&copy; 2026 Mphasis AI & Applied Tech Lab, Ashoka University. All rights reserved.</p><div class="footer__bottom-links"></div></div>
+          </div>
+        </footer>
+      </section>
+
+    </div>
+
+    <!-- Nav dots -->
+    <nav class="snap-dots" id="snapDots" aria-label="Section navigation"></nav>
+
+  </div>
+
+  <script src="../src/data/projects.js"></script>
+  <script src="../src/data/people.js"></script>
+  <script src="../src/data/publications.js"></script>
+  <script src="../src/data/pillars.js"></script>
+  <script src="../src/vendor/gsap.min.js"></script>
+  <script src="../src/vendor/ScrollTrigger.min.js"></script>
+  <script src="../src/js/gsap-animations.js"></script>
+  <script src="../src/js/main.js"></script>
+  <script src="../src/js/search.js"></script>
+  <script src="../src/js/floating-nav.js"></script>
+  <script src="../src/js/page-canvases.js"></script>
+
+  <script>
+  (function() {
+    'use strict';
+
+    // ══════════════════════════════════════
+    // STACK SCROLL ENGINE (with telescope zoom)
+    // ══════════════════════════════════════
+    var panels = document.querySelectorAll('.stack-panel');
+    var total = panels.length;
+    var cur = 0;
+    var anim = false;
+    var DUR = 850;
+
+    function go(idx) {
+      if (idx < 0 || idx >= total || anim) return;
+      anim = true;
+      panels.forEach(function(p, i) {
+        p.classList.remove('above', 'current', 'below');
+        if (i < idx) p.classList.add('above');
+        else if (i === idx) p.classList.add('current');
+        else p.classList.add('below');
+      });
+      cur = idx;
+      upDots();
+      setTimeout(function() { anim = false; }, DUR);
+    }
+
+    function scroll(d) {
+      if (anim) return;
+      go(cur + d);
+    }
+
+    // Search guard
+    function isSearchOpen() {
+      var o = document.getElementById('search-overlay');
+      return o && !o.hidden;
+    }
+
+    // Wheel
+    var wa = 0, WT = 80, wt;
+    document.addEventListener('wheel', function(e) {
+      if (isSearchOpen()) return;
+      e.preventDefault();
+      clearTimeout(wt);
+      wa += e.deltaY;
+      if (Math.abs(wa) >= WT) {
+        scroll(wa > 0 ? 1 : -1);
+        wa = 0;
+      }
+      wt = setTimeout(function() { wa = 0; }, 200);
+    }, { passive: false });
+
+    // Keyboard
+    var kc = false;
+    document.addEventListener('keydown', function(e) {
+      if (isSearchOpen()) return;
+      if (['ArrowDown', 'PageDown', 'ArrowUp', 'PageUp'].indexOf(e.key) > -1) {
+        e.preventDefault();
+        if (kc) return;
+        scroll(e.key === 'ArrowDown' || e.key === 'PageDown' ? 1 : -1);
+        kc = true;
+        setTimeout(function() { kc = false; }, 900);
+      }
+    });
+
+    // Touch
+    var ty = 0;
+    document.addEventListener('touchstart', function(e) { ty = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchend', function(e) {
+      var d = ty - e.changedTouches[0].clientY;
+      if (Math.abs(d) > 50) scroll(d > 0 ? 1 : -1);
+    }, { passive: true });
+
+    // Nav dots
+    var dc = document.getElementById('snapDots');
+    var labels = ['About', 'Mission', 'Pillars', 'Data', 'Achievements', 'Explore'];
+    panels.forEach(function(p, i) {
+      var d = document.createElement('button');
+      d.className = 'snap-dots__dot';
+      d.dataset.theme = p.dataset.theme || 'dark';
+      d.setAttribute('aria-label', labels[i] || 'Section ' + (i + 1));
+      d.addEventListener('click', function() { go(i); });
+      dc.appendChild(d);
+    });
+
+    function upDots() {
+      var ds = dc.querySelectorAll('.snap-dots__dot');
+      var th = panels[cur].dataset.theme || 'dark';
+      ds.forEach(function(d, i) {
+        d.classList.toggle('active', i === cur);
+        d.dataset.theme = th;
+      });
+    }
+    upDots();
+
+  })();
+  
+    // ── Mission Canvas: 5 drifting pillar-colored blobs (from Lens) ──
+    var missionCanvas = document.getElementById('mission-canvas');
+    if (missionCanvas) {
+      var mctx = missionCanvas.getContext('2d');
+      var pillarColors = [
+        { r: 37, g: 99, b: 235 },
+        { r: 5, g: 150, b: 105 },
+        { r: 217, g: 119, b: 6 },
+        { r: 124, g: 58, b: 237 },
+        { r: 0, g: 155, b: 222 }
+      ];
+      var blobs = pillarColors.map(function(c, i) {
+        return { x: 0.2+Math.random()*0.6, y: 0.15+(i*0.15)+Math.random()*0.1, r: 40+Math.random()*30, vx: (Math.random()-0.5)*0.0004, vy: (Math.random()-0.5)*0.0003, color: c, phase: Math.random()*Math.PI*2 };
+      });
+      function resizeMC() { var rect = missionCanvas.parentElement.getBoundingClientRect(); missionCanvas.width = rect.width; missionCanvas.height = rect.height; }
+      resizeMC(); window.addEventListener('resize', resizeMC);
+      function drawMC(time) {
+        var w = missionCanvas.width, h = missionCanvas.height;
+        mctx.clearRect(0, 0, w, h);
+        blobs.forEach(function(b) {
+          b.x += b.vx; b.y += b.vy;
+          if (b.x < 0.1 || b.x > 0.9) b.vx *= -1;
+          if (b.y < 0.1 || b.y > 0.9) b.vy *= -1;
+          var pulse = 1 + 0.15 * Math.sin(time * 0.001 + b.phase);
+          var radius = b.r * pulse;
+          var g = mctx.createRadialGradient(b.x*w, b.y*h, 0, b.x*w, b.y*h, radius);
+          g.addColorStop(0, 'rgba('+b.color.r+','+b.color.g+','+b.color.b+', 0.35)');
+          g.addColorStop(0.6, 'rgba('+b.color.r+','+b.color.g+','+b.color.b+', 0.12)');
+          g.addColorStop(1, 'rgba('+b.color.r+','+b.color.g+','+b.color.b+', 0)');
+          mctx.beginPath(); mctx.arc(b.x*w, b.y*h, radius, 0, Math.PI*2);
+          mctx.fillStyle = g; mctx.fill();
+        });
+        requestAnimationFrame(drawMC);
+      }
+      requestAnimationFrame(drawMC);
+    }
+
+  </script>
+</body>
+</html>
