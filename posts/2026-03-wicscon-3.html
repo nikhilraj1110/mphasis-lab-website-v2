@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="WiCSCon 3.0 — India's first student-led conference on inclusivity and diversity in computer science, held at Ashoka University on March 21–22, 2026.">
+  <meta name="theme-color" content="#1B2A4A">
+
+  <meta property="og:title" content="WiCSCon 3.0 at Ashoka University | Mphasis AI & Applied Tech Lab">
+  <meta property="og:description" content="India's first student-led conference on inclusivity and diversity in CS. Theme: Designing Tomorrow, Today.">
+  <meta property="og:type" content="article">
+
+  <title>WiCSCon 3.0 at Ashoka University | Mphasis AI & Applied Tech Lab</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../src/assets/images/logos/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../src/assets/images/logos/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../src/assets/images/logos/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../src/css/variables.css">
+  <link rel="stylesheet" href="../src/css/reset.css">
+  <link rel="stylesheet" href="../src/css/base.css">
+  <link rel="stylesheet" href="../src/css/layout.css">
+  <link rel="stylesheet" href="../src/css/header.css">
+  <link rel="stylesheet" href="../src/css/footer.css">
+  <link rel="stylesheet" href="../src/css/components.css">
+  <link rel="stylesheet" href="../src/css/animations.css">
+  <link rel="stylesheet" href="../src/css/pages.css">
+  <link rel="stylesheet" href="../src/css/utilities.css">
+  <link rel="stylesheet" href="../src/css/search.css">
+  <link rel="stylesheet" href="../src/css/post.css">
+</head>
+<body data-page="post">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="progress-bar" id="progress-bar" aria-hidden="true"></div>
+
+  <div class="page">
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search" hidden>
+      <div class="search-overlay__backdrop"></div>
+      <div class="search-overlay__panel">
+        <div class="search-overlay__header">
+          <div class="search-overlay__input-wrapper">
+            <svg class="search-overlay__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+            <input type="search" class="search-overlay__input" id="search-input" placeholder="Search projects, people, publications..." autocomplete="off">
+            <kbd class="search-overlay__kbd">ESC</kbd>
+          </div>
+        </div>
+        <div class="search-overlay__results" id="search-results" aria-live="polite">
+          <div class="search-overlay__empty">
+            <p class="search-overlay__empty-text">Type to search across projects, people, and publications</p>
+          </div>
+        </div>
+        <div class="search-overlay__footer">
+          <span><kbd>&#8984;</kbd><kbd>K</kbd> to toggle</span>
+          <span><kbd>&#8593;</kbd><kbd>&#8595;</kbd> to navigate</span>
+          <span><kbd>Enter</kbd> to select</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header" role="banner">
+      <div class="header__inner">
+        <a href="../index.html" class="header__logo" aria-label="Mphasis AI & Applied Tech Lab — Home">
+          <img src="../src/assets/images/logos/lab-logo.png" alt="Mphasis AI & Applied Tech Lab Logo">
+        </a>
+        <nav class="nav" role="navigation" aria-label="Primary navigation">
+          <a href="../index.html" class="nav__link">Home</a>
+          <a href="../pages/about.html" class="nav__link">About</a>
+          <a href="../pages/research.html" class="nav__link">Research</a>
+          <a href="../pages/people.html" class="nav__link">People</a>
+          <a href="../pages/publications.html" class="nav__link">Publications</a>
+          <a href="../pages/makerspace.html" class="nav__link">Makerspace</a>
+          <a href="../pages/news.html" class="nav__link nav__link--active">News & Events</a>
+          <a href="../pages/impact.html" class="nav__link">Impact</a>
+          <a href="../pages/contact.html" class="nav__link">Contact</a>
+        </nav>
+        <div class="header__actions">
+          <button class="header__search-trigger" aria-label="Search" aria-expanded="false" aria-controls="search-overlay">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+          </button>
+          <button class="header__menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <nav class="nav-mobile" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+      <a href="../index.html" class="nav-mobile__link">Home</a>
+      <a href="../pages/about.html" class="nav-mobile__link">About</a>
+      <a href="../pages/research.html" class="nav-mobile__link">Research</a>
+      <a href="../pages/people.html" class="nav-mobile__link">People</a>
+      <a href="../pages/publications.html" class="nav-mobile__link">Publications</a>
+      <a href="../pages/makerspace.html" class="nav-mobile__link">Makerspace</a>
+      <a href="../pages/news.html" class="nav-mobile__link nav-mobile__link--active">News & Events</a>
+      <a href="../pages/impact.html" class="nav-mobile__link">Impact</a>
+      <a href="../pages/contact.html" class="nav-mobile__link">Contact</a>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="page__content" id="main-content" role="main">
+
+      <article class="post">
+
+        <!-- Hero Image -->
+        <figure class="post__hero post__hero--contained">
+          <img src="../src/assets/images/posts/wicscon-3/wicscon-hero.jpeg" alt="WiCSCon 3.0 organising team on stage at Ashoka University">
+        </figure>
+
+        <div class="container container--narrow">
+
+          <a href="../pages/news.html" class="post__back">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8H4M4 8l4-4M4 8l4 4"/></svg>
+            Back to News &amp; Events
+          </a>
+
+          <header class="post__header">
+            <div class="post__meta">
+              <time class="post__date" datetime="2026-03-21">March 21&ndash;22, 2026</time>
+              <span class="post__category">Event</span>
+            </div>
+            <h1 class="post__title">WiCSCon 3.0: Designing Tomorrow, Today</h1>
+            <p class="post__subtitle">India's first student-led tech conference on inclusivity in CS, back at Ashoka for its third year.</p>
+          </header>
+
+          <!-- Stats Bar -->
+          <div class="post__stats">
+            <div class="post__stat">
+              <span class="post__stat-value">440</span>
+              <span class="post__stat-label">Sign-ups</span>
+            </div>
+            <div class="post__stat">
+              <span class="post__stat-value">50+</span>
+              <span class="post__stat-label">External Participants</span>
+            </div>
+            <div class="post__stat">
+              <span class="post__stat-value">10+</span>
+              <span class="post__stat-label">Speakers</span>
+            </div>
+            <div class="post__stat">
+              <span class="post__stat-value">3</span>
+              <span class="post__stat-label">Competitions</span>
+            </div>
+            <div class="post__stat">
+              <span class="post__stat-value">2</span>
+              <span class="post__stat-label">Days</span>
+            </div>
+          </div>
+
+          <div class="post__body">
+
+            <p>WiCSCon is India's first student-led conference on inclusivity and diversity in computer science, run by the Women in Computing Society (WiCS) at Ashoka University. On March 21 and 22, its third edition took place under the theme "Designing Tomorrow, Today," drawing 440 sign-ups and a programme that went well beyond computer science.</p>
+
+            <p>The two days included keynotes, panels, a research fireside chat, three competitions, and a Technology Showcase with VR headsets and drones. Speakers came from Microsoft AI, Evolve AI, Neysa AI, Avtara Tech, Zykrr, NextLeap, Amuse Labs, Delhi University, Taif University (Saudi Arabia), and Space Kidz India. The talks covered AI product design, computational biology, space science, and career strategy.</p>
+
+            <h2>Day 1: Competitions and Conversations</h2>
+
+            <p>The first day belonged to the competitive tracks and a series of talks that drew over 40 attendees from across academic disciplines.</p>
+
+            <h3>Panel: From Hype to Use Cases &mdash; Where Is AI Actually Delivering Value Today?</h3>
+
+            <p>Rahul Gupta (Founder, Evolve AI) and Soumya Aggarwal (Research & Education, Neysa AI) discussed where AI is delivering real value today versus where it's still catching up to the hype.</p>
+
+          </div>
+        </div>
+
+        <!-- Wide panel image -->
+        <div class="container container--narrow">
+          <figure class="post__image">
+            <img src="../src/assets/images/posts/wicscon-3/wicscon-08.png" alt="Panel discussion at WiCSCon 3.0 with speakers from Evolve AI and Neysa AI">
+            <figcaption>Panel 1: Rahul Gupta (Evolve AI) and Soumya Aggarwal (Neysa AI) discuss real-world AI applications</figcaption>
+          </figure>
+        </div>
+
+        <div class="container container--narrow">
+          <div class="post__body">
+
+            <h3>Keynote: Is Designing the Art of Optimization?</h3>
+
+            <p>Simran Singh, Product Head II at Microsoft AI's Design division, gave a keynote asking whether design is fundamentally an act of optimization.</p>
+
+          </div>
+
+          <figure class="post__image">
+            <img src="../src/assets/images/posts/wicscon-3/wicscon-10.jpeg" alt="Simran Singh from Microsoft AI presenting her keynote at WiCSCon 3.0">
+            <figcaption>Simran Singh, Product Head II, Design, Microsoft AI</figcaption>
+          </figure>
+
+          <div class="post__body">
+
+            <h3>Panel: 0 to 1 and Beyond &mdash; Turning Ideas into Scalable Tech Products</h3>
+
+            <p>Amit Singh (Founder, Avtara Tech) and Mallika Sharma (Product Head, Zykrr) discussed the process of turning early-stage ideas into scalable tech products.</p>
+
+            <h3>Workshop: Design Your Life &mdash; Making the Most of Your Liberal Arts Degree</h3>
+
+            <p>Kanika Singhal, Founding Managing Director of NextLeap, ran an interactive workshop helping liberal arts students think through career design and making the most of their degrees.</p>
+
+            <h3>Closing Keynote: Engineer to Entrepreneur &mdash; Building with Technology and Vision</h3>
+
+            <p>Jaya Hangal, CTO of Amuse Labs, closed Day 1 with a talk on her path from engineer to entrepreneur, and what it takes to build with technology and vision.</p>
+
+          </div>
+
+          <figure class="post__image">
+            <img src="../src/assets/images/posts/wicscon-3/wicscon-12.jpeg" alt="Panel discussion at WiCSCon 3.0">
+            <figcaption>A panel in session during Day 1 of WiCSCon 3.0</figcaption>
+          </figure>
+
+          <div class="post__body">
+
+            <hr class="post__divider">
+
+            <h2>The Three Competitions</h2>
+
+            <p>Three competitive tracks ran alongside the talks, all hosted through Unstop. After eliminative rounds, approximately 50 to 60 external participants made it to the final stage on campus.</p>
+
+            <h3>HackHERthon</h3>
+
+            <p>A two-round hackathon focused on technology-driven solutions for women's health, safety, and wellbeing. After an online submission round (prototype, demo video, and solution PDF), selected teams were invited to code on campus. Some teams participated online to accommodate those who could not travel. 26 participants made it to Round 2. The offline winner built a physical safety signal detection bracelet; the online round saw a tie between two teams, both working on AI voice agents for PCOD awareness and cycle tracking. Judges included Rahul Gupta (Evolve AI) and Dr. Mayank Garg and Dr. Suvrankar Datta from KCDHA.</p>
+
+            <h3>AI Protocol: Mini-MUN</h3>
+
+            <p>A collaboration with Ashoka's MUN Club, this was a fast-paced crisis simulation about AI governance. Seven participants took on roles ranging from Sam Altman to Greta Thunberg, debating AI's impact on information, governance, and jobs through opening statements, resolution deliberation, and closing arguments. Judged by the MUN Club's Executive Board.</p>
+
+            <h3>AI Blueprint: Policy Case Competition</h3>
+
+            <p>A consulting-style challenge where 18 participants designed education policies for integrating AI into academic systems. The scenarios were deliberately thorny: essay grading, coding assignment evaluation, false positives in AI detection tools. The point was not to restrict AI but to figure out how it could become a genuine pedagogical tool. Judged by Kanika Singhal (NextLeap), with prizes for the top three teams.</p>
+
+            <hr class="post__divider">
+
+            <h2>Day 2: Research, Space, and What Comes Next</h2>
+
+            <h3>Research Fireside Chat: Computing the Future of Biology</h3>
+
+            <p>Day 2 opened with a fireside chat: "Computing the Future of Biology." Prof. Manisha Goel (Delhi University) and Dr. Farah Anjum (Taif University, Saudi Arabia) talked about their work in computational medicine and what it's like to be a woman building a research career in these fields.</p>
+
+          </div>
+
+          <figure class="post__image">
+            <img src="../src/assets/images/posts/wicscon-3/wicscon-23.png" alt="Research fireside chat at WiCSCon 3.0 with professors from Delhi University and Taif University">
+            <figcaption>Research Fireside Chat: Prof. Manisha Goel (Delhi University) and Dr. Farah Anjum (Taif University)</figcaption>
+          </figure>
+
+          <div class="post__body">
+
+            <h3>Keynote: From Classroom to Cosmos</h3>
+
+            <p>Dr. Srimathy Kesan, Founder and CEO of Space Kidz India Mission, closed the conference with a keynote titled "From Classroom to Cosmos: How Women Are Rewriting the Code of Space."</p>
+
+          </div>
+
+          <figure class="post__gallery post__gallery--2">
+            <img src="../src/assets/images/posts/wicscon-3/wicscon-26.png" alt="Dr. Srimathy Kesan presenting at WiCSCon 3.0 with Space Kidz India imagery on screen">
+            <img src="../src/assets/images/posts/wicscon-3/wicscon-27.png" alt="Group photo with Dr. Srimathy Kesan and WiCSCon attendees">
+            <figcaption>Dr. Srimathy Kesan (Founder & CEO, Space Kidz India Mission) during her closing keynote and with conference attendees</figcaption>
+          </figure>
+
+          <div class="post__body">
+
+            <hr class="post__divider">
+
+            <h2>Beyond the Talks</h2>
+
+            <p>A first for Ashoka: attendees could try Meta Quest VR headsets and fly drones at a Technology Showcase set up alongside the main conference. There was also a vendor row with Uncle Peter's Pancakes, a tiramisu stall, matcha mithai, and students selling handmade stickers and posters.</p>
+
+          </div>
+
+          <figure class="post__gallery post__gallery--2">
+            <img src="../src/assets/images/posts/wicscon-3/wicscon-05.jpeg" alt="Students trying VR headsets at the WiCSCon 3.0 Technology Showcase">
+            <img src="../src/assets/images/posts/wicscon-3/wicscon-07.jpeg" alt="Drone demonstration at WiCSCon 3.0">
+            <figcaption>Technology Showcase: VR headsets and drones available for hands-on exploration</figcaption>
+          </figure>
+
+          <figure class="post__image">
+            <img src="../src/assets/images/posts/wicscon-3/wicscon-01.jpeg" alt="The WiCSCon 3.0 organising team at Ashoka University">
+            <figcaption>The WiCSCon 3.0 organising team</figcaption>
+          </figure>
+
+        </div>
+      </article>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <img src="../src/assets/images/logos/lab-logo.png" alt="Lab Logo" class="footer__brand-logo">
+            <p class="footer__brand-text">Advancing interdisciplinary research in AI, health, fabrication, and beyond at Ashoka University.</p>
+            <div class="footer__brand-partner">
+              <span>Supported by</span>
+              <img src="../src/assets/images/logos/mphasis-foundation.png" alt="Mphasis F1 Foundation">
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Navigate</h4>
+            <div class="footer__links">
+              <a href="../index.html" class="footer__link">Home</a>
+              <a href="../pages/about.html" class="footer__link">About</a>
+              <a href="../pages/research.html" class="footer__link">Research</a>
+              <a href="../pages/people.html" class="footer__link">People</a>
+              <a href="../pages/publications.html" class="footer__link">Publications</a>
+              <a href="../pages/makerspace.html" class="footer__link">Makerspace</a>
+              <a href="../pages/news.html" class="footer__link">News & Events</a>
+              <a href="../pages/impact.html" class="footer__link">Impact</a>
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Research</h4>
+            <div class="footer__links">
+              <a href="../pages/pillar.html?pillar=ai" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-ai);"></span>AI@Ashoka</a>
+              <a href="../pages/pillar.html?pillar=bharatsim" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-bharatsim);"></span>BharatSim</a>
+              <a href="../pages/pillar.html?pillar=chart" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-chart);"></span>CHART</a>
+              <a href="../pages/pillar.html?pillar=cyber" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-cyber);"></span>Cybersecurity</a>
+              <a href="../pages/pillar.html?pillar=makerspace" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-makerspace);"></span>Makerspace</a>
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Contact</h4>
+            <div>
+              <div class="footer__contact-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13.3 2.7H2.7c-.7 0-1.4.6-1.4 1.3v8c0 .7.6 1.4 1.4 1.4h10.6c.7 0 1.4-.6 1.4-1.4V4c0-.7-.6-1.3-1.4-1.3z"/><path d="M14.7 4L8 8.7 1.3 4"/></svg>
+                <a href="mailto:mphasis.lab@ashoka.edu.in" style="color: rgba(255,255,255,0.8);">mphasis.lab@ashoka.edu.in</a>
+              </div>
+              <div class="footer__contact-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6.7C14 11.3 8 15.3 8 15.3S2 11.3 2 6.7a6 6 0 1 1 12 0z"/><circle cx="8" cy="6.7" r="2"/></svg>
+                <span>Ashoka University<br>Sonipat, Haryana, India</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__copyright">&copy; 2026 Mphasis AI & Applied Tech Lab, Ashoka University. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="../src/data/projects.js"></script>
+  <script src="../src/data/people.js"></script>
+  <script src="../src/data/publications.js"></script>
+  <script src="../src/data/pillars.js"></script>
+  <script src="../src/vendor/gsap.min.js"></script>
+  <script src="../src/vendor/ScrollTrigger.min.js"></script>
+  <script src="../src/js/gsap-animations.js"></script>
+  <script src="../src/js/main.js"></script>
+  <script src="../src/js/search.js"></script>
+</body>
+</html>

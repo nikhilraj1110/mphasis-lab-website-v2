@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RedBrick Hacks III — a 48-hour hackathon at Ashoka University, February 6–8, 2026. 430+ applicants from 91+ universities across 23 states, building solutions for real problems India faces.">
+  <meta name="theme-color" content="#1B2A4A">
+
+  <meta property="og:title" content="RedBrick Hacks III: Solving Problems Real India Faces | Mphasis AI & Applied Tech Lab">
+  <meta property="og:description" content="430+ applicants. 91+ universities. 23 states. 48 hours of building at Ashoka University.">
+  <meta property="og:type" content="article">
+
+  <title>RedBrick Hacks III: Solving Problems Real India Faces | Mphasis AI & Applied Tech Lab</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../src/assets/images/logos/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../src/assets/images/logos/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../src/assets/images/logos/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../src/css/variables.css">
+  <link rel="stylesheet" href="../src/css/reset.css">
+  <link rel="stylesheet" href="../src/css/base.css">
+  <link rel="stylesheet" href="../src/css/layout.css">
+  <link rel="stylesheet" href="../src/css/header.css">
+  <link rel="stylesheet" href="../src/css/footer.css">
+  <link rel="stylesheet" href="../src/css/components.css">
+  <link rel="stylesheet" href="../src/css/animations.css">
+  <link rel="stylesheet" href="../src/css/pages.css">
+  <link rel="stylesheet" href="../src/css/utilities.css">
+  <link rel="stylesheet" href="../src/css/search.css">
+  <link rel="stylesheet" href="../src/css/post.css">
+</head>
+<body data-page="post">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="progress-bar" id="progress-bar" aria-hidden="true"></div>
+
+  <div class="page">
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search" hidden>
+      <div class="search-overlay__backdrop"></div>
+      <div class="search-overlay__panel">
+        <div class="search-overlay__header">
+          <div class="search-overlay__input-wrapper">
+            <svg class="search-overlay__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+            <input type="search" class="search-overlay__input" id="search-input" placeholder="Search projects, people, publications..." autocomplete="off">
+            <kbd class="search-overlay__kbd">ESC</kbd>
+          </div>
+        </div>
+        <div class="search-overlay__results" id="search-results" aria-live="polite">
+          <div class="search-overlay__empty">
+            <p class="search-overlay__empty-text">Type to search across projects, people, and publications</p>
+          </div>
+        </div>
+        <div class="search-overlay__footer">
+          <span><kbd>&#8984;</kbd><kbd>K</kbd> to toggle</span>
+          <span><kbd>&#8593;</kbd><kbd>&#8595;</kbd> to navigate</span>
+          <span><kbd>Enter</kbd> to select</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header" role="banner">
+      <div class="header__inner">
+        <a href="../index.html" class="header__logo" aria-label="Mphasis AI & Applied Tech Lab — Home">
+          <img src="../src/assets/images/logos/lab-logo.png" alt="Mphasis AI & Applied Tech Lab Logo">
+        </a>
+        <nav class="nav" role="navigation" aria-label="Primary navigation">
+          <a href="../index.html" class="nav__link">Home</a>
+          <a href="../pages/about.html" class="nav__link">About</a>
+          <a href="../pages/research.html" class="nav__link">Research</a>
+          <a href="../pages/people.html" class="nav__link">People</a>
+          <a href="../pages/publications.html" class="nav__link">Publications</a>
+          <a href="../pages/makerspace.html" class="nav__link">Makerspace</a>
+          <a href="../pages/news.html" class="nav__link nav__link--active">News & Events</a>
+          <a href="../pages/impact.html" class="nav__link">Impact</a>
+          <a href="../pages/contact.html" class="nav__link">Contact</a>
+        </nav>
+        <div class="header__actions">
+          <button class="header__search-trigger" aria-label="Search" aria-expanded="false" aria-controls="search-overlay">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4 4"/></svg>
+          </button>
+          <button class="header__menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <nav class="nav-mobile" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+      <a href="../index.html" class="nav-mobile__link">Home</a>
+      <a href="../pages/about.html" class="nav-mobile__link">About</a>
+      <a href="../pages/research.html" class="nav-mobile__link">Research</a>
+      <a href="../pages/people.html" class="nav-mobile__link">People</a>
+      <a href="../pages/publications.html" class="nav-mobile__link">Publications</a>
+      <a href="../pages/makerspace.html" class="nav-mobile__link">Makerspace</a>
+      <a href="../pages/news.html" class="nav-mobile__link nav-mobile__link--active">News & Events</a>
+      <a href="../pages/impact.html" class="nav-mobile__link">Impact</a>
+      <a href="../pages/contact.html" class="nav-mobile__link">Contact</a>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="page__content" id="main-content" role="main">
+
+      <article class="post">
+
+        <!-- Hero Image -->
+        <figure class="post__hero post__hero--contained">
+          <img src="../src/assets/images/posts/rbh-iii/hero.jpeg" alt="Auditorium crowd at RedBrick Hacks III, Ashoka University">
+        </figure>
+
+        <div class="container container--narrow">
+
+          <a href="../pages/news.html" class="post__back">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8H4M4 8l4-4M4 8l4 4"/></svg>
+            Back to News &amp; Events
+          </a>
+
+          <header class="post__header">
+            <div class="post__meta">
+              <time class="post__date" datetime="2026-02-06">February 6&ndash;8, 2026</time>
+              <span class="post__category">Event</span>
+            </div>
+            <h1 class="post__title">RedBrick Hacks III: Solving Problems Real India Faces</h1>
+            <p class="post__subtitle">430+ applicants. 91+ universities. 23 states. 48 hours of building at Ashoka University.</p>
+          </header>
+
+          <!-- Stats Bar -->
+          <div class="post__stats">
+            <div class="post__stat">
+              <span class="post__stat-value">430+</span>
+              <span class="post__stat-label">Applicants</span>
+            </div>
+            <div class="post__stat">
+              <span class="post__stat-value">91+</span>
+              <span class="post__stat-label">Universities</span>
+            </div>
+            <div class="post__stat">
+              <span class="post__stat-value">23</span>
+              <span class="post__stat-label">States</span>
+            </div>
+            <div class="post__stat">
+              <span class="post__stat-value">57</span>
+              <span class="post__stat-label">Finalists</span>
+            </div>
+            <div class="post__stat">
+              <span class="post__stat-value">48</span>
+              <span class="post__stat-label">Hours</span>
+            </div>
+          </div>
+
+          <div class="post__body">
+
+            <p>RedBrick Hacks III took place from February 6 to 8, 2026 at Ashoka University. The hackathon&rsquo;s mission was direct: solve problems real India faces. Over 430 applicants from 91+ universities across 23 states applied. 57 finalists made it to campus for a 48-hour build sprint.</p>
+
+            <p>Four challenge tracks, each aligned to a UN Sustainable Development Goal, defined the problem space: Climate Action, Quality Education, Sustainable Cities, and Hardware. Teams chose their track and built around it.</p>
+
+            <h2>How It Worked</h2>
+
+            <p>RedBrick Hacks III ran in two stages. Round 1 was online: teams submitted a problem proposal, a video pitch, and an execution plan. Shortlisted teams then entered a month-long online build phase, iterating on prototypes with mentor feedback. Round 2 brought 57 finalists to Ashoka&rsquo;s campus for 48 hours of building&mdash;55 software teams and 10 hardware teams working side by side.</p>
+
+          </div>
+        </div>
+
+        <div class="container container--narrow">
+          <figure class="post__image">
+            <img src="../src/assets/images/posts/rbh-iii/rbh-10.jpeg" alt="Audience during the opening ceremony of RedBrick Hacks III">
+            <figcaption>Opening ceremony at Ashoka University</figcaption>
+          </figure>
+        </div>
+
+        <div class="container container--narrow">
+          <div class="post__body">
+
+            <h2>Opening Ceremony</h2>
+
+            <p>Vice-Chancellor Prof. Somak Raychaudhury and Prof. Partha Pratim Chakrabarti opened the event. The ceremony set the context for the 48 hours ahead, and teams got to work.</p>
+
+            <h2>Mentoring and Reviews</h2>
+
+            <p>Throughout the hackathon, teams had access to office hours with industry experts. On February 7, Prof. Partha Pratim Chakrabarti and Kailash Nadh (CTO, Zerodha) conducted one-on-one reviews with teams, giving direct feedback on technical approaches and project direction.</p>
+
+          </div>
+
+          <figure class="post__image">
+            <img src="../src/assets/images/posts/rbh-iii/rbh-12.jpeg" alt="A team working on their project during the 48-hour build sprint at RedBrick Hacks III">
+            <figcaption>A team building during the 48-hour on-campus sprint</figcaption>
+          </figure>
+
+          <div class="post__body">
+
+            <h2>Judging</h2>
+
+            <p>The judging panel included Santanu Chaudhury, Prof. Partha Pratim Chakrabarti, Prof. Sri Harsha Kota (IIT), Prof. Aalok T. (Ashoka University), Priya Sreenivasa (Meta), Ashita Singh (UNESCO), and Ashish Kapur (NASSCOM).</p>
+
+            <hr class="post__divider">
+
+            <h2>The Winner</h2>
+
+            <p>Team Sylithe from Thakur College of Engineering and Technology won RedBrick Hacks III with an AI-powered Carbon Credit Verification system. The project uses satellite imagery, LiDAR, and machine learning to validate forest carbon credits.</p>
+
+          </div>
+
+          <figure class="post__image">
+            <img src="../src/assets/images/posts/rbh-iii/rbh-50.jpeg" alt="Winners on stage during the closing ceremony of RedBrick Hacks III">
+            <figcaption>Closing ceremony with winners on stage</figcaption>
+          </figure>
+
+          <div class="post__body">
+
+            <h2>Notable Project: ShistoDx</h2>
+
+            <p>ShistoDx is a field-deployable schistosomiasis detection system that uses machine learning on a planktoscope to identify parasites. The project has since led to a manuscript in collaboration with Prof. Manu Prakash at Stanford University.</p>
+
+            <hr class="post__divider">
+
+            <h2>Side Events</h2>
+
+            <p>The hackathon included several events outside the main competition. A Keyboard Duel Tournament ran for 24 hours straight, built on the Monkeytype platform and inaugurated by Kailash Nadh. A 12-hour Cup Stacking tournament ran alongside it. There was also a campus tour and a pizza hour.</p>
+
+            <p>Aditya Jain, Founder of Passionfruit, held a fireside chat in partnership with RedBull.</p>
+
+          </div>
+
+          <figure class="post__gallery post__gallery--2">
+            <img src="../src/assets/images/posts/rbh-iii/rbh-11.jpeg" alt="Participants hacking during RedBrick Hacks III">
+            <img src="../src/assets/images/posts/rbh-iii/rbh-47.jpeg" alt="Participant reacting during the RedBrick Hacks III closing ceremony">
+            <figcaption>Left: Participants during the 48-hour build sprint. Right: The moment winners were announced.</figcaption>
+          </figure>
+
+          <figure class="post__image">
+            <img src="../src/assets/images/posts/rbh-iii/rbh-23.jpeg" alt="Group photo with mentors and participants at RedBrick Hacks III">
+            <figcaption>Mentors and participants at RedBrick Hacks III</figcaption>
+          </figure>
+
+        </div>
+      </article>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <img src="../src/assets/images/logos/lab-logo.png" alt="Lab Logo" class="footer__brand-logo">
+            <p class="footer__brand-text">Advancing interdisciplinary research in AI, health, fabrication, and beyond at Ashoka University.</p>
+            <div class="footer__brand-partner">
+              <span>Supported by</span>
+              <img src="../src/assets/images/logos/mphasis-foundation.png" alt="Mphasis F1 Foundation">
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Navigate</h4>
+            <div class="footer__links">
+              <a href="../index.html" class="footer__link">Home</a>
+              <a href="../pages/about.html" class="footer__link">About</a>
+              <a href="../pages/research.html" class="footer__link">Research</a>
+              <a href="../pages/people.html" class="footer__link">People</a>
+              <a href="../pages/publications.html" class="footer__link">Publications</a>
+              <a href="../pages/makerspace.html" class="footer__link">Makerspace</a>
+              <a href="../pages/news.html" class="footer__link">News & Events</a>
+              <a href="../pages/impact.html" class="footer__link">Impact</a>
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Research</h4>
+            <div class="footer__links">
+              <a href="../pages/pillar.html?pillar=ai" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-ai);"></span>AI@Ashoka</a>
+              <a href="../pages/pillar.html?pillar=bharatsim" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-bharatsim);"></span>BharatSim</a>
+              <a href="../pages/pillar.html?pillar=chart" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-chart);"></span>CHART</a>
+              <a href="../pages/pillar.html?pillar=cyber" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-cyber);"></span>Cybersecurity</a>
+              <a href="../pages/pillar.html?pillar=makerspace" class="footer__pillar-link"><span class="footer__pillar-dot" style="background-color: var(--pillar-makerspace);"></span>Makerspace</a>
+            </div>
+          </div>
+          <div>
+            <h4 class="footer__heading">Contact</h4>
+            <div>
+              <div class="footer__contact-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13.3 2.7H2.7c-.7 0-1.4.6-1.4 1.3v8c0 .7.6 1.4 1.4 1.4h10.6c.7 0 1.4-.6 1.4-1.4V4c0-.7-.6-1.3-1.4-1.3z"/><path d="M14.7 4L8 8.7 1.3 4"/></svg>
+                <a href="mailto:mphasis.lab@ashoka.edu.in" style="color: rgba(255,255,255,0.8);">mphasis.lab@ashoka.edu.in</a>
+              </div>
+              <div class="footer__contact-item">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6.7C14 11.3 8 15.3 8 15.3S2 11.3 2 6.7a6 6 0 1 1 12 0z"/><circle cx="8" cy="6.7" r="2"/></svg>
+                <span>Ashoka University<br>Sonipat, Haryana, India</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__copyright">&copy; 2026 Mphasis AI & Applied Tech Lab, Ashoka University. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="../src/data/projects.js"></script>
+  <script src="../src/data/people.js"></script>
+  <script src="../src/data/publications.js"></script>
+  <script src="../src/data/pillars.js"></script>
+  <script src="../src/vendor/gsap.min.js"></script>
+  <script src="../src/vendor/ScrollTrigger.min.js"></script>
+  <script src="../src/js/gsap-animations.js"></script>
+  <script src="../src/js/main.js"></script>
+  <script src="../src/js/search.js"></script>
+</body>
+</html>

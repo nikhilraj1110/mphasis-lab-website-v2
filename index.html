@@ -804,32 +804,192 @@
 
     /* Panel 3: Impact — MERGED INTO DOSSIER */
 
-    /* Panel 4: News + Footer */
+    /* ═══ Panel 4: NEWS — Cinematic Grid ═══ */
     .panel-news-footer {
       background: #FBF3DF;
     }
     .panel-news-footer > .section {
       padding: 5rem 0;
     }
-    .panel-news-footer .section__title { color: #0D3862; }
 
-    /* News cards */
-    .panel-news-footer .card,
-    .panel-news-footer .news-card {
-      background: #FDFBF7 !important;
-      border: 1px solid #C9D4DB !important;
+    /* News header row */
+    .news-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
     }
-    .panel-news-footer .card__body { padding: var(--space-6); }
-    .panel-news-footer .card__date {
-      color: #C4122F !important;
-      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    .news-header__title {
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      color: #0D3862;
     }
-    .panel-news-footer .card__title {
-      color: #0D3862 !important;
-      font-family: Georgia, 'Times New Roman', serif !important;
+    .news-header__link {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #0D3862;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
     }
-    .panel-news-footer .card__text {
-      color: #6D7F89 !important;
+    .news-header__link:hover { color: #C4122F; }
+
+    /* Cinematic news grid */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    /* Large featured card — cinematic overlay */
+    .news-feat {
+      grid-column: span 8;
+      position: relative;
+      overflow: hidden;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      text-decoration: none;
+      color: #fff;
+      border: 1px solid rgba(13,56,98,0.08);
+    }
+    .news-feat__bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.7s cubic-bezier(0.19,1,0.22,1);
+    }
+    .news-feat:hover .news-feat__bg { transform: scale(1.05); }
+    .news-feat__overlay {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to top, #0D3862 0%, rgba(13,56,98,0.92) 30%, rgba(13,56,98,0.5) 60%, rgba(13,56,98,0.15) 100%);
+      z-index: 1;
+    }
+    .news-feat__content {
+      position: relative; z-index: 2;
+      padding: 2.5rem;
+    }
+    .news-feat__meta {
+      display: flex; gap: 1rem; align-items: center;
+      margin-bottom: 1rem;
+    }
+    .news-feat__tag {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      background: #C4122F; color: #fff;
+      padding: 0.3rem 0.75rem;
+    }
+    .news-feat__date {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.75rem; color: rgba(255,255,255,0.6);
+      letter-spacing: 0.05em;
+    }
+    .news-feat__title {
+      font-family: Georgia, serif;
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 400; line-height: 1.2;
+      margin-bottom: 0.75rem;
+      color: #fff;
+    }
+    .news-feat__desc {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.9rem; line-height: 1.6;
+      color: rgba(255,255,255,0.8);
+      max-width: 540px; margin-bottom: 1.5rem;
+    }
+    .news-feat__cta {
+      display: inline-block;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.8rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: #fff; background: transparent;
+      border: 1px solid rgba(255,255,255,0.4); padding: 0.65rem 1.75rem;
+      text-decoration: none;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .news-feat__cta:hover {
+      background: #C4122F; border-color: #C4122F;
+    }
+
+    /* Side stacked cards */
+    .news-side {
+      grid-column: span 4;
+      display: flex; flex-direction: column;
+      gap: 20px;
+    }
+    .news-side-card {
+      flex: 1;
+      padding: 2rem;
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid rgba(13,56,98,0.08);
+      transition: all 0.3s ease;
+    }
+    .news-side-card:hover {
+      box-shadow: 0 8px 24px rgba(13,56,98,0.1);
+    }
+    .news-side-card--light {
+      background: #e8e8ec;
+    }
+    .news-side-card--dark {
+      background: #0D3862;
+      color: #fff;
+    }
+    .news-side-card__label {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 1rem; display: block;
+    }
+    .news-side-card--light .news-side-card__label { color: #C4122F; }
+    .news-side-card--dark .news-side-card__label { color: rgba(255,255,255,0.6); }
+    .news-side-card__title {
+      font-family: Georgia, serif;
+      font-size: clamp(1.25rem, 2vw, 1.75rem);
+      font-weight: 400; line-height: 1.25;
+      transition: color 0.2s;
+    }
+    .news-side-card--light .news-side-card__title { color: #0D3862; }
+    .news-side-card--dark .news-side-card__title { color: #fff; }
+    .news-side-card--light:hover .news-side-card__title { color: #C4122F; }
+    .news-side-card__foot {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-top: 1.5rem;
+    }
+    .news-side-card__date {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.7rem; letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .news-side-card--light .news-side-card__date { color: #6D7F89; }
+    .news-side-card--dark .news-side-card__date { color: rgba(255,255,255,0.5); }
+    .news-side-card__arrow {
+      font-size: 1.25rem;
+      transition: transform 0.3s ease;
+    }
+    .news-side-card:hover .news-side-card__arrow {
+      transform: translate(2px, -2px);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .news-feat { grid-column: span 12; min-height: 400px; }
+      .news-side { grid-column: span 12; flex-direction: row; }
+      .news-side-card { min-height: 220px; }
+    }
+    @media (max-width: 600px) {
+      .news-side { flex-direction: column; }
     }
 
     /* ═══ Progress bar — brand red ═══ */
@@ -1338,27 +1498,20 @@
           </div>
         </article>
 
-        <!-- Band 3: World Food Atlas (light, image left — no photo) -->
+        <!-- Band 3: SmartDiet India — INFUSE Promising Innovation Award (light, image left) -->
         <article class="dos-band" data-pillar-color="#D97706">
-          <div class="dos-band__plate dos-band__plate--empty" style="background:linear-gradient(135deg, rgba(217,119,6,0.15) 0%, #FBF3DF 100%);">
-            <span class="dos-band__plate-num" style="color:#D97706;">03</span>
+          <div class="dos-band__plate">
+            <img src="assets/infuse-award-hero.jpeg" alt="" class="dos-band__img">
+            <div class="dos-band__plate-overlay"></div>
             <div class="dos-band__plate-accent" style="background:#D97706;"></div>
-            <span class="dos-band__plate-label">Fig. 03</span>
           </div>
           <div class="dos-band__body">
-            <span class="dos-band__serial">№ 03 / 06</span>
-            <span class="dos-band__rule"></span>
-            <div class="dos-band__metric" style="color:#D97706;">
-              <span class="dos-band__metric-val">Live</span>
-              <span class="dos-band__metric-lab">Platform</span>
-            </div>
             <div class="dos-band__pillar"><span class="dos-band__dot" style="background:#D97706;"></span><span style="color:#D97706;">CHART</span></div>
-            <h3 class="dos-band__title">World Food Atlas</h3>
-            <p class="dos-band__desc">Multimodal food-computing platform mapping global cuisines through AI: ingredients, recipes, and nutritional analysis at scale.</p>
-            <div class="dos-band__badges"><span class="dos-band__badge">Multimodal</span><span class="dos-band__badge">Global Cuisines</span></div>
+            <h3 class="dos-band__title">SmartDiet India — Promising Innovation Award</h3>
+            <p class="dos-band__desc">Won the Promising Innovation Award at the INFUSE Innovation Summit 2025, organized by the National Institute of Nutrition (NIN/ICMR), for SmartDiet India — an AI-driven nutritional solution built on the Food Knowledge Graph for India (FKG.in).</p>
             <div class="dos-band__foot">
-              <span class="dos-band__venue">Ongoing · CHART</span>
-              <a href="pages/project.html?id=multimodal-food-computing" class="dos-band__cta">Explore the project →</a>
+              <a href="https://fkg-india.github.io/home" style="font-family:'Open Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.05em; color:inherit; opacity:0.55; text-decoration:none; transition:opacity 0.2s;" onmouseenter="this.style.opacity='0.85'" onmouseleave="this.style.opacity='0.55'" target="_blank" rel="noopener">Explore the Project →</a>
+              <a href="https://timesofindia.indiatimes.com/city/hyderabad/ai-driven-nutritional-solutions-steal-spotlight-at-infuse-summit/articleshow/125965546.cms" class="dos-band__cta" target="_blank" rel="noopener">Read the Coverage →</a>
             </div>
           </div>
         </article>
@@ -1507,43 +1660,64 @@
 
       <!-- Impact section merged into Dossier above -->
 
-      <!-- ═══ SECTION 4: NEWS + FOOTER ═══ -->
+      <!-- ═══ SECTION 4: NEWS — Cinematic Grid + FOOTER ═══ -->
       <section class="stack-panel panel-news-footer" data-theme="light">
         <section class="section" id="news">
           <div class="container">
-            <div class="section__header flex flex--between flex--wrap" style="gap: var(--space-4);">
-              <div>
-                <span class="section__eyebrow">Updates</span>
-                <h2 class="section__title">Latest News &amp; Events</h2>
+
+            <!-- Header -->
+            <div class="news-header">
+              <h2 class="news-header__title">Latest News &amp; Events</h2>
+              <a href="pages/news.html" class="news-header__link">View All Archives <span style="transition:transform 0.2s;">→</span></a>
+            </div>
+
+            <!-- Cinematic Grid -->
+            <div class="news-grid">
+
+              <!-- Large featured card: WiCSCon -->
+              <a href="posts/2026-03-wicscon-3.html" class="news-feat">
+                <div class="news-feat__bg" style="background-image: url('src/assets/images/posts/wicscon-3/wicscon-12.jpeg');"></div>
+                <div class="news-feat__overlay"></div>
+                <div class="news-feat__content">
+                  <div class="news-feat__meta">
+                    <span class="news-feat__tag">Event</span>
+                    <span class="news-feat__date">March 21-22, 2026</span>
+                  </div>
+                  <h3 class="news-feat__title">WiCSCon 3.0 — Designing Tomorrow, Today</h3>
+                  <p class="news-feat__desc" style="margin-bottom:0;">India's first student-led conference on inclusivity and diversity in CS. Speakers from Microsoft AI, Evolve AI, Neysa AI, and more. Attendees from across the country.</p>
+                </div>
+              </a>
+
+              <!-- Side stacked cards -->
+              <div class="news-side">
+
+                <!-- Card: ACM COMPUTE (light) -->
+                <a href="posts/2026-03-acm-compute-2026.html" class="news-side-card news-side-card--light">
+                  <div>
+                    <span class="news-side-card__label">Workshop</span>
+                    <h4 class="news-side-card__title">ACM COMPUTE 2026 Regional Workshop Hosted at Ashoka</h4>
+                  </div>
+                  <div class="news-side-card__foot">
+                    <span class="news-side-card__date">March 21, 2026</span>
+                    <span class="news-side-card__arrow">↗</span>
+                  </div>
+                </a>
+
+                <!-- Card: ITiCSE (dark) -->
+                <a href="posts/2026-03-iticse-papers-accepted.html" class="news-side-card news-side-card--dark">
+                  <div>
+                    <span class="news-side-card__label">Publication</span>
+                    <h4 class="news-side-card__title">Two Papers Accepted at ITiCSE — Students to Present in Spain</h4>
+                  </div>
+                  <div class="news-side-card__foot">
+                    <span class="news-side-card__date">March 2026</span>
+                    <span class="news-side-card__arrow">↗</span>
+                  </div>
+                </a>
+
               </div>
-              <a href="pages/news.html" class="btn btn--secondary">
-                View All
-                <svg class="btn__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h8M8 4l4 4-4 4"/></svg>
-              </a>
             </div>
-            <div class="grid grid--3">
-              <a href="posts/2026-03-wicscon-3.html" class="card news-card" style="text-decoration: none; color: inherit;">
-                <div class="card__body">
-                  <span class="card__date">March 21&ndash;22, 2026</span>
-                  <h3 class="card__title">WiCSCon 3.0 at Ashoka University</h3>
-                  <p class="card__text">India's first student-led conference on inclusivity and diversity in CS. Theme: "Designing Tomorrow, Today." Speakers from Microsoft AI, Evolve AI, Neysa AI, and more. 440 sign-ups.</p>
-                </div>
-              </a>
-              <a href="posts/2026-03-acm-compute-2026.html" class="card news-card" style="text-decoration: none; color: inherit;">
-                <div class="card__body">
-                  <span class="card__date">March 21, 2026</span>
-                  <h3 class="card__title">ACM COMPUTE 2026 Workshop Hosted</h3>
-                  <p class="card__text">ACM COMPUTE 2026 Regional Workshop hosted at Ashoka University — discussion forum on CS education themes and two hands-on workshops.</p>
-                </div>
-              </a>
-              <a href="posts/2026-03-iticse-papers-accepted.html" class="card news-card" style="text-decoration: none; color: inherit;">
-                <div class="card__body">
-                  <span class="card__date">March 2026</span>
-                  <h3 class="card__title">Two Papers Accepted at ITiCSE</h3>
-                  <p class="card__text">Two papers from the AI Pedagogy / BOOP project accepted at ITiCSE, a leading CS education conference. Students Ayush Thonge and Vaani Goenka will present in Spain in July 2026.</p>
-                </div>
-              </a>
-            </div>
+
           </div>
         </section>
         <footer class="footer" role="contentinfo">
