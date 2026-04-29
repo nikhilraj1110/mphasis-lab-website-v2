@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Pillar Cards — Design Mockups</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Zilla+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ========== RESET & BASE ========== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: #FBF3DF;
+    color: #0D3862;
+    min-height: 100vh;
+    padding: 60px 40px 100px;
+  }
+
+  /* ========== PAGE HEADER ========== */
+  .page-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  .page-header h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: #C4122F;
+    margin-bottom: 8px;
+  }
+  .page-header p {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 28px;
+    color: #0D3862;
+    font-weight: normal;
+  }
+
+  /* ========== MOCKUP SECTION ========== */
+  .mockup-section {
+    max-width: 520px;
+    margin: 0 auto 80px;
+  }
+  .mockup-label {
+    text-align: center;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(13, 56, 98, 0.1);
+  }
+  .mockup-label h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #6D7F89;
+    margin-bottom: 4px;
+  }
+  .mockup-label span {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: #0D3862;
+  }
+
+  /* ========== SHARED GRID ========== */
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    justify-items: center;
+  }
+  .pillar-grid a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+  }
+  .pillar-grid a:nth-child(5) {
+    grid-column: 1 / -1;
+    max-width: calc(50% - 7px);
+    justify-self: center;
+  }
+
+  /* ============================================================
+     MOCKUP A — SPECIMEN PLATES
+     ============================================================ */
+  .specimen-card {
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #FDFBF7;
+    box-shadow: 0 1px 4px rgba(13, 56, 98, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  .specimen-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13, 56, 98, 0.12);
+  }
+
+  .specimen-image {
+    height: 120px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .specimen-card:hover .specimen-image {
+    transform: scale(1.03);
+  }
+  .specimen-image { transition: transform 0.4s ease; }
+
+  /* Pillar-specific gradients */
+  .specimen-image.ai { background: linear-gradient(160deg, #0D3862 0%, #2563EB 100%); }
+  .specimen-image.bharatsim { background: linear-gradient(160deg, #064e3b 0%, #059669 100%); }
+  .specimen-image.chart { background: linear-gradient(160deg, #7c2d12 0%, #D97706 100%); }
+  .specimen-image.cyber { background: linear-gradient(160deg, #15113E 0%, #7C3AED 100%); }
+  .specimen-image.maker { background: linear-gradient(160deg, #0D3862 0%, #009BDE 100%); }
+
+  /* SVG pattern overlays */
+  .specimen-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.07;
+    background-size: 30px 30px;
+  }
+  .specimen-image.ai::before {
+    background-image:
+      radial-gradient(circle, #fff 1px, transparent 1px),
+      linear-gradient(to right, #fff 0.5px, transparent 0.5px),
+      linear-gradient(to bottom, #fff 0.5px, transparent 0.5px);
+    background-size: 30px 30px, 30px 30px, 30px 30px;
+  }
+  .specimen-image.bharatsim::before {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 Q15 20 30 30 Q45 40 60 30' fill='none' stroke='white' stroke-width='0.8'/%3E%3Cpath d='M0 40 Q15 30 30 40 Q45 50 60 40' fill='none' stroke='white' stroke-width='0.5'/%3E%3Cpath d='M0 20 Q15 10 30 20 Q45 30 60 20' fill='none' stroke='white' stroke-width='0.5'/%3E%3C/svg%3E");
+    background-size: 60px 60px;
+    opacity: 0.12;
+  }
+  .specimen-image.chart::before {
+    background-image: url("data:image/svg+xml,%3Csvg width='120' height='40' viewBox='0 0 120 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 L10 20 L15 8 L20 32 L25 16 L30 20 L120 20' fill='none' stroke='white' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: 120px 40px;
+    opacity: 0.12;
+  }
+  .specimen-image.cyber::before {
+    background-image: url("data:image/svg+xml,%3Csvg width='28' height='49' viewBox='0 0 28 49' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 0L28 8.5V25.5L14 34L0 25.5V8.5Z' fill='none' stroke='white' stroke-width='0.5'/%3E%3C/svg%3E");
+    background-size: 28px 49px;
+    opacity: 0.1;
+  }
+  .specimen-image.maker::before {
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='12' fill='none' stroke='white' stroke-width='0.6'/%3E%3Ccircle cx='20' cy='20' r='6' fill='none' stroke='white' stroke-width='0.4'/%3E%3Cline x1='20' y1='4' x2='20' y2='8' stroke='white' stroke-width='0.5'/%3E%3Cline x1='20' y1='32' x2='20' y2='36' stroke='white' stroke-width='0.5'/%3E%3Cline x1='4' y1='20' x2='8' y2='20' stroke='white' stroke-width='0.5'/%3E%3Cline x1='32' y1='20' x2='36' y2='20' stroke='white' stroke-width='0.5'/%3E%3C/svg%3E");
+    background-size: 40px 40px;
+    opacity: 0.1;
+  }
+
+  .specimen-icon {
+    position: relative;
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  }
+  .specimen-icon img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+  }
+
+  .specimen-number {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.5px;
+    z-index: 2;
+  }
+
+  .specimen-bar {
+    height: 4px;
+    width: 100%;
+  }
+  .specimen-bar.ai { background: #2563EB; }
+  .specimen-bar.bharatsim { background: #059669; }
+  .specimen-bar.chart { background: #D97706; }
+  .specimen-bar.cyber { background: #7C3AED; }
+  .specimen-bar.maker { background: #009BDE; }
+
+  .specimen-text {
+    padding: 14px 16px 16px;
+    background: #FDFBF7;
+  }
+  .specimen-text h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 15px;
+    font-weight: normal;
+    color: #0D3862;
+    margin-bottom: 5px;
+  }
+  .specimen-text p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+    line-height: 1.5;
+    color: #6D7F89;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+
+  /* ============================================================
+     MOCKUP B — EDITORIAL INDEX
+     ============================================================ */
+  .editorial-card {
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    padding: 18px 18px 0;
+    box-shadow: 0 1px 4px rgba(13, 56, 98, 0.06);
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+  }
+  .editorial-card:hover {
+    box-shadow: 0 4px 16px rgba(13, 56, 98, 0.1);
+  }
+
+  /* Left color bar */
+  .editorial-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    transition: width 0.3s ease;
+  }
+  .editorial-card:hover::before {
+    width: 8px;
+  }
+  .editorial-card.ai::before { background: #2563EB; }
+  .editorial-card.bharatsim::before { background: #059669; }
+  .editorial-card.chart::before { background: #D97706; }
+  .editorial-card.cyber::before { background: #7C3AED; }
+  .editorial-card.maker::before { background: #009BDE; }
+
+  .editorial-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4px;
+  }
+
+  .editorial-number {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 48px;
+    line-height: 1;
+    user-select: none;
+  }
+  .editorial-card.ai .editorial-number { color: rgba(37, 99, 235, 0.12); }
+  .editorial-card.bharatsim .editorial-number { color: rgba(5, 150, 105, 0.12); }
+  .editorial-card.chart .editorial-number { color: rgba(217, 119, 6, 0.12); }
+  .editorial-card.cyber .editorial-number { color: rgba(124, 58, 237, 0.12); }
+  .editorial-card.maker .editorial-number { color: rgba(0, 155, 222, 0.12); }
+
+  .editorial-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .editorial-card.ai .editorial-icon-wrap { background: rgba(37, 99, 235, 0.1); }
+  .editorial-card.bharatsim .editorial-icon-wrap { background: rgba(5, 150, 105, 0.1); }
+  .editorial-card.chart .editorial-icon-wrap { background: rgba(217, 119, 6, 0.1); }
+  .editorial-card.cyber .editorial-icon-wrap { background: rgba(124, 58, 237, 0.1); }
+  .editorial-card.maker .editorial-icon-wrap { background: rgba(0, 155, 222, 0.1); }
+
+  .editorial-icon-wrap svg {
+    width: 28px;
+    height: 28px;
+  }
+  .editorial-icon-wrap img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+
+  .editorial-body {
+    flex: 1;
+    margin-top: -4px;
+  }
+  .editorial-body h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    font-weight: normal;
+    color: #0D3862;
+    margin-bottom: 6px;
+  }
+  .editorial-body p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11px;
+    line-height: 1.55;
+    color: #6D7F89;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .editorial-footer {
+    margin-top: auto;
+    padding: 10px 0;
+    border-top: 1px dashed #C9D4DB;
+  }
+  .editorial-footer span {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: #C4122F;
+    letter-spacing: 0.5px;
+    transition: transform 0.25s ease;
+    display: inline-block;
+  }
+  .editorial-card:hover .editorial-footer span {
+    transform: translateX(3px);
+  }
+
+
+  /* ============================================================
+     MOCKUP C — IMMERSIVE TILES
+     ============================================================ */
+  .immersive-card {
+    width: 100%;
+    height: 230px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .immersive-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Pillar gradients */
+  .immersive-card.ai { background: linear-gradient(135deg, #2563EB 0%, #1a4fc0 60%, #0D3862 100%); }
+  .immersive-card.bharatsim { background: linear-gradient(135deg, #059669 0%, #047857 60%, #064e3b 100%); }
+  .immersive-card.chart { background: linear-gradient(135deg, #D97706 0%, #b45309 60%, #7c2d12 100%); }
+  .immersive-card.cyber { background: linear-gradient(135deg, #7C3AED 0%, #6025c0 60%, #15113E 100%); }
+  .immersive-card.maker { background: linear-gradient(135deg, #009BDE 0%, #0077b3 60%, #0D3862 100%); }
+
+  /* Dot grid overlay */
+  .immersive-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 16px 16px;
+    z-index: 1;
+  }
+
+  .immersive-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    z-index: 1;
+    opacity: 0.15;
+    transition: opacity 0.35s ease;
+  }
+  .immersive-card:hover .immersive-watermark {
+    opacity: 0.3;
+  }
+  .immersive-watermark svg,
+  .immersive-watermark img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .immersive-thumb {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .immersive-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* CSS gradient thumbnails for pillars without images */
+  .immersive-thumb.ai-thumb {
+    background: linear-gradient(135deg, #1e3a5f, #2563EB);
+    position: relative;
+  }
+  .immersive-thumb.ai-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.25) 1.5px, transparent 1.5px);
+    background-size: 10px 10px;
+  }
+  .immersive-thumb.chart-thumb {
+    background: linear-gradient(135deg, #f59e0b, #b45309);
+  }
+  .immersive-thumb.cyber-thumb {
+    background: linear-gradient(135deg, #7C3AED, #4c1d95);
+    position: relative;
+  }
+  .immersive-thumb.cyber-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(60deg, rgba(255,255,255,0.06) 25%, transparent 25%),
+      linear-gradient(-60deg, rgba(255,255,255,0.06) 25%, transparent 25%);
+    background-size: 14px 24px;
+  }
+
+  .immersive-text {
+    position: relative;
+    z-index: 2;
+  }
+  .immersive-text h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-bottom: 4px;
+  }
+  .immersive-text p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .immersive-arrow {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    z-index: 2;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  .immersive-card:hover .immersive-arrow {
+    transform: translateX(4px);
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+
+  /* ========== DIVIDERS ========== */
+  .section-divider {
+    width: 60px;
+    height: 1px;
+    background: rgba(13, 56, 98, 0.15);
+    margin: 0 auto 80px;
+  }
+
+  /* ========== ALL 3 SIDE BY SIDE AT 1440 ========== */
+  @media (min-width: 1200px) {
+    body {
+      padding: 60px 48px 100px;
+    }
+    .mockups-container {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .mockup-section {
+      flex: 0 0 420px;
+      margin-bottom: 0;
+    }
+    .section-divider {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Research Pillars</h1>
+  <p>Navigation Card Explorations</p>
+</div>
+
+<div class="mockups-container">
+
+<!-- ============================================================
+     MOCKUP A — SPECIMEN PLATES
+     ============================================================ -->
+<section class="mockup-section">
+  <div class="mockup-label">
+    <h2>Mockup A</h2>
+    <span>Specimen Plates</span>
+  </div>
+
+  <div class="pillar-grid">
+    <!-- AI@Ashoka -->
+    <a href="#">
+      <div class="specimen-card">
+        <div class="specimen-image ai">
+          <span class="specimen-number">P.01</span>
+          <div class="specimen-icon">
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="18" cy="18" r="4" fill="white"/>
+              <circle cx="8" cy="8" r="2.5" fill="white" opacity="0.7"/>
+              <circle cx="28" cy="8" r="2.5" fill="white" opacity="0.7"/>
+              <circle cx="8" cy="28" r="2.5" fill="white" opacity="0.7"/>
+              <circle cx="28" cy="28" r="2.5" fill="white" opacity="0.7"/>
+              <line x1="18" y1="14" x2="10" y2="10" stroke="white" stroke-width="1" opacity="0.5"/>
+              <line x1="18" y1="14" x2="26" y2="10" stroke="white" stroke-width="1" opacity="0.5"/>
+              <line x1="18" y1="22" x2="10" y2="26" stroke="white" stroke-width="1" opacity="0.5"/>
+              <line x1="18" y1="22" x2="26" y2="26" stroke="white" stroke-width="1" opacity="0.5"/>
+              <circle cx="18" cy="6" r="2" fill="white" opacity="0.5"/>
+              <line x1="18" y1="14" x2="18" y2="8" stroke="white" stroke-width="1" opacity="0.4"/>
+              <circle cx="32" cy="18" r="2" fill="white" opacity="0.5"/>
+              <line x1="22" y1="18" x2="30" y2="18" stroke="white" stroke-width="1" opacity="0.4"/>
+            </svg>
+          </div>
+        </div>
+        <div class="specimen-bar ai"></div>
+        <div class="specimen-text">
+          <h3>AI@Ashoka</h3>
+          <p>Artificial intelligence across education, health, environment, and sciences</p>
+        </div>
+      </div>
+    </a>
+
+    <!-- BharatSim -->
+    <a href="#">
+      <div class="specimen-card">
+        <div class="specimen-image bharatsim">
+          <span class="specimen-number">P.02</span>
+          <div class="specimen-icon">
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 22 Q9 14 18 18 Q27 22 34 14" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              <path d="M2 28 Q9 20 18 24 Q27 28 34 20" stroke="white" stroke-width="1" fill="none" opacity="0.5" stroke-linecap="round"/>
+              <circle cx="10" cy="10" r="2" fill="white" opacity="0.7"/>
+              <circle cx="18" cy="8" r="2" fill="white" opacity="0.7"/>
+              <circle cx="26" cy="12" r="2" fill="white" opacity="0.7"/>
+              <line x1="12" y1="10" x2="16" y2="9" stroke="white" stroke-width="0.8" opacity="0.5"/>
+              <line x1="20" y1="9" x2="24" y2="11" stroke="white" stroke-width="0.8" opacity="0.5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="specimen-bar bharatsim"></div>
+        <div class="specimen-text">
+          <h3>BharatSim</h3>
+          <p>India-scale agent-based simulation for epidemiology and public health</p>
+        </div>
+      </div>
+    </a>
+
+    <!-- CHART -->
+    <a href="#">
+      <div class="specimen-card">
+        <div class="specimen-image chart">
+          <span class="specimen-number">P.03</span>
+          <div class="specimen-icon">
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 20 L8 20 L11 12 L14 26 L17 16 L20 20 L33 20" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="24" cy="20" r="1.5" fill="white" opacity="0.5"/>
+              <path d="M24 10 L24 14" stroke="white" stroke-width="1" opacity="0.4"/>
+              <path d="M28 12 L28 16" stroke="white" stroke-width="1" opacity="0.3"/>
+            </svg>
+          </div>
+        </div>
+        <div class="specimen-bar chart"></div>
+        <div class="specimen-text">
+          <h3>CHART</h3>
+          <p>Health analytics, food computing, and cancer diagnostics</p>
+        </div>
+      </div>
+    </a>
+
+    <!-- Cybersecurity -->
+    <a href="#">
+      <div class="specimen-card">
+        <div class="specimen-image cyber">
+          <span class="specimen-number">P.04</span>
+          <div class="specimen-icon">
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 4 L30 10 L30 20 C30 27 24 32 18 34 C12 32 6 27 6 20 L6 10 Z" stroke="white" stroke-width="1.8" fill="none"/>
+              <path d="M13 18 L16 21 L23 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="specimen-bar cyber"></div>
+        <div class="specimen-text">
+          <h3>Cybersecurity</h3>
+          <p>Post-quantum cryptography against quantum-era threats</p>
+        </div>
+      </div>
+    </a>
+
+    <!-- Makerspace -->
+    <a href="#">
+      <div class="specimen-card">
+        <div class="specimen-image maker">
+          <span class="specimen-number">P.05</span>
+          <div class="specimen-icon">
+            <img src="../assets/makerspace-logo.png" alt="Makerspace" style="filter: brightness(0) invert(1);">
+          </div>
+        </div>
+        <div class="specimen-bar maker"></div>
+        <div class="specimen-text">
+          <h3>Makerspace</h3>
+          <p>Digital fabrication, maker education, and physical prototyping</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============================================================
+     MOCKUP B — EDITORIAL INDEX
+     ============================================================ -->
+<section class="mockup-section">
+  <div class="mockup-label">
+    <h2>Mockup B</h2>
+    <span>Editorial Index</span>
+  </div>
+
+  <div class="pillar-grid">
+    <!-- AI@Ashoka -->
+    <a href="#">
+      <div class="editorial-card ai">
+        <div class="editorial-top">
+          <span class="editorial-number">01</span>
+          <div class="editorial-icon-wrap">
+            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="14" cy="14" r="3" fill="#2563EB"/>
+              <circle cx="6" cy="6" r="2" fill="#2563EB" opacity="0.6"/>
+              <circle cx="22" cy="6" r="2" fill="#2563EB" opacity="0.6"/>
+              <circle cx="6" cy="22" r="2" fill="#2563EB" opacity="0.6"/>
+              <circle cx="22" cy="22" r="2" fill="#2563EB" opacity="0.6"/>
+              <line x1="14" y1="11" x2="8" y2="8" stroke="#2563EB" stroke-width="0.8" opacity="0.4"/>
+              <line x1="14" y1="11" x2="20" y2="8" stroke="#2563EB" stroke-width="0.8" opacity="0.4"/>
+              <line x1="14" y1="17" x2="8" y2="20" stroke="#2563EB" stroke-width="0.8" opacity="0.4"/>
+              <line x1="14" y1="17" x2="20" y2="20" stroke="#2563EB" stroke-width="0.8" opacity="0.4"/>
+            </svg>
+          </div>
+        </div>
+        <div class="editorial-body">
+          <h3>AI@Ashoka</h3>
+          <p>Artificial intelligence across education, health, environment, and sciences</p>
+        </div>
+        <div class="editorial-footer">
+          <span>Explore &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- BharatSim -->
+    <a href="#">
+      <div class="editorial-card bharatsim">
+        <div class="editorial-top">
+          <span class="editorial-number">02</span>
+          <div class="editorial-icon-wrap">
+            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 18 Q7 12 14 14 Q21 16 26 10" stroke="#059669" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              <path d="M2 22 Q7 16 14 18 Q21 20 26 14" stroke="#059669" stroke-width="0.8" fill="none" opacity="0.4" stroke-linecap="round"/>
+              <circle cx="8" cy="7" r="1.5" fill="#059669" opacity="0.6"/>
+              <circle cx="14" cy="5" r="1.5" fill="#059669" opacity="0.6"/>
+              <circle cx="20" cy="9" r="1.5" fill="#059669" opacity="0.6"/>
+              <line x1="9.5" y1="7" x2="12.5" y2="6" stroke="#059669" stroke-width="0.6" opacity="0.4"/>
+              <line x1="15.5" y1="6" x2="18.5" y2="8" stroke="#059669" stroke-width="0.6" opacity="0.4"/>
+            </svg>
+          </div>
+        </div>
+        <div class="editorial-body">
+          <h3>BharatSim</h3>
+          <p>India-scale agent-based simulation for epidemiology and public health</p>
+        </div>
+        <div class="editorial-footer">
+          <span>Explore &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CHART -->
+    <a href="#">
+      <div class="editorial-card chart">
+        <div class="editorial-top">
+          <span class="editorial-number">03</span>
+          <div class="editorial-icon-wrap">
+            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 15 L6 15 L9 8 L12 22 L15 12 L18 15 L26 15" stroke="#D97706" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="editorial-body">
+          <h3>CHART</h3>
+          <p>Health analytics, food computing, and cancer diagnostics</p>
+        </div>
+        <div class="editorial-footer">
+          <span>Explore &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Cybersecurity -->
+    <a href="#">
+      <div class="editorial-card cyber">
+        <div class="editorial-top">
+          <span class="editorial-number">04</span>
+          <div class="editorial-icon-wrap">
+            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 3 L23 7.5 L23 15.5 C23 20.5 18.5 24.5 14 26 C9.5 24.5 5 20.5 5 15.5 L5 7.5 Z" stroke="#7C3AED" stroke-width="1.3" fill="none"/>
+              <path d="M10 14 L13 17 L18 11" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="editorial-body">
+          <h3>Cybersecurity</h3>
+          <p>Post-quantum cryptography against quantum-era threats</p>
+        </div>
+        <div class="editorial-footer">
+          <span>Explore &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Makerspace -->
+    <a href="#">
+      <div class="editorial-card maker">
+        <div class="editorial-top">
+          <span class="editorial-number">05</span>
+          <div class="editorial-icon-wrap">
+            <img src="../assets/makerspace-logo.png" alt="Makerspace">
+          </div>
+        </div>
+        <div class="editorial-body">
+          <h3>Makerspace</h3>
+          <p>Digital fabrication, maker education, and physical prototyping</p>
+        </div>
+        <div class="editorial-footer">
+          <span>Explore &rarr;</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============================================================
+     MOCKUP C — IMMERSIVE TILES
+     ============================================================ -->
+<section class="mockup-section">
+  <div class="mockup-label">
+    <h2>Mockup C</h2>
+    <span>Immersive Tiles</span>
+  </div>
+
+  <div class="pillar-grid">
+    <!-- AI@Ashoka -->
+    <a href="#">
+      <div class="immersive-card ai">
+        <div class="immersive-watermark">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="6" fill="white"/>
+            <circle cx="12" cy="12" r="4" fill="white" opacity="0.6"/>
+            <circle cx="44" cy="12" r="4" fill="white" opacity="0.6"/>
+            <circle cx="12" cy="44" r="4" fill="white" opacity="0.6"/>
+            <circle cx="44" cy="44" r="4" fill="white" opacity="0.6"/>
+            <circle cx="28" cy="6" r="3" fill="white" opacity="0.4"/>
+            <circle cx="50" cy="28" r="3" fill="white" opacity="0.4"/>
+            <circle cx="6" cy="28" r="3" fill="white" opacity="0.4"/>
+            <circle cx="28" cy="50" r="3" fill="white" opacity="0.4"/>
+            <line x1="28" y1="22" x2="15" y2="15" stroke="white" stroke-width="1" opacity="0.3"/>
+            <line x1="28" y1="22" x2="41" y2="15" stroke="white" stroke-width="1" opacity="0.3"/>
+            <line x1="28" y1="34" x2="15" y2="41" stroke="white" stroke-width="1" opacity="0.3"/>
+            <line x1="28" y1="34" x2="41" y2="41" stroke="white" stroke-width="1" opacity="0.3"/>
+            <line x1="22" y1="28" x2="9" y2="28" stroke="white" stroke-width="1" opacity="0.2"/>
+            <line x1="34" y1="28" x2="47" y2="28" stroke="white" stroke-width="1" opacity="0.2"/>
+            <line x1="28" y1="22" x2="28" y2="9" stroke="white" stroke-width="1" opacity="0.2"/>
+            <line x1="28" y1="34" x2="28" y2="47" stroke="white" stroke-width="1" opacity="0.2"/>
+          </svg>
+        </div>
+        <div class="immersive-thumb ai-thumb"></div>
+        <div class="immersive-text">
+          <h3>AI@Ashoka</h3>
+          <p>Artificial intelligence across education, health, environment, and sciences</p>
+        </div>
+        <span class="immersive-arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <!-- BharatSim -->
+    <a href="#">
+      <div class="immersive-card bharatsim">
+        <div class="immersive-watermark">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 32 Q14 20 28 26 Q42 32 52 20" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M4 40 Q14 28 28 34 Q42 40 52 28" stroke="white" stroke-width="1.5" fill="none" opacity="0.4" stroke-linecap="round"/>
+            <path d="M4 24 Q14 12 28 18 Q42 24 52 12" stroke="white" stroke-width="1" fill="none" opacity="0.25" stroke-linecap="round"/>
+            <circle cx="14" cy="12" r="3" fill="white" opacity="0.5"/>
+            <circle cx="28" cy="10" r="3" fill="white" opacity="0.5"/>
+            <circle cx="42" cy="15" r="3" fill="white" opacity="0.5"/>
+            <line x1="17" y1="12" x2="25" y2="11" stroke="white" stroke-width="0.8" opacity="0.3"/>
+            <line x1="31" y1="11" x2="39" y2="14" stroke="white" stroke-width="0.8" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="immersive-thumb">
+          <img src="../assets/bharatsim-network.png" alt="BharatSim network">
+        </div>
+        <div class="immersive-text">
+          <h3>BharatSim</h3>
+          <p>India-scale agent-based simulation for epidemiology and public health</p>
+        </div>
+        <span class="immersive-arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <!-- CHART -->
+    <a href="#">
+      <div class="immersive-card chart">
+        <div class="immersive-watermark">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 28 L12 28 L18 14 L24 42 L30 22 L36 28 L52 28" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="42" cy="28" r="2" fill="white" opacity="0.4"/>
+            <path d="M42 16 L42 22" stroke="white" stroke-width="1.2" opacity="0.3"/>
+            <path d="M48 20 L48 24" stroke="white" stroke-width="1" opacity="0.2"/>
+          </svg>
+        </div>
+        <div class="immersive-thumb chart-thumb"></div>
+        <div class="immersive-text">
+          <h3>CHART</h3>
+          <p>Health analytics, food computing, and cancer diagnostics</p>
+        </div>
+        <span class="immersive-arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <!-- Cybersecurity -->
+    <a href="#">
+      <div class="immersive-card cyber">
+        <div class="immersive-watermark">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 4 L48 14 L48 32 C48 42 38 50 28 54 C18 50 8 42 8 32 L8 14 Z" stroke="white" stroke-width="2" fill="none"/>
+            <path d="M20 28 L25 33 L36 22" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="immersive-thumb cyber-thumb"></div>
+        <div class="immersive-text">
+          <h3>Cybersecurity</h3>
+          <p>Post-quantum cryptography against quantum-era threats</p>
+        </div>
+        <span class="immersive-arrow">&rarr;</span>
+      </div>
+    </a>
+
+    <!-- Makerspace -->
+    <a href="#">
+      <div class="immersive-card maker">
+        <div class="immersive-watermark">
+          <img src="../assets/makerspace-logo.png" alt="" style="filter: brightness(0) invert(1);">
+        </div>
+        <div class="immersive-thumb">
+          <img src="../assets/makerspace-logo.png" alt="Makerspace">
+        </div>
+        <div class="immersive-text">
+          <h3>Makerspace</h3>
+          <p>Digital fabrication, maker education, and physical prototyping</p>
+        </div>
+        <span class="immersive-arrow">&rarr;</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+</div><!-- .mockups-container -->
+
+</body>
+</html>
