@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blur-Blend Band Mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Open Sans', sans-serif; background: #FBF3DF; }
+
+h2.label {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: #C4122F; padding: 40px 0 20px;
+}
+
+/* ═══ BAND ═══ */
+.band {
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #C9D4DB;
+}
+.band--light { background: #FBF3DF; color: #0D3862; }
+.band--dark  { background: #0D3862; color: #FBF3DF; }
+
+/* ── Background image — covers left half, fades right ── */
+.band__bg {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0;
+  width: 65%; /* covers left 65% of band */
+  z-index: 1;
+}
+.band__bg img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+/* Fade mask: solid image on left, fades to band bg on right */
+.band--light .band__bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to right,
+    transparent 0%,
+    transparent 30%,
+    rgba(251,243,223,0.4) 50%,
+    rgba(251,243,223,0.85) 70%,
+    #FBF3DF 90%
+  );
+}
+.band--dark .band__bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to right,
+    transparent 0%,
+    transparent 30%,
+    rgba(13,56,98,0.4) 50%,
+    rgba(13,56,98,0.85) 70%,
+    #0D3862 90%
+  );
+}
+
+/* ── Reverse: image on right, fades left ── */
+.band--reverse .band__bg {
+  left: auto;
+  right: 0;
+}
+.band--reverse.band--dark .band__bg::after {
+  background: linear-gradient(to left,
+    transparent 0%,
+    transparent 30%,
+    rgba(13,56,98,0.4) 50%,
+    rgba(13,56,98,0.85) 70%,
+    #0D3862 90%
+  );
+}
+
+/* Pillar accent bar */
+.band__accent {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 5px; z-index: 5;
+}
+.band--reverse .band__accent { left: auto; right: 0; }
+
+/* ── Text content ── */
+.band__body {
+  position: relative;
+  z-index: 3;
+  width: 50%;
+  margin-left: 50%;
+  padding: 56px 56px 56px 40px;
+}
+.band--reverse .band__body {
+  margin-left: 0;
+  padding: 56px 40px 56px 56px;
+}
+
+.band__pillar {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-bottom: 20px;
+}
+.band__dot { width: 8px; height: 8px; border-radius: 999px; display: inline-block; }
+.band__title {
+  font-family: Georgia, serif;
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
+  font-weight: 400; letter-spacing: -0.015em;
+  line-height: 1.08; margin-bottom: 16px;
+}
+.band--dark .band__title { color: #FBF3DF; }
+.band__desc {
+  font-size: 0.95rem; line-height: 1.65;
+  max-width: 480px; opacity: 0.85; margin-bottom: 24px;
+}
+.band__badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.band__badge {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  padding: 5px 12px; border-radius: 999px;
+}
+.band--light .band__badge { border: 1px solid #C9D4DB; color: #0D3862; }
+.band--dark .band__badge { border: 1px solid rgba(251,243,223,0.3); color: rgba(251,243,223,0.9); }
+.band__foot {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 20px; border-top: 1px dashed currentColor; opacity: 0.7;
+}
+.band__venue { font-family: Georgia, serif; font-style: italic; font-size: 14px; }
+.band__cta {
+  font-size: 13px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: #C4122F; text-decoration: none;
+}
+
+/* ── Empty plate (no image) — number placeholder on left/right ── */
+.band__empty-num {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  font-family: Georgia, serif;
+  font-size: clamp(10rem, 16vw, 16rem);
+  font-weight: 400; line-height: 1;
+  letter-spacing: -0.05em; opacity: 0.12;
+  z-index: 1;
+}
+.band:not(.band--reverse) .band__empty-num { left: 8%; }
+.band--reverse .band__empty-num { right: 8%; }
+
+/* ── Hover ── */
+.band { transition: box-shadow 0.4s ease; cursor: pointer; }
+.band:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.08); }
+.band--dark:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.2); }
+.band__bg img { transition: transform 0.8s cubic-bezier(0.19,1,0.22,1); }
+.band:hover .band__bg img { transform: scale(1.04); }
+
+@media (max-width: 900px) {
+  .band__bg { width: 100%; }
+  .band__body, .band--reverse .band__body {
+    width: 100%; margin-left: 0;
+    padding: 40px 24px;
+    background: inherit;
+  }
+  .band--light .band__bg::after,
+  .band--dark .band__bg::after,
+  .band--reverse.band--dark .band__bg::after {
+    background: linear-gradient(to bottom, transparent 0%, inherit 100%);
+  }
+}
+</style>
+</head>
+<body>
+
+<h2 class="label">Blur-Blend Mockup — Image dissolves into text background</h2>
+
+<!-- Band 1: Light, image left -->
+<div class="band band--light">
+  <div class="band__bg">
+    <img src="assets/bharatsim-hero.png" alt="">
+  </div>
+  <div class="band__accent" style="background:#059669;"></div>
+  <div class="band__body">
+    <div class="band__pillar"><span class="band__dot" style="background:#059669;"></span><span style="color:#059669;">BharatSim</span></div>
+    <h3 class="band__title">India-Scale Epidemic Simulation</h3>
+    <p class="band__desc">Agent-based modelling for public health policy. H5N1 study covered by BBC, NDTV, Nature India, and 20+ outlets; platform deployed to NACO for HIV modelling.</p>
+    <div class="band__badges"><span class="band__badge">BBC</span><span class="band__badge">NDTV</span><span class="band__badge">Nature India</span><span class="band__badge">NACO Deployment</span></div>
+    <div class="band__foot">
+      <span class="band__venue">BMC Public Health · 2025</span>
+      <a href="#" class="band__cta">Read the study →</a>
+    </div>
+  </div>
+</div>
+
+<!-- Band 2: Dark, image right -->
+<div class="band band--dark band--reverse">
+  <div class="band__bg">
+    <img src="assets/earth-dark.jpg" alt="">
+  </div>
+  <div class="band__accent" style="background:#2563EB;"></div>
+  <div class="band__body">
+    <div class="band__pillar"><span class="band__dot" style="background:#2563EB;"></span><span style="color:#2563EB;">AI@Ashoka</span></div>
+    <h3 class="band__title">OncoMark — Cancer at Single-Cell Resolution</h3>
+    <p class="band__desc">AI framework quantifying cancer hallmarks across millions of single cells. Published in Communications Biology (Nature portfolio).</p>
+    <div class="band__badges"><span class="band__badge">Nature Portfolio</span><span class="band__badge">Single-cell AI</span></div>
+    <div class="band__foot">
+      <span class="band__venue">Communications Biology · 2025</span>
+      <a href="#" class="band__cta">Read the study →</a>
+    </div>
+  </div>
+</div>
+
+<!-- Band 3: Light, no image -->
+<div class="band band--light">
+  <span class="band__empty-num" style="color:#D97706;">03</span>
+  <div class="band__accent" style="background:#D97706;"></div>
+  <div class="band__body">
+    <div class="band__pillar"><span class="band__dot" style="background:#D97706;"></span><span style="color:#D97706;">CHART</span></div>
+    <h3 class="band__title">World Food Atlas</h3>
+    <p class="band__desc">Multimodal food-computing platform mapping global cuisines through AI: ingredients, recipes, and nutritional analysis at scale.</p>
+    <div class="band__badges"><span class="band__badge">Multimodal</span><span class="band__badge">Global Cuisines</span></div>
+    <div class="band__foot">
+      <span class="band__venue">Ongoing · CHART</span>
+      <a href="#" class="band__cta">Explore the project →</a>
+    </div>
+  </div>
+</div>
+
+<!-- Band 4: Dark, image right -->
+<div class="band band--dark band--reverse">
+  <div class="band__bg">
+    <img src="assets/people/meghna-agarwala.png" alt="" style="object-position: center 20%;">
+  </div>
+  <div class="band__accent" style="background:#2563EB;"></div>
+  <div class="band__body">
+    <div class="band__pillar"><span class="band__dot" style="background:#2563EB;"></span><span style="color:#2563EB;">AI@Ashoka</span></div>
+    <h3 class="band__title">Schmidt AI for Science Fellowship</h3>
+    <p class="band__desc">Meghna Agarwala awarded a 3-year Schmidt Fellowship at Oxford for AI-driven pollen detection and biodiversity monitoring.</p>
+    <div class="band__badges"><span class="band__badge">Oxford</span><span class="band__badge">3-year Fellowship</span></div>
+    <div class="band__foot">
+      <span class="band__venue">Oxford · 2026</span>
+      <a href="#" class="band__cta">Read more →</a>
+    </div>
+  </div>
+</div>
+
+<!-- Band 5: Light, no image -->
+<div class="band band--light">
+  <span class="band__empty-num" style="color:#2563EB;">05</span>
+  <div class="band__accent" style="background:#2563EB;"></div>
+  <div class="band__body">
+    <div class="band__pillar"><span class="band__dot" style="background:#2563EB;"></span><span style="color:#2563EB;">AI@Ashoka</span></div>
+    <h3 class="band__title">IndiaMediaLens</h3>
+    <p class="band__desc">First national tool summarising Indian press complaints across 34 years of Press Council data, deployed at pressanalytics.in.</p>
+    <div class="band__badges"><span class="band__badge">34 yrs of data</span><span class="band__badge">Public deploy</span></div>
+    <div class="band__foot">
+      <span class="band__venue">pressanalytics.in</span>
+      <a href="#" class="band__cta">Visit the platform →</a>
+    </div>
+  </div>
+</div>
+
+<!-- Band 6: Dark, no image -->
+<div class="band band--dark band--reverse">
+  <span class="band__empty-num" style="color:rgba(251,243,223,0.15);">06</span>
+  <div class="band__accent" style="background:#2563EB;"></div>
+  <div class="band__body">
+    <div class="band__pillar"><span class="band__dot" style="background:#2563EB;"></span><span style="color:#2563EB;">AI@Ashoka</span></div>
+    <h3 class="band__title">SocraticAI — Government Recognition</h3>
+    <p class="band__desc">AI tutor for foundational CS education, featured in MeitY's India-AI Impact Summit Compendium at Bharat Mandapam, New Delhi.</p>
+    <div class="band__badges"><span class="band__badge">MeitY Compendium</span><span class="band__badge">Bharat Mandapam</span></div>
+    <div class="band__foot">
+      <span class="band__venue">Government of India · 2026</span>
+      <a href="#" class="band__cta">Read more →</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
