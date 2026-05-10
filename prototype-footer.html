@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Footer Prototype — Mphasis AI & Applied Tech Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&family=Zilla+Slab:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── Reset ─────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── Brand Tokens ──────────────────────────────── */
+:root {
+  --brand-red: #C4122F;
+  --brand-blue: #0D3862;
+  --brand-deep-red: #a70e13;
+  --brand-deep-blue: #15113e;
+  --brand-beige: #F7EBD3;
+
+  --pillar-ai: #2563EB;
+  --pillar-bharatsim: #059669;
+  --pillar-chart: #D97706;
+  --pillar-cyber: #7C3AED;
+  --pillar-makerspace: #DC2626;
+
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-sans: 'Open Sans', sans-serif;
+  --font-creative: 'Zilla Slab', serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: #f5f5f5;
+}
+
+/* ── Spacer to simulate page content ───────────── */
+.page-spacer {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════════════
+   FOOTER — THE REIMAGINED DESIGN
+   ══════════════════════════════════════════════════ */
+
+.footer {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(175deg, #0a1628 0%, #0d1f3a 35%, #111b2e 100%);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 0;
+}
+
+/* ── Atmospheric Background Layers ─────────────── */
+
+/* Dot grid overlay */
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Gradient aurora — slow drifting color */
+.footer__aurora {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.footer__aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0;
+  animation: auroraFloat 16s ease-in-out infinite;
+}
+
+.footer__aurora-blob:nth-child(1) {
+  width: 500px; height: 500px;
+  background: var(--pillar-ai);
+  top: -20%; left: 5%;
+  opacity: 0.04;
+  animation-delay: 0s;
+  animation-duration: 18s;
+}
+.footer__aurora-blob:nth-child(2) {
+  width: 400px; height: 400px;
+  background: var(--brand-red);
+  bottom: -10%; right: 10%;
+  opacity: 0.05;
+  animation-delay: -6s;
+  animation-duration: 14s;
+}
+.footer__aurora-blob:nth-child(3) {
+  width: 350px; height: 350px;
+  background: var(--pillar-cyber);
+  top: 20%; right: 30%;
+  opacity: 0.03;
+  animation-delay: -10s;
+  animation-duration: 20s;
+}
+
+@keyframes auroraFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.03; }
+  25% { transform: translate(30px, -20px) scale(1.1); opacity: 0.06; }
+  50% { transform: translate(-20px, 15px) scale(0.95); opacity: 0.04; }
+  75% { transform: translate(15px, 25px) scale(1.05); opacity: 0.05; }
+}
+
+/* ── Pillar DNA Strip — Top Edge ───────────────── */
+.footer__dna {
+  position: relative;
+  z-index: 2;
+  height: 3px;
+  display: flex;
+  overflow: hidden;
+}
+
+.footer__dna-segment {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer__dna-segment::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  animation: dnaPulse 4s ease-in-out infinite;
+}
+
+.footer__dna-segment:nth-child(1) { background: var(--pillar-ai); animation-delay: 0s; }
+.footer__dna-segment:nth-child(2) { background: var(--pillar-bharatsim); animation-delay: 0.3s; }
+.footer__dna-segment:nth-child(3) { background: var(--pillar-chart); animation-delay: 0.6s; }
+.footer__dna-segment:nth-child(4) { background: var(--pillar-cyber); animation-delay: 0.9s; }
+.footer__dna-segment:nth-child(5) { background: var(--pillar-makerspace); animation-delay: 1.2s; }
+
+.footer__dna-segment::after {
+  animation: dnaSweep 3s ease-in-out infinite;
+  animation-delay: inherit;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+  background-size: 200% 100%;
+}
+
+@keyframes dnaSweep {
+  0%, 100% { background-position: -200% 0; }
+  50% { background-position: 200% 0; }
+}
+
+/* ── Glow line beneath DNA strip ───────────────── */
+.footer__glow-line {
+  position: relative;
+  z-index: 2;
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+
+.footer__glow-line::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(90deg,
+    rgba(37,99,235,0.15),
+    rgba(5,150,105,0.15),
+    rgba(217,119,6,0.15),
+    rgba(124,58,237,0.15),
+    rgba(220,38,38,0.15)
+  );
+  filter: blur(4px);
+}
+
+/* ── Main Content Area ─────────────────────────── */
+.footer__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4.5rem 2rem 0;
+}
+
+/* ── Grid ──────────────────────────────────────── */
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 3rem;
+}
+
+/* ── Brand Column ──────────────────────────────── */
+.footer__brand-logo {
+  height: 50px;
+  width: auto;
+  margin-bottom: 1.25rem;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.footer__brand-logo:hover {
+  opacity: 1;
+}
+
+.footer__brand-text {
+  font-family: var(--font-creative);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.55);
+  max-width: 300px;
+  margin-bottom: 2rem;
+}
+
+.footer__partner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer__partner-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  font-weight: 600;
+}
+
+.footer__partner-logo {
+  height: 28px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.footer__partner-logo:hover {
+  opacity: 0.8;
+}
+
+/* ── Column Headings ───────────────────────────── */
+.footer__heading {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer__heading::before {
+  content: '//';
+  font-family: 'Courier New', monospace;
+  color: var(--brand-red);
+  opacity: 0.6;
+  font-weight: 400;
+}
+
+/* ── Navigation Links ──────────────────────────── */
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.footer__link {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  padding: 0.45rem 0;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.25s ease, transform 0.25s ease;
+  cursor: pointer;
+}
+
+.footer__link::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  width: 0;
+  height: 1px;
+  background: var(--brand-red);
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.footer__link:hover {
+  color: #fff;
+  transform: translateX(6px);
+}
+
+.footer__link:hover::before {
+  width: 8px;
+}
+
+/* ── Pillar Links ──────────────────────────────── */
+.footer__pillar-link {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  padding: 0.5rem 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: color 0.25s ease, transform 0.25s ease;
+  cursor: pointer;
+}
+
+.footer__pillar-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer__pillar-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0;
+  filter: blur(4px);
+  transition: opacity 0.3s ease;
+}
+
+.footer__pillar-link:hover {
+  color: #fff;
+  transform: translateX(4px);
+}
+
+.footer__pillar-link:hover .footer__pillar-dot {
+  transform: scale(1.3);
+}
+
+.footer__pillar-link:hover .footer__pillar-dot::after {
+  opacity: 0.6;
+}
+
+/* ── Contact Items ─────────────────────────────── */
+.footer__contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.55);
+}
+
+.footer__contact-item svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.footer__contact-item a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.footer__contact-item a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--brand-red);
+  transition: width 0.3s ease;
+}
+
+.footer__contact-item:hover svg {
+  opacity: 0.8;
+}
+
+.footer__contact-item:hover a {
+  color: #fff;
+}
+
+.footer__contact-item a:hover::after {
+  width: 100%;
+}
+
+/* ── Divider ───────────────────────────────────── */
+.footer__divider {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 3.5rem auto 0;
+  padding: 0 2rem;
+}
+
+.footer__divider-line {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255,255,255,0.08) 20%,
+    rgba(255,255,255,0.08) 80%,
+    transparent
+  );
+}
+
+/* ── Bottom Bar ────────────────────────────────── */
+.footer__bottom {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__copyright {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.02em;
+}
+
+/* ── Scroll-to-Top Button ──────────────────────── */
+.footer__scroll-top {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.03);
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer__scroll-top::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--brand-red);
+  transform: scale(0);
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.footer__scroll-top svg {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.footer__scroll-top:hover {
+  border-color: var(--brand-red);
+  color: #fff;
+}
+
+.footer__scroll-top:hover::before {
+  transform: scale(1);
+}
+
+.footer__scroll-top:hover svg {
+  transform: translateY(-2px);
+}
+
+/* ── Interactive Pillar Constellation ──────────── */
+.footer__constellation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.footer__constellation canvas {
+  width: 100%;
+  height: 100%;
+  opacity: 0.35;
+}
+
+/* ── Reveal Animation on Scroll ────────────────── */
+.footer__reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.footer__reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footer__reveal:nth-child(1) { transition-delay: 0.05s; }
+.footer__reveal:nth-child(2) { transition-delay: 0.15s; }
+.footer__reveal:nth-child(3) { transition-delay: 0.25s; }
+.footer__reveal:nth-child(4) { transition-delay: 0.35s; }
+
+/* ── Mouse-reactive gradient ───────────────────── */
+.footer__mouse-gradient {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,18,47,0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  transition: left 0.8s ease, top 0.8s ease, opacity 0.8s ease;
+  opacity: 0;
+}
+
+.footer:hover .footer__mouse-gradient {
+  opacity: 1;
+}
+
+/* ── Responsive ────────────────────────────────── */
+@media (max-width: 1024px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  .footer__brand-col {
+    grid-column: 1 / -1;
+  }
+  .footer__constellation {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer__inner {
+    padding: 3rem 1.25rem 0;
+  }
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .footer__brand-col {
+    grid-column: auto;
+  }
+  .footer__bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    padding: 1.25rem 1.25rem 1.75rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="page-spacer">↓ Scroll down to see the footer ↓</div>
+
+<!-- ══════════════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════════════ -->
+<footer class="footer" role="contentinfo">
+
+  <!-- Aurora — ambient drifting color blobs -->
+  <div class="footer__aurora">
+    <div class="footer__aurora-blob"></div>
+    <div class="footer__aurora-blob"></div>
+    <div class="footer__aurora-blob"></div>
+  </div>
+
+  <!-- Mouse-reactive gradient -->
+  <div class="footer__mouse-gradient"></div>
+
+  <!-- Constellation canvas -->
+  <div class="footer__constellation">
+    <canvas id="footerCanvas"></canvas>
+  </div>
+
+  <!-- Pillar DNA strip — top edge -->
+  <div class="footer__dna" aria-hidden="true">
+    <div class="footer__dna-segment"></div>
+    <div class="footer__dna-segment"></div>
+    <div class="footer__dna-segment"></div>
+    <div class="footer__dna-segment"></div>
+    <div class="footer__dna-segment"></div>
+  </div>
+  <div class="footer__glow-line" aria-hidden="true"></div>
+
+  <!-- Main content -->
+  <div class="footer__inner">
+    <div class="footer__grid">
+
+      <!-- Brand -->
+      <div class="footer__brand-col footer__reveal">
+        <img src="src/assets/images/logos/lab-logo.png" alt="Mphasis AI & Applied Tech Lab" class="footer__brand-logo">
+        <p class="footer__brand-text">Advancing interdisciplinary research in AI, health, fabrication, and beyond at Ashoka University.</p>
+        <div class="footer__partner">
+          <span class="footer__partner-label">Supported by</span>
+          <img src="src/assets/images/logos/mphasis-foundation.png" alt="Mphasis F1 Foundation" class="footer__partner-logo">
+        </div>
+      </div>
+
+      <!-- Navigate -->
+      <div class="footer__reveal">
+        <h4 class="footer__heading">Navigate</h4>
+        <div class="footer__links">
+          <a href="index.html" class="footer__link">Home</a>
+          <a href="pages/about.html" class="footer__link">About</a>
+          <a href="pages/research.html" class="footer__link">Research</a>
+          <a href="pages/people.html" class="footer__link">People</a>
+          <a href="pages/publications.html" class="footer__link">Publications</a>
+          <a href="pages/makerspace.html" class="footer__link">Makerspace</a>
+          <a href="pages/news.html" class="footer__link">News & Events</a>
+          <a href="pages/impact.html" class="footer__link">Impact</a>
+        </div>
+      </div>
+
+      <!-- Research Pillars -->
+      <div class="footer__reveal">
+        <h4 class="footer__heading">Research</h4>
+        <div class="footer__links">
+          <a href="pages/pillar.html?pillar=ai" class="footer__pillar-link">
+            <span class="footer__pillar-dot" style="background-color: var(--pillar-ai);"></span>AI@Ashoka
+          </a>
+          <a href="https://bharatsim.ashoka.edu.in/" target="_blank" rel="noopener noreferrer" class="footer__pillar-link">
+            <span class="footer__pillar-dot" style="background-color: var(--pillar-bharatsim);"></span>BharatSim
+          </a>
+          <a href="pages/pillar.html?pillar=chart" class="footer__pillar-link">
+            <span class="footer__pillar-dot" style="background-color: var(--pillar-chart);"></span>CHART
+          </a>
+          <a href="pages/pillar.html?pillar=cyber" class="footer__pillar-link">
+            <span class="footer__pillar-dot" style="background-color: var(--pillar-cyber);"></span>Cybersecurity
+          </a>
+          <a href="pages/pillar.html?pillar=makerspace" class="footer__pillar-link">
+            <span class="footer__pillar-dot" style="background-color: var(--pillar-makerspace);"></span>Makerspace
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer__reveal">
+        <h4 class="footer__heading">Contact</h4>
+        <div class="footer__contact-item">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13.3 2.7H2.7c-.7 0-1.4.6-1.4 1.3v8c0 .7.6 1.4 1.4 1.4h10.6c.7 0 1.4-.6 1.4-1.4V4c0-.7-.6-1.3-1.4-1.3z"/>
+            <path d="M14.7 4L8 8.7 1.3 4"/>
+          </svg>
+          <a href="mailto:mphasis.lab@ashoka.edu.in">mphasis.lab@ashoka.edu.in</a>
+        </div>
+        <div class="footer__contact-item">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 6.7C14 11.3 8 15.3 8 15.3S2 11.3 2 6.7a6 6 0 1112 0z"/>
+            <circle cx="8" cy="6.7" r="2"/>
+          </svg>
+          <span>Ashoka University<br>Sonipat, Haryana, India</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div class="footer__divider">
+    <div class="footer__divider-line"></div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer__bottom">
+    <p class="footer__copyright">&copy; 2026 Mphasis AI & Applied Tech Lab, Ashoka University. All rights reserved.</p>
+    <button class="footer__scroll-top" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 13V3"/>
+        <path d="M3 7l5-5 5 5"/>
+      </svg>
+    </button>
+  </div>
+
+</footer>
+
+<script>
+/* ── Scroll Reveal ─────────────────────────────── */
+const revealEls = document.querySelectorAll('.footer__reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => revealObserver.observe(el));
+
+/* ── Mouse-reactive Gradient ───────────────────── */
+const footer = document.querySelector('.footer');
+const mouseGrad = document.querySelector('.footer__mouse-gradient');
+
+footer.addEventListener('mousemove', (e) => {
+  const rect = footer.getBoundingClientRect();
+  mouseGrad.style.left = (e.clientX - rect.left) + 'px';
+  mouseGrad.style.top = (e.clientY - rect.top) + 'px';
+});
+
+/* ── Constellation Canvas ──────────────────────── */
+const canvas = document.getElementById('footerCanvas');
+if (canvas) {
+  const ctx = canvas.getContext('2d');
+  const pillarColors = ['#2563EB', '#059669', '#D97706', '#7C3AED', '#DC2626'];
+
+  let nodes = [];
+  let animId;
+  let mouse = { x: -9999, y: -9999 };
+
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.parentElement.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+    initNodes(rect.width, rect.height);
+  }
+
+  function initNodes(w, h) {
+    nodes = [];
+    const count = Math.floor((w * h) / 8000);
+    for (let i = 0; i < count; i++) {
+      nodes.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 2 + 1,
+        color: pillarColors[Math.floor(Math.random() * pillarColors.length)],
+        baseAlpha: Math.random() * 0.4 + 0.2,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+  }
+
+  function drawConstellation() {
+    const w = canvas.width / (window.devicePixelRatio || 1);
+    const h = canvas.height / (window.devicePixelRatio || 1);
+    ctx.clearRect(0, 0, w, h);
+
+    const time = Date.now() * 0.001;
+    const connectionDist = 100;
+
+    // Update & draw nodes
+    nodes.forEach((n, i) => {
+      // Drift
+      n.x += n.vx;
+      n.y += n.vy;
+
+      // Wrap
+      if (n.x < -10) n.x = w + 10;
+      if (n.x > w + 10) n.x = -10;
+      if (n.y < -10) n.y = h + 10;
+      if (n.y > h + 10) n.y = -10;
+
+      // Mouse influence
+      const dx = mouse.x - n.x;
+      const dy = mouse.y - n.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      let alpha = n.baseAlpha;
+
+      if (dist < 200) {
+        const force = (200 - dist) / 200;
+        n.x -= dx * force * 0.01;
+        n.y -= dy * force * 0.01;
+        alpha = Math.min(1, alpha + force * 0.5);
+      }
+
+      // Pulse
+      const pulse = Math.sin(time * 1.5 + n.phase) * 0.3 + 0.7;
+
+      // Draw node
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r * pulse, 0, Math.PI * 2);
+      ctx.fillStyle = n.color;
+      ctx.globalAlpha = alpha * pulse;
+      ctx.fill();
+
+      // Glow
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r * 3 * pulse, 0, Math.PI * 2);
+      ctx.fillStyle = n.color;
+      ctx.globalAlpha = alpha * 0.08;
+      ctx.fill();
+
+      // Draw connections
+      for (let j = i + 1; j < nodes.length; j++) {
+        const other = nodes[j];
+        const cdx = n.x - other.x;
+        const cdy = n.y - other.y;
+        const cdist = Math.sqrt(cdx * cdx + cdy * cdy);
+
+        if (cdist < connectionDist) {
+          const lineAlpha = (1 - cdist / connectionDist) * 0.15;
+          ctx.beginPath();
+          ctx.moveTo(n.x, n.y);
+          ctx.lineTo(other.x, other.y);
+          ctx.strokeStyle = n.color;
+          ctx.globalAlpha = lineAlpha;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    });
+
+    ctx.globalAlpha = 1;
+    animId = requestAnimationFrame(drawConstellation);
+  }
+
+  // Track mouse over the footer
+  footer.addEventListener('mousemove', (e) => {
+    const canvasRect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - canvasRect.left;
+    mouse.y = e.clientY - canvasRect.top;
+  });
+
+  footer.addEventListener('mouseleave', () => {
+    mouse.x = -9999;
+    mouse.y = -9999;
+  });
+
+  // Only animate when visible
+  const canvasObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        resize();
+        drawConstellation();
+      } else {
+        cancelAnimationFrame(animId);
+      }
+    });
+  }, { threshold: 0.05 });
+  canvasObserver.observe(canvas);
+
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(animId);
+    resize();
+    drawConstellation();
+  });
+}
+</script>
+</body>
+</html>
