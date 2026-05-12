@@ -470,7 +470,6 @@
   content: '';
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.25) 100%);
-  
   z-index: 1; pointer-events: none;
 }
 .side-nav__pill-card::after {
@@ -483,14 +482,7 @@
 .side-nav__pill-card:hover::after {
   transform: translateX(4px); color: rgba(255,255,255,0.8);
 }
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -60%);
-  width: 48px; height: 48px; border-radius: 0;
-  display: flex; align-items: center; justify-content: center;
-  background: transparent !important;
-  opacity: 0.15; z-index: 1;
-  transition: opacity 0.35s ease;
-}
+.side-nav__pill-icon { display: none !important; }
 .side-nav__pill-name {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.1rem; font-weight: 700;
