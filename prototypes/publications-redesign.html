@@ -665,15 +665,15 @@
       border: none; transition: transform 0.35s ease, box-shadow 0.35s ease;
     }
     .side-nav__pill-card:hover { transform: scale(1.02); box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
-    .side-nav__pill-card[style*="--pill-color:#2563EB"] { background: linear-gradient(135deg, #2563EB 0%, #1a4fc0 60%, #0D3862 100%) !important; }
-    .side-nav__pill-card[style*="--pill-color:#059669"] { background: linear-gradient(135deg, #059669 0%, #047857 60%, #064e3b 100%) !important; }
-    .side-nav__pill-card[style*="--pill-color:#D97706"] { background: linear-gradient(135deg, #D97706 0%, #b45309 60%, #7c2d12 100%) !important; }
-    .side-nav__pill-card[style*="--pill-color:#7C3AED"] { background: linear-gradient(135deg, #7C3AED 0%, #6025c0 60%, #15113E 100%) !important; }
-    .side-nav__pill-card[style*="--pill-color:#009BDE"] { background: linear-gradient(135deg, #009BDE 0%, #0077b3 60%, #0D3862 100%) !important; }
+    .side-nav__pill-card[style*="--pill-color:#2563EB"] { background: url('../src/assets/images/pillars/ai-card.png') center/cover no-repeat !important; }
+    .side-nav__pill-card[style*="--pill-color:#059669"] { background: url('../src/assets/images/pillars/bharatsim-card.png') center/cover no-repeat !important; }
+    .side-nav__pill-card[style*="--pill-color:#D97706"] { background: url('../src/assets/images/pillars/chart-card.png') center/cover no-repeat !important; }
+    .side-nav__pill-card[style*="--pill-color:#7C3AED"] { background: url('../src/assets/images/pillars/cyber-card.png') center/cover no-repeat !important; }
+    .side-nav__pill-card[style*="--pill-color:#009BDE"] { background: url('../src/assets/images/pillars/makerspace-card-v2.png') center/cover no-repeat !important; }
     .side-nav__pill-card::before {
       content: ''; position: absolute; inset: 0;
-      background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size: 16px 16px; z-index: 1; pointer-events: none;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.25) 100%);
+       z-index: 1; pointer-events: none;
     }
     .side-nav__pill-card::after {
       content: '\2192'; position: absolute; bottom: 18px; right: 18px;
@@ -681,7 +681,6 @@
       transition: transform 0.3s ease, color 0.3s ease;
     }
     .side-nav__pill-card:hover::after { transform: translateX(4px); color: rgba(255,255,255,0.8); }
-    .side-nav__pill-icon {
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -60%);
       width: 48px; height: 48px;
@@ -689,9 +688,6 @@
       background: transparent !important;
       opacity: 0.15; z-index: 1; transition: opacity 0.35s ease;
     }
-    .side-nav__pill-card:hover .side-nav__pill-icon { opacity: 0.3; }
-    .side-nav__pill-icon svg { width: 48px; height: 48px; color: #fff !important; stroke: #fff !important; }
-    .side-nav__pill-icon img { width: 48px; height: 48px; object-fit: contain; filter: brightness(0) invert(1); }
     .side-nav__pill-name {
       font-family: Georgia, 'Times New Roman', serif;
       font-size: 1.1rem; font-weight: 700;
@@ -701,7 +697,7 @@
     .side-nav__pill-desc {
       font-family: 'Open Sans', sans-serif;
       font-size: 0.6rem; line-height: 1.4;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.9);
       position: relative; z-index: 2; margin-top: 3px;
     }
     .side-nav__footer {
